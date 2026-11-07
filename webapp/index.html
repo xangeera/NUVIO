@@ -1,113 +1,203 @@
 <!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
+<html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Погода</title>
+<title>NUVIO</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--hue:200;--bg:var(--tg-theme-bg-color,#fff);--text:var(--tg-theme-text-color,#14181c);--hint:var(--tg-theme-hint-color,#6b7580);
---panel:var(--tg-theme-secondary-bg-color,#f1f3f5);--accent:hsl(var(--hue) 70% 45%);--tint:hsl(var(--hue) 80% 50% / .14)}
+:root{--hue:200;--bg:var(--tg-theme-bg-color,#fff);--text:var(--tg-theme-text-color,#14181c);--hint:var(--tg-theme-hint-color,#6b7580);--panel:var(--tg-theme-secondary-bg-color,#f1f3f5);--accent:hsl(var(--hue) 70% 45%);--tint:hsl(var(--hue) 80% 50%/.14)}
 *{box-sizing:border-box;margin:0}
-body{font-family:Onest,system-ui,sans-serif;background:var(--bg);color:var(--text);padding:12px 16px calc(24px + env(safe-area-inset-bottom));max-width:520px;margin:0 auto}
-.search{display:flex;gap:8px}
-input{flex:1;font:inherit;padding:11px 14px;border-radius:12px;border:1px solid transparent;background:var(--panel);color:var(--text)}
+body{font-family:Onest,system-ui,sans-serif;background:var(--bg);color:var(--text);padding:12px 16px calc(28px + env(safe-area-inset-bottom));max-width:520px;margin:0 auto}
+input,button{font:inherit;color:var(--text)}
+input{width:100%;padding:11px 14px;border-radius:12px;border:1px solid transparent;background:var(--panel)}
+button{border:0;border-radius:12px;padding:11px 14px;background:var(--panel);cursor:pointer}
+button.p{background:var(--accent);color:#fff;font-weight:700}
+button.danger{color:#d33;background:none;margin-top:18px}
 input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-button{font:inherit;border:0;border-radius:12px;padding:0 14px;background:var(--panel);color:var(--text);cursor:pointer}
-.hero{margin:22px 0 6px;padding:22px 20px;border-radius:24px;background:var(--tint)}
-.city{color:var(--hint);font-size:15px}
-.verdict{font-size:34px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:8px 0 14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--panel);padding:4px;border-radius:14px;margin-bottom:14px}
+.tabs button{background:none;font-weight:600;color:var(--hint)}.tabs .on{background:var(--bg);color:var(--text)}
+.row{display:flex;gap:8px}.row>*{min-width:0}
+.hero{margin:18px 0 6px;padding:20px;border-radius:24px;background:var(--tint)}
+.city,.meta{color:var(--hint);font-size:14px;line-height:1.5}
+.verdict{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:8px 0 14px}
 .items{display:flex;flex-wrap:wrap;gap:8px}
-.items span{background:var(--bg);padding:7px 12px;border-radius:999px;font-size:14px;font-weight:500}
-.now{display:flex;align-items:baseline;gap:10px;margin:18px 0 4px}
-.temp{font-size:56px;font-weight:800;letter-spacing:-.03em;color:var(--accent)}
-.meta{color:var(--hint);font-size:14px;line-height:1.5}
-h2{font-size:15px;font-weight:700;margin:26px 0 10px}
+.items span{background:var(--bg);padding:7px 12px;border-radius:999px;font-size:14px}.items em{color:var(--hint);font-style:normal}
+.now{display:flex;align-items:baseline;gap:10px;margin:16px 0 4px}
+.temp{font-size:52px;font-weight:800;letter-spacing:-.03em;color:var(--accent)}
+h2{font-size:15px;font-weight:700;margin:24px 0 10px}
 .hours{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
-.h{flex:0 0 58px;text-align:center;background:var(--panel);border-radius:14px;padding:10px 0;font-size:13px}
-.h b{display:block;font-size:16px;margin-top:4px}
-.h i{font-style:normal;display:block;font-size:20px;margin:4px 0}
-.d{display:grid;grid-template-columns:70px 28px 1fr auto;gap:8px;align-items:center;padding:11px 0;border-bottom:1px solid var(--panel);font-size:15px}
-.d small{color:var(--hint)}
-.msg{padding:40px 0;text-align:center;color:var(--hint)}
-@media (prefers-reduced-motion:no-preference){.hero{transition:background .4s}}
-</style>
-</head>
-<body>
-<form class="search" id="f"><input id="q" placeholder="Город" autocomplete="off" aria-label="Город"><button>Найти</button><button type="button" id="geo" aria-label="Моё местоположение">📍</button></form>
-<main id="app"><p class="msg">Загружаю погоду…</p></main>
+.h{flex:0 0 58px;text-align:center;background:var(--panel);border-radius:14px;padding:10px 0;font-size:13px}.h b{display:block;font-size:16px}.h i{font-style:normal;display:block;font-size:20px;margin:4px 0}
+.d{display:grid;grid-template-columns:70px 28px 1fr auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--panel);font-size:15px}.d small{color:var(--hint)}
+.msg{padding:36px 0;text-align:center;color:var(--hint)}
+label{display:block;font-size:13px;color:var(--hint);margin:12px 0 4px}
+.card{background:var(--panel);border-radius:18px;padding:14px 16px;margin-bottom:10px;cursor:pointer}
+.card b{display:block;font-size:17px}.bar{height:6px;border-radius:3px;background:var(--bg);margin-top:10px}.bar i{display:block;height:100%;border-radius:3px;background:var(--accent)}
+.step{background:var(--tint);border-radius:18px;padding:16px;font-size:17px;line-height:1.4;font-weight:500}.step button{margin-top:12px}
+details{margin-top:14px;color:var(--hint);font-size:14px}details li{margin:6px 0 0 18px}
+.gt{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:10px 0 4px}
+</style></head><body>
+<nav class="tabs"><button class="on" data-t="w">Погода</button><button data-t="g">Цели</button></nav>
+
+<section id="w">
+  <form class="row" id="f"><input id="q" placeholder="Город" aria-label="Город"><button>Найти</button><button type="button" id="geo" aria-label="Моё местоположение">📍</button></form>
+  <div id="app"><p class="msg">Загружаю погоду…</p></div>
+  <h2>Мой гардероб</h2><p class="meta">Впишите модели, которые у вас есть. Всё сохраняется в вашем аккаунте Телеграма, второй раз вводить не нужно.</p>
+  <div id="wardrobe"></div>
+</section>
+
+<section id="g" hidden></section>
+
 <script>
-const tg = window.Telegram?.WebApp; tg?.ready(); tg?.expand();
-const WMO={0:["☀️","Ясно"],1:["🌤","Почти ясно"],2:["⛅","Облачно с прояснениями"],3:["☁️","Пасмурно"],45:["🌫","Туман"],48:["🌫","Туман"],51:["🌦","Морось"],53:["🌦","Морось"],55:["🌦","Морось"],61:["🌧","Дождь"],63:["🌧","Дождь"],65:["🌧","Сильный дождь"],71:["🌨","Снег"],73:["🌨","Снег"],75:["❄️","Сильный снег"],80:["🌦","Ливень"],81:["🌧","Ливень"],82:["⛈","Сильный ливень"],95:["⛈","Гроза"],96:["⛈","Гроза с градом"],99:["⛈","Гроза с градом"]};
-const w = c => WMO[c] || ["🌡","—"];
-const DAYS=["вс","пн","вт","ср","чт","пт","сб"];
+const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num=v=>{const n=parseFloat(String(v).replace(',','.'));return isNaN(n)?null:n};
 
-function wear(feels,rain,wind,uv){
-  let head,items;
-  if(feels<-10){head="Одевайтесь максимально тепло";items=["пуховик","шапка","шарф","перчатки","тёплая обувь"]}
-  else if(feels<0){head="Зимняя куртка и шапка";items=["зимняя куртка","шапка","перчатки"]}
-  else if(feels<8){head="Тёплая куртка";items=["тёплая куртка","шарф","закрытая обувь"]}
-  else if(feels<14){head="Лёгкая куртка";items=["ветровка","джинсы"]}
-  else if(feels<20){head="Кофта или худи";items=["худи","джинсы или брюки"]}
-  else if(feels<26){head="Футболка и лёгкие брюки";items=["футболка","лёгкие брюки"]}
-  else{head="Самое лёгкое, что есть";items=["майка","шорты","кепка","вода с собой"]}
-  if(rain>=50)items.push("зонт");
-  if(wind>=30&&feels<20)items.push("ветрозащита");
-  if(uv>=6)items.push("крем SPF и очки");
-  return {head,items};
+/* ---- хранилище: облако Телеграма (на аккаунт), иначе localStorage ---- */
+const cs=tg?.CloudStorage&&tg.isVersionAtLeast?.('6.9')?tg.CloudStorage:null;
+const st={
+ get:k=>new Promise(r=>{if(cs)cs.getItem(k,(e,v)=>r(e||!v?null:v));else{try{r(localStorage.getItem(k))}catch{r(null)}}}),
+ set:(k,v)=>new Promise(r=>{if(cs)cs.setItem(k,v,()=>r());else{try{localStorage.setItem(k,v)}catch{}r()}}),
+ del:k=>new Promise(r=>{if(cs)cs.removeItem(k,()=>r());else{try{localStorage.removeItem(k)}catch{}r()}})
+};
+const jget=async(k,d)=>{try{return JSON.parse(await st.get(k))??d}catch{return d}};
+
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $('w').hidden=b.dataset.t!=='w';$('g').hidden=b.dataset.t!=='g'});
+
+/* ================= ПОГОДА ================= */
+const WMO={0:["☀️","Ясно"],1:["🌤","Почти ясно"],2:["⛅","Облачно с прояснениями"],3:["☁️","Пасмурно"],45:["🌫","Туман"],48:["🌫","Туман"],51:["🌦","Морось"],53:["🌦","Морось"],55:["🌦","Морось"],61:["🌧","Дождь"],63:["🌧","Дождь"],65:["🌧","Сильный дождь"],71:["🌨","Снег"],73:["🌨","Снег"],75:["❄️","Сильный снег"],80:["🌦","Ливень"],81:["🌧","Ливень"],82:["⛈","Сильный ливень"],95:["⛈","Гроза"],96:["⛈","Гроза с градом"],99:["⛈","Гроза с градом"]};
+const w=c=>WMO[c]||["🌡","—"],DAYS=["вс","пн","вт","ср","чт","пт","сб"];
+const SLOTS=[['wintershoes','Зимняя обувь'],['shoes','Демисезонная обувь'],['summershoes','Летняя обувь'],['coat','Тёплая куртка или пуховик'],['jacket','Лёгкая куртка или ветровка'],['hoodie','Худи или кофта'],['tee','Футболка'],['pants','Брюки или джинсы'],['shorts','Шорты'],['hat','Шапка'],['scarf','Шарф и перчатки'],['rain','Зонт или дождевик'],['cap','Кепка и очки']];
+const LABEL=Object.fromEntries(SLOTS);
+let wardrobe={},lastWeather=null;
+
+function wear(f,rain,uv){
+  let head,s;
+  if(f<-10){head="Одевайтесь максимально тепло";s=['coat','hat','scarf','wintershoes','pants']}
+  else if(f<0){head="Зимняя куртка и шапка";s=['coat','hat','scarf','wintershoes','pants']}
+  else if(f<8){head="Тёплая куртка";s=['coat','scarf','shoes','pants']}
+  else if(f<14){head="Лёгкая куртка";s=['jacket','pants','shoes']}
+  else if(f<20){head="Кофта или худи";s=['hoodie','pants','shoes']}
+  else if(f<26){head="Футболка и лёгкие брюки";s=['tee','pants','summershoes']}
+  else{head="Самое лёгкое, что есть";s=['tee','shorts','cap','summershoes']}
+  if(rain>=50)s.push('rain');
+  if(uv>=6&&!s.includes('cap'))s.push('cap');
+  return {head,s};
+}
+function chips(s){return s.map(id=>wardrobe[id]?`<span>${LABEL[id]}: <b>${esc(wardrobe[id])}</b></span>`:`<span>${LABEL[id]} <em>· не указано</em></span>`).join('')}
+
+function renderWardrobe(){
+  $('wardrobe').innerHTML=SLOTS.map(([id,l])=>`<label for="w_${id}">${l}</label><input id="w_${id}" maxlength="60" placeholder="Модель или описание" value="${esc(wardrobe[id]||'')}">`).join('');
+  SLOTS.forEach(([id])=>$('w_'+id).onchange=async e=>{
+    const v=e.target.value.trim();v?wardrobe[id]=v:delete wardrobe[id];
+    await st.set('wardrobe',JSON.stringify(wardrobe));if(lastWeather)render(lastWeather.d,lastWeather.name)});
 }
 
 async function load(lat,lon,name){
-  $("app").innerHTML='<p class="msg">Загружаю погоду…</p>';
+  $('app').innerHTML='<p class="msg">Загружаю погоду…</p>';
   try{
     const u=new URL("https://api.open-meteo.com/v1/forecast");
     Object.entries({latitude:lat,longitude:lon,timezone:"auto",forecast_days:7,
-      current:"temperature_2m,apparent_temperature,weather_code,wind_speed_10m",
-      hourly:"temperature_2m,weather_code",
+      current:"temperature_2m,apparent_temperature,weather_code,wind_speed_10m",hourly:"temperature_2m,weather_code",
       daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max"}).forEach(([k,v])=>u.searchParams.set(k,v));
-    const d=await (await fetch(u)).json();
-    render(d,name);
-    try{localStorage.setItem("place",JSON.stringify({lat,lon,name}))}catch{}
-  }catch(e){$("app").innerHTML='<p class="msg">Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.</p>'}
+    const d=await (await fetch(u)).json();lastWeather={d,name};render(d,name);
+    st.set('place',JSON.stringify({lat,lon,name}));
+  }catch{$('app').innerHTML='<p class="msg">Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.</p>'}
 }
-
 function render(d,name){
-  const c=d.current, dl=d.daily, feels=c.apparent_temperature;
-  const {head,items}=wear(feels,dl.precipitation_probability_max[0],c.wind_speed_10m,dl.uv_index_max[0]);
-  document.documentElement.style.setProperty("--hue",Math.round(Math.max(0,Math.min(1,(30-feels)/50))*210+10 - (feels>30?10:0)));
-  const nowIdx=d.hourly.time.findIndex(t=>t>=c.time);
-  const hours=d.hourly.time.slice(nowIdx,nowIdx+12).map((t,i)=>`<div class="h">${t.slice(11,16)}<i>${w(d.hourly.weather_code[nowIdx+i])[0]}</i><b>${Math.round(d.hourly.temperature_2m[nowIdx+i])}°</b></div>`).join("");
-  const days=dl.time.map((t,i)=>`<div class="d"><span>${i?DAYS[new Date(t).getDay()]+", "+t.slice(8):"Сегодня"}</span><span>${w(dl.weather_code[i])[0]}</span><small>осадки ${dl.precipitation_probability_max[i]??0}%</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join("");
-  $("app").innerHTML=`
-  <section class="hero"><div class="city">Что надеть · ${esc(name)}</div>
-    <div class="verdict">${head}</div><div class="items">${items.map(i=>`<span>${i}</span>`).join("")}</div></section>
-  <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span>
-    <span class="meta">${w(c.weather_code)[0]} ${w(c.weather_code)[1]}<br>ощущается как ${Math.round(feels)}°, ветер ${Math.round(c.wind_speed_10m)} км/ч</span></div>
-  <h2>Ближайшие 12 часов</h2><div class="hours">${hours}</div>
-  <h2>Неделя</h2>${days}`;
+  const c=d.current,dl=d.daily,f=c.apparent_temperature,{head,s}=wear(f,dl.precipitation_probability_max[0],dl.uv_index_max[0]);
+  document.documentElement.style.setProperty("--hue",Math.round(Math.max(0,Math.min(1,(30-f)/50))*210+10));
+  const n=d.hourly.time.findIndex(t=>t>=c.time);
+  const hours=d.hourly.time.slice(n,n+12).map((t,i)=>`<div class="h">${t.slice(11,16)}<i>${w(d.hourly.weather_code[n+i])[0]}</i><b>${Math.round(d.hourly.temperature_2m[n+i])}°</b></div>`).join('');
+  const days=dl.time.map((t,i)=>`<div class="d"><span>${i?DAYS[new Date(t).getDay()]+", "+t.slice(8):"Сегодня"}</span><span>${w(dl.weather_code[i])[0]}</span><small>осадки ${dl.precipitation_probability_max[i]??0}%</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join('');
+  $('app').innerHTML=`<section class="hero"><div class="city">Что надеть · ${esc(name)}</div><div class="verdict">${head}</div><div class="items">${chips(s)}</div></section>
+  <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span><span class="meta">${w(c.weather_code)[0]} ${w(c.weather_code)[1]}<br>ощущается как ${Math.round(f)}°, ветер ${Math.round(c.wind_speed_10m)} км/ч</span></div>
+  <h2>Ближайшие 12 часов</h2><div class="hours">${hours}</div><h2>Неделя</h2>${days}`;
 }
-
 async function search(q){
-  try{
-    const g=await (await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=ru&name="+encodeURIComponent(q))).json();
-    if(!g.results)return $("app").innerHTML='<p class="msg">Город не найден. Проверьте название.</p>';
-    const p=g.results[0]; load(p.latitude,p.longitude,p.name);
-  }catch{$("app").innerHTML='<p class="msg">Поиск не сработал. Попробуйте ещё раз.</p>'}
+  try{const g=await (await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=ru&name="+encodeURIComponent(q))).json();
+    if(!g.results)return $('app').innerHTML='<p class="msg">Город не найден. Проверьте название.</p>';
+    load(g.results[0].latitude,g.results[0].longitude,g.results[0].name)}
+  catch{$('app').innerHTML='<p class="msg">Поиск не сработал. Попробуйте ещё раз.</p>'}
 }
-function locate(){
-  navigator.geolocation?.getCurrentPosition(
-    p=>load(p.coords.latitude,p.coords.longitude,"Рядом с вами"),
-    ()=>search("Амстердам"),{timeout:8000});
-}
-$("f").onsubmit=e=>{e.preventDefault();const q=$("q").value.trim();if(q)search(q)};
-$("geo").onclick=locate;
+const locate=()=>navigator.geolocation?.getCurrentPosition(p=>load(p.coords.latitude,p.coords.longitude,"Рядом с вами"),()=>search("Амстердам"),{timeout:8000});
+$('f').onsubmit=e=>{e.preventDefault();const q=$('q').value.trim();if(q)search(q)};
+$('geo').onclick=locate;
 
-let saved=null; try{saved=JSON.parse(localStorage.getItem("place"))}catch{}
-saved?load(saved.lat,saved.lon,saved.name):locate();
-</script>
-</body>
-</html>
+/* ================= ЦЕЛИ ================= */
+let goals=[],cur=null,adding=false;
+const DAY=864e5,fmt=n=>Math.round(n*10)/10;
+const saveGoal=async g=>{while(JSON.stringify(g).length>3800&&g.log.length>5)g.log.shift();
+  await st.set('g_'+g.id,JSON.stringify(g));await st.set('gi',JSON.stringify(goals.map(x=>x.id)))};
+
+function plan(g){
+  const t=g.title.toLowerCase(),s=['Запишите одной фразой, зачем вам эта цель, и поставьте её на экран телефона'];
+  if(g.to!=null){const wk=Math.max(1,Math.ceil((new Date(g.deadline)-Date.now())/(7*DAY)));
+    s.push(`Ваш темп: ${fmt((g.to-g.from)/wk)} ${g.unit} в неделю. Выберите дни и время, когда будете этим заниматься`)}
+  if(/вес|похуд|сброс|кг/.test(t))s.push('Взвешивайтесь раз в неделю, утром, в одно и то же время','Добавьте 20–30 минут ходьбы каждый день','Замените сладкие напитки водой на эту неделю');
+  else if(/накоп|деньг|руб|₽|\$|евро/.test(t))s.push('Настройте автоперевод в день зарплаты на отдельный счёт','Просмотрите траты за прошлый месяц и найдите три лишние статьи','Отложите первую сумму сегодня, даже небольшую');
+  else if(/язык|англ|учить|выучить|курс|немец|испан/.test(t))s.push('Занимайтесь по 15 минут каждый день в одно и то же время','Выпишите 10 слов или тем на эту неделю','В конце недели проверьте себя без подсказок');
+  else if(/бег|спорт|трен|отжим|подтяг|зал/.test(t))s.push('Поставьте в календарь 3 тренировки на неделю','Первые две недели главное привычка, а не нагрузка','Записывайте результат каждой тренировки');
+  else s.push('Разбейте цель на три этапа и напишите, что будет сделано к концу каждого','Сделайте сегодня самый маленький шаг, на 10 минут','Определите главное препятствие и решите, как его убрать');
+  s.push('Через неделю запишите отметку прогресса и подведите итог');
+  return s.map(text=>({text,done:false}));
+}
+function expected(g){const t1=new Date(g.deadline).getTime();return g.from+(g.to-g.from)*Math.min(1,Math.max(0,(Date.now()-g.created)/((t1-g.created)||1)))}
+function more(g){
+  const last=g.log.at(-1);
+  if(g.to==null||!last)return ['Запишите отметку прогресса, чтобы я мог подстроить советы','Подведите итог недели: что получилось, что мешало'].map(text=>({text,done:false}));
+  const diff=(last[1]-expected(g))*(g.to>g.from?1:-1);
+  return (diff<0?[`Вы отстаёте от плана на ${fmt(-diff)} ${g.unit}. Уменьшите шаг: поставьте на ближайшую неделю вдвое меньшую задачу`,'Запишите главную причину отставания','Верните одну привычку, которая раньше работала']
+   :['Вы идёте по плану или впереди. Сохраните тот же ритм ещё неделю','Запланируйте награду за этот этап','Чуть усложните задачу на следующую неделю']).concat('Запишите новую отметку прогресса').map(text=>({text,done:false}));
+}
+function pct(g){const last=g.log.at(-1);
+  if(g.to!=null&&last)return Math.max(0,Math.min(100,Math.round((last[1]-g.from)/(g.to-g.from)*100)));
+  return Math.round(g.steps.filter(s=>s.done).length/g.steps.length*100)}
+function chart(g){
+  const W=320,H=150,p=28,t0=g.created,t1=new Date(g.deadline).getTime(),vs=[g.from,g.to,...g.log.map(x=>x[1])],mn=Math.min(...vs),r=(Math.max(...vs)-mn)||1;
+  const x=t=>p+(W-2*p)*Math.min(1,Math.max(0,(t-t0)/((t1-t0)||1))),y=v=>H-p-(H-2*p)*(v-mn)/r;
+  const pts=g.log.length?[[t0,g.from],...g.log]:[];
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="График прогресса"><line x1="${x(t0)}" y1="${y(g.from)}" x2="${x(t1)}" y2="${y(g.to)}" stroke="var(--hint)" stroke-width="2" stroke-dasharray="5 5"/>${pts.length?`<polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" points="${pts.map(([t,v])=>x(t)+','+y(v)).join(' ')}"/>`+g.log.map(([t,v])=>`<circle cx="${x(t)}" cy="${y(v)}" r="4" fill="var(--accent)"/>`).join(''):''}<text x="${p}" y="${H-6}" font-size="11" fill="var(--hint)">старт: ${g.from}</text><text x="${W-p}" y="${H-6}" font-size="11" text-anchor="end" fill="var(--hint)">цель: ${g.to} ${esc(g.unit)}</text></svg><p class="meta">Пунктир — план, линия — ваш факт.</p>`}
+
+function renderGoals(){
+  const el=$('g'),g=goals.find(x=>x.id===cur);
+  if(adding){el.innerHTML=`<button id="back">← Назад</button><div class="gt">Новая цель</div>
+    <label for="nt">Что вы хотите достичь</label><input id="nt" maxlength="80" placeholder="Например: похудеть, накопить, выучить английский">
+    <p class="meta" style="margin-top:14px">Если цель измеряется числом, заполните поля ниже. Тогда появится график.</p>
+    <div class="row"><div><label for="nf">Сейчас</label><input id="nf" inputmode="decimal" placeholder="85"></div><div><label for="nto">Цель</label><input id="nto" inputmode="decimal" placeholder="78"></div><div><label for="nu">Единица</label><input id="nu" maxlength="10" placeholder="кг"></div></div>
+    <label for="nd">Срок</label><input id="nd" type="date"><div class="row" style="margin-top:16px"><button class="p" id="create" style="flex:1">Создать цель</button></div>`;
+    $('back').onclick=()=>{adding=false;renderGoals()};
+    $('create').onclick=async()=>{
+      const title=$('nt').value.trim(),from=num($('nf').value),to=num($('nto').value),deadline=$('nd').value;
+      if(!title)return $('nt').focus();
+      if(!deadline)return $('nd').focus();
+      const meas=from!=null&&to!=null&&from!==to;
+      const g={id:Date.now().toString(36),title,unit:$('nu').value.trim(),from:meas?from:null,to:meas?to:null,deadline,created:Date.now(),log:[],steps:[]};
+      g.steps=plan(g);goals.push(g);await saveGoal(g);adding=false;cur=g.id;renderGoals()};return}
+  if(!g){el.innerHTML=(goals.length?goals.map(x=>`<div class="card" data-id="${x.id}"><b>${esc(x.title)}</b><span class="meta">до ${x.deadline.split('-').reverse().join('.')} · ${pct(x)}%</span><div class="bar"><i style="width:${pct(x)}%"></i></div></div>`).join(''):'<p class="msg">Целей пока нет. Добавьте первую, и я составлю план шагов.</p>')+'<button class="p" id="add" style="width:100%;margin-top:6px">Новая цель</button>';
+    el.querySelectorAll('.card').forEach(c=>c.onclick=()=>{cur=c.dataset.id;renderGoals()});
+    $('add').onclick=()=>{adding=true;renderGoals()};return}
+  const i=g.steps.findIndex(s=>!s.done),days=Math.ceil((new Date(g.deadline)-Date.now())/DAY),last=g.log.at(-1);
+  el.innerHTML=`<button id="back">← Все цели</button><div class="gt">${esc(g.title)}</div>
+    <p class="meta">${days>0?`Осталось ${days} дн.`:'Срок вышел'} · выполнено ${pct(g)}%${last?` · сейчас ${last[1]} ${esc(g.unit)}`:''}</p>
+    ${g.to!=null?`<div style="margin-top:12px">${chart(g)}</div><label for="val">Отметка прогресса (${esc(g.unit)||'число'})</label><div class="row"><input id="val" inputmode="decimal" placeholder="${g.from}"><button class="p" id="logit">Записать</button></div>`:''}
+    <h2>Следующий шаг</h2>${i>=0?`<div class="step">${esc(g.steps[i].text)}<br><button class="p" id="done">Готово ✓</button></div>`:`<div class="step">Все шаги выполнены.<br><button class="p" id="next">Получить новые шаги</button></div>`}
+    ${g.steps.some(s=>s.done)?`<details><summary>Выполнено (${g.steps.filter(s=>s.done).length})</summary><ul>${g.steps.filter(s=>s.done).map(s=>`<li>${esc(s.text)}</li>`).join('')}</ul></details>`:''}
+    <button class="danger" id="del">Удалить цель</button>`;
+  $('back').onclick=()=>{cur=null;renderGoals()};
+  if($('done'))$('done').onclick=async()=>{g.steps[i].done=true;await saveGoal(g);renderGoals()};
+  if($('next'))$('next').onclick=async()=>{g.steps=g.steps.filter(s=>s.done).slice(-6).concat(more(g));await saveGoal(g);renderGoals()};
+  if($('logit'))$('logit').onclick=async()=>{const v=num($('val').value);if(v==null)return $('val').focus();g.log.push([Date.now(),v]);await saveGoal(g);renderGoals()};
+  $('del').onclick=async()=>{if(!(tg?.showConfirm?await new Promise(r=>tg.showConfirm('Удалить цель?',r)):confirm('Удалить цель?')))return;
+    goals=goals.filter(x=>x.id!==g.id);await st.del('g_'+g.id);await st.set('gi',JSON.stringify(goals.map(x=>x.id)));cur=null;renderGoals()};
+}
+
+/* ================= СТАРТ ================= */
+(async()=>{
+  wardrobe=await jget('wardrobe',{});renderWardrobe();
+  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();
+  const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
+})();
+</script></body></html>
