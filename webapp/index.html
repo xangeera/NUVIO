@@ -90,15 +90,29 @@ html[data-theme=light]{--bg:#fff;--text:#14181c;--hint:#6b7580;--panel:#f1f3f5}
 .seg{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:14px}.seg button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600}
 .sec .seg button{background:none;color:var(--hint)}.sec .seg .on{background:var(--accent);color:#fff}.seg svg{width:22px;height:15px;border-radius:3px;flex:none}.seg .ic{width:18px;height:18px;border-radius:0}
 .chan{width:100%;margin-top:12px;padding:14px;border-radius:18px;font-weight:700}
+#ft{--accent:hsl(14 88% 56%);--tint:hsl(14 92% 56%/.13);animation:fade .32s ease}
+.wide{width:100%}.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fcard{background:var(--panel);border-radius:20px;padding:16px;min-height:112px;cursor:pointer}.fcard b{display:block;font-size:16px;margin:8px 0 2px}.fcard small{color:var(--hint);font-size:13px}.ic2{font-size:26px}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:14px 16px;border-radius:16px;border:2px solid transparent}.opt b{display:block;font-size:16px}.opt small{color:var(--hint);font-size:13px}.opt.on{border-color:var(--accent);background:var(--tint)}
+.chips2{display:flex;flex-wrap:wrap;gap:6px}.chips2 button{padding:7px 12px;border-radius:999px;font-size:13px}.chips2 .on{background:var(--accent);color:#fff}
+.row3{display:flex;gap:8px}.row3>div{flex:1;min-width:0}.sec h2 .x{float:right;padding:2px 8px;background:none;color:var(--hint)}
+.libi{background:var(--panel);border-radius:14px;padding:12px 14px;margin-top:6px;cursor:pointer}.lh{display:flex;justify-content:space-between;gap:10px;align-items:center}.lh small{color:var(--hint);white-space:nowrap;font-size:12px}.ld{margin-top:10px;cursor:default}.libi.op{background:var(--tint)}
+.ld button{background:var(--bg)}.tips{margin:6px 0 0 18px;line-height:1.45;font-size:14px}
+.setr{display:grid;grid-template-columns:24px 1fr 1fr 44px;gap:6px;align-items:center;margin-top:6px}.setr span{color:var(--hint);text-align:center}.setr input{text-align:center;padding:10px 6px}
+.setr .ck{padding:10px 0;font-weight:800;color:var(--hint)}.sec .setr .ck.on,.setr .ck.on{background:hsl(140 55% 42%);color:#fff}
+.tmr{font-size:48px;font-weight:800;letter-spacing:-.02em;text-align:center;font-variant-numeric:tabular-nums;margin:6px 0}
+.stats{display:flex;gap:8px;margin-top:12px}.stats>div{flex:1;background:var(--bg);border-radius:14px;padding:10px 8px;text-align:center}.stats small{display:block;color:var(--hint);font-size:12px}.stats b{font-size:15px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:14px}.kv span{color:var(--hint)}.rec{font-size:12px;font-weight:700;color:hsl(40 92% 46%)}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
-<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="p" data-i="tp"></button></nav>
+<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="p" data-i="tp"></button></nav>
 <section id="w">
   <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS">📍</button></form>
   <div id="app"><p class="msg" data-i="loadw"></p></div>
   <h2 data-i="wt"></h2><p class="meta" style="margin-bottom:10px" data-i="wi"></p><div id="wardrobe"></div>
 </section>
 <section id="g" hidden></section>
+<section id="ft" hidden></section>
 <section id="p" hidden></section>
 <script>
 const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
@@ -154,7 +168,7 @@ function applyStatic(){document.documentElement.lang=lang;
 
 document.querySelectorAll('.tabs button[data-t]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
-  moveGlass(b);['w','g','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
+  moveGlass(b);['w','g','ft','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
 
 /* ================= ИИ ================= */
 const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
@@ -165,6 +179,286 @@ async function api(path,body){
   if(r.status===429)throw new Error(t('e2'));if(r.status===401)throw new Error(t('e3'));if(!r.ok)throw new Error(t('e4'));
   return r.json();
 }
+
+/* ================= ФИТНЕС ================= */
+const LF={ru:{ft:'Фитнес',fonb:'Расскажите о себе: так ИИ точнее подберёт нагрузку.',fh:'Рост (см)',fw:'Вес (кг)',fbody:'Ваше телосложение',
+ b_ecto:'Эктоморф',b_ectod:'Худощавое, быстрый обмен веществ, трудно набирать массу',b_meso:'Мезоморф',b_mesod:'Атлетичное, мышцы растут легко',b_endo:'Эндоморф',b_endod:'Крепкое, склонно к набору жира',
+ fnext:'Далее',fgoalq:'Желаемое телосложение',p_fatloss:'Сбросить вес',p_fatlossd:'Меньше жира, больше энергии',p_toned:'Подтянутое',p_tonedd:'Лёгкий рельеф без лишнего объёма',p_athletic:'Атлетичное',p_athleticd:'Баланс силы, рельефа и выносливости',p_muscle:'Мышечная масса',p_muscled:'Большой объём мышц',p_strong:'Сила',p_strongd:'Максимальные рабочие веса',
+ fneed:'Укажите рост (100–250 см), вес и телосложение',fgneed:'Выберите желаемое телосложение',fcm:'см',fedit:'Изменить',fcont:'Продолжить тренировку',
+ fhist:'История тренировок',fcust:'Персонализация',flib:'Упражнения',fstart:'Начать тренировку',fhist_s:'Отчёты и рекорды',fcust_s:'Свои тренировки',flib_s:'{0} упражнений',fstart_s:'Таймер и подходы',
+ fnone:'Пока пусто',fnew:'Новая тренировка',fname:'Название',fgroups:'Группы мышц',fadd:'Добавить упражнение',fsearch:'Поиск',fsets:'Подходы',freps:'Повторы',fkg:'Кг',fsave:'Сохранить',fdel:'Удалить',fai:'ИИ подберёт упражнения',faib:'ИИ подбирает…',
+ fneedg:'Выберите хотя бы одну группу мышц',fneedn:'Введите название и добавьте упражнения',fall:'Все',fchoose:'Выберите тренировку',fnowo:'Тренировок пока нет. Создайте их в «Персонализации».',fex_n:'упр.',
+ faddset:'+ подход',ffinish:'Завершить тренировку',ffq:'Завершить тренировку?',fnosets:'Нет отмеченных подходов. Завершить без записи?',fstarted:'Начало',fdur:'Длительность',fvol:'Поднято всего',f1rm:'Максимум на 1 повтор ≈',frec:'Рекорд',
+ fnote1:'Максимум на 1 повтор считается по формуле Эпли. Это оценка, а не тест.',fkgu:'кг',fh_:'ч',fm_:'мин',fs_:'с',faiw:'ИИ-тренер думает…',fait:'Совет ИИ-тренера',fask:'Спросить ИИ-тренера',ftech:'Совет по технике',fpr_h:'Рекорды (оценка максимума на 1 повтор)',fdq:'Удалить тренировку?',
+ g_chest:'Грудь',g_back:'Спина',g_traps:'Трапеции',g_shoulders:'Плечи',g_biceps:'Бицепс',g_triceps:'Трицепс',g_forearms:'Предплечья',g_abs:'Пресс',g_glutes:'Ягодицы',g_quads:'Квадрицепс',g_hams:'Бицепс бедра',g_calves:'Икры'},
+en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.',fh:'Height (cm)',fw:'Weight (kg)',fbody:'Your body type',
+ b_ecto:'Ectomorph',b_ectod:'Lean, fast metabolism, hard to gain mass',b_meso:'Mesomorph',b_mesod:'Athletic, builds muscle easily',b_endo:'Endomorph',b_endod:'Stocky, tends to store fat',
+ fnext:'Next',fgoalq:'Desired physique',p_fatloss:'Lose weight',p_fatlossd:'Less fat, more energy',p_toned:'Toned',p_tonedd:'Light definition without extra size',p_athletic:'Athletic',p_athleticd:'Balance of strength, definition and endurance',p_muscle:'Muscular',p_muscled:'Big muscle mass',p_strong:'Strong',p_strongd:'Maximum working weights',
+ fneed:'Enter height (100–250 cm), weight and body type',fgneed:'Choose your desired physique',fcm:'cm',fedit:'Edit',fcont:'Continue workout',
+ fhist:'Workout history',fcust:'Customize',flib:'Exercises',fstart:'Start workout',fhist_s:'Reports and records',fcust_s:'Your workouts',flib_s:'{0} exercises',fstart_s:'Timer and sets',
+ fnone:'Nothing yet',fnew:'New workout',fname:'Name',fgroups:'Muscle groups',fadd:'Add exercise',fsearch:'Search',fsets:'Sets',freps:'Reps',fkg:'Kg',fsave:'Save',fdel:'Delete',fai:'AI picks exercises',faib:'AI is picking…',
+ fneedg:'Pick at least one muscle group',fneedn:'Enter a name and add exercises',fall:'All',fchoose:'Choose a workout',fnowo:'No workouts yet. Create them in “Customize”.',fex_n:'ex.',
+ faddset:'+ set',ffinish:'Finish workout',ffq:'Finish this workout?',fnosets:'No sets marked. Finish without saving?',fstarted:'Started',fdur:'Duration',fvol:'Total lifted',f1rm:'1-rep max ≈',frec:'Record',
+ fnote1:'The 1-rep max is calculated with the Epley formula. It’s an estimate, not a test.',fkgu:'kg',fh_:'h',fm_:'min',fs_:'s',faiw:'AI coach is thinking…',fait:'AI coach advice',fask:'Ask AI coach',ftech:'Technique tips',fpr_h:'Records (estimated 1-rep max)',fdq:'Delete this workout?',
+ g_chest:'Chest',g_back:'Back',g_traps:'Traps',g_shoulders:'Shoulders',g_biceps:'Biceps',g_triceps:'Triceps',g_forearms:'Forearms',g_abs:'Abs',g_glutes:'Glutes',g_quads:'Quads',g_hams:'Hamstrings',g_calves:'Calves'}};
+Object.assign(L.ru,LF.ru);Object.assign(L.en,LF.en);
+const EXR=`chest
+bench|Жим штанги лёжа|Barbell bench press
+incbench|Жим штанги на наклонной скамье|Incline barbell press
+decbench|Жим штанги на скамье с обратным наклоном|Decline barbell press
+dbpress|Жим гантелей лёжа|Dumbbell bench press
+dbinc|Жим гантелей на наклонной скамье|Incline dumbbell press
+dbfly|Разводка гантелей лёжа|Dumbbell fly
+incfly|Разводка гантелей на наклонной скамье|Incline dumbbell fly
+cablefly|Сведение рук в кроссовере|Cable crossover
+pecdeck|Сведение рук в тренажёре (бабочка)|Pec deck fly
+chestpress|Жим в тренажёре на грудь|Machine chest press
+pushup|Отжимания от пола|Push-ups
+dips_c|Отжимания на брусьях (грудь)|Chest dips
+pullover|Пуловер с гантелью|Dumbbell pullover
+smithbench|Жим лёжа в тренажёре Смита|Smith machine bench press
+back
+deadlift|Становая тяга|Deadlift
+pullup|Подтягивания широким хватом|Wide-grip pull-ups
+chinup|Подтягивания обратным хватом|Chin-ups
+latpd|Тяга верхнего блока к груди|Lat pulldown
+latpdn|Тяга верхнего блока узким хватом|Close-grip lat pulldown
+bbrow|Тяга штанги в наклоне|Bent-over barbell row
+dbrow|Тяга гантели одной рукой|One-arm dumbbell row
+cablerow|Тяга нижнего блока к поясу|Seated cable row
+tbar|Тяга Т-грифа|T-bar row
+machrow|Тяга в рычажном тренажёре|Machine row
+hyper|Гиперэкстензия|Back extension
+straightpd|Пуловер в блоке стоя|Straight-arm pulldown
+rackpull|Тяга с плинтов|Rack pull
+invrow|Австралийские подтягивания|Inverted row
+traps
+shrugbb|Шраги со штангой|Barbell shrugs
+shrugdb|Шраги с гантелями|Dumbbell shrugs
+facepull|Тяга каната к лицу|Face pull
+uprow|Тяга штанги к подбородку|Upright row
+farmer|Прогулка фермера|Farmer's walk
+shoulders
+ohp|Жим штанги стоя|Overhead press
+dbohp|Жим гантелей сидя|Seated dumbbell shoulder press
+arnold|Жим Арнольда|Arnold press
+latraise|Махи гантелями в стороны|Lateral raise
+cablelat|Махи в сторону в блоке|Cable lateral raise
+frontraise|Подъём гантелей перед собой|Front raise
+reardelt|Разведение гантелей в наклоне|Rear delt fly
+reardeck|Обратная бабочка|Reverse pec deck
+machsp|Жим в тренажёре на плечи|Machine shoulder press
+pushpress|Швунг жимовой|Push press
+biceps
+bbcurl|Подъём штанги на бицепс|Barbell curl
+ezcurl|Подъём EZ-штанги|EZ-bar curl
+dbcurl|Подъём гантелей на бицепс|Dumbbell curl
+hammer|Молотки|Hammer curl
+preacher|Скамья Скотта|Preacher curl
+conccurl|Концентрированный подъём|Concentration curl
+inccurl|Сгибания на наклонной скамье|Incline dumbbell curl
+cablecurl|Сгибания в блоке|Cable curl
+spidercurl|Паук-карл|Spider curl
+zottman|Сгибания Зоттмана|Zottman curl
+triceps
+cgbench|Жим узким хватом|Close-grip bench press
+dips_t|Отжимания на брусьях (трицепс)|Triceps dips
+frenchbb|Французский жим лёжа|Skull crushers
+frenchdb|Французский жим сидя с гантелью|Overhead dumbbell extension
+pushdown|Разгибания на блоке|Triceps pushdown
+ropepd|Разгибания с канатом|Rope pushdown
+kickback|Разгибания в наклоне|Triceps kickback
+overcable|Разгибания над головой в блоке|Overhead cable extension
+diamond|Алмазные отжимания|Diamond push-ups
+benchdip|Обратные отжимания от скамьи|Bench dips
+forearms
+wristcurl|Сгибание кистей со штангой|Wrist curl
+revwrist|Разгибание кистей|Reverse wrist curl
+revcurl|Обратные сгибания штанги|Reverse curl
+plateplm|Удержание блина|Plate pinch
+hang|Вис на турнике|Dead hang
+gripper|Кистевой эспандер|Hand gripper
+abs
+crunch|Скручивания|Crunches
+legraise|Подъём ног в висе|Hanging leg raise
+plank|Планка|Plank
+sideplank|Боковая планка|Side plank
+cablecrunch|Скручивания в блоке|Cable crunch
+abwheel|Ролик для пресса|Ab wheel rollout
+russian|Русские скручивания|Russian twist
+bicycle|Велосипед|Bicycle crunch
+revcrunch|Обратные скручивания|Reverse crunch
+vup|V-подъёмы|V-ups
+mclimber|Скалолаз|Mountain climbers
+woodchop|Дровосек|Wood chop
+glutes
+hipthrust|Ягодичный мост со штангой|Barbell hip thrust
+glutebridge|Ягодичный мост|Glute bridge
+bss|Болгарские сплит-приседания|Bulgarian split squat
+rdl|Румынская тяга|Romanian deadlift
+lunge|Выпады с гантелями|Dumbbell lunges
+walklunge|Выпады в ходьбе|Walking lunges
+stepup|Зашагивания на платформу|Step-ups
+kickcable|Отведение ноги в блоке|Cable glute kickback
+abduct|Разведение ног в тренажёре|Hip abduction machine
+sumo|Становая тяга сумо|Sumo deadlift
+cabpull|Протяжка в блоке|Cable pull-through
+quads
+squat|Приседания со штангой|Barbell squat
+frontsq|Фронтальные приседания|Front squat
+legpress|Жим ногами|Leg press
+hack|Гакк-приседания|Hack squat
+legext|Разгибание ног в тренажёре|Leg extension
+gobletsq|Гоблет-приседания|Goblet squat
+smithsq|Приседания в Смите|Smith machine squat
+sissy|Сисси-приседания|Sissy squat
+pistol|Приседания на одной ноге|Pistol squat
+zercher|Приседания Зерчера|Zercher squat
+hams
+legcurl|Сгибание ног лёжа|Lying leg curl
+seatcurl|Сгибание ног сидя|Seated leg curl
+stiffdl|Становая на прямых ногах|Stiff-leg deadlift
+gm|Наклоны со штангой (гуд-морнинг)|Good morning
+nordic|Нордические сгибания|Nordic curl
+ghr|Гиперэкстензия для бицепса бедра|Glute-ham raise
+dbrdl|Румынская тяга с гантелями|Dumbbell Romanian deadlift
+slrdl|Румынская тяга на одной ноге|Single-leg RDL
+swing|Махи гирей|Kettlebell swing
+calves
+calfstand|Подъём на носки стоя|Standing calf raise
+calfseat|Подъём на носки сидя|Seated calf raise
+calfpress|Подъём на носки в жиме ногами|Leg press calf raise
+donkey|Ослиные подъёмы|Donkey calf raise
+calfsingle|Подъём на носок на одной ноге|Single-leg calf raise
+jumprope|Прыжки на скакалке|Jump rope`;
+const EX={},GR=[];{let g;EXR.split('\n').forEach(l=>{if(!l.includes('|')){g=l.trim();GR.push(g)}else{const[a,r,e]=l.split('|');EX[a]={id:a,g,ru:r,en:e}}})}
+const exn=id=>EX[id]?EX[id][lang]:id,e1=(kg,r)=>r<=1?kg:kg*(1+Math.min(r,30)/30),R5=n=>Math.round(n*2)/2,cl=(v,a,b,d)=>{v=Math.round(+v);return isNaN(v)?d:Math.max(a,Math.min(b,v))};
+const fmtn=n=>Math.round(n).toLocaleString(loc()),hm=x=>new Date(x).toLocaleTimeString(loc(),{hour:'2-digit',minute:'2-digit'}),
+  fdur=ms=>{const s=Math.round(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h} ${t('fh_')} ${m} ${t('fm_')}`:`${m} ${t('fm_')} ${s%60} ${t('fs_')}`},
+  clk=ms=>{const s=Math.max(0,Math.floor(ms/1000));return [Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(p2).join(':')},
+  popupOK=()=>!!(tg&&tg.initData&&tg.isVersionAtLeast?.('6.2')),
+  note=m=>{if(popupOK()){try{return tg.showAlert(m)}catch{}}alert(m)},
+  ask=m=>new Promise(r=>{if(popupOK()){try{return tg.showConfirm(m,r)}catch{}}r(confirm(m))});
+let F={v:'menu',prof:null,ws:[],pr:{},hid:[],hs:[],act:null,ed:null,filt:'all',q:'',open:null,ai:null,tech:null,rep:null,step:1,tmp:{},loaded:false,pick:false,busy:false,err:''};
+
+async function loadFit(){
+  F.prof=await jget('fit_profile',null);F.pr=await jget('fpr',{});F.act=await jget('fit_active',null);F.hid=await jget('fhi',[]);
+  const wi=await jget('fwi',[]);F.ws=(await Promise.all(wi.map(i=>jget('fw_'+i,null)))).filter(Boolean);
+  F.loaded=true;F.v=F.prof?'menu':'onb';renderFit()}
+const saveAct=()=>F.act?st.set('fit_active',JSON.stringify(F.act)):st.del('fit_active');
+const saveIdx=()=>st.set('fwi',JSON.stringify(F.ws.map(x=>x.id)));
+function sumry(s){const ex=s.ex.map(x=>{const sets=x.sets.filter(a=>a[1]>0);return{id:x.id,sets,vol:sets.reduce((a,[k,r])=>a+k*r,0),best:R5(sets.reduce((m,[k,r])=>Math.max(m,k>0?e1(k,r):0),0))}}).filter(x=>x.sets.length);
+  return{ex,vol:ex.reduce((a,x)=>a+x.vol,0),dur:s.end-s.start}}
+const opt=(kind,k,on)=>`<button class="opt${on?' on':''}" data-a="pick" data-k="${kind}" data-v="${k}"><b>${t((kind==='goal'?'p_':'b_')+k)}</b><small>${t((kind==='goal'?'p_':'b_')+k+'d')}</small></button>`;
+const back=a=>`<button data-a="${a}">${t('back')}</button>`,title=s=>`<div class="gt" style="margin:14px 0 10px">${s}</div>`;
+const aiHtml=a=>!a?'':a.loading?`<p class="meta">${t('faiw')}</p>`:a.err?`<p class="meta">${esc(a.err)}</p>`:`${a.j.summary?`<p>${esc(a.j.summary)}</p>`:''}<ul class="tips">${(a.j.tips||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+function libList(mode){const q=F.q.toLowerCase(),gs=mode==='add'&&F.ed.groups.length?F.ed.groups:null;
+  return Object.values(EX).filter(x=>(gs?gs.includes(x.g):(F.filt==='all'||x.g===F.filt))&&(!q||x.ru.toLowerCase().includes(q)||x.en.toLowerCase().includes(q))).map(x=>{
+    const o=mode==='lib'&&F.open===x.id;
+    return `<div class="libi${o?' op':''}" data-a="${mode==='add'?'addex':'lopen'}" data-v="${x.id}"><div class="lh"><b>${esc(x[lang])}</b><small>${t('g_'+x.g)}</small></div>${o?`<div class="ld">${F.pr[x.id]?`<p class="meta">${t('f1rm')} <b>${F.pr[x.id]} ${t('fkgu')}</b></p>`:''}<button data-a="tech" data-v="${x.id}">${t('ftech')}</button>${F.tech&&F.tech.id===x.id?`<div style="margin-top:8px">${aiHtml(F.tech)}</div>`:''}</div>`:''}</div>`}).join('')||`<p class="msg">${t('fnone')}</p>`}
+
+function vOnb(){
+  if(F.step===1)return `<div class="gt">${t('ft')}</div><p class="meta">${t('fonb')}</p>
+    <div class="row"><div><label>${t('fh')}</label><input data-f="h" inputmode="numeric" value="${F.tmp.h||''}" placeholder="175"></div><div><label>${t('fw')}</label><input data-f="w" inputmode="decimal" value="${F.tmp.w||''}" placeholder="70"></div></div>
+    <label>${t('fbody')}</label>${['ecto','meso','endo'].map(k=>opt('body',k,F.tmp.body===k)).join('')}<button class="p wide" data-a="next1" style="margin-top:14px">${t('fnext')}</button>`;
+  return `<div class="gt">${t('fgoalq')}</div>${['fatloss','toned','athletic','muscle','strong'].map(k=>opt('goal',k,F.tmp.goal===k)).join('')}
+    <div class="row" style="margin-top:14px"><button data-a="prev">${t('back')}</button><button class="p" style="flex:1" data-a="fin">${t('ok')}</button></div>`}
+function vMenu(){const p=F.prof;
+  return `<div class="ghero"><div class="gt" style="margin-bottom:6px">${t('ft')}</div><p class="meta">${p.h} ${t('fcm')} · ${p.w} ${t('fkgu')} · ${t('b_'+p.body)} → ${t('p_'+p.goal)}</p><button data-a="editprof" style="margin-top:10px">${t('fedit')}</button></div>
+  ${F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">▶ ${t('fcont')} · ${esc(F.act.name)}</button>`:''}
+  <div class="fgrid">${[['hist','📈','fhist',t('fhist_s')],['cust','🛠','fcust',t('fcust_s')],['lib','📚','flib',t('flib_s',Object.keys(EX).length)],['start','⏱','fstart',t('fstart_s')]].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${s}</small></div>`).join('')}</div>`}
+function vHist(){const prs=Object.entries(F.pr).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  return back('menu')+title(t('fhist'))+(prs.length?`<div class="sec"><h2>${t('fpr_h')}</h2>${prs.map(([id,v])=>`<div class="kv"><span>${esc(exn(id))}</span><b>${v} ${t('fkgu')}</b></div>`).join('')}</div>`:'')
+    +(F.hs.length?F.hs.map(s=>{const m=sumry(s);return `<div class="gcard" data-a="hopen" data-id="${s.id}"><div><b>${esc(s.name)}</b><small>${dm(s.start)} · ${hm(s.start)} · ${fdur(m.dur)}</small><small>${fmtn(m.vol)} ${t('fkgu')}</small></div></div>`}).join(''):`<p class="msg">${t('fnone')}</p>`)}
+function vReport(){const s=F.rep,m=sumry(s);
+  return back(F.from==='act'?'menu':'hist')+`<div class="ghero"><div class="gt">${esc(s.name)}</div><p class="meta">${dm(s.start)}</p>
+    <div class="stats"><div><small>${t('fstarted')}</small><b>${hm(s.start)}</b></div><div><small>${t('fdur')}</small><b>${fdur(m.dur)}</b></div><div><small>${t('fvol')}</small><b>${fmtn(m.vol)} ${t('fkgu')}</b></div></div></div>
+  ${m.ex.map(x=>`<div class="sec"><h2>${esc(exn(x.id))}${(s.pr||[]).includes(x.id)?` <span class="rec">🏆 ${t('frec')}</span>`:''}</h2>
+    <div class="items">${x.sets.map(([k,r])=>`<span>${k} ${t('fkgu')} × ${r}</span>`).join('')}</div>
+    <div class="kv" style="margin-top:10px"><span>${t('fvol')}</span><b>${fmtn(x.vol)} ${t('fkgu')}</b></div>${x.best?`<div class="kv"><span>${t('f1rm')}</span><b>${x.best} ${t('fkgu')}</b></div>`:''}</div>`).join('')}
+  <p class="meta" style="margin-top:10px">${t('fnote1')}</p>
+  <div class="sec"><h2>${t('fait')}</h2><div id="fai"></div><button id="faibtn" data-a="review" ${F.ai&&F.ai.j?'hidden':''} style="margin-top:8px">${t('fask')}</button></div>`}
+function vCust(){return back('menu')+title(t('fcust'))+(F.ws.map(w=>`<div class="gcard" data-a="wedit" data-id="${w.id}"><div><b>${esc(w.name)}</b><small>${w.groups.map(g=>t('g_'+g)).join(', ')} · ${w.ex.length} ${t('fex_n')}</small></div></div>`).join('')||`<p class="msg">${t('fnone')}</p>`)+`<button class="p wide" data-a="wnew">${t('fnew')}</button>`}
+function vEdit(){const e=F.ed;
+  return back('cust')+title(e.id?esc(e.name||t('fnew')):t('fnew'))+(F.err?`<p class="meta" style="margin-bottom:8px">${esc(F.err)}</p>`:'')
+  +`<label>${t('fname')}</label><input data-f="name" maxlength="40" value="${esc(e.name)}"><label>${t('fgroups')}</label>
+   <div class="chips2">${GR.map(g=>`<button class="${e.groups.includes(g)?'on':''}" data-a="tg" data-v="${g}">${t('g_'+g)}</button>`).join('')}</div>
+   <button class="wide" data-a="aiplan" style="margin-top:12px" ${F.busy?'disabled':''}>✨ ${F.busy?t('faib'):t('fai')}</button>
+   ${e.ex.map((x,i)=>`<div class="sec"><h2>${esc(exn(x.id))} <button class="x" data-a="rmex" data-i="${i}" aria-label="${t('fdel')}">✕</button></h2>
+     <div class="row3"><div><label>${t('fsets')}</label><input data-f="ex" data-i="${i}" data-k="sets" inputmode="numeric" value="${x.sets}"></div><div><label>${t('freps')}</label><input data-f="ex" data-i="${i}" data-k="reps" inputmode="numeric" value="${x.reps}"></div><div><label>${t('fkg')}</label><input data-f="ex" data-i="${i}" data-k="kg" inputmode="decimal" value="${x.kg||''}" placeholder="0"></div></div></div>`).join('')}
+   <button class="wide" data-a="togpick" style="margin-top:12px">＋ ${t('fadd')}</button>
+   ${F.pick?`<input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin-top:10px"><div id="liblist" class="liblist">${libList('add')}</div>`:''}
+   <div class="row" style="margin-top:16px"><button class="p" style="flex:1" data-a="wsave">${t('fsave')}</button></div>${e.id?`<button class="danger" data-a="wdel">${t('fdel')}</button>`:''}`}
+function vLib(){return back('menu')+title(t('flib'))+`<div class="chips2"><button class="${F.filt==='all'?'on':''}" data-a="filt" data-v="all">${t('fall')}</button>${GR.map(g=>`<button class="${F.filt===g?'on':''}" data-a="filt" data-v="${g}">${t('g_'+g)}</button>`).join('')}</div>
+  <input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin:10px 0"><div id="liblist" class="liblist">${libList('lib')}</div>`}
+function vStart(){return back('menu')+title(t('fstart'))+(F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">▶ ${t('fcont')} · ${esc(F.act.name)}</button>`:'')+(F.ws.length?`<p class="meta" style="margin-bottom:10px">${t('fchoose')}</p>`+F.ws.map(w=>`<div class="gcard" data-a="begin" data-id="${w.id}"><div><b>${esc(w.name)}</b><small>${w.groups.map(g=>t('g_'+g)).join(', ')} · ${w.ex.length} ${t('fex_n')}</small></div></div>`).join(''):`<p class="msg">${t('fnowo')}</p>`)}
+function vAct(){const a=F.act;
+  return `<div class="ghero"><div class="gt" style="text-align:center">${esc(a.name)}</div><div class="tmr" id="tm">${clk(Date.now()-a.start)}</div><p class="meta" style="text-align:center">${t('fstarted')} ${hm(a.start)}</p></div>
+  ${a.ex.map((x,ei)=>`<div class="sec"><h2>${esc(exn(x.id))}${F.pr[x.id]?` <small class="meta">· ${t('f1rm')} ${F.pr[x.id]} ${t('fkgu')}</small>`:''}</h2>
+    ${x.sets.map((s,si)=>`<div class="setr"><span>${si+1}</span><input data-f="set" data-e="${ei}" data-s="${si}" data-k="kg" inputmode="decimal" value="${s.kg||''}" placeholder="${t('fkg')}" aria-label="${t('fkg')}"><input data-f="set" data-e="${ei}" data-s="${si}" data-k="reps" inputmode="numeric" value="${s.reps||''}" placeholder="${t('freps')}" aria-label="${t('freps')}"><button class="ck${s.done?' on':''}" data-a="ck" data-e="${ei}" data-s="${si}">✓</button></div>`).join('')}
+    <button data-a="addset" data-e="${ei}" style="margin-top:8px">${t('faddset')}</button></div>`).join('')}
+  <button class="p wide" data-a="finish" style="margin-top:14px">${t('ffinish')}</button>`}
+function renderFit(){
+  const el=$('ft');clearInterval(F.tk);
+  const V={onb:vOnb,menu:vMenu,hist:vHist,cust:vCust,edit:vEdit,lib:vLib,start:vStart,act:vAct,report:vReport}[F.v];
+  el.innerHTML=F.loaded?V():`<p class="msg">…</p>`;
+  if(F.v==='act')F.tk=setInterval(()=>{const x=$('tm');if(x)x.textContent=clk(Date.now()-F.act.start)},1000);
+  if(F.v==='report')$('fai').innerHTML=aiHtml(F.ai);
+  if(F.lv!==F.v){F.lv=F.v;scrollTo(0,0)}
+}
+async function review(){const s=F.rep,m=sumry(s);F.ai={loading:true};$('fai').innerHTML=aiHtml(F.ai);const b=$('faibtn');if(b)b.hidden=true;
+  try{F.ai={j:await api('/fitness',{mode:'review',name:s.name,minutes:Math.round(m.dur/60000),volume:Math.round(m.vol),profile:F.prof,
+    exercises:m.ex.map(x=>({name:exn(x.id),sets:x.sets,e1rm:x.best,record:(s.pr||[]).includes(x.id)}))})}}catch(e){F.ai={err:e.message}}
+  if(F.v==='report'&&F.rep===s){$('fai').innerHTML=aiHtml(F.ai);if(b&&F.ai.err)b.hidden=false}}
+async function finishWo(){
+  const a=F.act,done={id:Date.now().toString(36),name:a.name,start:a.start,end:Date.now(),pr:[],ex:a.ex.map(x=>({id:x.id,sets:x.sets.filter(s=>s.done&&s.reps>0).map(s=>[s.kg||0,s.reps])})).filter(x=>x.sets.length)};
+  if(!done.ex.length){if(!await ask(t('fnosets')))return;F.act=null;await saveAct();F.v='menu';return renderFit()}
+  sumry(done).ex.forEach(x=>{const old=F.pr[x.id];if(x.best>0){if(old&&x.best>old)done.pr.push(x.id);if(!old||x.best>old)F.pr[x.id]=x.best}});
+  await st.set('fh_'+done.id,JSON.stringify(done));F.hid.push(done.id);while(F.hid.length>300)await st.del('fh_'+F.hid.shift());
+  await st.set('fhi',JSON.stringify(F.hid));await st.set('fpr',JSON.stringify(F.pr));F.act=null;await saveAct();
+  F.rep=done;F.from='act';F.ai=null;F.v='report';renderFit();review()}
+const fa={
+  menu(){F.v='menu';renderFit()},cust(){F.v='cust';renderFit()},prev(){F.step=1;renderFit()},
+  pick(d){F.tmp[d.k]=d.v;renderFit()},
+  next1(){const h=num(F.tmp.h),w=num(F.tmp.w);if(!(h>=100&&h<=250)||!(w>=30&&w<=300)||!F.tmp.body)return note(t('fneed'));F.tmp.h=h;F.tmp.w=w;F.step=2;renderFit()},
+  async fin(){if(!F.tmp.goal)return note(t('fgneed'));F.prof={h:F.tmp.h,w:F.tmp.w,body:F.tmp.body,goal:F.tmp.goal};await st.set('fit_profile',JSON.stringify(F.prof));F.v='menu';renderFit()},
+  editprof(){F.tmp={...F.prof};F.step=1;F.v='onb';renderFit()},
+  async go(d){F.q='';F.filt='all';F.open=null;F.tech=null;F.err='';
+    if(d.v==='hist')F.hs=(await Promise.all(F.hid.slice(-25).reverse().map(i=>jget('fh_'+i,null)))).filter(Boolean);
+    F.v=d.v;renderFit()},
+  hopen(d){F.rep=F.hs.find(s=>s.id===d.id);F.from='hist';F.ai=null;F.v='report';renderFit()},
+  review,
+  filt(d){F.filt=d.v;renderFit()},
+  lopen(d){F.open=F.open===d.v?null:d.v;F.tech=null;$('liblist').innerHTML=libList('lib')},
+  async tech(d){F.tech={id:d.v,loading:true};$('liblist').innerHTML=libList('lib');
+    try{F.tech={id:d.v,j:await api('/fitness',{mode:'tech',exercise:exn(d.v),profile:F.prof})}}catch(e){F.tech={id:d.v,err:e.message}}$('liblist').innerHTML=libList('lib')},
+  wnew(){F.ed={name:'',groups:[],ex:[]};F.pick=false;F.err='';F.q='';F.v='edit';renderFit()},
+  wedit(d){F.ed=JSON.parse(JSON.stringify(F.ws.find(w=>w.id===d.id)));F.pick=false;F.err='';F.q='';F.v='edit';renderFit()},
+  tg(d){const g=F.ed.groups,i=g.indexOf(d.v);i<0?g.push(d.v):g.splice(i,1);renderFit()},
+  togpick(){F.pick=!F.pick;renderFit()},
+  addex(d){if(!F.ed.ex.find(x=>x.id===d.v))F.ed.ex.push({id:d.v,sets:3,reps:10,kg:0});renderFit()},
+  rmex(d){F.ed.ex.splice(+d.i,1);renderFit()},
+  async aiplan(){const e=F.ed;if(!e.groups.length)return note(t('fneedg'));F.busy=true;F.err='';renderFit();
+    try{const j=await api('/fitness',{mode:'plan',groups:e.groups.map(g=>t('g_'+g)),allowed:Object.values(EX).filter(x=>e.groups.includes(x.g)).map(x=>({id:x.id,name:x[lang]})),profile:F.prof,pr:F.pr});
+      const ok=(j.exercises||[]).filter(x=>EX[x.id]&&e.groups.includes(EX[x.id].g)).map(x=>({id:x.id,sets:cl(x.sets,1,8,3),reps:cl(x.reps,1,30,10),kg:Math.max(0,+x.kg||0)}));
+      if(ok.length){e.ex=ok;if(!e.name&&j.name)e.name=String(j.name).slice(0,40)}}catch(er){F.err=er.message}
+    F.busy=false;renderFit()},
+  async wsave(){const e=F.ed;if(!e.name.trim()||!e.ex.length)return note(t('fneedn'));
+    const w={id:e.id||Date.now().toString(36),name:e.name.trim(),groups:e.groups.length?e.groups:[...new Set(e.ex.map(x=>EX[x.id]?.g).filter(Boolean))],ex:e.ex.map(x=>({id:x.id,sets:cl(x.sets,1,10,3),reps:cl(x.reps,1,50,10),kg:Math.max(0,+x.kg||0)}))};
+    const i=F.ws.findIndex(x=>x.id===w.id);i<0?F.ws.push(w):F.ws[i]=w;await st.set('fw_'+w.id,JSON.stringify(w));await saveIdx();F.v='cust';renderFit()},
+  async wdel(){if(!await ask(t('fdq')))return;F.ws=F.ws.filter(x=>x.id!==F.ed.id);await st.del('fw_'+F.ed.id);await saveIdx();F.v='cust';renderFit()},
+  async begin(d){if(F.act&&!await ask(t('ffq')))return;const w=F.ws.find(x=>x.id===d.id);
+    F.act={wid:w.id,name:w.name,start:Date.now(),ex:w.ex.map(x=>({id:x.id,sets:Array.from({length:x.sets},()=>({kg:x.kg,reps:x.reps,done:false}))}))};await saveAct();F.v='act';renderFit()},
+  resume(){F.v='act';renderFit()},
+  ck(d,b){const s=F.act.ex[d.e].sets[d.s];s.done=!s.done;b.classList.toggle('on',s.done);tg?.HapticFeedback?.impactOccurred?.('medium');saveAct()},
+  addset(d){const x=F.act.ex[d.e],l=x.sets.at(-1)||{kg:0,reps:10};x.sets.push({kg:l.kg,reps:l.reps,done:false});saveAct();renderFit()},
+  async finish(){if(await ask(t('ffq')))finishWo()}};
+const fi={h(v){F.tmp.h=v},w(v){F.tmp.w=v},name(v){F.ed.name=v},ex(v,d){F.ed.ex[d.i][d.k]=v===''?0:num(v)||0},
+  q(v){F.q=v;$('liblist').innerHTML=libList(F.v==='edit'?'add':'lib')},
+  set(v,d){F.act.ex[d.e].sets[d.s][d.k]=num(v)||0;clearTimeout(F.pt);F.pt=setTimeout(saveAct,500)}};
+$('ft').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)fa[b.dataset.a]?.(b.dataset,b)});
+$('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e.target.value,d)});
+
 
 /* ================= ПОГОДА ================= */
 const WE={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌦',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
@@ -256,7 +550,7 @@ function renderProfile(){
   $('idp').onclick=async()=>{const id=String(u.id||'');if(!id)return;
     try{await navigator.clipboard.writeText(id)}catch{const a=document.createElement('textarea');a.value=id;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch{}a.remove()}
     const sp=$('idt');sp.textContent=t('pcopied');tg?.HapticFeedback?.notificationOccurred?.('success');setTimeout(()=>{sp.textContent=id},1200)};
-  $('renew').onclick=()=>tg?.showAlert?tg.showAlert(t('psoon')):alert(t('psoon'));
+  $('renew').onclick=()=>note(t('psoon'));
   $('chan').onclick=()=>tg?.openTelegramLink?tg.openTelegramLink('https://t.me/AINUVIO'):window.open('https://t.me/AINUVIO','_blank');
   $('p').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
   $('p').querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{applyTheme(b.dataset.th,true);renderProfile()});
@@ -405,17 +699,17 @@ function renderGoals(){
   if($('done'))$('done').onclick=async()=>{g.steps[fi].done=true;g.steps[fi].at=Date.now();await saveGoal(g);renderGoals()};
   $('logit').onclick=async()=>{const v=num_?num($('val').value):null,n=$('note').value.trim();if(v==null&&!n)return $(num_?'val':'note').focus();
     g.log.push([Date.now(),v,n]);await saveGoal(g);renderGoals()};
-  $('del').onclick=async()=>{if(!(tg?.showConfirm?await new Promise(r=>tg.showConfirm(t('delq'),r)):confirm(t('delq'))))return;
+  $('del').onclick=async()=>{if(!await ask(t('delq')))return;
     goals=goals.filter(x=>x.id!==g.id);await st.del('g_'+g.id);await st.set('gi',JSON.stringify(goals.map(x=>x.id)));cur=null;renderGoals()};
 }
 
 /* ================= СТАРТ ================= */
 async function init(){
   {const w0=await jget('wardrobe',[]);wardrobe=Array.isArray(w0)?w0:Object.values(w0).filter(v=>typeof v==='string');}renderWardrobe();
-  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();
+  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 }
-function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();if(lastWeather)render(lastWeather.d,lastWeather.name)}
+function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();renderFit();if(lastWeather)render(lastWeather.d,lastWeather.name)}
 (async()=>{
   $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${i*.08}s">${c}</span>`).join('');
   const q0=new URLSearchParams(location.search).get('lang'),qp=(q0==='ru'||q0==='en')?q0:null,sv=await st.get('lang'),seen=await st.get('blang'),th=await st.get('theme');
