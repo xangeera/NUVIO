@@ -22,8 +22,8 @@ label{display:block;font-size:13px;color:var(--hint);margin:12px 0 4px}
 h2{font-size:15px;font-weight:700;margin:24px 0 10px}
 .msg{padding:36px 0;text-align:center;color:var(--hint)}
 /* hero */
-.hero{position:relative;margin:18px 0 6px;padding:20px 20px 0;overflow:hidden;border-radius:24px;background:linear-gradient(#fbfbfb,#d2d2d2);color:#111}
-.hero .city{color:#555}.verdict{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:8px 0 0;padding-right:60px}
+.hero{position:relative;margin:18px 0 6px;padding:20px 20px 0;overflow:hidden;border-radius:24px;background:linear-gradient(hsl(var(--sh,200) 65% 82%),hsl(var(--sh,200) 50% 66%));color:#111;transition:background .6s}
+.hero .city{color:#2c2c2c}.verdict{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:8px 0 0;padding-right:60px}
 .hero>svg.city-art{display:block;width:calc(100% + 40px);height:130px;margin:14px -20px 0}
 .wi{position:absolute;top:16px;right:16px;color:#111}
 .globe{position:absolute;left:12px;bottom:10px;width:32px;height:32px;padding:0;border-radius:50%;background:rgba(255,255,255,.88);display:grid;place-items:center}.globe svg{width:20px;height:20px}
@@ -61,9 +61,21 @@ h2{font-size:15px;font-weight:700;margin:24px 0 10px}
 #langs{display:flex;gap:14px;opacity:0;animation:up .5s .9s forwards}#langs button{padding:0;background:none;line-height:0;border-radius:5px;overflow:hidden;box-shadow:0 0 0 1px var(--hint)}#langs svg{width:44px;height:30px;border-radius:0}
 @keyframes up{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.mark span,#langs{animation-duration:.01s;animation-delay:0s}}
+button,.gcard{transition:transform .16s cubic-bezier(.3,1.6,.5,1),filter .15s,background-color .2s;-webkit-tap-highlight-color:transparent}
+button:active,.gcard:active{transform:scale(.93);filter:brightness(.9)}
+#w,#g{animation:fade .32s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.tabs{position:relative;isolation:isolate}.tabs button{position:relative;z-index:1}.tabs .on{background:none}
+.glass{position:absolute;top:4px;bottom:4px;left:0;width:0;z-index:0;transition:transform .55s cubic-bezier(.34,1.45,.5,1),width .55s cubic-bezier(.34,1.45,.5,1)}.glass.nt{transition:none}
+.glass b{position:absolute;inset:0;border-radius:11px;background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.06)),rgba(127,127,127,.2);-webkit-backdrop-filter:blur(10px) saturate(1.8);backdrop-filter:blur(10px) saturate(1.8);border:1px solid rgba(255,255,255,.32);box-shadow:inset 0 1px 1px rgba(255,255,255,.55),inset 0 -6px 10px rgba(255,255,255,.06),0 6px 18px rgba(0,0,0,.22)}
+.glass.go b{animation:squish .55s ease}@keyframes squish{35%{transform:scale(1.16,.9)}70%{transform:scale(.97,1.05)}}
+.hero .city,.hero .verdict{position:relative;z-index:2}.wi{z-index:2}.globe{z-index:3}
+#fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.rays{position:absolute;top:-140px;right:-140px;width:380px;height:380px;z-index:0;pointer-events:none;background:repeating-conic-gradient(from 0deg,rgba(255,246,170,.6) 0 7deg,transparent 7deg 18deg);-webkit-mask:radial-gradient(circle,#000 0,rgba(0,0,0,.55) 42%,transparent 70%);mask:radial-gradient(circle,#000 0,rgba(0,0,0,.55) 42%,transparent 70%);animation:spin 50s linear infinite,glow 5s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes glow{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.rays,.glass.go b,#w,#g,button,.gcard{animation:none;transition:none}}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
-<nav class="tabs"><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button id="lang" aria-label="Language"></button></nav>
+<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button id="lang" aria-label="Language"></button></nav>
 <section id="w">
   <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS">📍</button></form>
   <div id="app"><p class="msg" data-i="loadw"></p></div>
@@ -86,8 +98,8 @@ const st={
 const jget=async(k,d)=>{try{return JSON.parse(await st.get(k))??d}catch{return d}};
 
 /* ---- языки ---- */
-const L={ru:{tw:'Погода',tg:'Цели',city:'Город',find:'Найти',loadw:'Загружаю погоду…',errw:'Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.',nocity:'Город не найден. Проверьте название.',errs:'Поиск не сработал. Попробуйте ещё раз.',near:'Рядом с вами',
- wtw:'Что надеть · {0}',v1:'Одевайтесь максимально тепло',v2:'Зимняя куртка и шапка',v3:'Тёплая куртка',v4:'Лёгкая куртка',v5:'Кофта или худи',v6:'Футболка и лёгкие брюки',v7:'Самое лёгкое, что есть',
+const L={ru:{tw:'Погода',tg:'Цели',city:'Город',find:'Найти',loadw:'Загружаю погоду…',errw:'Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.',nocity:'Город не найден. Проверьте название.',errs:'Поиск не сработал. Попробуйте ещё раз.',near:'Рядом с вами',map:'Карта погоды',
+ wtw:'{0} • {1} • Что надеть',v1:'Одевайтесь максимально тепло',v2:'Зимняя куртка и шапка',v3:'Тёплая куртка',v4:'Лёгкая куртка',v5:'Кофта или худи',v6:'Футболка и лёгкие брюки',v7:'Самое лёгкое, что есть',
  outt:'Совет ИИ из вашего гардероба',outl:'ИИ подбирает образ…',gen:'Показан общий совет.',feels:'ощущается как {0}°, ветер {1} км/ч',h12:'Ближайшие 12 часов',wk:'Неделя',today:'Сегодня',pr:'осадки {0}%',
  wt:'Мой гардероб',wi:'Впишите, что у вас есть: можно по одной вещи или списком через запятую. ИИ соберёт образ из ваших вещей. Всё хранится в вашем аккаунте Телеграма.',wph:'Что у вас есть из одежды и обуви',add:'Добавить',wempty:'Пока пусто. Добавьте вещи, и ИИ будет собирать образ из них.',del:'Удалить',
  e0:'ИИ не подключён.',e1:'Нет связи с сервером ИИ.',e2:'Слишком много запросов, попробуйте позже.',e3:'Откройте приложение через бота в Телеграме.',e4:'ИИ сейчас не ответил.',
@@ -99,8 +111,8 @@ const L={ru:{tw:'Погода',tg:'Цели',city:'Город',find:'Найти'
  days:'Дни',legok:'был прогресс',legmiss:'пропуск',legwk:'Клетка - неделя',wkh:'Неделя {0} – {1}',tagok:'Прогресс',tagmiss:'Пропуск',tagpre:'До старта',tagnow:'Сегодня',tagfut:'Впереди',
  done:'Выполнено: {0}',mark:'Отметка прогресса: {0} {1}',note:'Запись: {0}',steps:'Шаги от ИИ',busy:'ИИ подбирает шаги под вашу цель…',retry:'Повторить',nosteps:'Шагов пока нет.',getsteps:'Получить шаги от ИИ',ok:'Готово',alldone:'Все шаги выполнены. Получить новые',upd:'Обновить шаги по моему прогрессу',
  logt:'Запись о прогрессе',logph:'Что вы сделали (необязательно)',valph:'Число (необязательно)',rec:'Записать',delg:'Удалить цель',delq:'Удалить цель?'},
-en:{tw:'Weather',tg:'Goals',city:'City',find:'Search',loadw:'Loading weather…',errw:'Couldn’t load the weather. Check your connection and try again.',nocity:'City not found. Check the name.',errs:'Search failed. Try again.',near:'Near you',
- wtw:'What to wear · {0}',v1:'Bundle up as warm as you can',v2:'Winter coat and a hat',v3:'A warm jacket',v4:'A light jacket',v5:'A sweater or hoodie',v6:'T-shirt and light pants',v7:'The lightest you’ve got',
+en:{tw:'Weather',tg:'Goals',city:'City',find:'Search',loadw:'Loading weather…',errw:'Couldn’t load the weather. Check your connection and try again.',nocity:'City not found. Check the name.',errs:'Search failed. Try again.',near:'Near you',map:'Weather map',
+ wtw:'{0} • {1} • What to wear',v1:'Bundle up as warm as you can',v2:'Winter coat and a hat',v3:'A warm jacket',v4:'A light jacket',v5:'A sweater or hoodie',v6:'T-shirt and light pants',v7:'The lightest you’ve got',
  outt:'AI outfit from your wardrobe',outl:'AI is styling your look…',gen:'Showing general advice.',feels:'feels like {0}°, wind {1} km/h',h12:'Next 12 hours',wk:'Week',today:'Today',pr:'precip. {0}%',
  wt:'My wardrobe',wi:'Add what you own, one item at a time or a comma-separated list. AI will build outfits from your things. Everything is stored in your Telegram account.',wph:'Clothes and shoes you own',add:'Add',wempty:'Nothing yet. Add your clothes and AI will style outfits from them.',del:'Remove',
  e0:'AI is not connected.',e1:'Can’t reach the AI server.',e2:'Too many requests, try again later.',e3:'Open the app through the bot in Telegram.',e4:'AI didn’t respond.',
@@ -124,10 +136,10 @@ function applyStatic(){document.documentElement.lang=lang;
 
 document.querySelectorAll('.tabs button[data-t]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
-  $('w').hidden=b.dataset.t!=='w';$('g').hidden=b.dataset.t!=='g'});
+  moveGlass(b);$('w').hidden=b.dataset.t!=='w';$('g').hidden=b.dataset.t!=='g'});
 
 /* ================= ИИ ================= */
-const API_URL=" https://gondola-hyperlink-showcase.ngrok-free.dev";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
+const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
 async function api(path,body){
   if(!API_URL)throw new Error(t('e0'));
   let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify({...body,lang})})}
@@ -169,6 +181,43 @@ const CITY=`<svg class="city-art" viewBox="0 0 400 130" preserveAspectRatio="xMi
 <path d="M238 130V46h18V34h36v96z" fill="url(#gl)"/><path d="M238 130V46h18V34h36v96z" fill="url(#sl)"/>
 <rect x="304" y="26" width="52" height="104" fill="#4a4a4a"/><rect x="304" y="26" width="52" height="104" fill="url(#sd)"/>
 <rect x="366" y="72" width="34" height="58" fill="#1c1c1c"/><rect x="366" y="72" width="34" height="58" fill="url(#sd)"/></svg>`;
+/* ---- анимация погоды в карточке ---- */
+let fxStop=null;
+function openMap(){const u=`https://maps.open-meteo.com/?time=${iso(Date.now())}T1200#1/0.1/-0.1`;tg?.openLink?tg.openLink(u):window.open(u,'_blank')}
+function startFx(code,f,wind){
+  if(fxStop)fxStop();const cv=$('fx');if(!cv)return;
+  const hero=cv.parentElement,ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1,still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let W=1,H=1;const fit=()=>{W=hero.clientWidth;H=hero.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)};fit();
+  const ro=window.ResizeObserver?new ResizeObserver(fit):null;ro?.observe(hero);
+  const kind=code>=96?'hail':code>=95?'storm':[71,73,75,77,85,86].includes(code)?'snow':(code>=51&&code<=67)||(code>=80&&code<=82)?'rain':code===45||code===48?'fog':(code===2||code===3)?'clouds':'';
+  const heavy=[65,67,75,82,86,95,96,99].includes(code),lean=Math.min(1.5,wind/25);
+  const N={rain:heavy?120:70,storm:130,snow:heavy?90:55,hail:60,fog:6,clouds:5}[kind]||0;
+  const P=Array.from({length:N},()=>({x:Math.random()*W,y:Math.random()*H,v:.6+Math.random()*.8,r:Math.random()}));
+  const S=wind>=25?Array.from({length:6+Math.min(8,Math.round(wind/6))},()=>({x:Math.random()*W,y:Math.random()*H*.7,l:30+Math.random()*50,v:2+Math.random()*3})):[];
+  let flash=0,raf=0;
+  function draw(ts){
+    ctx.clearRect(0,0,W,H);
+    if(kind==='rain'||kind==='storm'){ctx.strokeStyle='rgba(30,55,95,.5)';ctx.lineWidth=1.3;ctx.beginPath();
+      P.forEach(p=>{const sx=1.5+lean*5;ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+sx*1.6,p.y+12*p.v);p.y+=10*p.v;p.x+=sx*.6*p.v;if(p.y>H){p.y=-12;p.x=Math.random()*(W+60)-60}});ctx.stroke()}
+    if(kind==='storm'){if(Math.random()<.006)flash=1;if(flash>.02){ctx.fillStyle=`rgba(255,255,255,${flash*.55})`;ctx.fillRect(0,0,W,H);flash*=.86}}
+    if(kind==='snow'){ctx.fillStyle='rgba(255,255,255,.92)';P.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.5+p.r*2.2,0,6.28);ctx.fill();
+      p.y+=.9+p.v*1.2;p.x+=Math.sin(ts/900+p.r*10)*.6+lean*1.5;if(p.y>H){p.y=-6;p.x=Math.random()*W}if(p.x>W)p.x=0;if(p.x<0)p.x=W})}
+    if(kind==='hail'){ctx.fillStyle='#fff';ctx.strokeStyle='rgba(110,130,155,.85)';ctx.lineWidth=1;P.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,2+p.r*1.8,0,6.28);ctx.fill();ctx.stroke();
+      p.y+=11*p.v;p.x+=1+lean*3;if(p.y>H){p.y=-8;p.x=Math.random()*W}if(p.x>W)p.x=0})}
+    if(kind==='fog'||kind==='clouds'){ctx.fillStyle=kind==='fog'?'rgba(255,255,255,.2)':'rgba(255,255,255,.3)';P.forEach(p=>{ctx.beginPath();
+      ctx.ellipse(p.x,kind==='fog'?H*(.35+.5*p.r):10+p.r*H*.3,kind==='fog'?130:60+p.r*50,kind==='fog'?24:16+p.r*10,0,0,6.28);ctx.fill();p.x+=.25*p.v*(1+lean);if(p.x>W+140)p.x=-140})}
+    if(S.length){ctx.strokeStyle='rgba(255,255,255,.65)';ctx.lineWidth=1.6;ctx.lineCap='round';ctx.beginPath();
+      S.forEach(s=>{ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.l,s.y);s.x+=s.v*3+lean*2;if(s.x-s.l>W){s.x=0;s.y=Math.random()*H*.7}});ctx.stroke()}
+  }
+  const loop=ts=>{if(!cv.isConnected){fxStop();return}raf=requestAnimationFrame(loop);if(!document.hidden)draw(ts)};
+  fxStop=()=>{cancelAnimationFrame(raf);ro?.disconnect();fxStop=null};
+  still?draw(0):raf=requestAnimationFrame(loop);
+}
+const moveGlass=(b,instant)=>{const g=$('glass');if(!g||!b)return;g.classList.toggle('nt',!!instant);g.style.width=b.offsetWidth+'px';g.style.transform=`translateX(${b.offsetLeft}px)`;
+  if(!instant){g.classList.remove('go');void g.offsetWidth;g.classList.add('go')}};
+document.addEventListener('pointerdown',e=>{if(e.target.closest('button,.gcard'))tg?.HapticFeedback?.impactOccurred?.('light')});
+addEventListener('resize',()=>moveGlass(document.querySelector('.tabs .on'),true));
+
 let wardrobe=[],lastWeather=null,outSeq=0;
 
 function wear(f,rain,uv){
@@ -215,14 +264,14 @@ async function load(lat,lon,name){
 function render(d,name){
   const c=d.current,dl=d.daily,f=c.apparent_temperature,{head}=wear(f,dl.precipitation_probability_max[0],dl.uv_index_max[0]),night=isNight(+c.time.slice(11,13));
   document.documentElement.style.setProperty("--hue",Math.round(Math.max(0,Math.min(1,(30-f)/50))*210+10));
-  const n=d.hourly.time.findIndex(x=>x>=c.time);
+  const n=d.hourly.time.findIndex(x=>x>=c.time),sh=Math.round(215-Math.max(0,Math.min(1,(f+5)/29))*80),date=new Date().toLocaleDateString(loc(),{day:'numeric',month:'long'}),sunny=!night&&(c.weather_code<=1||(c.weather_code===2&&f>=15));
   const hours=d.hourly.time.slice(n,n+12).map((tm,i)=>`<div class="h">${tm.slice(11,16)}<i>${w(d.hourly.weather_code[n+i],isNight(+tm.slice(11,13)))[0]}</i><b>${Math.round(d.hourly.temperature_2m[n+i])}°</b></div>`).join('');
   const days=dl.time.map((x,i)=>`<div class="d"><span>${i?wdn(x+'T12:00:00')+', '+x.slice(8):t('today')}</span><span>${w(dl.weather_code[i])[0]}</span><small>${t('pr',dl.precipitation_probability_max[i]??0)}</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join('');
-  $('app').innerHTML=`<section class="hero">${icon(c.weather_code,f,night)}<div class="city">${t('wtw',esc(name||t('near')))}</div><div class="verdict">${t('v'+head)}</div>${CITY}<button class="globe" id="globe" aria-label="${t('city')}">${GLOBE}</button></section>
+  $('app').innerHTML=`<section class="hero" style="--sh:${sh}">${sunny?'<div class="rays"></div>':''}<canvas id="fx"></canvas>${icon(c.weather_code,f,night)}<div class="city">${t('wtw',date,esc(name||t('near')))}</div><div class="verdict">${t('v'+head)}</div>${CITY}<button class="globe" id="globe" aria-label="${t('map')}" title="${t('map')}">${GLOBE}</button></section>
   <div class="out"><div class="meta" style="margin-bottom:10px">${t('outt')}</div><div id="outfit"></div></div>
   <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span><span class="meta">${w(c.weather_code,night)[0]} ${w(c.weather_code,night)[1]}<br>${t('feels',Math.round(f),Math.round(c.wind_speed_10m))}</span></div>
   <h2>${t('h12')}</h2><div class="hours">${hours}</div><h2>${t('wk')}</h2>${days}`;
-  $('globe').onclick=()=>{$('q').focus();$('q').select()};outfit();
+  $('globe').onclick=openMap;startFx(c.weather_code,f,c.wind_speed_10m);outfit();
 }
 async function search(q){
   try{const g=await (await fetch(`https://geocoding-api.open-meteo.com/v1/search?count=1&language=${lang}&name=`+encodeURIComponent(q))).json();
@@ -325,11 +374,11 @@ async function init(){
 $('lang').onclick=()=>{lang=lang==='ru'?'en':'ru';st.set('lang',lang);applyStatic();renderWardrobe();renderGoals();if(lastWeather)render(lastWeather.d,lastWeather.name)};
 (async()=>{
   $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${i*.08}s">${c}</span>`).join('');
-  const l=await st.get('lang');
-  if(l==='ru'||l==='en'){lang=l;applyStatic();init();await new Promise(r=>setTimeout(r,1500))}
+  const qp=new URLSearchParams(location.search).get('lang'),l=(qp==='ru'||qp==='en')?qp:await st.get('lang');
+  if(l==='ru'||l==='en'){lang=l;st.set('lang',l);applyStatic();moveGlass(document.querySelector('.tabs .on'),true);init();await new Promise(r=>setTimeout(r,1500))}
   else{$('langs').innerHTML=`<button data-l="ru" aria-label="Русский">${FLAG.ru}</button><button data-l="en" aria-label="English">${FLAG.en}</button>`;
     lang=await new Promise(r=>$('langs').querySelectorAll('button').forEach(b=>b.onclick=()=>r(b.dataset.l)));
-    st.set('lang',lang);applyStatic();init()}
+    st.set('lang',lang);applyStatic();moveGlass(document.querySelector('.tabs .on'),true);init()}
   $('splash').classList.add('off');
 })();
 </script></body></html>
