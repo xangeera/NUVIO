@@ -16,7 +16,7 @@ button.danger{color:#d33;background:none;margin-top:18px}
 input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--panel);padding:4px;border-radius:14px;margin-bottom:14px}
 .tabs button{background:none;font-weight:600;color:var(--hint)}.tabs .on{background:var(--bg);color:var(--text)}
-.row{display:flex;gap:8px}.row>*{min-width:0}
+.row{display:flex;gap:8px;align-items:stretch}.row>*{min-width:0}
 .hero{margin:18px 0 6px;padding:20px;border-radius:24px;background:var(--tint)}
 .city,.meta{color:var(--hint);font-size:14px;line-height:1.5}
 .verdict{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:8px 0 14px}
@@ -35,13 +35,39 @@ label{display:block;font-size:13px;color:var(--hint);margin:12px 0 4px}
 .step{background:var(--tint);border-radius:18px;padding:16px;font-size:17px;line-height:1.4;font-weight:500}.step button{margin-top:12px}
 details{margin-top:14px;color:var(--hint);font-size:14px}details li{margin:6px 0 0 18px}
 .gt{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:10px 0 4px}
+.row>input{flex:1}.row>button{flex:none;white-space:nowrap}.row>div{flex:1}
+.gh{font-weight:700;font-size:14px;margin-top:20px}
+.chk{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:15px;color:var(--text)}.chk input{width:20px;height:20px;padding:0;accent-color:var(--accent);flex:none}
+.scale{display:flex;gap:4px}.scale i{flex:1;height:12px;border-radius:6px;background:var(--panel)}.scale .d{background:hsl(140 55% 42%)}.scale .c{background:var(--accent)}
+.tl{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:13px;color:var(--hint)}.tl span{display:flex;flex-direction:column}.tl b{color:var(--text);font-size:16px}
+.trk{flex:1;height:6px;border-radius:3px;background:var(--panel);position:relative}.trk i{display:block;height:100%;border-radius:3px;background:var(--accent)}.trk u{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);transform:translate(-50%,-50%)}
+.days{display:flex;flex-wrap:wrap;gap:4px}.days i{width:18px;height:18px;border-radius:5px;background:var(--panel)}
+.days .ok,.lg.ok{background:hsl(140 55% 42%)}.days .miss,.lg.miss{background:hsl(6 70% 55%)}.days .now{outline:2px solid var(--accent);outline-offset:1px}
+.lg{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 5px 0 10px;vertical-align:-1px;background:var(--panel)}.lg:first-child{margin-left:0}
+.st{display:flex;gap:12px;padding:12px 0;opacity:.5}.st.d,.st.c{opacity:1}.st.d{color:var(--hint)}.st.c{background:var(--tint);border-radius:16px;padding:14px;margin:4px 0;font-weight:500}
+.dot{flex:none;width:26px;height:26px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-size:13px;font-weight:700}.st.d .dot{background:hsl(140 55% 42%);color:#fff}.st.c .dot{background:var(--accent);color:#fff}
+.st button{margin-top:10px}
+.hero{padding:20px 20px 0;overflow:hidden;background:linear-gradient(#fbfbfb,#d2d2d2);color:#111}.hero .city{color:#555}.hero svg{display:block;width:calc(100% + 40px);height:130px;margin:14px -20px 0}
+.out{background:var(--panel);border-radius:20px;padding:16px;margin:10px 0}.wl span{background:var(--panel)}.wl span button{background:none;padding:0 0 0 8px;color:var(--hint);font-size:13px}
+.days button{width:22px;height:22px;padding:0;border-radius:6px;background:var(--bg)}.days button.pre{opacity:.45}.days button.sel{box-shadow:0 0 0 2px var(--text)}.days .ok{background:hsl(140 55% 42%)}.days .miss{background:hsl(6 70% 55%)}
+.sec input{background:var(--bg)}.sec button:not(.p){background:var(--bg)}.sec .scale i,.sec .dot{background:var(--bg)}
+#g{--accent:hsl(222 72% 52%);--tint:hsl(222 85% 55%/.12)}
+.gcard{display:flex;gap:14px;align-items:center;background:var(--panel);border-radius:20px;padding:14px 16px;margin-bottom:10px;cursor:pointer}.gcard>div:last-child{flex:1;min-width:0}
+.gcard b{display:block;font-size:17px}.gcard small{display:block;color:var(--hint);font-size:13px;margin-top:3px}.gcard .nx{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.ring{flex:none;width:54px;height:54px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--bg) 0);display:grid;place-items:center}.ring span{width:42px;height:42px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-size:13px;font-weight:800}
+.ghero{background:var(--tint);border-radius:24px;padding:18px;margin:12px 0}.ghero .gt{margin:0 0 12px}.ghero .trk{background:var(--bg)}
+.sec{background:var(--panel);border-radius:20px;padding:16px;margin-top:12px}.sec h2{margin:0 0 12px}
+.wk{margin-top:14px;background:var(--bg);border-radius:16px;padding:12px 14px}.wk h3{font-size:14px;margin-bottom:6px}
+.wd{padding:10px 0;border-top:1px solid var(--panel)}.wk h3+.wd{border-top:0}.wd ul{margin:0 0 6px 18px;font-size:14px;line-height:1.4;font-weight:600}
+.wdh{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--hint)}.tag{padding:3px 10px;border-radius:999px;background:var(--panel)}
+.wd.ok .tag{background:hsl(140 50% 45%/.2);color:hsl(140 50% 45%)}.wd.miss .tag{background:hsl(6 70% 58%/.2);color:hsl(6 70% 58%)}
 </style></head><body>
 <nav class="tabs"><button class="on" data-t="w">Погода</button><button data-t="g">Цели</button></nav>
 
 <section id="w">
   <form class="row" id="f"><input id="q" placeholder="Город" aria-label="Город"><button>Найти</button><button type="button" id="geo" aria-label="Моё местоположение">📍</button></form>
   <div id="app"><p class="msg">Загружаю погоду…</p></div>
-  <h2>Мой гардероб</h2><p class="meta">Впишите модели, которые у вас есть. Всё сохраняется в вашем аккаунте Телеграма, второй раз вводить не нужно.</p>
+  <h2>Мой гардероб</h2><p class="meta" style="margin-bottom:10px">Впишите, что у вас есть: можно по одной вещи или списком через запятую. ИИ соберёт образ из ваших вещей. Всё хранится в вашем аккаунте Телеграма.</p>
   <div id="wardrobe"></div>
 </section>
 
@@ -66,12 +92,35 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
   $('w').hidden=b.dataset.t!=='w';$('g').hidden=b.dataset.t!=='g'});
 
+/* ================= ИИ ================= */
+const API_URL="";   // ← адрес сервера ИИ (ngrok), например https://abc123.ngrok-free.app
+async function api(path,body){
+  if(!API_URL)throw new Error('ИИ не подключён.');
+  let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify(body)})}
+  catch{throw new Error('Нет связи с сервером ИИ.')}
+  if(r.status===429)throw new Error('Слишком много запросов, попробуйте позже.');
+  if(r.status===401)throw new Error('Откройте приложение через бота в Телеграме.');
+  if(!r.ok)throw new Error('ИИ сейчас не ответил.');
+  return r.json();
+}
+
 /* ================= ПОГОДА ================= */
 const WMO={0:["☀️","Ясно"],1:["🌤","Почти ясно"],2:["⛅","Облачно с прояснениями"],3:["☁️","Пасмурно"],45:["🌫","Туман"],48:["🌫","Туман"],51:["🌦","Морось"],53:["🌦","Морось"],55:["🌦","Морось"],61:["🌧","Дождь"],63:["🌧","Дождь"],65:["🌧","Сильный дождь"],71:["🌨","Снег"],73:["🌨","Снег"],75:["❄️","Сильный снег"],80:["🌦","Ливень"],81:["🌧","Ливень"],82:["⛈","Сильный ливень"],95:["⛈","Гроза"],96:["⛈","Гроза с градом"],99:["⛈","Гроза с градом"]};
 const w=c=>WMO[c]||["🌡","—"],DAYS=["вс","пн","вт","ср","чт","пт","сб"];
-const SLOTS=[['wintershoes','Зимняя обувь'],['shoes','Демисезонная обувь'],['summershoes','Летняя обувь'],['coat','Тёплая куртка или пуховик'],['jacket','Лёгкая куртка или ветровка'],['hoodie','Худи или кофта'],['tee','Футболка'],['pants','Брюки или джинсы'],['shorts','Шорты'],['hat','Шапка'],['scarf','Шарф и перчатки'],['rain','Зонт или дождевик'],['cap','Кепка и очки']];
-const LABEL=Object.fromEntries(SLOTS);
-let wardrobe={},lastWeather=null;
+const GEN={wintershoes:'зимняя обувь',shoes:'закрытая обувь',summershoes:'лёгкая обувь',coat:'тёплая куртка',jacket:'лёгкая куртка или ветровка',hoodie:'худи или кофта',tee:'футболка',pants:'брюки или джинсы',shorts:'шорты',cap:'кепка и очки',hat:'шапка',scarf:'шарф и перчатки',rain:'зонт или дождевик'};
+let wardrobe=[],lastWeather=null,outSeq=0;
+const CITY=`<svg viewBox="0 0 400 130" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs>
+<pattern id="sl" width="4" height="6" patternUnits="userSpaceOnUse"><rect width="4" height="3" fill="#000" opacity=".16"/></pattern>
+<pattern id="sd" width="4" height="6" patternUnits="userSpaceOnUse"><rect width="4" height="3" fill="#fff" opacity=".26"/></pattern>
+<linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f4"/><stop offset="1" stop-color="#8f8f8f"/></linearGradient>
+<linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8c8c8c"/><stop offset="1" stop-color="#3a3a3a"/></linearGradient></defs>
+<g fill="#c9c9c9"><rect x="0" y="58" width="52" height="72"/><rect x="118" y="48" width="48" height="82"/><rect x="246" y="54" width="52" height="76"/><rect x="348" y="64" width="52" height="66"/></g>
+<rect x="14" y="36" width="62" height="94" fill="url(#gl)"/><rect x="14" y="36" width="62" height="94" fill="url(#sl)"/>
+<rect x="88" y="14" width="56" height="116" fill="#262626"/><rect x="88" y="14" width="56" height="116" fill="url(#sd)"/><rect x="114" y="3" width="3" height="11" fill="#262626"/>
+<rect x="156" y="62" width="72" height="68" fill="url(#gm)"/><rect x="156" y="62" width="72" height="68" fill="url(#sd)"/>
+<path d="M238 130V46h18V34h36v96z" fill="url(#gl)"/><path d="M238 130V46h18V34h36v96z" fill="url(#sl)"/>
+<rect x="304" y="26" width="52" height="104" fill="#4a4a4a"/><rect x="304" y="26" width="52" height="104" fill="url(#sd)"/>
+<rect x="366" y="72" width="34" height="58" fill="#1c1c1c"/><rect x="366" y="72" width="34" height="58" fill="url(#sd)"/></svg>`;
 
 function wear(f,rain,uv){
   let head,s;
@@ -86,13 +135,23 @@ function wear(f,rain,uv){
   if(uv>=6&&!s.includes('cap'))s.push('cap');
   return {head,s};
 }
-function chips(s){return s.map(id=>wardrobe[id]?`<span>${LABEL[id]}: <b>${esc(wardrobe[id])}</b></span>`:`<span>${LABEL[id]} <em>· не указано</em></span>`).join('')}
-
+async function saveWardrobe(){await st.set('wardrobe',JSON.stringify(wardrobe));renderWardrobe();outfit()}
 function renderWardrobe(){
-  $('wardrobe').innerHTML=SLOTS.map(([id,l])=>`<label for="w_${id}">${l}</label><input id="w_${id}" maxlength="60" placeholder="Модель или описание" value="${esc(wardrobe[id]||'')}">`).join('');
-  SLOTS.forEach(([id])=>$('w_'+id).onchange=async e=>{
-    const v=e.target.value.trim();v?wardrobe[id]=v:delete wardrobe[id];
-    await st.set('wardrobe',JSON.stringify(wardrobe));if(lastWeather)render(lastWeather.d,lastWeather.name)});
+  $('wardrobe').innerHTML=`<div class="row"><input id="wi" maxlength="80" placeholder="Что у вас есть из одежды и обуви" aria-label="Новая вещь"><button class="p" id="wadd">Добавить</button></div>
+  <div class="items wl" style="margin-top:12px">${wardrobe.length?wardrobe.map((x,i)=>`<span>${esc(x)}<button data-i="${i}" aria-label="Удалить ${esc(x)}">✕</button></span>`).join(''):'<p class="meta">Пока пусто. Добавьте вещи, и ИИ будет собирать образ из них.</p>'}</div>`;
+  const add=()=>{const parts=$('wi').value.split(/[,;\n]/).map(x=>x.trim().slice(0,80)).filter(Boolean);if(!parts.length)return;
+    for(const p of parts)if(wardrobe.length<40&&!wardrobe.includes(p)&&JSON.stringify(wardrobe.concat(p)).length<3800)wardrobe.push(p);saveWardrobe()};
+  $('wadd').onclick=add;$('wi').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();add()}};
+  document.querySelectorAll('.wl button').forEach(b=>b.onclick=()=>{wardrobe.splice(+b.dataset.i,1);saveWardrobe()});
+}
+async function outfit(){
+  const box=$('outfit');if(!box||!lastWeather)return;
+  const seq=++outSeq,{d,name}=lastWeather,c=d.current,dl=d.daily,f=c.apparent_temperature,{s}=wear(f,dl.precipitation_probability_max[0],dl.uv_index_max[0]);
+  box.innerHTML='<p class="meta">ИИ подбирает образ…</p>';
+  try{const j=await api('/outfit',{city:name,temp:Math.round(c.temperature_2m),feels:Math.round(f),tmin:Math.round(dl.temperature_2m_min[0]),tmax:Math.round(dl.temperature_2m_max[0]),
+      wind:Math.round(c.wind_speed_10m),rain:dl.precipitation_probability_max[0]??0,uv:Math.round(dl.uv_index_max[0]??0),desc:w(c.weather_code)[1],items:wardrobe});
+    if(seq!==outSeq)return;box.innerHTML=`<div class="items">${j.outfit.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${j.tip?`<p class="meta" style="margin-top:10px">${esc(j.tip)}</p>`:''}`}
+  catch(e){if(seq!==outSeq)return;box.innerHTML=`<div class="items">${s.map(id=>`<span>${GEN[id]}</span>`).join('')}</div><p class="meta" style="margin-top:10px">${esc(e.message)} Показан общий совет.</p>`}
 }
 
 async function load(lat,lon,name){
@@ -107,15 +166,18 @@ async function load(lat,lon,name){
   }catch{$('app').innerHTML='<p class="msg">Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.</p>'}
 }
 function render(d,name){
-  const c=d.current,dl=d.daily,f=c.apparent_temperature,{head,s}=wear(f,dl.precipitation_probability_max[0],dl.uv_index_max[0]);
+  const c=d.current,dl=d.daily,f=c.apparent_temperature,{head}=wear(f,dl.precipitation_probability_max[0],dl.uv_index_max[0]);
   document.documentElement.style.setProperty("--hue",Math.round(Math.max(0,Math.min(1,(30-f)/50))*210+10));
   const n=d.hourly.time.findIndex(t=>t>=c.time);
   const hours=d.hourly.time.slice(n,n+12).map((t,i)=>`<div class="h">${t.slice(11,16)}<i>${w(d.hourly.weather_code[n+i])[0]}</i><b>${Math.round(d.hourly.temperature_2m[n+i])}°</b></div>`).join('');
   const days=dl.time.map((t,i)=>`<div class="d"><span>${i?DAYS[new Date(t).getDay()]+", "+t.slice(8):"Сегодня"}</span><span>${w(dl.weather_code[i])[0]}</span><small>осадки ${dl.precipitation_probability_max[i]??0}%</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join('');
-  $('app').innerHTML=`<section class="hero"><div class="city">Что надеть · ${esc(name)}</div><div class="verdict">${head}</div><div class="items">${chips(s)}</div></section>
+  $('app').innerHTML=`<section class="hero"><div class="city">Что надеть · ${esc(name)}</div><div class="verdict">${head}</div>${CITY}</section>
+  <div class="out"><div class="meta" style="margin-bottom:10px">Совет ИИ из вашего гардероба</div><div id="outfit"></div></div>
   <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span><span class="meta">${w(c.weather_code)[0]} ${w(c.weather_code)[1]}<br>ощущается как ${Math.round(f)}°, ветер ${Math.round(c.wind_speed_10m)} км/ч</span></div>
   <h2>Ближайшие 12 часов</h2><div class="hours">${hours}</div><h2>Неделя</h2>${days}`;
+  outfit();
 }
+
 async function search(q){
   try{const g=await (await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=ru&name="+encodeURIComponent(q))).json();
     if(!g.results)return $('app').innerHTML='<p class="msg">Город не найден. Проверьте название.</p>';
@@ -127,68 +189,84 @@ $('f').onsubmit=e=>{e.preventDefault();const q=$('q').value.trim();if(q)search(q
 $('geo').onclick=locate;
 
 /* ================= ЦЕЛИ ================= */
-let goals=[],cur=null,adding=false;
-const DAY=864e5,fmt=n=>Math.round(n*10)/10;
+let goals=[],cur=null,adding=false,busy=false,aiErr='',selDay=null;
+const DAY=864e5,fmt=n=>Math.round(n*10)/10,sod=t=>{const d=new Date(t);d.setHours(0,0,0,0);return d},p2=n=>String(n).padStart(2,'0'),
+  dm=t=>{const d=new Date(t);return p2(d.getDate())+'.'+p2(d.getMonth()+1)},
+  iso=t=>{const d=new Date(t);return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())},endOf=g=>+new Date(g.deadline+'T00:00:00');
 const saveGoal=async g=>{while(JSON.stringify(g).length>3800&&g.log.length>5)g.log.shift();
   await st.set('g_'+g.id,JSON.stringify(g));await st.set('gi',JSON.stringify(goals.map(x=>x.id)))};
 
-function plan(g){
-  const t=g.title.toLowerCase(),s=['Запишите одной фразой, зачем вам эта цель, и поставьте её на экран телефона'];
-  if(g.to!=null){const wk=Math.max(1,Math.ceil((new Date(g.deadline)-Date.now())/(7*DAY)));
-    s.push(`Ваш темп: ${fmt((g.to-g.from)/wk)} ${g.unit} в неделю. Выберите дни и время, когда будете этим заниматься`)}
-  if(/вес|похуд|сброс|кг/.test(t))s.push('Взвешивайтесь раз в неделю, утром, в одно и то же время','Добавьте 20–30 минут ходьбы каждый день','Замените сладкие напитки водой на эту неделю');
-  else if(/накоп|деньг|руб|₽|\$|евро/.test(t))s.push('Настройте автоперевод в день зарплаты на отдельный счёт','Просмотрите траты за прошлый месяц и найдите три лишние статьи','Отложите первую сумму сегодня, даже небольшую');
-  else if(/язык|англ|учить|выучить|курс|немец|испан/.test(t))s.push('Занимайтесь по 15 минут каждый день в одно и то же время','Выпишите 10 слов или тем на эту неделю','В конце недели проверьте себя без подсказок');
-  else if(/бег|спорт|трен|отжим|подтяг|зал/.test(t))s.push('Поставьте в календарь 3 тренировки на неделю','Первые две недели главное привычка, а не нагрузка','Записывайте результат каждой тренировки');
-  else s.push('Разбейте цель на три этапа и напишите, что будет сделано к концу каждого','Сделайте сегодня самый маленький шаг, на 10 минут','Определите главное препятствие и решите, как его убрать');
-  s.push('Через неделю запишите отметку прогресса и подведите итог');
-  return s.map(text=>({text,done:false}));
+async function askAI(g){
+  const j=await api('/advice',{title:g.title,unit:g.unit,from:g.from,to:g.to,deadline:g.deadline,start:iso(g.created),today:iso(Date.now()),
+    log:g.log.slice(-10).map(([t,v])=>[iso(t),v]),done:g.steps.filter(s=>s.done).map(s=>s.text)});
+  return j.steps.map(text=>({text,done:false}));
 }
-function expected(g){const t1=new Date(g.deadline).getTime();return g.from+(g.to-g.from)*Math.min(1,Math.max(0,(Date.now()-g.created)/((t1-g.created)||1)))}
-function more(g){
-  const last=g.log.at(-1);
-  if(g.to==null||!last)return ['Запишите отметку прогресса, чтобы я мог подстроить советы','Подведите итог недели: что получилось, что мешало'].map(text=>({text,done:false}));
-  const diff=(last[1]-expected(g))*(g.to>g.from?1:-1);
-  return (diff<0?[`Вы отстаёте от плана на ${fmt(-diff)} ${g.unit}. Уменьшите шаг: поставьте на ближайшую неделю вдвое меньшую задачу`,'Запишите главную причину отставания','Верните одну привычку, которая раньше работала']
-   :['Вы идёте по плану или впереди. Сохраните тот же ритм ещё неделю','Запланируйте награду за этот этап','Чуть усложните задачу на следующую неделю']).concat('Запишите новую отметку прогресса').map(text=>({text,done:false}));
-}
-function pct(g){const last=g.log.at(-1);
-  if(g.to!=null&&last)return Math.max(0,Math.min(100,Math.round((last[1]-g.from)/(g.to-g.from)*100)));
-  return Math.round(g.steps.filter(s=>s.done).length/g.steps.length*100)}
-function chart(g){
-  const W=320,H=150,p=28,t0=g.created,t1=new Date(g.deadline).getTime(),vs=[g.from,g.to,...g.log.map(x=>x[1])],mn=Math.min(...vs),r=(Math.max(...vs)-mn)||1;
-  const x=t=>p+(W-2*p)*Math.min(1,Math.max(0,(t-t0)/((t1-t0)||1))),y=v=>H-p-(H-2*p)*(v-mn)/r;
-  const pts=g.log.length?[[t0,g.from],...g.log]:[];
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="График прогресса"><line x1="${x(t0)}" y1="${y(g.from)}" x2="${x(t1)}" y2="${y(g.to)}" stroke="var(--hint)" stroke-width="2" stroke-dasharray="5 5"/>${pts.length?`<polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" points="${pts.map(([t,v])=>x(t)+','+y(v)).join(' ')}"/>`+g.log.map(([t,v])=>`<circle cx="${x(t)}" cy="${y(v)}" r="4" fill="var(--accent)"/>`).join(''):''}<text x="${p}" y="${H-6}" font-size="11" fill="var(--hint)">старт: ${g.from}</text><text x="${W-p}" y="${H-6}" font-size="11" text-anchor="end" fill="var(--hint)">цель: ${g.to} ${esc(g.unit)}</text></svg><p class="meta">Пунктир — план, линия — ваш факт.</p>`}
+async function refresh(g){busy=true;aiErr='';renderGoals();
+  try{const n=await askAI(g);g.steps=g.steps.filter(s=>s.done).slice(-6).concat(n);await saveGoal(g)}catch(e){aiErr=e.message}
+  busy=false;renderGoals()}
+
+const expected=g=>g.from+(g.to-g.from)*Math.min(1,Math.max(0,(Date.now()-g.created)/((endOf(g)-g.created)||1)));
+const pct=g=>{const l=g.log.at(-1);if(g.to!=null&&l)return Math.max(0,Math.min(100,Math.round((l[1]-g.from)/(g.to-g.from)*100)));
+  return g.steps.length?Math.round(g.steps.filter(s=>s.done).length/g.steps.length*100):0};
+
+function timeline(g){
+  const s=+sod(g.created),e=endOf(g),t=+sod(Date.now()),p=Math.max(0,Math.min(100,(t-s)/((e-s)||1)*100)),tot=Math.max(1,Math.round((e-s)/DAY)),left=Math.round((e-t)/DAY);
+  return `<div class="tl"><span>Начало<b>${dm(s)}</b></span><div class="trk"><i style="width:${p}%"></i><u style="left:${p}%"></u></div><span style="text-align:right">Конец<b>${dm(e)}</b></span></div>
+  <p class="meta" style="margin-top:8px">${t<s?'Цель ещё не началась':left>0?`Осталось ${left} из ${tot} дн.`:left===0?'Финиш сегодня':'Срок вышел'}</p>`}
+
+const geo=g=>{const a=sod(g.created),n=Math.max(1,Math.round((endOf(g)-a)/DAY)+1);
+  return{n,k:n>62?7:1,m:+sod(g.made||g.created),today:+sod(Date.now()),dd:j=>{const d=new Date(a);d.setDate(a.getDate()+j);return +d}}};
+const dayActs=(g,ts)=>{const k=+sod(ts);return g.steps.filter(s=>s.at&&+sod(s.at)===k).map(s=>'Выполнено: '+s.text)
+  .concat(g.log.filter(x=>+sod(x[0])===k).map(x=>`Отметка прогресса: ${x[1]} ${g.unit}`))};
+const dayState=(g,G,ts)=>dayActs(g,ts).length?'ok':ts<G.m?'pre':ts<G.today?'miss':'fut';
+function dayBlock(g){
+  const G=geo(g),cells=[];
+  for(let i=0;i<G.n;i+=G.k){const e=Math.min(G.n,i+G.k)-1,f=G.dd(i),l=G.dd(e);let s='';
+    for(let j=i;j<=e;j++)if(dayState(g,G,G.dd(j))==='ok'){s='ok';break}
+    if(!s)s=l<G.m?'pre':l<G.today?'miss':'fut';
+    cells.push(`<button class="${s}${f<=G.today&&G.today<=l?' now':''}${selDay===i?' sel':''}" data-i="${i}" aria-label="${dm(f)}"></button>`)}
+  let panel='';
+  if(selDay!=null&&selDay<G.n){const e=Math.min(G.n,selDay+G.k)-1;
+    panel=`<div class="wk"><h3>${G.k>1?`Неделя ${dm(G.dd(selDay))} – ${dm(G.dd(e))}`:dm(G.dd(selDay))}</h3>`+Array.from({length:e-selDay+1},(_,x)=>{
+      const ts=G.dd(selDay+x),a=dayActs(g,ts),s=dayState(g,G,ts),tag={ok:'Прогресс',miss:'Пропуск',pre:'До старта',fut:ts===G.today?'Сегодня':'Впереди'}[s];
+      return `<div class="wd ${s}">${a.length?`<ul>${a.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}<div class="wdh"><span>${DAYS[new Date(ts).getDay()]}, ${dm(ts)}</span><span class="tag">${tag}</span></div></div>`}).join('')+'</div>'}
+  return `<div class="days">${cells.join('')}</div><p class="meta" style="margin-top:10px"><span class="lg ok"></span>был прогресс<span class="lg miss"></span>пропуск${G.k>1?' · Клетка - неделя':''}</p>${panel}`}
+function bindDays(g){$('dayblk').querySelectorAll('.days button').forEach(b=>b.onclick=()=>{selDay=selDay===+b.dataset.i?null:+b.dataset.i;$('dayblk').innerHTML=dayBlock(g);bindDays(g)})}
 
 function renderGoals(){
   const el=$('g'),g=goals.find(x=>x.id===cur);
-  if(adding){el.innerHTML=`<button id="back">← Назад</button><div class="gt">Новая цель</div>
-    <label for="nt">Что вы хотите достичь</label><input id="nt" maxlength="80" placeholder="Например: похудеть, накопить, выучить английский">
-    <p class="meta" style="margin-top:14px">Если цель измеряется числом, заполните поля ниже. Тогда появится график.</p>
+  if(adding){el.innerHTML=`<button id="back">← Назад</button><div class="gt" style="margin:14px 0 4px">Новая цель</div>
+    <label for="nt">Чего вы хотите достичь</label><input id="nt" maxlength="80" placeholder="Например: похудеть, накопить, выучить английский">
+    <div class="row"><div><label for="nd0">Начало</label><input id="nd0" type="date" value="${iso(Date.now())}"></div><div><label for="nd">Конец</label><input id="nd" type="date"></div></div>
+    <p class="meta" style="margin-top:16px">Если цель измеряется числом, заполните поля ниже. Так ИИ точнее подстроит шаги.</p>
     <div class="row"><div><label for="nf">Сейчас</label><input id="nf" inputmode="decimal" placeholder="85"></div><div><label for="nto">Цель</label><input id="nto" inputmode="decimal" placeholder="78"></div><div><label for="nu">Единица</label><input id="nu" maxlength="10" placeholder="кг"></div></div>
-    <label for="nd">Срок</label><input id="nd" type="date"><div class="row" style="margin-top:16px"><button class="p" id="create" style="flex:1">Создать цель</button></div>`;
+    <div class="row" style="margin-top:18px"><button class="p" id="create" style="flex:1">Создать цель</button></div>`;
     $('back').onclick=()=>{adding=false;renderGoals()};
     $('create').onclick=async()=>{
-      const title=$('nt').value.trim(),from=num($('nf').value),to=num($('nto').value),deadline=$('nd').value;
-      if(!title)return $('nt').focus();
-      if(!deadline)return $('nd').focus();
-      const meas=from!=null&&to!=null&&from!==to;
-      const g={id:Date.now().toString(36),title,unit:$('nu').value.trim(),from:meas?from:null,to:meas?to:null,deadline,created:Date.now(),log:[],steps:[]};
-      g.steps=plan(g);goals.push(g);await saveGoal(g);adding=false;cur=g.id;renderGoals()};return}
-  if(!g){el.innerHTML=(goals.length?goals.map(x=>`<div class="card" data-id="${x.id}"><b>${esc(x.title)}</b><span class="meta">до ${x.deadline.split('-').reverse().join('.')} · ${pct(x)}%</span><div class="bar"><i style="width:${pct(x)}%"></i></div></div>`).join(''):'<p class="msg">Целей пока нет. Добавьте первую, и я составлю план шагов.</p>')+'<button class="p" id="add" style="width:100%;margin-top:6px">Новая цель</button>';
-    el.querySelectorAll('.card').forEach(c=>c.onclick=()=>{cur=c.dataset.id;renderGoals()});
+      const title=$('nt').value.trim(),from=num($('nf').value),to=num($('nto').value),s0=$('nd0').value,deadline=$('nd').value;
+      if(!title)return $('nt').focus();if(!s0)return $('nd0').focus();if(!deadline||deadline<s0)return $('nd').focus();
+      const m=from!=null&&to!=null&&from!==to,ng={id:Date.now().toString(36),title,unit:$('nu').value.trim(),from:m?from:null,to:m?to:null,deadline,created:+new Date(s0+'T00:00:00'),made:Date.now(),log:[],steps:[]};
+      goals.push(ng);await saveGoal(ng);adding=false;cur=ng.id;selDay=null;refresh(ng)};return}
+  if(!g){el.innerHTML=(goals.length?goals.map(x=>{const nx=x.steps.find(s=>!s.done);
+      return `<div class="gcard" data-id="${x.id}"><div class="ring" style="--p:${pct(x)}"><span>${pct(x)}%</span></div><div><b>${esc(x.title)}</b><small>${dm(x.created)} → ${dm(endOf(x))}</small>${nx?`<small class="nx">${esc(nx.text)}</small>`:''}</div></div>`}).join('')
+      :'<div class="ghero"><div class="gt">Ваши цели</div><p class="meta">Добавьте первую цель, и ИИ составит шаги именно под неё. Вы будете отмечать прогресс, а приложение покажет сроки и дни.</p></div>')
+      +'<button class="p" id="add" style="width:100%;margin-top:6px">Новая цель</button>';
+    el.querySelectorAll('.gcard').forEach(c=>c.onclick=()=>{cur=c.dataset.id;aiErr='';selDay=null;renderGoals()});
     $('add').onclick=()=>{adding=true;renderGoals()};return}
-  const i=g.steps.findIndex(s=>!s.done),days=Math.ceil((new Date(g.deadline)-Date.now())/DAY),last=g.log.at(-1);
-  el.innerHTML=`<button id="back">← Все цели</button><div class="gt">${esc(g.title)}</div>
-    <p class="meta">${days>0?`Осталось ${days} дн.`:'Срок вышел'} · выполнено ${pct(g)}%${last?` · сейчас ${last[1]} ${esc(g.unit)}`:''}</p>
-    ${g.to!=null?`<div style="margin-top:12px">${chart(g)}</div><label for="val">Отметка прогресса (${esc(g.unit)||'число'})</label><div class="row"><input id="val" inputmode="decimal" placeholder="${g.from}"><button class="p" id="logit">Записать</button></div>`:''}
-    <h2>Следующий шаг</h2>${i>=0?`<div class="step">${esc(g.steps[i].text)}<br><button class="p" id="done">Готово ✓</button></div>`:`<div class="step">Все шаги выполнены.<br><button class="p" id="next">Получить новые шаги</button></div>`}
-    ${g.steps.some(s=>s.done)?`<details><summary>Выполнено (${g.steps.filter(s=>s.done).length})</summary><ul>${g.steps.filter(s=>s.done).map(s=>`<li>${esc(s.text)}</li>`).join('')}</ul></details>`:''}
-    <button class="danger" id="del">Удалить цель</button>`;
-  $('back').onclick=()=>{cur=null;renderGoals()};
-  if($('done'))$('done').onclick=async()=>{g.steps[i].done=true;await saveGoal(g);renderGoals()};
-  if($('next'))$('next').onclick=async()=>{g.steps=g.steps.filter(s=>s.done).slice(-6).concat(more(g));await saveGoal(g);renderGoals()};
+  const fi=g.steps.findIndex(s=>!s.done),l=g.log.at(-1);
+  const list=busy?'<p class="msg">ИИ подбирает шаги под вашу цель…</p>':aiErr?`<div class="step">${esc(aiErr)}<br><button class="p" id="refresh">Повторить</button></div>`
+    :!g.steps.length?'<div class="step">Шагов пока нет.<br><button class="p" id="refresh">Получить шаги от ИИ</button></div>'
+    :g.steps.map((s,i)=>`<div class="st ${s.done?'d':i===fi?'c':''}"><span class="dot">${s.done?'✓':i+1}</span><div>${esc(s.text)}${i===fi?'<br><button class="p" id="done">Готово</button>':''}</div></div>`).join('')
+      +`<button id="refresh" style="margin-top:8px">${fi<0?'Все шаги выполнены. Получить новые':'Обновить шаги по моему прогрессу'}</button>`;
+  el.innerHTML=`<button id="back">← Все цели</button>
+    <div class="ghero"><div class="gt">${esc(g.title)}</div>${timeline(g)}</div>
+    <div class="sec"><h2>Прогресс · ${pct(g)}%</h2><div class="scale">${g.steps.map((s,i)=>`<i class="${s.done?'d':i===fi?'c':''}"></i>`).join('')||'<i></i>'}</div>
+    ${g.to!=null?`<p class="meta" style="margin-top:10px">${l?`Сейчас ${l[1]} ${esc(g.unit)}`:'Отметок пока нет'} · по плану на сегодня ${fmt(expected(g))} · цель ${g.to} ${esc(g.unit)}</p><div class="row" style="margin-top:10px"><input id="val" inputmode="decimal" placeholder="${g.from}" aria-label="Отметка прогресса"><button class="p" id="logit">Записать</button></div>`:''}</div>
+    <div class="sec"><h2>Дни</h2><div id="dayblk">${dayBlock(g)}</div></div>
+    <div class="sec"><h2>Шаги от ИИ</h2>${list}</div><button class="danger" id="del">Удалить цель</button>`;
+  bindDays(g);$('back').onclick=()=>{cur=null;renderGoals()};
+  if($('refresh'))$('refresh').onclick=()=>refresh(g);
+  if($('done'))$('done').onclick=async()=>{g.steps[fi].done=true;g.steps[fi].at=Date.now();await saveGoal(g);renderGoals()};
   if($('logit'))$('logit').onclick=async()=>{const v=num($('val').value);if(v==null)return $('val').focus();g.log.push([Date.now(),v]);await saveGoal(g);renderGoals()};
   $('del').onclick=async()=>{if(!(tg?.showConfirm?await new Promise(r=>tg.showConfirm('Удалить цель?',r)):confirm('Удалить цель?')))return;
     goals=goals.filter(x=>x.id!==g.id);await st.del('g_'+g.id);await st.set('gi',JSON.stringify(goals.map(x=>x.id)));cur=null;renderGoals()};
@@ -196,7 +274,7 @@ function renderGoals(){
 
 /* ================= СТАРТ ================= */
 (async()=>{
-  wardrobe=await jget('wardrobe',{});renderWardrobe();
+  {const w0=await jget('wardrobe',[]);wardrobe=Array.isArray(w0)?w0:Object.values(w0).filter(v=>typeof v==='string');}renderWardrobe();
   const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 })();
