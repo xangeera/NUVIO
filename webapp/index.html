@@ -93,7 +93,7 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
   $('w').hidden=b.dataset.t!=='w';$('g').hidden=b.dataset.t!=='g'});
 
 /* ================= ИИ ================= */
-const API_URL="";   // ← адрес сервера ИИ (ngrok), например https://abc123.ngrok-free.app
+const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev";   // ← адрес сервера ИИ (ngrok), например https://abc123.ngrok-free.app
 async function api(path,body){
   if(!API_URL)throw new Error('ИИ не подключён.');
   let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify(body)})}
