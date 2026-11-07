@@ -45,7 +45,7 @@ h2{font-size:15px;font-weight:700;margin:24px 0 10px}
 .trk{flex:1;height:6px;border-radius:3px;background:var(--bg);position:relative}.trk i{display:block;height:100%;border-radius:3px;background:var(--accent)}.trk u{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);transform:translate(-50%,-50%)}
 .sec{background:var(--panel);border-radius:20px;padding:16px;margin-top:12px}.sec h2{margin:0 0 12px}.sec input{background:var(--bg)}.sec button:not(.p){background:var(--bg)}
 .scale{display:flex;gap:4px}.scale i{flex:1;height:12px;border-radius:6px;background:var(--bg)}.scale .d{background:hsl(140 55% 42%)}.scale .c{background:var(--accent)}
-.days{display:flex;flex-wrap:wrap;gap:4px}.days button{width:22px;height:22px;padding:0;border-radius:6px;background:var(--bg)}.days .pre{opacity:.45}.days .sel{box-shadow:0 0 0 2px var(--text)}.days .now{outline:2px solid var(--accent);outline-offset:1px}
+.days{display:grid;grid-template-columns:repeat(auto-fill,24px);gap:6px}.days button{width:24px;height:24px;padding:0;border-radius:7px;background:var(--bg)}.days .pre{opacity:.45}.days .sel{box-shadow:0 0 0 2px var(--text)}.days .td{outline:2px solid var(--accent);outline-offset:1px}
 .days .ok,.lg.ok{background:hsl(140 55% 42%)}.days .miss,.lg.miss{background:hsl(6 70% 55%)}
 .lg{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 5px 0 10px;vertical-align:-1px;background:var(--bg)}.lg:first-child{margin-left:0}
 .wk{margin-top:14px;background:var(--bg);border-radius:16px;padding:12px 14px}.wk h3{font-size:14px;margin-bottom:6px}
@@ -103,6 +103,9 @@ html[data-theme=light]{--bg:#fff;--text:#14181c;--hint:#6b7580;--panel:#f1f3f5}
 .tmr{font-size:48px;font-weight:800;letter-spacing:-.02em;text-align:center;font-variant-numeric:tabular-nums;margin:6px 0}
 .stats{display:flex;gap:8px;margin-top:12px}.stats>div{flex:1;background:var(--bg);border-radius:14px;padding:10px 8px;text-align:center}.stats small{display:block;color:var(--hint);font-size:12px}.stats b{font-size:15px}
 .kv{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:14px}.kv span{color:var(--hint)}.rec{font-size:12px;font-weight:700;color:hsl(40 92% 46%)}
+.gm{flex:1;min-width:0}.gv{flex:none;font-size:15px}.mb{margin-bottom:12px}
+.fig{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 2px;color:var(--text)}.fig svg{flex:1;min-width:0;max-width:200px;background:var(--bg);border-radius:14px}.fig i{font-style:normal;color:var(--hint)}
+.figl{display:flex;justify-content:space-around;color:var(--hint);font-size:12px;margin-bottom:10px}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
 <nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="p" data-i="tp"></button></nav>
@@ -189,7 +192,7 @@ const LF={ru:{ft:'Фитнес',fonb:'Расскажите о себе: так �
  fnone:'Пока пусто',fnew:'Новая тренировка',fname:'Название',fgroups:'Группы мышц',fadd:'Добавить упражнение',fsearch:'Поиск',fsets:'Подходы',freps:'Повторы',fkg:'Кг',fsave:'Сохранить',fdel:'Удалить',fai:'ИИ подберёт упражнения',faib:'ИИ подбирает…',
  fneedg:'Выберите хотя бы одну группу мышц',fneedn:'Введите название и добавьте упражнения',fall:'Все',fchoose:'Выберите тренировку',fnowo:'Тренировок пока нет. Создайте их в «Персонализации».',fex_n:'упр.',
  faddset:'+ подход',ffinish:'Завершить тренировку',ffq:'Завершить тренировку?',fnosets:'Нет отмеченных подходов. Завершить без записи?',fstarted:'Начало',fdur:'Длительность',fvol:'Поднято всего',f1rm:'Максимум на 1 повтор ≈',frec:'Рекорд',
- fnote1:'Максимум на 1 повтор считается по формуле Эпли. Это оценка, а не тест.',fkgu:'кг',fh_:'ч',fm_:'мин',fs_:'с',faiw:'ИИ-тренер думает…',fait:'Совет ИИ-тренера',fask:'Спросить ИИ-тренера',ftech:'Совет по технике',fpr_h:'Рекорды (оценка максимума на 1 повтор)',fdq:'Удалить тренировку?',
+ fnote1:'Максимум на 1 повтор считается по формуле Эпли. Это оценка, а не тест.',fkgu:'кг',fh_:'ч',fm_:'мин',fs_:'с',faiw:'ИИ-тренер думает…',fait:'Совет ИИ-тренера',fask:'Спросить ИИ-тренера',ftech:'Совет по технике',fpr_h:'Рекорды (оценка максимума на 1 повтор)',fdq:'Удалить тренировку?',fst:'Старт',fen:'Финиш',fhold:'Положение',fphoto:'Фото',fvideo:'Видео',
  g_chest:'Грудь',g_back:'Спина',g_traps:'Трапеции',g_shoulders:'Плечи',g_biceps:'Бицепс',g_triceps:'Трицепс',g_forearms:'Предплечья',g_abs:'Пресс',g_glutes:'Ягодицы',g_quads:'Квадрицепс',g_hams:'Бицепс бедра',g_calves:'Икры'},
 en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.',fh:'Height (cm)',fw:'Weight (kg)',fbody:'Your body type',
  b_ecto:'Ectomorph',b_ectod:'Lean, fast metabolism, hard to gain mass',b_meso:'Mesomorph',b_mesod:'Athletic, builds muscle easily',b_endo:'Endomorph',b_endod:'Stocky, tends to store fat',
@@ -199,7 +202,7 @@ en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.
  fnone:'Nothing yet',fnew:'New workout',fname:'Name',fgroups:'Muscle groups',fadd:'Add exercise',fsearch:'Search',fsets:'Sets',freps:'Reps',fkg:'Kg',fsave:'Save',fdel:'Delete',fai:'AI picks exercises',faib:'AI is picking…',
  fneedg:'Pick at least one muscle group',fneedn:'Enter a name and add exercises',fall:'All',fchoose:'Choose a workout',fnowo:'No workouts yet. Create them in “Customize”.',fex_n:'ex.',
  faddset:'+ set',ffinish:'Finish workout',ffq:'Finish this workout?',fnosets:'No sets marked. Finish without saving?',fstarted:'Started',fdur:'Duration',fvol:'Total lifted',f1rm:'1-rep max ≈',frec:'Record',
- fnote1:'The 1-rep max is calculated with the Epley formula. It’s an estimate, not a test.',fkgu:'kg',fh_:'h',fm_:'min',fs_:'s',faiw:'AI coach is thinking…',fait:'AI coach advice',fask:'Ask AI coach',ftech:'Technique tips',fpr_h:'Records (estimated 1-rep max)',fdq:'Delete this workout?',
+ fnote1:'The 1-rep max is calculated with the Epley formula. It’s an estimate, not a test.',fkgu:'kg',fh_:'h',fm_:'min',fs_:'s',faiw:'AI coach is thinking…',fait:'AI coach advice',fask:'Ask AI coach',ftech:'Technique tips',fpr_h:'Records (estimated 1-rep max)',fdq:'Delete this workout?',fst:'Start',fen:'Finish',fhold:'Position',fphoto:'Photos',fvideo:'Video',
  g_chest:'Chest',g_back:'Back',g_traps:'Traps',g_shoulders:'Shoulders',g_biceps:'Biceps',g_triceps:'Triceps',g_forearms:'Forearms',g_abs:'Abs',g_glutes:'Glutes',g_quads:'Quads',g_hams:'Hamstrings',g_calves:'Calves'}};
 Object.assign(L.ru,LF.ru);Object.assign(L.en,LF.en);
 const EXR=`chest
@@ -332,6 +335,48 @@ donkey|Ослиные подъёмы|Donkey calf raise
 calfsingle|Подъём на носок на одной ноге|Single-leg calf raise
 jumprope|Прыжки на скакалке|Jump rope`;
 const EX={},GR=[];{let g;EXR.split('\n').forEach(l=>{if(!l.includes('|')){g=l.trim();GR.push(g)}else{const[a,r,e]=l.split('|');EX[a]={id:a,g,ru:r,en:e}}})}
+const ST='h:50,13 s:50,22 p:50,42 k:51,57 f:48,71';
+const BAR=y=>`<path d="M30 ${y}H72" stroke-width="3" opacity=".45"/>`;
+const PAT={
+ press:{a:'h:14,54 s:22,56 p:46,57 k:60,48 f:62,71 e:30,58 w:25,47',b:'h:14,54 s:22,56 p:46,57 k:60,48 f:62,71 e:22,45 w:22,34',wt:4,c:'<rect x="8" y="61" width="64" height="5" rx="2" opacity=".4"/><path d="M14 66v6M64 66v6" opacity=".4"/>'},
+ fly:{a:'h:14,54 s:22,56 p:46,57 k:60,48 f:62,71 e:30,56 w:39,56',b:'h:14,54 s:22,56 p:46,57 k:60,48 f:62,71 e:22,45 w:22,34',wt:3.2,c:'<rect x="8" y="61" width="64" height="5" rx="2" opacity=".4"/><path d="M14 66v6M64 66v6" opacity=".4"/>'},
+ pec:{a:ST+' e:41,25 w:32,28',b:ST+' e:61,24 w:72,24',wt:3},
+ pushup:{a:'h:20,38 s:26,42 p:52,52 k:66,58 f:78,68 e:26,56 w:26,70',b:'h:20,56 s:26,60 p:52,62 k:66,66 f:78,70 e:36,66 w:26,70'},
+ dip:{a:'h:48,13 s:48,24 e:48,35 w:48,46 p:46,46 k:50,59 f:44,69',b:'h:47,27 s:47,37 e:57,43 w:48,46 p:45,57 k:50,66 f:42,71',c:'<path d="M38 46H58" stroke-width="3" opacity=".5"/>'},
+ squat:{a:'h:50,13 s:50,22 p:50,42 k:51,57 f:46,71 e:46,28 w:50,20',b:'h:61,29 s:56,36 p:42,52 k:62,52 f:56,71 e:53,42 w:57,35',wt:4},
+ legpress:{a:'h:12,50 s:18,54 p:36,62 k:56,48 f:76,36 x:1',b:'h:12,50 s:18,54 p:36,62 k:44,50 f:58,56 x:2',c:'<path d="M6 66L28 46" stroke-width="4" opacity=".35"/>',xa:'<path d="M82 30L75 44" stroke-width="3" opacity=".5"/>',xb:'<path d="M64 50L58 62" stroke-width="3" opacity=".5"/>'},
+ deadlift:{a:'h:68,28 s:62,32 p:42,44 k:50,58 f:46,71 e:61,48 w:60,64',b:'h:50,13 s:50,22 p:50,42 k:51,57 f:48,71 e:51,34 w:52,46',wt:6},
+ pullup:{a:'h:52,17 s:50,26 p:50,46 k:51,59 f:47,68 e:50,16 w:50,6',b:'h:53,10 s:50,20 p:50,40 k:51,53 f:47,62 e:43,13 w:50,6',c:BAR(6)},
+ pulldown:{a:'h:44,28 s:44,36 p:42,56 k:60,56 f:62,71 e:50,22 w:56,8',b:'h:44,28 s:44,36 p:42,56 k:60,56 f:62,71 e:37,46 w:50,40',wt:2.6,c:'<rect x="30" y="58" width="30" height="4" rx="2" opacity=".4"/><path d="M40 4H70" stroke-width="2" opacity=".35"/>'},
+ row:{a:'h:68,28 s:62,32 p:42,44 k:50,58 f:46,71 e:63,44 w:63,56',b:'h:68,28 s:62,32 p:42,44 k:50,58 f:46,71 e:52,38 w:57,45',wt:3.4},
+ curl:{a:ST+' e:53,34 w:55,46',b:ST+' e:52,35 w:58,24',wt:3.4},
+ ext:{a:ST+' e:52,35 w:58,24',b:ST+' e:52,35 w:54,47',wt:3},
+ ohp:{a:ST+' e:55,30 w:52,20',b:ST+' e:54,12 w:53,2',wt:3.6},
+ raise:{a:ST+' e:53,34 w:55,46',b:ST+' e:61,22 w:72,22',wt:3.2},
+ shrug:{a:ST+' e:53,34 w:55,46',b:'h:50,8 s:50,17 p:50,42 k:51,57 f:48,71 e:53,29 w:55,41',wt:4},
+ crunch:{a:'h:16,66 s:24,67 p:46,68 k:58,56 f:64,70 e:20,60 w:15,64',b:'h:26,52 s:30,57 p:46,68 k:58,56 f:64,70 e:32,50 w:26,48'},
+ legraise:{a:'h:52,17 s:50,26 p:50,46 k:51,59 f:48,69 e:50,16 w:50,6',b:'h:52,17 s:50,26 p:50,46 k:64,46 f:78,46 e:50,16 w:50,6',c:BAR(6)},
+ plank:{a:'h:20,42 s:26,46 p:52,52 k:66,58 f:78,68 e:26,66 w:36,66',b:'h:20,42 s:26,46 p:52,52 k:66,58 f:78,68 e:26,66 w:36,66',st:1},
+ lunge:{a:'h:50,13 s:50,22 p:50,42 k:50,57 f:46,71 k2:52,57 f2:56,71 e:53,34 w:55,46',b:'h:48,23 s:48,32 p:48,52 k:64,52 f:62,71 k2:40,66 f2:28,70 e:48,44 w:48,54',wt:3.2},
+ calf:{a:ST+' e:53,34 w:55,46',b:'h:50,8 s:50,17 p:50,37 k:51,52 f:48,66 t:56,71 e:53,29 w:55,41',wt:3.2},
+ hipthrust:{a:'h:14,52 s:22,56 p:42,64 k:58,52 f:60,71 e:30,58 w:42,62',b:'h:14,52 s:22,56 p:42,50 k:58,50 f:60,71 e:32,54 w:42,47',wt:4,c:'<rect x="6" y="58" width="24" height="6" rx="2" opacity=".4"/>'},
+ legext:{a:'h:24,22 s:26,30 p:28,56 k:48,56 f:49,71',b:'h:24,22 s:26,30 p:28,56 k:48,56 f:68,52',c:'<path d="M20 28V58H50" stroke-width="3" opacity=".4"/>'},
+ legcurl:{a:'h:24,22 s:26,30 p:28,56 k:48,56 f:68,52',b:'h:24,22 s:26,30 p:28,56 k:48,56 f:46,71',c:'<path d="M20 28V58H50" stroke-width="3" opacity=".4"/>'},
+ swing:{a:'h:68,28 s:62,32 p:42,44 k:50,58 f:46,71 e:60,44 w:52,56',b:ST+' e:61,23 w:72,23',wt:4.2},
+ hyper:{a:'h:58,68 s:52,64 p:40,52 k:30,60 f:20,68',b:'h:67,40 s:60,44 p:40,52 k:30,60 f:20,68',c:'<path d="M34 56L46 56L44 72" stroke-width="3" opacity=".4"/>'},
+ hold:{a:ST+' e:53,34 w:55,46',st:1,wt:4.4}
+};
+const PAT_OF=`press:bench,incbench,decbench,dbpress,dbinc,chestpress,smithbench,cgbench,frenchbb;fly:dbfly,incfly,pullover;pec:cablefly,pecdeck,reardeck;pushup:pushup,diamond;dip:dips_c,dips_t,benchdip;squat:squat,frontsq,hack,gobletsq,smithsq,sissy,pistol,zercher;legpress:legpress,calfpress;deadlift:deadlift,rackpull,rdl,stiffdl,gm,sumo,dbrdl,slrdl,cabpull;pullup:pullup,chinup,hang;pulldown:latpd,latpdn,straightpd;row:bbrow,dbrow,cablerow,tbar,machrow,invrow,facepull,reardelt;hyper:hyper,nordic,ghr;shrug:shrugbb,shrugdb,uprow;hold:farmer,wristcurl,revwrist,plateplm,gripper;ohp:ohp,dbohp,arnold,machsp,pushpress;raise:latraise,cablelat,frontraise;curl:bbcurl,ezcurl,dbcurl,hammer,preacher,conccurl,inccurl,cablecurl,spidercurl,zottman,revcurl;ext:frenchdb,pushdown,ropepd,kickback,overcable;crunch:crunch,cablecrunch,russian,bicycle,revcrunch,vup;legraise:legraise;plank:plank,sideplank,abwheel,mclimber;swing:woodchop,swing;hipthrust:hipthrust,glutebridge,kickcable,abduct;lunge:bss,lunge,walklunge,stepup;legext:legext;legcurl:legcurl,seatcurl;calf:calfstand,calfseat,donkey,calfsingle,jumprope`;
+const PM={};PAT_OF.split(';').forEach(s=>{const[p,l]=s.split(':');l.split(',').forEach(i=>PM[i]=p)});
+function figSvg(pat,ph){
+  const P={},d=pat[ph]||pat.a;d.replace(/(\w+):(-?[\d.]+),(-?[\d.]+)/g,(m,k,x,y)=>{P[k]=[+x,+y]});
+  const L=(a,b)=>a&&b?`<path d="M${a[0]} ${a[1]}L${b[0]} ${b[1]}"/>`:'',foot=(f,t)=>f?L(f,t||[f[0]+7,f[1]]):'';
+  const leg=(k,f,t)=>k&&f?`<path d="M${P.p[0]} ${P.p[1]}L${k[0]} ${k[1]}L${f[0]} ${f[1]}"/>`+foot(f,t):'';
+  return `<svg viewBox="0 0 100 78" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 72H96" opacity=".25"/>${pat.c||''}${pat['x'+ph]||''}${leg(P.k,P.f,P.t)}${leg(P.k2,P.f2,P.t2)}${L(P.s,P.p)}${P.e?`<path d="M${P.s[0]} ${P.s[1]}L${P.e[0]} ${P.e[1]}L${P.w[0]} ${P.w[1]}"/>`:''}<circle cx="${P.h[0]}" cy="${P.h[1]}" r="4.6"/>${P.w&&pat.wt?`<circle cx="${P.w[0]}" cy="${P.w[1]}" r="${pat.wt}" fill="currentColor" stroke="none" opacity=".85"/>`:''}</svg>`}
+
+const MUSCLE={chest:'грудные мышцы (pectorals), тренировка груди в тренажёрном зале',back:'мышцы спины (lats, rhomboids)',traps:'трапециевидные мышцы (traps)',shoulders:'дельтовидные мышцы (deltoids)',biceps:'бицепс (мышца руки)',triceps:'трицепс (мышца руки)',forearms:'мышцы предплечий',abs:'мышцы пресса (abs, core)',glutes:'ягодичные мышцы (gluteus maximus), тренировка ягодиц в тренажёрном зале',quads:'квадрицепс (мышцы передней поверхности бедра)',hams:'задняя поверхность бедра (hamstrings)',calves:'икроножные мышцы (calves)'};
+const figHTML=id=>{const p=PAT[PM[id]];if(!p)return'';return `<div class="fig">${figSvg(p,'a')}${p.st?'':`<i>→</i>${figSvg(p,'b')}`}</div><div class="figl">${p.st?`<span>${t('fhold')}</span>`:`<span>${t('fst')}</span><span>${t('fen')}</span>`}</div>`};
+const openExt=u=>tg?.openLink?tg.openLink(u):window.open(u,'_blank');
 const exn=id=>EX[id]?EX[id][lang]:id,e1=(kg,r)=>r<=1?kg:kg*(1+Math.min(r,30)/30),R5=n=>Math.round(n*2)/2,cl=(v,a,b,d)=>{v=Math.round(+v);return isNaN(v)?d:Math.max(a,Math.min(b,v))};
 const fmtn=n=>Math.round(n).toLocaleString(loc()),hm=x=>new Date(x).toLocaleTimeString(loc(),{hour:'2-digit',minute:'2-digit'}),
   fdur=ms=>{const s=Math.round(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h} ${t('fh_')} ${m} ${t('fm_')}`:`${m} ${t('fm_')} ${s%60} ${t('fs_')}`},
@@ -355,7 +400,7 @@ const aiHtml=a=>!a?'':a.loading?`<p class="meta">${t('faiw')}</p>`:a.err?`<p cla
 function libList(mode){const q=F.q.toLowerCase(),gs=mode==='add'&&F.ed.groups.length?F.ed.groups:null;
   return Object.values(EX).filter(x=>(gs?gs.includes(x.g):(F.filt==='all'||x.g===F.filt))&&(!q||x.ru.toLowerCase().includes(q)||x.en.toLowerCase().includes(q))).map(x=>{
     const o=mode==='lib'&&F.open===x.id;
-    return `<div class="libi${o?' op':''}" data-a="${mode==='add'?'addex':'lopen'}" data-v="${x.id}"><div class="lh"><b>${esc(x[lang])}</b><small>${t('g_'+x.g)}</small></div>${o?`<div class="ld">${F.pr[x.id]?`<p class="meta">${t('f1rm')} <b>${F.pr[x.id]} ${t('fkgu')}</b></p>`:''}<button data-a="tech" data-v="${x.id}">${t('ftech')}</button>${F.tech&&F.tech.id===x.id?`<div style="margin-top:8px">${aiHtml(F.tech)}</div>`:''}</div>`:''}</div>`}).join('')||`<p class="msg">${t('fnone')}</p>`}
+    return `<div class="libi${o?' op':''}" data-a="${mode==='add'?'addex':'lopen'}" data-v="${x.id}"><div class="lh"><b>${esc(x[lang])}</b><small>${t('g_'+x.g)}</small></div>${o?`<div class="ld">${figHTML(x.id)}${F.pr[x.id]?`<p class="meta">${t('f1rm')} <b>${F.pr[x.id]} ${t('fkgu')}</b></p>`:''}<div class="row" style="flex-wrap:wrap"><button data-a="photo" data-v="${x.id}">📷 ${t('fphoto')}</button><button data-a="video" data-v="${x.id}">▶ ${t('fvideo')}</button><button data-a="tech" data-v="${x.id}">✨ ${t('ftech')}</button></div>${F.tech&&F.tech.id===x.id?`<div style="margin-top:8px">${aiHtml(F.tech)}</div>`:''}</div>`:''}</div>`}).join('')||`<p class="msg">${t('fnone')}</p>`}
 
 function vOnb(){
   if(F.step===1)return `<div class="gt">${t('ft')}</div><p class="meta">${t('fonb')}</p>
@@ -368,8 +413,8 @@ function vMenu(){const p=F.prof;
   ${F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">▶ ${t('fcont')} · ${esc(F.act.name)}</button>`:''}
   <div class="fgrid">${[['hist','📈','fhist',t('fhist_s')],['cust','🛠','fcust',t('fcust_s')],['lib','📚','flib',t('flib_s',Object.keys(EX).length)],['start','⏱','fstart',t('fstart_s')]].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${s}</small></div>`).join('')}</div>`}
 function vHist(){const prs=Object.entries(F.pr).sort((a,b)=>b[1]-a[1]).slice(0,6);
-  return back('menu')+title(t('fhist'))+(prs.length?`<div class="sec"><h2>${t('fpr_h')}</h2>${prs.map(([id,v])=>`<div class="kv"><span>${esc(exn(id))}</span><b>${v} ${t('fkgu')}</b></div>`).join('')}</div>`:'')
-    +(F.hs.length?F.hs.map(s=>{const m=sumry(s);return `<div class="gcard" data-a="hopen" data-id="${s.id}"><div><b>${esc(s.name)}</b><small>${dm(s.start)} · ${hm(s.start)} · ${fdur(m.dur)}</small><small>${fmtn(m.vol)} ${t('fkgu')}</small></div></div>`}).join(''):`<p class="msg">${t('fnone')}</p>`)}
+  return back('menu')+title(t('fhist'))+(prs.length?`<div class="sec mb"><h2>${t('fpr_h')}</h2>${prs.map(([id,v])=>`<div class="kv"><span>${esc(exn(id))}</span><b>${v} ${t('fkgu')}</b></div>`).join('')}</div>`:'')
+    +(F.hs.length?F.hs.map(s=>{const m=sumry(s);return `<div class="gcard" data-a="hopen" data-id="${s.id}"><div class="gm"><b>${esc(s.name)}</b><small>${dm(s.start)} · ${hm(s.start)} · ${fdur(m.dur)}</small></div><b class="gv">${fmtn(m.vol)} ${t('fkgu')}</b></div>`}).join(''):`<p class="msg">${t('fnone')}</p>`)}
 function vReport(){const s=F.rep,m=sumry(s);
   return back(F.from==='act'?'menu':'hist')+`<div class="ghero"><div class="gt">${esc(s.name)}</div><p class="meta">${dm(s.start)}</p>
     <div class="stats"><div><small>${t('fstarted')}</small><b>${hm(s.start)}</b></div><div><small>${t('fdur')}</small><b>${fdur(m.dur)}</b></div><div><small>${t('fvol')}</small><b>${fmtn(m.vol)} ${t('fkgu')}</b></div></div></div>
@@ -394,7 +439,7 @@ function vLib(){return back('menu')+title(t('flib'))+`<div class="chips2"><butto
 function vStart(){return back('menu')+title(t('fstart'))+(F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">▶ ${t('fcont')} · ${esc(F.act.name)}</button>`:'')+(F.ws.length?`<p class="meta" style="margin-bottom:10px">${t('fchoose')}</p>`+F.ws.map(w=>`<div class="gcard" data-a="begin" data-id="${w.id}"><div><b>${esc(w.name)}</b><small>${w.groups.map(g=>t('g_'+g)).join(', ')} · ${w.ex.length} ${t('fex_n')}</small></div></div>`).join(''):`<p class="msg">${t('fnowo')}</p>`)}
 function vAct(){const a=F.act;
   return `<div class="ghero"><div class="gt" style="text-align:center">${esc(a.name)}</div><div class="tmr" id="tm">${clk(Date.now()-a.start)}</div><p class="meta" style="text-align:center">${t('fstarted')} ${hm(a.start)}</p></div>
-  ${a.ex.map((x,ei)=>`<div class="sec"><h2>${esc(exn(x.id))}${F.pr[x.id]?` <small class="meta">· ${t('f1rm')} ${F.pr[x.id]} ${t('fkgu')}</small>`:''}</h2>
+  ${a.ex.map((x,ei)=>`<div class="sec"><h2>${esc(exn(x.id))}${F.pr[x.id]?` <small class="meta">· ${t('f1rm')} ${F.pr[x.id]} ${t('fkgu')}</small>`:''}<button class="x" data-a="xinfo" data-i="${ei}" aria-label="info">ⓘ</button></h2>${F.info===ei?figHTML(x.id):''}
     ${x.sets.map((s,si)=>`<div class="setr"><span>${si+1}</span><input data-f="set" data-e="${ei}" data-s="${si}" data-k="kg" inputmode="decimal" value="${s.kg||''}" placeholder="${t('fkg')}" aria-label="${t('fkg')}"><input data-f="set" data-e="${ei}" data-s="${si}" data-k="reps" inputmode="numeric" value="${s.reps||''}" placeholder="${t('freps')}" aria-label="${t('freps')}"><button class="ck${s.done?' on':''}" data-a="ck" data-e="${ei}" data-s="${si}">✓</button></div>`).join('')}
     <button data-a="addset" data-e="${ei}" style="margin-top:8px">${t('faddset')}</button></div>`).join('')}
   <button class="p wide" data-a="finish" style="margin-top:14px">${t('ffinish')}</button>`}
@@ -407,7 +452,7 @@ function renderFit(){
   if(F.lv!==F.v){F.lv=F.v;scrollTo(0,0)}
 }
 async function review(){const s=F.rep,m=sumry(s);F.ai={loading:true};$('fai').innerHTML=aiHtml(F.ai);const b=$('faibtn');if(b)b.hidden=true;
-  try{F.ai={j:await api('/fitness',{mode:'review',name:s.name,minutes:Math.round(m.dur/60000),volume:Math.round(m.vol),profile:F.prof,
+  try{F.ai={j:await api('/fitness',{mode:'review',name:s.name,muscles:[...new Set(m.ex.map(x=>EX[x.id]?.g).filter(Boolean))].map(g=>MUSCLE[g]),minutes:Math.round(m.dur/60000),volume:Math.round(m.vol),profile:F.prof,
     exercises:m.ex.map(x=>({name:exn(x.id),sets:x.sets,e1rm:x.best,record:(s.pr||[]).includes(x.id)}))})}}catch(e){F.ai={err:e.message}}
   if(F.v==='report'&&F.rep===s){$('fai').innerHTML=aiHtml(F.ai);if(b&&F.ai.err)b.hidden=false}}
 async function finishWo(){
@@ -418,7 +463,7 @@ async function finishWo(){
   await st.set('fhi',JSON.stringify(F.hid));await st.set('fpr',JSON.stringify(F.pr));F.act=null;await saveAct();
   F.rep=done;F.from='act';F.ai=null;F.v='report';renderFit();review()}
 const fa={
-  menu(){F.v='menu';renderFit()},cust(){F.v='cust';renderFit()},prev(){F.step=1;renderFit()},
+  menu(){F.v='menu';renderFit()},async hist(){await fa.go({v:'hist'})},cust(){F.v='cust';renderFit()},prev(){F.step=1;renderFit()},
   pick(d){F.tmp[d.k]=d.v;renderFit()},
   next1(){const h=num(F.tmp.h),w=num(F.tmp.w);if(!(h>=100&&h<=250)||!(w>=30&&w<=300)||!F.tmp.body)return note(t('fneed'));F.tmp.h=h;F.tmp.w=w;F.step=2;renderFit()},
   async fin(){if(!F.tmp.goal)return note(t('fgneed'));F.prof={h:F.tmp.h,w:F.tmp.w,body:F.tmp.body,goal:F.tmp.goal};await st.set('fit_profile',JSON.stringify(F.prof));F.v='menu';renderFit()},
@@ -429,6 +474,9 @@ const fa={
   hopen(d){F.rep=F.hs.find(s=>s.id===d.id);F.from='hist';F.ai=null;F.v='report';renderFit()},
   review,
   filt(d){F.filt=d.v;renderFit()},
+  photo(d){openExt('https://www.google.com/search?tbm=isch&q='+encodeURIComponent(exn(d.v)+(lang==='ru'?' упражнение':' exercise')))},
+  video(d){openExt('https://www.youtube.com/results?search_query='+encodeURIComponent(exn(d.v)+(lang==='ru'?' техника':' form')))},
+  xinfo(d){F.info=F.info===+d.i?-1:+d.i;renderFit()},
   lopen(d){F.open=F.open===d.v?null:d.v;F.tech=null;$('liblist').innerHTML=libList('lib')},
   async tech(d){F.tech={id:d.v,loading:true};$('liblist').innerHTML=libList('lib');
     try{F.tech={id:d.v,j:await api('/fitness',{mode:'tech',exercise:exn(d.v),profile:F.prof})}}catch(e){F.tech={id:d.v,err:e.message}}$('liblist').innerHTML=libList('lib')},
@@ -439,7 +487,7 @@ const fa={
   addex(d){if(!F.ed.ex.find(x=>x.id===d.v))F.ed.ex.push({id:d.v,sets:3,reps:10,kg:0});renderFit()},
   rmex(d){F.ed.ex.splice(+d.i,1);renderFit()},
   async aiplan(){const e=F.ed;if(!e.groups.length)return note(t('fneedg'));F.busy=true;F.err='';renderFit();
-    try{const j=await api('/fitness',{mode:'plan',groups:e.groups.map(g=>t('g_'+g)),allowed:Object.values(EX).filter(x=>e.groups.includes(x.g)).map(x=>({id:x.id,name:x[lang]})),profile:F.prof,pr:F.pr});
+    try{const j=await api('/fitness',{mode:'plan',groups:e.groups.map(g=>MUSCLE[g]),allowed:Object.values(EX).filter(x=>e.groups.includes(x.g)).map(x=>({id:x.id,name:x[lang]})),profile:F.prof,pr:F.pr});
       const ok=(j.exercises||[]).filter(x=>EX[x.id]&&e.groups.includes(EX[x.id].g)).map(x=>({id:x.id,sets:cl(x.sets,1,8,3),reps:cl(x.reps,1,30,10),kg:Math.max(0,+x.kg||0)}));
       if(ok.length){e.ex=ok;if(!e.name&&j.name)e.name=String(j.name).slice(0,40)}}catch(er){F.err=er.message}
     F.busy=false;renderFit()},
@@ -653,7 +701,7 @@ function dayBlock(g){
   for(let i=0;i<G.n;i+=G.k){const e=Math.min(G.n,i+G.k)-1,f=G.dd(i),l=G.dd(e);let s='';
     for(let j=i;j<=e;j++)if(dayState(g,G,G.dd(j))==='ok'){s='ok';break}
     if(!s)s=l<G.m?'pre':l<G.today?'miss':'fut';
-    cells.push(`<button class="${s}${f<=G.today&&G.today<=l?' now':''}${selDay===i?' sel':''}" data-i="${i}" aria-label="${dm(f)}"></button>`)}
+    cells.push(`<button class="${s}${f<=G.today&&G.today<=l?' td':''}${selDay===i?' sel':''}" data-i="${i}" aria-label="${dm(f)}"></button>`)}
   let panel='';
   if(selDay!=null&&selDay<G.n){const e=Math.min(G.n,selDay+G.k)-1;
     panel=`<div class="wk"><h3>${G.k>1?t('wkh',dm(G.dd(selDay)),dm(G.dd(e))):dm(G.dd(selDay))}</h3>`+Array.from({length:e-selDay+1},(_,x)=>{
