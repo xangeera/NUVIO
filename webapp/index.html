@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Погода</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--hue:200;--bg:var(--tg-theme-bg-color,#fff);--text:var(--tg-theme-text-color,#14181c);--hint:var(--tg-theme-hint-color,#6b7580);
+--panel:var(--tg-theme-secondary-bg-color,#f1f3f5);--accent:hsl(var(--hue) 70% 45%);--tint:hsl(var(--hue) 80% 50% / .14)}
+*{box-sizing:border-box;margin:0}
+body{font-family:Onest,system-ui,sans-serif;background:var(--bg);color:var(--text);padding:12px 16px calc(24px + env(safe-area-inset-bottom));max-width:520px;margin:0 auto}
+.search{display:flex;gap:8px}
+input{flex:1;font:inherit;padding:11px 14px;border-radius:12px;border:1px solid transparent;background:var(--panel);color:var(--text)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{font:inherit;border:0;border-radius:12px;padding:0 14px;background:var(--panel);color:var(--text);cursor:pointer}
+.hero{margin:22px 0 6px;padding:22px 20px;border-radius:24px;background:var(--tint)}
+.city{color:var(--hint);font-size:15px}
+.verdict{font-size:34px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:8px 0 14px}
+.items{display:flex;flex-wrap:wrap;gap:8px}
+.items span{background:var(--bg);padding:7px 12px;border-radius:999px;font-size:14px;font-weight:500}
+.now{display:flex;align-items:baseline;gap:10px;margin:18px 0 4px}
+.temp{font-size:56px;font-weight:800;letter-spacing:-.03em;color:var(--accent)}
+.meta{color:var(--hint);font-size:14px;line-height:1.5}
+h2{font-size:15px;font-weight:700;margin:26px 0 10px}
+.hours{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.h{flex:0 0 58px;text-align:center;background:var(--panel);border-radius:14px;padding:10px 0;font-size:13px}
+.h b{display:block;font-size:16px;margin-top:4px}
+.h i{font-style:normal;display:block;font-size:20px;margin:4px 0}
+.d{display:grid;grid-template-columns:70px 28px 1fr auto;gap:8px;align-items:center;padding:11px 0;border-bottom:1px solid var(--panel);font-size:15px}
+.d small{color:var(--hint)}
+.msg{padding:40px 0;text-align:center;color:var(--hint)}
+@media (prefers-reduced-motion:no-preference){.hero{transition:background .4s}}
+</style>
+</head>
+<body>
+<form class="search" id="f"><input id="q" placeholder="Город" autocomplete="off" aria-label="Город"><button>Найти</button><button type="button" id="geo" aria-label="Моё местоположение">📍</button></form>
+<main id="app"><p class="msg">Загружаю погоду…</p></main>
+<script>
+const tg = window.Telegram?.WebApp; tg?.ready(); tg?.expand();
+const WMO={0:["☀️","Ясно"],1:["🌤","Почти ясно"],2:["⛅","Облачно с прояснениями"],3:["☁️","Пасмурно"],45:["🌫","Туман"],48:["🌫","Туман"],51:["🌦","Морось"],53:["🌦","Морось"],55:["🌦","Морось"],61:["🌧","Дождь"],63:["🌧","Дождь"],65:["🌧","Сильный дождь"],71:["🌨","Снег"],73:["🌨","Снег"],75:["❄️","Сильный снег"],80:["🌦","Ливень"],81:["🌧","Ливень"],82:["⛈","Сильный ливень"],95:["⛈","Гроза"],96:["⛈","Гроза с градом"],99:["⛈","Гроза с градом"]};
+const w = c => WMO[c] || ["🌡","—"];
+const DAYS=["вс","пн","вт","ср","чт","пт","сб"];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function wear(feels,rain,wind,uv){
+  let head,items;
+  if(feels<-10){head="Одевайтесь максимально тепло";items=["пуховик","шапка","шарф","перчатки","тёплая обувь"]}
+  else if(feels<0){head="Зимняя куртка и шапка";items=["зимняя куртка","шапка","перчатки"]}
+  else if(feels<8){head="Тёплая куртка";items=["тёплая куртка","шарф","закрытая обувь"]}
+  else if(feels<14){head="Лёгкая куртка";items=["ветровка","джинсы"]}
+  else if(feels<20){head="Кофта или худи";items=["худи","джинсы или брюки"]}
+  else if(feels<26){head="Футболка и лёгкие брюки";items=["футболка","лёгкие брюки"]}
+  else{head="Самое лёгкое, что есть";items=["майка","шорты","кепка","вода с собой"]}
+  if(rain>=50)items.push("зонт");
+  if(wind>=30&&feels<20)items.push("ветрозащита");
+  if(uv>=6)items.push("крем SPF и очки");
+  return {head,items};
+}
+
+async function load(lat,lon,name){
+  $("app").innerHTML='<p class="msg">Загружаю погоду…</p>';
+  try{
+    const u=new URL("https://api.open-meteo.com/v1/forecast");
+    Object.entries({latitude:lat,longitude:lon,timezone:"auto",forecast_days:7,
+      current:"temperature_2m,apparent_temperature,weather_code,wind_speed_10m",
+      hourly:"temperature_2m,weather_code",
+      daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max"}).forEach(([k,v])=>u.searchParams.set(k,v));
+    const d=await (await fetch(u)).json();
+    render(d,name);
+    try{localStorage.setItem("place",JSON.stringify({lat,lon,name}))}catch{}
+  }catch(e){$("app").innerHTML='<p class="msg">Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.</p>'}
+}
+
+function render(d,name){
+  const c=d.current, dl=d.daily, feels=c.apparent_temperature;
+  const {head,items}=wear(feels,dl.precipitation_probability_max[0],c.wind_speed_10m,dl.uv_index_max[0]);
+  document.documentElement.style.setProperty("--hue",Math.round(Math.max(0,Math.min(1,(30-feels)/50))*210+10 - (feels>30?10:0)));
+  const nowIdx=d.hourly.time.findIndex(t=>t>=c.time);
+  const hours=d.hourly.time.slice(nowIdx,nowIdx+12).map((t,i)=>`<div class="h">${t.slice(11,16)}<i>${w(d.hourly.weather_code[nowIdx+i])[0]}</i><b>${Math.round(d.hourly.temperature_2m[nowIdx+i])}°</b></div>`).join("");
+  const days=dl.time.map((t,i)=>`<div class="d"><span>${i?DAYS[new Date(t).getDay()]+", "+t.slice(8):"Сегодня"}</span><span>${w(dl.weather_code[i])[0]}</span><small>осадки ${dl.precipitation_probability_max[i]??0}%</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join("");
+  $("app").innerHTML=`
+  <section class="hero"><div class="city">Что надеть · ${esc(name)}</div>
+    <div class="verdict">${head}</div><div class="items">${items.map(i=>`<span>${i}</span>`).join("")}</div></section>
+  <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span>
+    <span class="meta">${w(c.weather_code)[0]} ${w(c.weather_code)[1]}<br>ощущается как ${Math.round(feels)}°, ветер ${Math.round(c.wind_speed_10m)} км/ч</span></div>
+  <h2>Ближайшие 12 часов</h2><div class="hours">${hours}</div>
+  <h2>Неделя</h2>${days}`;
+}
+
+async function search(q){
+  try{
+    const g=await (await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&language=ru&name="+encodeURIComponent(q))).json();
+    if(!g.results)return $("app").innerHTML='<p class="msg">Город не найден. Проверьте название.</p>';
+    const p=g.results[0]; load(p.latitude,p.longitude,p.name);
+  }catch{$("app").innerHTML='<p class="msg">Поиск не сработал. Попробуйте ещё раз.</p>'}
+}
+function locate(){
+  navigator.geolocation?.getCurrentPosition(
+    p=>load(p.coords.latitude,p.coords.longitude,"Рядом с вами"),
+    ()=>search("Амстердам"),{timeout:8000});
+}
+$("f").onsubmit=e=>{e.preventDefault();const q=$("q").value.trim();if(q)search(q)};
+$("geo").onclick=locate;
+
+let saved=null; try{saved=JSON.parse(localStorage.getItem("place"))}catch{}
+saved?load(saved.lat,saved.lon,saved.name):locate();
+</script>
+</body>
+</html>
