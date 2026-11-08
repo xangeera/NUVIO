@@ -110,9 +110,18 @@ html[data-theme=light]{--bg:#fff;--text:#14181c;--hint:#6b7580;--panel:#f1f3f5}
 .pbar{height:10px;border-radius:5px;background:var(--bg)}.pbar i{display:block;height:100%;border-radius:5px;background:var(--accent)}
 .cabbtn{position:relative;cursor:pointer;padding-right:44px}.cabbtn .chev{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:30px;color:var(--hint)}
 .cabbtn:active,.fcard:active,.libi:active,.opt:active{transform:scale(.97)}.cabbtn,.fcard,.libi,.opt{transition:transform .16s cubic-bezier(.3,1.6,.5,1)}
+#nx{--accent:hsl(145 58% 38%);--tint:hsl(145 60% 40%/.13);animation:fade .32s ease}
+.ld button.p{background:var(--accent);color:#fff}
+.tabs button{padding:11px 4px;font-size:13.5px}
+.dc{display:flex;gap:12px;align-items:center}.dt{min-width:0;flex:1}.dc .dimg{flex:none;width:88px;aspect-ratio:1;border-radius:12px}
+.dimg{position:relative;overflow:hidden;border-radius:14px;background:var(--bg)}.dimg svg{display:block;width:100%;height:100%}.dimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.dimg.big{width:100%;aspect-ratio:16/10}
+textarea{width:100%;min-height:76px;padding:11px 14px;border-radius:12px;border:1px solid transparent;background:var(--bg);color:var(--text);font:inherit;resize:vertical}
+.stats .over b{color:#e0483c}.pbar i.over{background:#e0483c}.x2{background:none;padding:0 0 0 10px;color:var(--hint);font-size:13px}
+.wbars{display:flex;gap:6px;height:120px}.wb{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}.wb span{font-size:10px;color:var(--hint);height:12px}.wb small{font-size:11px;color:var(--hint)}
+.wb .col{position:relative;flex:1;width:100%;background:var(--bg);border-radius:8px;overflow:hidden}.wb .col i{position:absolute;left:0;right:0;bottom:0;background:var(--accent)}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
-<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="p" data-i="tp"></button></nav>
+<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="p" data-i="tp"></button></nav>
 <section id="w">
   <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS">📍</button></form>
   <div id="app"><p class="msg" data-i="loadw"></p></div>
@@ -120,6 +129,7 @@ html[data-theme=light]{--bg:#fff;--text:#14181c;--hint:#6b7580;--panel:#f1f3f5}
 </section>
 <section id="g" hidden></section>
 <section id="ft" hidden></section>
+<section id="nx" hidden></section>
 <section id="p" hidden></section>
 <script>
 const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
@@ -175,10 +185,10 @@ function applyStatic(){document.documentElement.lang=lang;
 
 document.querySelectorAll('.tabs button[data-t]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
-  moveGlass(b);['w','g','ft','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
+  moveGlass(b);if(b.dataset.t==='nx')renderNx();['w','g','ft','nx','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
 
 /* ================= ИИ ================= */
-const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123
+const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
 async function api(path,body){
   if(!API_URL)throw new Error(t('e0'));
   let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify({...body,lang})})}
@@ -463,12 +473,14 @@ function vLib(){
   const gs=GR.filter(g=>Object.values(EX).some(x=>x.g===g&&(F.eq==='all'||EQ[x.id]===F.eq)));
   return back('libroot')+title(t('eq_'+F.eq))+`<div class="chips2"><button class="${F.filt==='all'?'on':''}" data-a="filt" data-v="all">${t('fall')}</button>${gs.map(g=>`<button class="${F.filt===g?'on':''}" data-a="filt" data-v="${g}">${t('g_'+g)}</button>`).join('')}</div>
   <input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin:10px 0"><div id="liblist" class="liblist">${libList('lib')}</div>`}
+const cabSig=p=>JSON.stringify([p.h,p.w,p.tw||0,p.age||0,p.sex||'',p.body,p.goal,lang,Math.floor(F.tot/10)]);
 async function calcCab(force){
-  const p=F.prof,sig=JSON.stringify([p.h,p.w,p.tw||0,p.age||0,p.sex||'',p.body,p.goal,lang,Math.floor(F.tot/10)]);
+  const p=F.prof,sig=cabSig(p);
   if(!force&&F.cab&&F.cab.sig===sig)return;
   F.cl=true;F.cerr='';if(F.v==='cab')renderFit();
   try{const res=await api('/fitness',{mode:'cabinet',profile:{h:p.h,w:p.w,tw:p.tw??null,age:p.age??null,sex:p.sex||null,body:p.body,goal:p.goal},workouts:F.tot});
-    if(!res.kcal)throw new Error(t('e4'));F.cab={sig,res};await st.set('fit_cab',JSON.stringify(F.cab))}catch(e){F.cerr=e.message}
+    if(!res.kcal)throw new Error(t('e4'));if(res.safe_tw&&p.tw!=null&&Math.abs(res.safe_tw-p.tw)>=0.5){p.tw=Math.round(res.safe_tw*2)/2;p.w0=p.w;F.twAuto=p.tw;if(F.cabf)F.cabf.tw=p.tw;await st.set('fit_profile',JSON.stringify(p))}
+    F.cab={sig:cabSig(p),res};await st.set('fit_cab',JSON.stringify(F.cab))}catch(e){F.cerr=e.message}
   F.cl=false;if(F.v==='cab')renderFit()}
 function cabAI(){const c=F.cab&&F.cab.res,p=F.prof;
   if(F.cl)return `<div class="sec"><p class="meta">${t('fcalc')}</p></div>`;
@@ -485,7 +497,7 @@ function vCab(){
    <div><small>${t('fstat_t')}</small><b>${F.tot}</b></div><div><small>${t('fbmi')} · ${t('fbmi'+bc)}</small><b>${bmi.toFixed(1)}</b></div>
    <div><small>${t('fstat_g')}</small><b>${p.tw!=null?`${p.tw} ${t('fkgu')} <span class="meta">(${d>0?'+':''}${d})</span>`:'—'}</b></div></div>`
   +(pr!=null?`<div class="sec mb"><h2>${t('fprogress')} · ${pr}%</h2><div class="pbar"><i style="width:${pr}%"></i></div></div>`:'')
-  +`<div class="sec mb"><h2>${t('fabout')}</h2>
+  +(F.twAuto?`<div class="step" style="margin-bottom:12px">${t('ftwauto',F.twAuto)}</div>`:'')+dietCab()+`<div class="sec mb"><h2>${t('fabout')}</h2>
     <div class="row"><div><label>${t('fw')}</label><input data-f="cw" inputmode="decimal" value="${f.w??''}"></div><div><label>${t('ftw')}</label><input data-f="ctw" inputmode="decimal" value="${f.tw??''}"></div></div>
     <div class="row"><div><label>${t('fage')}</label><input data-f="cage" inputmode="numeric" value="${f.age??''}"></div><div><label>${t('fsex')}</label><div class="seg"><button class="${f.sex==='m'?'on':''}" data-a="sex" data-v="m">${t('fsex_m')}</button><button class="${f.sex==='f'?'on':''}" data-a="sex" data-v="f">${t('fsex_f')}</button></div></div></div>
     <button class="p wide" data-a="csave" style="margin-top:14px">${t('fsavec')}</button><button class="wide" data-a="editprof" style="margin-top:8px">${t('fchprof')}</button></div>`+cabAI()}
@@ -510,13 +522,16 @@ async function finishWo(){
   F.rep=done;F.from='act';F.ai=null;F.v='report';renderFit();review()}
 const fa={
   menu(){F.v='menu';renderFit()},async hist(){await fa.go({v:'hist'})},
-  cab(){const p=F.prof;F.cabf={w:p.w,age:p.age??'',sex:p.sex||'',tw:p.tw??''};F.v='cab';renderFit();calcCab(false)},
+  cab(){const p=F.prof;F.cabf={w:p.w,age:p.age??'',sex:p.sex||'',tw:p.tw??''};F.v='cab';renderFit();calcCab(false);loadDiary().then(()=>{if(F.v==='cab')renderFit()})},
   sex(d){F.cabf.sex=F.cabf.sex===d.v?'':d.v;renderFit()},
   crecalc(){return calcCab(true)},
-  async csave(){const f=F.cabf,w=num(f.w),age=f.age===''?null:num(f.age),tw=f.tw===''?null:num(f.tw);
-    if(!(w>=30&&w<=300)||(age!=null&&!(age>=10&&age<=100))||(tw!=null&&!(tw>=30&&tw<=300)))return note(t('fbadw'));
-    const p=F.prof;if(tw!=null&&(p.tw!==tw||p.w0==null))p.w0=w;p.w=w;p.age=age;p.sex=f.sex||null;if(tw==null){delete p.tw;delete p.w0}else p.tw=tw;
+  async csave(){const f=F.cabf,w=num(f.w),age=f.age===''?null:num(f.age),tw0=f.tw===''?null:num(f.tw);
+    if(!(w>=30&&w<=300)||(age!=null&&!(age>=10&&age<=100))||(tw0!=null&&!(tw0>=30&&tw0<=300)))return note(t('fbadw'));
+    const p=F.prof;F.twAuto=null;let tw=tw0;
+    if(tw!=null){const hm=(p.h/100)**2;if(tw/hm<18.5){tw=w/hm>=18.5?w:Math.ceil(20*hm);F.twAuto=tw;f.tw=tw}}
+    if(tw!=null&&(p.tw!==tw||p.w0==null))p.w0=w;p.w=w;p.age=age;p.sex=f.sex||null;if(tw==null){delete p.tw;delete p.w0}else p.tw=tw;
     await st.set('fit_profile',JSON.stringify(p));await calcCab(true)},
+  opendiary(){document.querySelector('.tabs button[data-t="nx"]').click();na.go({v:'diary'})},
   libroot(){F.eq=null;F.filt='all';F.q='';F.open=null;renderFit()},
   eq(d){F.eq=d.v;F.filt='all';F.q='';F.open=null;renderFit()},cust(){F.v='cust';renderFit()},prev(){F.step=1;renderFit()},
   pick(d){F.tmp[d.k]=d.v;renderFit()},
@@ -562,6 +577,238 @@ const fi={cw(v){F.cabf.w=v},ctw(v){F.cabf.tw=v},cage(v){F.cabf.age=v},h(v){F.tmp
 $('ft').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)fa[b.dataset.a]?.(b.dataset,b)});
 $('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e.target.value,d)});
 
+
+/* ================= ПИТАНИЕ ================= */
+const NL={ru:{tn:'Питание',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
+ nc_dishes:'Блюда под цель',nc_dishes_s:'Подобраны под вашу цель',nc_menu:'Меню на день',nc_menu_s:'Составит ИИ',nc_rec:'Рецепты',nc_rec_s:'Классические блюда',
+ m_b:'Завтрак',m_l:'Обед',m_d:'Ужин',m_s:'Перекус',nall:'Все',nkcal_u:'{0} ккал',nmac:'Б {0} · Ж {1} · У {2}',nest:'Калории и БЖУ ориентировочные, указаны на одну порцию.',nper:'на порцию',
+ nrecai:'Рецепт от ИИ',nrecbusy:'ИИ пишет рецепт…',nmenugen:'Составить меню',nmenuregen:'Составить заново',nmenubusy:'ИИ составляет меню…',navoid:'Не ем / аллергии (необязательно)',navoidph:'Например: орехи, молочное',ntotal:'Итого за день',ntarget:'Ваша норма',
+ rc_all:'Все',rc_breakfast:'Завтраки',rc_soups:'Супы',rc_mains:'Основные блюда',rc_salads:'Салаты',rc_desserts:'Выпечка и десерты',nsearch:'Название блюда или продукты, которые есть',nfind:'Найти рецепт (ИИ)',ningr:'Ингредиенты',nsteps:'Приготовление',nmin:'{0} мин',nserv:'{0} порц.',ntip:'Совет'},
+en:{tn:'Nutrition',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
+ nc_dishes:'Dishes for your goal',nc_dishes_s:'Picked for your goal',nc_menu:'Menu for the day',nc_menu_s:'Made by AI',nc_rec:'Recipes',nc_rec_s:'Classic dishes',
+ m_b:'Breakfast',m_l:'Lunch',m_d:'Dinner',m_s:'Snack',nall:'All',nkcal_u:'{0} kcal',nmac:'P {0} · F {1} · C {2}',nest:'Calories and macros are approximate, per serving.',nper:'per serving',
+ nrecai:'AI recipe',nrecbusy:'AI is writing the recipe…',nmenugen:'Create menu',nmenuregen:'Create again',nmenubusy:'AI is creating your menu…',navoid:'I don’t eat / allergies (optional)',navoidph:'E.g.: nuts, dairy',ntotal:'Daily total',ntarget:'Your target',
+ rc_all:'All',rc_breakfast:'Breakfast',rc_soups:'Soups',rc_mains:'Main dishes',rc_salads:'Salads',rc_desserts:'Baking and desserts',nsearch:'Dish name or products you have',nfind:'Find a recipe (AI)',ningr:'Ingredients',nsteps:'Method',nmin:'{0} min',nserv:'{0} servings',ntip:'Tip'}};
+Object.assign(L.ru,NL.ru);Object.assign(L.en,NL.en);
+Object.assign(L.ru,{nc_diary:'Дневник питания',nc_diary_s:'Что вы съели за день',deaten:'Съедено',dleft:'Осталось до нормы',dadd:'Добавить',dtextph:'Что вы съели? Например: 2 яйца, тост с маслом, кофе с молоком',dbusy:'ИИ считает КБЖУ…',dnone:'Сегодня записей пока нет',dnorm:'Норма не рассчитана. Откройте личный кабинет в «Фитнесе».',dweek:'Последние 7 дней, ккал',dbad:'Не удалось распознать еду. Опишите подробнее.',dtoday:'Сегодня',dnote:'ИИ оценивает КБЖУ приблизительно, точность зависит от описания порции.',dopen:'Открыть дневник питания',dcabh:'Питание сегодня',dfull:'Лимит записей на сегодня достигнут',
+ nallergy:'Аллергии',nallergyph:'Например: орехи, лактоза',nallnote:'Готовые блюда не учитывают аллергии и ограничения, проверяйте состав. Блюда и рецепты от ИИ их учитывают.',ndai:'Ещё блюда от ИИ',ndaibusy:'ИИ подбирает блюда…',ndaih:'Предложено ИИ',nphoto:'Фото: Wikipedia и Wikimedia Commons. Где фото нет, показан рисунок.',ftwauto:'Желаемый вес автоматически изменён на {0} кг: прежнее значение небезопасно для здоровья.'});
+Object.assign(L.en,{nc_diary:'Food diary',nc_diary_s:'What you ate today',deaten:'Eaten',dleft:'Left to your target',dadd:'Add',dtextph:'What did you eat? E.g.: 2 eggs, toast with butter, coffee with milk',dbusy:'AI is counting macros…',dnone:'No entries today yet',dnorm:'No target calculated yet. Open your cabinet in “Fitness”.',dweek:'Last 7 days, kcal',dbad:'Couldn’t recognize the food. Describe it in more detail.',dtoday:'Today',dnote:'AI estimates macros approximately; accuracy depends on how you describe the portion.',dopen:'Open food diary',dcabh:'Nutrition today',dfull:'Daily entry limit reached',
+ nallergy:'Allergies',nallergyph:'E.g.: nuts, lactose',nallnote:'Ready-made dishes don’t account for allergies or restrictions, check the ingredients. AI dishes and recipes do.',ndai:'More dishes from AI',ndaibusy:'AI is picking dishes…',ndaih:'Suggested by AI',nphoto:'Photos: Wikipedia and Wikimedia Commons. Where there is no photo, a drawing is shown.',ftwauto:'Target weight was automatically changed to {0} kg because the previous value is unsafe for your health.'});
+
+const DISH=`oatberry|b|c,m|320|16|7|48|Овсянка с ягодами и йогуртом|Oatmeal with berries and yogurt
+omelet|b|c,m|290|21|20|6|Омлет из 3 яиц с овощами|3-egg veggie omelet
+cottage|b|c,m|280|27|10|20|Творог с фруктами и орехами|Cottage cheese with fruit and nuts
+proatoat|b|b|620|38|20|75|Протеиновая овсянка с бананом и арахисовой пастой|Protein oatmeal with banana and peanut butter
+scramble|b|b|700|34|40|45|Яичница из 4 яиц с тостами и авокадо|4-egg scramble with toast and avocado
+pancake|b|b,m|520|34|12|68|Протеиновые панкейки с мёдом|Protein pancakes with honey
+greekbowl|b|m|380|24|9|50|Греческий йогурт с гранолой и мёдом|Greek yogurt with granola and honey
+avotoast|b|m|400|17|22|34|Тост с авокадо и яйцом-пашот|Avocado toast with a poached egg
+chickrice|l|m|520|42|9|65|Куриная грудка с рисом и овощами|Chicken breast with rice and vegetables
+chickveg|l|c|330|40|6|22|Куриная грудка с овощами на пару|Steamed chicken breast with vegetables
+turkeybuck|l|c,m|460|38|10|55|Индейка с гречкой и салатом|Turkey with buckwheat and salad
+tunasalad|l|c|310|32|14|12|Салат с тунцом, яйцом и овощами|Tuna salad with egg and vegetables
+beefpasta|l|b|780|50|22|95|Говядина с пастой и томатным соусом|Beef with pasta and tomato sauce
+salmonquin|l|m,b|640|42|26|55|Лосось с киноа и брокколи|Salmon with quinoa and broccoli
+chilli|l|b,m|690|46|20|75|Чили с фасолью и говяжьим фаршем|Beef and bean chili
+lentilsoup|l|c|280|18|5|42|Чечевичный суп с овощами|Lentil vegetable soup
+wrap|l|m|480|35|13|50|Ролл с курицей и овощами|Chicken veggie wrap
+cod|d|c|260|35|6|14|Запечённая треска с овощами|Baked cod with vegetables
+shrimp|d|c|250|30|7|16|Креветки с овощами на сковороде|Stir-fried shrimp with vegetables
+tofustir|d|c,m|420|24|14|50|Тофу с овощами и бурым рисом|Tofu stir-fry with brown rice
+turkeymeat|d|c|300|36|10|14|Индюшиные котлеты с цукини|Turkey patties with zucchini
+cottagecas|d|c,m|260|26|8|22|Творожная запеканка|Cottage cheese casserole
+steakpot|d|b|780|52|30|70|Стейк из говядины с картофелем|Beef steak with potatoes
+chickcurry|d|b,m|680|44|20|78|Курица в соусе карри с рисом|Chicken curry with rice
+salmonveg|d|m|450|36|26|14|Запечённый лосось с овощами|Baked salmon with vegetables
+creampasta|d|b|760|48|24|85|Паста с курицей в сливочном соусе|Pasta with chicken in cream sauce
+beefricebig|d|b|720|45|18|90|Рис с говядиной и овощами (большая порция)|Rice with beef and vegetables (large portion)
+yogurt|s|c|150|15|3|14|Греческий йогурт с ягодами|Greek yogurt with berries
+cottagesnack|s|c|140|20|4|6|Творог с зеленью и огурцом|Cottage cheese with herbs and cucumber
+riceegg|s|c|170|18|2|20|Рисовые хлебцы с тунцом|Rice cakes with tuna
+eggs2|s|c|160|13|11|2|Два варёных яйца и огурец|Two boiled eggs with cucumber
+shake|s|m,b|280|28|4|34|Протеиновый коктейль с бананом|Protein shake with banana
+nuts|s|m|260|7|16|24|Горсть орехов и яблоко|A handful of nuts and an apple
+hummus|s|m|220|8|11|22|Хумус с овощами|Hummus with vegetables
+bananapb|s|b,m|300|9|13|38|Банан с арахисовой пастой|Banana with peanut butter
+gainer|s|b|650|34|22|78|Домашний гейнер: молоко, овсянка, банан, арахисовая паста|Homemade gainer: milk, oats, banana, peanut butter
+cottagebulk|s|b|420|30|22|30|Творог 9% с мёдом и орехами|9% cottage cheese with honey and nuts`.split('\n').map(l=>{const[id,m,g,k,p,f,c,ru,en]=l.split('|');return{id,m,g:g.split(','),k:+k,p:+p,f:+f,c:+c,ru,en}});
+const REC=`borscht|soups|90|Борщ|Borscht|Говядина на кости 500 г;Свёкла 2 шт.;Капуста 300 г;Картофель 3 шт.;Морковь 1 шт.;Лук 1 шт.;Томатная паста 2 ст. л.;Чеснок 2 зубчика;Соль, лавровый лист, зелень, сметана|Beef on the bone 500 g;Beets 2;Cabbage 300 g;Potatoes 3;Carrot 1;Onion 1;Tomato paste 2 tbsp;Garlic 2 cloves;Salt, bay leaf, herbs, sour cream|Сварите бульон из мяса за 1,5 часа, снимая пену;Нарежьте картофель кубиками, капусту тонко и добавьте в бульон;Обжарьте лук, морковь и тёртую свёклу с томатной пастой 8 минут;Добавьте зажарку в суп и варите 10 минут;Положите чеснок и лавровый лист, посолите, дайте настояться 15 минут;Подавайте со сметаной и зеленью|Simmer the beef into a broth for 1.5 hours, skimming the foam;Dice the potatoes, shred the cabbage and add both to the broth;Sauté onion, carrot and grated beets with tomato paste for 8 minutes;Add the sauté to the soup and cook 10 minutes;Add garlic and bay leaf, salt to taste and rest 15 minutes;Serve with sour cream and herbs
+omelet|breakfast|10|Омлет|Omelet|Яйца 3 шт.;Молоко 50 мл;Сливочное масло 10 г;Соль, перец;Сыр или овощи по желанию|Eggs 3;Milk 50 ml;Butter 10 g;Salt, pepper;Cheese or vegetables, optional|Взбейте яйца с молоком, солью и перцем;Растопите масло на сковороде на среднем огне;Вылейте смесь и готовьте под крышкой 3-4 минуты;Добавьте начинку, сложите пополам и подавайте|Whisk the eggs with milk, salt and pepper;Melt the butter in a pan over medium heat;Pour in the mixture and cook covered for 3-4 minutes;Add the filling, fold in half and serve
+syrniki|breakfast|25|Сырники|Syrniki (cottage cheese pancakes)|Творог 500 г;Яйцо 1 шт.;Мука 4 ст. л.;Сахар 2 ст. л.;Ванилин и щепотка соли;Масло для жарки|Cottage cheese 500 g;Egg 1;Flour 4 tbsp;Sugar 2 tbsp;Vanilla and a pinch of salt;Oil for frying|Разомните творог и смешайте с яйцом, сахаром и солью;Добавьте муку и замесите мягкое тесто;Сформируйте шайбы и обваляйте в муке;Жарьте на среднем огне по 3 минуты с каждой стороны;Подавайте со сметаной или ягодами|Mash the cottage cheese and mix with the egg, sugar and salt;Add the flour and knead a soft dough;Shape into patties and dust with flour;Fry over medium heat 3 minutes per side;Serve with sour cream or berries
+blini|breakfast|30|Блины|Crepes (blini)|Молоко 500 мл;Яйца 2 шт.;Мука 200 г;Сахар 1 ст. л.;Соль щепотка;Растительное масло 2 ст. л.|Milk 500 ml;Eggs 2;Flour 200 g;Sugar 1 tbsp;A pinch of salt;Vegetable oil 2 tbsp|Взбейте яйца с сахаром и солью;Влейте молоко, постепенно всыпьте муку и размешайте до гладкости;Добавьте масло и дайте тесту постоять 15 минут;Жарьте на разогретой сковороде по минуте с каждой стороны;Подавайте с начинкой на выбор|Whisk the eggs with sugar and salt;Pour in the milk, gradually add the flour and stir until smooth;Add the oil and let the batter rest 15 minutes;Cook in a hot pan for a minute per side;Serve with a filling of your choice
+chickensoup|soups|50|Куриный суп с лапшой|Chicken noodle soup|Курица 500 г;Вода 2 л;Картофель 2 шт.;Морковь 1 шт.;Лук 1 шт.;Вермишель 80 г;Соль, лавровый лист, зелень|Chicken 500 g;Water 2 l;Potatoes 2;Carrot 1;Onion 1;Vermicelli 80 g;Salt, bay leaf, herbs|Варите курицу в воде 30 минут, снимая пену;Достаньте мясо и разберите на кусочки;Добавьте в бульон картофель, морковь и лук и варите 15 минут;Всыпьте вермишель, верните мясо и варите 5 минут;Посолите и добавьте зелень|Simmer the chicken in water for 30 minutes, skimming the foam;Remove the meat and shred it;Add potatoes, carrot and onion to the broth and cook 15 minutes;Add the vermicelli and the meat and cook 5 minutes;Salt to taste and add herbs
+carbonara|mains|25|Паста карбонара|Spaghetti carbonara|Спагетти 300 г;Бекон или гуанчале 150 г;Желтки 3 шт.;Пармезан 60 г;Чёрный перец и соль|Spaghetti 300 g;Bacon or guanciale 150 g;Egg yolks 3;Parmesan 60 g;Black pepper and salt|Отварите спагетти в солёной воде и оставьте стакан воды из-под пасты;Обжарьте нарезанный бекон до хруста;Смешайте желтки с тёртым пармезаном и перцем;Соедините пасту с беконом вне огня, влейте соус и немного воды, быстро перемешайте;Подавайте сразу, посыпав сыром|Boil the spaghetti in salted water and keep a cup of the pasta water;Fry the chopped bacon until crisp;Mix the yolks with grated parmesan and pepper;Toss the pasta with the bacon off the heat, add the sauce and a little water, stir fast;Serve at once topped with cheese
+pilaf|mains|80|Плов|Pilaf|Рис длиннозёрный 400 г;Баранина или говядина 500 г;Морковь 3 шт.;Лук 2 шт.;Чеснок 1 головка;Масло 100 мл;Зира, барбарис, соль|Long-grain rice 400 g;Lamb or beef 500 g;Carrots 3;Onions 2;Garlic 1 head;Oil 100 ml;Cumin, barberries, salt|Нагрейте масло в казане и обжарьте лук до золотистого цвета;Добавьте мясо кусочками и жарьте 10 минут;Положите морковь соломкой, зиру и соль и жарьте ещё 10 минут;Залейте водой на 1 см выше мяса и варите 30 минут;Выложите промытый рис, залейте водой на 1,5 см выше риса, воткните чеснок;Когда вода впитается, соберите рис горкой и томите под крышкой на слабом огне 20 минут|Heat the oil in a heavy pot and fry the onion until golden;Add the meat in pieces and fry 10 minutes;Add carrots cut in strips, cumin and salt and fry 10 more minutes;Add water 1 cm above the meat and simmer 30 minutes;Layer the rinsed rice on top, add water 1.5 cm above the rice and push in the garlic;When the water is absorbed, mound the rice and steam covered on low heat for 20 minutes
+greek|salads|10|Греческий салат|Greek salad|Помидоры 3 шт.;Огурцы 2 шт.;Болгарский перец 1 шт.;Красный лук 1/2 шт.;Фета 150 г;Маслины 10 шт.;Оливковое масло 3 ст. л.;Орегано и соль|Tomatoes 3;Cucumbers 2;Bell pepper 1;Red onion 1/2;Feta 150 g;Olives 10;Olive oil 3 tbsp;Oregano and salt|Крупно нарежьте овощи;Выложите в миску и добавьте маслины;Сверху положите кубики феты;Полейте маслом, посыпьте орегано и солью|Cut the vegetables into large pieces;Put them in a bowl and add the olives;Top with cubes of feta;Drizzle with oil and sprinkle with oregano and salt
+caesar|salads|25|Салат Цезарь с курицей|Chicken Caesar salad|Куриное филе 300 г;Салат романо 1 кочан;Сухарики 50 г;Пармезан 40 г;Чеснок 1 зубчик;Майонез или йогурт 3 ст. л.;Лимонный сок, соль, перец|Chicken fillet 300 g;Romaine lettuce 1 head;Croutons 50 g;Parmesan 40 g;Garlic 1 clove;Mayonnaise or yogurt 3 tbsp;Lemon juice, salt, pepper|Обжарьте филе по 5-6 минут с каждой стороны и нарежьте;Смешайте соус из майонеза, чеснока, лимонного сока, соли и перца;Порвите салат руками и выложите в миску;Добавьте курицу, сухарики, соус и тёртый пармезан;Аккуратно перемешайте|Pan-fry the fillet 5-6 minutes per side and slice it;Mix the dressing from mayonnaise, garlic, lemon juice, salt and pepper;Tear the lettuce by hand into a bowl;Add the chicken, croutons, dressing and grated parmesan;Toss gently
+goulash|mains|120|Гуляш|Goulash|Говядина 600 г;Лук 2 шт.;Паприка 2 ст. л.;Томатная паста 1 ст. л.;Болгарский перец 1 шт.;Картофель 2 шт.;Бульон или вода 700 мл;Соль, перец, масло|Beef 600 g;Onions 2;Paprika 2 tbsp;Tomato paste 1 tbsp;Bell pepper 1;Potatoes 2;Broth or water 700 ml;Salt, pepper, oil|Обжарьте кубики говядины до корочки;Добавьте лук и жарьте 5 минут;Снимите с огня, всыпьте паприку и томатную пасту и перемешайте;Залейте бульоном и тушите под крышкой 1 час;Добавьте картофель и перец и тушите ещё 25 минут;Посолите и подавайте с хлебом или пастой|Brown the beef cubes;Add the onions and cook 5 minutes;Take off the heat, stir in the paprika and tomato paste;Pour in the broth and simmer covered for 1 hour;Add potatoes and pepper and simmer 25 more minutes;Season and serve with bread or pasta
+charlotte|desserts|60|Шарлотка с яблоками|Apple charlotte|Яблоки 4 шт.;Яйца 3 шт.;Сахар 150 г;Мука 150 г;Разрыхлитель 1 ч. л.;Корица|Apples 4;Eggs 3;Sugar 150 g;Flour 150 g;Baking powder 1 tsp;Cinnamon|Разогрейте духовку до 180°C;Взбейте яйца с сахаром 5-7 минут до пышной массы;Введите муку с разрыхлителем;Нарежьте яблоки, выложите в форму и посыпьте корицей;Залейте тестом и выпекайте 40 минут;Остудите 10 минут и подавайте|Preheat the oven to 180°C;Beat the eggs with sugar for 5-7 minutes until fluffy;Fold in the flour with baking powder;Slice the apples, place in a pan and sprinkle with cinnamon;Pour the batter over and bake 40 minutes;Cool 10 minutes and serve
+mashed|mains|35|Картофельное пюре|Mashed potatoes|Картофель 1 кг;Молоко 150 мл;Сливочное масло 50 г;Соль, мускатный орех|Potatoes 1 kg;Milk 150 ml;Butter 50 g;Salt, nutmeg|Очистите и нарежьте картофель, варите в солёной воде 20 минут;Слейте воду и дайте картофелю минуту повариться на пару;Разомните, добавьте тёплое молоко и масло;Взбейте до гладкости, добавьте соль и щепотку мускатного ореха|Peel and chop the potatoes and boil in salted water for 20 minutes;Drain and let them steam for a minute;Mash and add warm milk and butter;Whip until smooth, add salt and a pinch of nutmeg
+oatapple|breakfast|15|Овсяная каша с яблоком и корицей|Oatmeal with apple and cinnamon|Овсяные хлопья 80 г;Молоко или вода 250 мл;Яблоко 1 шт.;Корица 1/2 ч. л.;Мёд 1 ч. л.|Rolled oats 80 g;Milk or water 250 ml;Apple 1;Cinnamon 1/2 tsp;Honey 1 tsp|Доведите молоко до кипения и всыпьте хлопья;Варите 5-7 минут на слабом огне, помешивая;Нарежьте яблоко кубиками и добавьте в кашу на последней минуте;Посыпьте корицей, добавьте мёд и дайте постоять 2 минуты|Bring the milk to a boil and add the oats;Cook 5-7 minutes over low heat, stirring;Dice the apple and add it in the last minute;Sprinkle with cinnamon, add honey and let it sit 2 minutes
+shakshuka|breakfast|25|Шакшука|Shakshuka|Яйца 4 шт.;Помидоры 4 шт. или консервированные 400 г;Болгарский перец 1 шт.;Лук 1 шт.;Чеснок 2 зубчика;Паприка и зира по 1 ч. л.;Масло, соль, зелень|Eggs 4;Tomatoes 4 or canned 400 g;Bell pepper 1;Onion 1;Garlic 2 cloves;Paprika and cumin 1 tsp each;Oil, salt, herbs|Обжарьте лук и перец в масле 5 минут;Добавьте чеснок, специи и нарезанные помидоры и тушите 10 минут до густоты;Сделайте в соусе углубления и разбейте в них яйца;Накройте крышкой и готовьте 5-7 минут до нужной готовности желтков;Посыпьте зеленью и подавайте с хлебом|Fry the onion and pepper in oil for 5 minutes;Add garlic, spices and chopped tomatoes and simmer 10 minutes until thick;Make wells in the sauce and crack the eggs into them;Cover and cook 5-7 minutes until the yolks are done to your liking;Sprinkle with herbs and serve with bread
+kefirfritters|breakfast|25|Оладьи на кефире|Kefir pancakes|Кефир 250 мл;Яйцо 1 шт.;Мука 200 г;Сахар 2 ст. л.;Сода 1/2 ч. л.;Соль щепотка;Масло для жарки|Kefir 250 ml;Egg 1;Flour 200 g;Sugar 2 tbsp;Baking soda 1/2 tsp;A pinch of salt;Oil for frying|Смешайте кефир с яйцом, сахаром, солью и содой;Всыпьте муку и замесите густое тесто, как для сметаны;Дайте тесту постоять 10 минут;Выкладывайте ложкой на разогретую сковороду с маслом;Жарьте по 2-3 минуты с каждой стороны под крышкой|Mix the kefir with the egg, sugar, salt and soda;Add the flour and stir into a thick, sour-cream-like batter;Let the batter rest 10 minutes;Spoon it onto a hot oiled pan;Fry 2-3 minutes per side, covered
+frenchtoast|breakfast|15|Сладкие гренки|French toast|Белый хлеб 6 ломтиков;Яйца 2 шт.;Молоко 150 мл;Сахар 1 ст. л.;Корица и ваниль;Сливочное масло|White bread 6 slices;Eggs 2;Milk 150 ml;Sugar 1 tbsp;Cinnamon and vanilla;Butter|Взбейте яйца с молоком, сахаром, корицей и ванилью;Обмакните ломтики хлеба в смесь с обеих сторон;Растопите масло на сковороде;Жарьте гренки по 2 минуты с каждой стороны до золотистой корочки;Подавайте с ягодами или мёдом|Whisk the eggs with milk, sugar, cinnamon and vanilla;Dip the bread slices on both sides;Melt the butter in a pan;Fry the toast 2 minutes per side until golden;Serve with berries or honey
+shchi|soups|80|Щи из свежей капусты|Shchi (cabbage soup)|Говядина или курица 400 г;Капуста 400 г;Картофель 3 шт.;Морковь 1 шт.;Лук 1 шт.;Томатная паста 1 ст. л.;Лавровый лист, соль, зелень|Beef or chicken 400 g;Cabbage 400 g;Potatoes 3;Carrot 1;Onion 1;Tomato paste 1 tbsp;Bay leaf, salt, herbs|Сварите бульон из мяса за 40-60 минут;Добавьте нарезанный картофель и варите 10 минут;Положите тонко нарезанную капусту;Обжарьте лук и морковь с томатной пастой и добавьте в суп;Варите 10 минут, добавьте лавровый лист, соль и зелень|Cook a meat broth for 40-60 minutes;Add chopped potatoes and cook 10 minutes;Add the thinly sliced cabbage;Sauté the onion and carrot with tomato paste and add to the soup;Cook 10 minutes, add bay leaf, salt and herbs
+peasoup|soups|90|Гороховый суп|Split pea soup|Горох колотый 250 г;Картофель 2 шт.;Морковь 1 шт.;Лук 1 шт.;Копчёные рёбрышки или курица 300 г;Масло, соль, лавровый лист|Split peas 250 g;Potatoes 2;Carrot 1;Onion 1;Smoked ribs or chicken 300 g;Oil, salt, bay leaf|Замочите горох на 2 часа и промойте;Варите мясо 30 минут, добавьте горох и варите ещё 30 минут;Добавьте нарезанный картофель;Обжарьте лук и морковь и положите в суп;Варите ещё 15 минут, посолите, добавьте лавровый лист|Soak the peas for 2 hours and rinse;Cook the meat 30 minutes, add the peas and cook 30 more minutes;Add the chopped potatoes;Sauté the onion and carrot and add to the soup;Cook 15 more minutes, salt and add the bay leaf
+pumpkinsoup|soups|40|Тыквенный крем-суп|Pumpkin cream soup|Тыква 600 г;Лук 1 шт.;Картофель 1 шт.;Сливки 100 мл;Бульон или вода 600 мл;Масло, соль, мускатный орех|Pumpkin 600 g;Onion 1;Potato 1;Cream 100 ml;Broth or water 600 ml;Oil, salt, nutmeg|Обжарьте лук в масле 3 минуты;Добавьте кубики тыквы и картофеля и обжаривайте 5 минут;Залейте бульоном и варите 20 минут до мягкости;Пробейте блендером до гладкости;Влейте сливки, посолите, добавьте мускатный орех и прогрейте|Fry the onion in oil for 3 minutes;Add diced pumpkin and potato and sauté 5 minutes;Pour in the broth and cook 20 minutes until soft;Blend until smooth;Stir in the cream, salt, nutmeg and heat through
+chickencutlets|mains|40|Куриные котлеты|Chicken patties|Куриный фарш 600 г;Лук 1 шт.;Яйцо 1 шт.;Хлеб или овсянка 50 г;Молоко 50 мл;Соль, перец;Масло для жарки|Ground chicken 600 g;Onion 1;Egg 1;Bread or oats 50 g;Milk 50 ml;Salt, pepper;Oil for frying|Замочите хлеб в молоке;Смешайте фарш с тёртым луком, яйцом, хлебом, солью и перцем;Вымесите фарш и сформируйте котлеты;Обжарьте по 3 минуты с каждой стороны до корочки;Доведите до готовности под крышкой на слабом огне 10 минут|Soak the bread in milk;Mix the mince with grated onion, egg, bread, salt and pepper;Knead and shape into patties;Fry 3 minutes per side until browned;Finish covered over low heat for 10 minutes
+bakedpotato|mains|50|Запечённый картофель|Roasted potatoes|Картофель 800 г;Оливковое масло 3 ст. л.;Чеснок 3 зубчика;Паприка 1 ч. л.;Розмарин или тимьян;Соль|Potatoes 800 g;Olive oil 3 tbsp;Garlic 3 cloves;Paprika 1 tsp;Rosemary or thyme;Salt|Разогрейте духовку до 200°C;Нарежьте картофель дольками и смешайте с маслом, специями и солью;Выложите на противень в один слой, добавьте чеснок;Запекайте 40 минут, один раз перевернув;Подавайте горячим|Preheat the oven to 200°C;Cut the potatoes into wedges and toss with oil, spices and salt;Spread in one layer on a tray and add the garlic;Roast 40 minutes, turning once;Serve hot
+chickenpotato|mains|70|Курица с картофелем в духовке|Oven-baked chicken with potatoes|Куриные бёдра 6 шт.;Картофель 800 г;Чеснок 4 зубчика;Паприка 2 ч. л.;Растительное масло 3 ст. л.;Соль, перец|Chicken thighs 6;Potatoes 800 g;Garlic 4 cloves;Paprika 2 tsp;Vegetable oil 3 tbsp;Salt, pepper|Разогрейте духовку до 190°C;Смешайте курицу с маслом, паприкой, чесноком, солью и перцем;Нарежьте картофель крупно и выложите на противень;Сверху разместите курицу кожей вверх;Запекайте 50-60 минут до золотистой корочки|Preheat the oven to 190°C;Toss the chicken with oil, paprika, garlic, salt and pepper;Cut the potatoes into large pieces and place on a tray;Put the chicken on top, skin side up;Bake 50-60 minutes until golden
+salmonlemon|mains|25|Лосось, запечённый с лимоном|Lemon baked salmon|Филе лосося 2 шт.;Лимон 1 шт.;Оливковое масло 2 ст. л.;Чеснок 1 зубчик;Укроп;Соль, перец|Salmon fillets 2;Lemon 1;Olive oil 2 tbsp;Garlic 1 clove;Dill;Salt, pepper|Разогрейте духовку до 200°C;Натрите рыбу солью, перцем, чесноком и маслом;Выложите на фольгу и сверху положите дольки лимона;Запекайте 12-15 минут;Посыпьте укропом и подавайте|Preheat the oven to 200°C;Rub the fish with salt, pepper, garlic and oil;Place on foil and top with lemon slices;Bake 12-15 minutes;Sprinkle with dill and serve
+buckmush|mains|30|Гречка с грибами и луком|Buckwheat with mushrooms and onion|Гречка 200 г;Шампиньоны 300 г;Лук 1 шт.;Вода 400 мл;Масло 2 ст. л.;Соль, перец, зелень|Buckwheat 200 g;Mushrooms 300 g;Onion 1;Water 400 ml;Oil 2 tbsp;Salt, pepper, herbs|Промойте гречку, залейте водой и варите 15 минут под крышкой;Обжарьте лук до золотистого цвета;Добавьте нарезанные грибы и жарьте 8 минут;Посолите и поперчите;Смешайте гречку с грибами и посыпьте зеленью|Rinse the buckwheat, add water and cook 15 minutes covered;Fry the onion until golden;Add sliced mushrooms and fry 8 minutes;Season with salt and pepper;Mix the buckwheat with the mushrooms and sprinkle with herbs
+olivier|salads|50|Салат Оливье|Olivier salad|Картофель 3 шт.;Морковь 2 шт.;Яйца 4 шт.;Варёная колбаса или курица 300 г;Солёные огурцы 3 шт.;Зелёный горошек 1 банка;Майонез 4 ст. л.;Соль, перец|Potatoes 3;Carrots 2;Eggs 4;Cooked sausage or chicken 300 g;Pickles 3;Canned peas 1 jar;Mayonnaise 4 tbsp;Salt, pepper|Отварите картофель, морковь и яйца до готовности и остудите;Нарежьте все ингредиенты мелкими кубиками;Добавьте горошек;Заправьте майонезом, посолите и поперчите;Перемешайте и охладите 30 минут|Boil the potatoes, carrots and eggs until done and cool them;Dice all ingredients small;Add the peas;Dress with mayonnaise, salt and pepper;Mix and chill for 30 minutes
+vinaigrette|salads|60|Винегрет|Vinegret (beet salad)|Свёкла 2 шт.;Картофель 3 шт.;Морковь 2 шт.;Квашеная капуста 150 г;Солёные огурцы 2 шт.;Лук 1/2 шт.;Растительное масло 4 ст. л.|Beets 2;Potatoes 3;Carrots 2;Sauerkraut 150 g;Pickles 2;Onion 1/2;Vegetable oil 4 tbsp|Отварите свёклу, картофель и морковь до мягкости и остудите;Нарежьте овощи и огурцы кубиками;Добавьте квашеную капусту и лук;Заправьте маслом и аккуратно перемешайте;Дайте настояться 20 минут|Boil the beets, potatoes and carrots until soft and cool;Dice the vegetables and pickles;Add sauerkraut and onion;Dress with oil and stir gently;Let it stand for 20 minutes
+cabbagesalad|salads|10|Салат из свежей капусты|Fresh cabbage salad|Капуста 400 г;Морковь 1 шт.;Огурец 1 шт.;Зелень;Растительное масло 2 ст. л.;Уксус или лимонный сок 1 ст. л.;Соль, сахар|Cabbage 400 g;Carrot 1;Cucumber 1;Herbs;Vegetable oil 2 tbsp;Vinegar or lemon juice 1 tbsp;Salt, sugar|Тонко нашинкуйте капусту, посолите и слегка разомните руками;Натрите морковь и нарежьте огурец соломкой;Смешайте овощи с зеленью;Заправьте маслом, уксусом и щепоткой сахара;Перемешайте и подавайте|Shred the cabbage thinly, salt and gently squeeze it by hand;Grate the carrot and cut the cucumber into strips;Mix the vegetables with herbs;Dress with oil, vinegar and a pinch of sugar;Toss and serve
+cottagecake|desserts|50|Творожная запеканка|Cottage cheese casserole|Творог 500 г;Яйца 2 шт.;Манка 3 ст. л.;Сахар 3 ст. л.;Сметана 2 ст. л.;Ванилин, изюм|Cottage cheese 500 g;Eggs 2;Semolina 3 tbsp;Sugar 3 tbsp;Sour cream 2 tbsp;Vanilla, raisins|Разогрейте духовку до 180°C;Смешайте творог с яйцами, сахаром, манкой и ванилином;Добавьте изюм и перемешайте;Выложите в смазанную форму и смажьте сверху сметаной;Выпекайте 35-40 минут до золотистого цвета|Preheat the oven to 180°C;Mix the cottage cheese with eggs, sugar, semolina and vanilla;Stir in the raisins;Spread in a greased dish and brush the top with sour cream;Bake 35-40 minutes until golden
+oatcookie|desserts|30|Овсяное печенье|Oatmeal cookies|Овсяные хлопья 150 г;Мука 100 г;Сливочное масло 100 г;Сахар 80 г;Яйцо 1 шт.;Разрыхлитель 1/2 ч. л.;Изюм или шоколад|Rolled oats 150 g;Flour 100 g;Butter 100 g;Sugar 80 g;Egg 1;Baking powder 1/2 tsp;Raisins or chocolate|Разогрейте духовку до 180°C;Взбейте мягкое масло с сахаром и яйцом;Добавьте муку, разрыхлитель, хлопья и изюм;Сформируйте небольшие лепёшки и выложите на противень с бумагой;Выпекайте 12-15 минут до золотистых краёв|Preheat the oven to 180°C;Beat the soft butter with the sugar and egg;Add flour, baking powder, oats and raisins;Shape small rounds and place on a lined tray;Bake 12-15 minutes until the edges are golden
+bananabread|desserts|65|Банановый хлеб|Banana bread|Спелые бананы 3 шт.;Мука 220 г;Сахар 100 г;Яйцо 1 шт.;Сливочное масло 80 г;Разрыхлитель 1 ч. л.;Корица|Ripe bananas 3;Flour 220 g;Sugar 100 g;Egg 1;Butter 80 g;Baking powder 1 tsp;Cinnamon|Разогрейте духовку до 180°C;Разомните бананы вилкой;Смешайте с растопленным маслом, сахаром и яйцом;Добавьте муку, разрыхлитель и корицу и перемешайте до однородности;Вылейте в форму и выпекайте 45-50 минут, остудите перед нарезкой|Preheat the oven to 180°C;Mash the bananas with a fork;Mix with melted butter, sugar and egg;Add flour, baking powder and cinnamon and stir until just combined;Pour into a loaf pan and bake 45-50 minutes, cool before slicing`.split('\n').map(l=>{const[id,c,mi,rt,et,ri,ei,rs,es]=l.split('|'),sp=x=>x.split(';').map(y=>y.trim());return{id,c,min:+mi,ru:{t:rt,i:sp(ri),s:sp(rs)},en:{t:et,i:sp(ei),s:sp(es)}}});
+const GCAT={fatloss:['c'],toned:['c','m'],athletic:['m'],muscle:['b'],strong:['b','m']},MK={breakfast:'b',lunch:'l',dinner:'d',snack:'s'},MKI={b:'breakfast',l:'lunch',d:'dinner',s:'snack'};
+/* --- картинки: рисунок тарелки всегда, настоящее фото из Wikipedia, если найдено --- */
+const WIKI={omelet:'Omelette',syrniki:'Syrniki',blini:'Blini',borscht:'Borscht',chickensoup:'Chicken soup',carbonara:'Carbonara',pilaf:'Pilaf',greek:'Greek salad',caesar:'Caesar salad',goulash:'Goulash',charlotte:'Charlotte (cake)',mashed:'Mashed potato',shakshuka:'Shakshouka',shchi:'Shchi',peasoup:'Pea soup',olivier:'Olivier salad',vinaigrette:'Vinegret',bananabread:'Banana bread',oatapple:'Porridge',pumpkinsoup:'Pumpkin soup',bakedpotato:'Baked potato',frenchtoast:'French toast',kefirfritters:'Oladyi',scramble:'Scrambled eggs',avotoast:'Avocado toast',pancake:'Pancake',hummus:'Hummus',chilli:'Chili con carne',lentilsoup:'Lentil soup',wrap:'Wrap (food)',tunasalad:'Tuna salad',steakpot:'Steak',oatberry:'Oatmeal',cottage:'Cottage cheese'};
+let PH={};try{PH=JSON.parse(localStorage.getItem('nx_ph')||'{}')}catch{}
+async function loadPhotos(){
+  const keys=[...document.querySelectorAll('#nx .dimg[data-k]')].map(e=>e.dataset.k),need=[...new Set(keys.filter(k=>WIKI[k]&&!(k in PH)))];if(!need.length)return;
+  const titles=[...new Set(need.map(k=>WIKI[k]))];
+  try{for(let i=0;i<titles.length;i+=40){const ch=titles.slice(i,i+40),
+      j=await (await fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&redirects=1&prop=pageimages&piprop=thumbnail&pithumbsize=480&titles='+encodeURIComponent(ch.join('|')))).json(),q=j.query||{},m={};
+    ch.forEach(x=>m[x]=x);[...(q.normalized||[]),...(q.redirects||[])].forEach(n=>{for(const k in m)if(m[k]===n.from)m[k]=n.to});
+    const pg={};Object.values(q.pages||{}).forEach(p=>{pg[p.title]=(p.thumbnail&&p.thumbnail.source)||''});
+    need.forEach(k=>{if(ch.includes(WIKI[k]))PH[k]=pg[m[WIKI[k]]]||''})}
+    try{localStorage.setItem('nx_ph',JSON.stringify(PH))}catch{}}catch{}
+}
+function fillImgs(){document.querySelectorAll('#nx .dimg[data-k]').forEach(el=>{const u=PH[el.dataset.k];if(u&&!el.querySelector('img')){const im=new Image();im.alt='';im.onload=()=>{if(!el.querySelector('img'))el.appendChild(im)};im.src=u}})}
+const ICON={
+ egg:'<ellipse rx="13" ry="10" fill="#fff" stroke="#e6dfd0"/><circle cy="1" r="5" fill="#f6b21b"/>',
+ grain:'<g fill="#f3ead6" stroke="#d9cfb6" stroke-width=".6">'+[[-8,-3],[-2,-6],[5,-4],[-6,3],[1,1],[8,3],[-1,7],[-10,-7]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="3.6" ry="2.2" transform="rotate(${x*7} ${x} ${y})"/>`).join('')+'</g>',
+ meat:'<ellipse rx="14" ry="9" fill="#a4512a"/><path d="M-9-2q9-5 18 0M-10 3q10-5 20 0" stroke="#6f3217" stroke-width="1.4" fill="none"/>',
+ fish:'<ellipse rx="13" ry="7" fill="#f5937a"/><path d="M12 0l9-7v14z" fill="#f5937a"/><circle cx="-8" cy="-1.5" r="1.3" fill="#442"/><path d="M-3-5q4 5 0 10" stroke="#e57a62" fill="none"/>',
+ shrimp:'<path d="M-10 5q-6-14 9-12q9 2 5 11" stroke="#f08c6c" stroke-width="5" fill="none" stroke-linecap="round"/>',
+ soup:'<path d="M-15-2h30a15 13 0 0 1-30 0z" fill="#eef0f4" stroke="#cfd3dc"/><ellipse cy="-2" rx="15" ry="4.5" fill="#d9742b"/><path d="M-5-8q-3-4 0-8M4-8q-3-4 0-8" stroke="#bbb" fill="none"/>',
+ pasta:'<g stroke="#efc65a" stroke-width="3" fill="none" stroke-linecap="round"><path d="M-12-5q6-6 12 0t12 0"/><path d="M-12 1q6-6 12 0t12 0"/><path d="M-12 7q6-6 12 0t12 0"/></g>',
+ bread:'<ellipse cy="5" rx="13" ry="5" fill="#d99a4c"/><ellipse cy="1" rx="13" ry="5" fill="#e8b068"/><ellipse cy="-3" rx="13" ry="5" fill="#f1c183"/>',
+ drink:'<path d="M-8-13h16l-3 25h-10z" fill="#f4efe4" stroke="#cfc8b8"/><path d="M-6.5-4h13l-1.6 16h-9.8z" fill="#efe3c7"/>',
+ dairy:'<circle r="11" fill="#fffdf6" stroke="#e5dfcf"/><path d="M-5-3q5-5 10 0" stroke="#ddd5bf" fill="none"/>',
+ veg:'<ellipse rx="12" ry="6" fill="#54b06a" transform="rotate(-28)"/><ellipse rx="12" ry="6" fill="#7bc97d" transform="rotate(28)"/><circle cx="7" cy="6" r="4.5" fill="#e2483d"/>',
+ fruit:'<circle cx="-5" cy="2" r="5" fill="#b83a6a"/><circle cx="4" cy="-3" r="5" fill="#7a3a8f"/><circle cx="5" cy="6" r="4.5" fill="#d9454f"/>',
+ nuts:'<g fill="#b87a3e" stroke="#8d5a28" stroke-width=".7"><ellipse cx="-5" cy="2" rx="5" ry="3.4"/><ellipse cx="5" cy="-2" rx="5" ry="3.4"/><ellipse cx="4" cy="6" rx="5" ry="3.4"/></g>',
+ potato:'<ellipse rx="13" ry="9" fill="#f0d79a"/><circle cx="-4" cy="-2" r="1" fill="#d9b86a"/><circle cx="4" cy="2" r="1" fill="#d9b86a"/><circle cx="0" cy="4" r="1" fill="#d9b86a"/>',
+ avocado:'<ellipse rx="10" ry="13" fill="#5f9f46"/><ellipse rx="7.5" ry="10.5" fill="#cfe58a"/><circle cy="3" r="4.5" fill="#8a5a2b"/>',
+ blob:'<ellipse rx="13" ry="9" fill="#e9d3a8"/><ellipse cx="-2" cy="-2" rx="6" ry="3" fill="#f3e4c4"/>',
+ cake:'<path d="M-13 8h26v-9a13 8 0 0 0-26 0z" fill="#e9b36b"/><path d="M-13-1a13 8 0 0 1 26 0" fill="#f6d9ad"/><circle cx="3" cy="-6" r="2.6" fill="#d9454f"/>',
+ gen:'<circle r="10" fill="#f2a03d"/><ellipse cx="6" cy="-9" rx="7" ry="3.2" fill="#58b368" transform="rotate(-30 6 -9)"/>'};
+const KW=[[/яйц|egg|омлет|omelet|яичниц|scramble|пашот|poach|шакшук|shakshuka/,'egg'],
+ [/суп|soup|борщ|borsch|щи\b|shchi|чили|chili|гуляш|goulash|чечевич|lentil|бульон|broth/,'soup'],
+ [/паст[аыу]|pasta|спагетти|spaghetti|лапш|noodle|макарон|карбонар|carbonara/,'pasta'],
+ [/кревет|shrimp|prawn/,'shrimp'],
+ [/лосос|salmon|трес|cod\b|тунц|tuna|рыб|fish|форел|trout/,'fish'],
+ [/кур[иоа]|chicken|индейк|turkey|говяд|beef|стейк|steak|свин|pork|баран|lamb|котлет|patt|фарш|mince|мяс|meat|колбас|ribs|рёбр/,'meat'],
+ [/рис\b|рис[ао]м|rice|плов|pilaf|киноа|quinoa|гречк|buckwheat|каш|porridge|овсян|oat|гранол|granola/,'grain'],
+ [/панкейк|pancake|блин|crepe|blini|оладь|fritter|сырник|syrnik|гренк|toast|тост|хлеб|bread|ролл|wrap|сэндвич|печень|cookie/,'bread'],
+ [/коктейль|shake|гейнер|gainer|смузи|smoothie|кофе|coffee|чай\b|tea\b|молоко|milk/,'drink'],
+ [/творог|cottage|йогурт|yogurt|кефир|kefir|сыр\b|cheese|сметан|запекан|casserole/,'dairy'],
+ [/салат|salad|овощ|veg|брокколи|broccoli|огурц|cucumber|помидор|tomato|цукини|zucchini|капуст|cabbage|зелен|herb|шпинат|spinach|перец|pepper/,'veg'],
+ [/ягод|berr|банан|banana|яблок|apple|фрукт|fruit|мёд|honey/,'fruit'],
+ [/орех|nut|арахис|peanut|миндал|almond/,'nuts'],
+ [/картофел|potato|пюре|mashed|картошк/,'potato'],
+ [/авокадо|avocado/,'avocado'],
+ [/хумус|hummus|тофу|tofu/,'blob'],
+ [/шарлотк|charlotte|пирог|\bpie\b|торт|cake|кекс|muffin|десерт|dessert/,'cake']];
+function plateSvg(name){
+  const s=name.toLowerCase(),ic=KW.filter(([r])=>r.test(s)).map(x=>x[1]).slice(0,3);if(!ic.length)ic.push('gen');
+  const P={1:[[60,48,1.7]],2:[[46,50,1.35],[75,46,1.35]],3:[[46,50,1.1],[76,44,1.1],[60,67,1.1]]}[ic.length],h=[...name].reduce((a,c)=>(a*31+c.charCodeAt(0))%360,7);
+  return `<svg viewBox="0 0 120 90" aria-hidden="true"><rect width="120" height="90" fill="hsl(${h} 55% 90%)"/><circle cx="60" cy="48" r="38" fill="#fff" stroke="#e3e3e8" stroke-width="2"/><circle cx="60" cy="48" r="29" fill="#f7f7f9"/>${ic.map((k,i)=>`<g transform="translate(${P[i][0]} ${P[i][1]}) scale(${P[i][2]})">${ICON[k]}</g>`).join('')}</svg>`}
+const dimg=(key,ru,en,cls='')=>`<div class="dimg${cls}"${key?` data-k="${key}"`:''}>${plateSvg(ru+' '+(en||''))}${key&&PH[key]?`<img src="${esc(PH[key])}" alt="" onerror="this.remove()">`:''}</div>`;
+
+let N={v:'menu',meal:'all',open:null,cat:'all',rec:null,from:'menu',menu:null,busy:false,err:'',avoid:'',allergy:'',q:'',lv:null,ai:[],aib:false,aierr:'',dtext:''};
+let D={key:'',items:[],sum:{},loaded:false,busy:false,err:''};
+const goalNow=()=>F.prof?.goal||null,tgt=()=>{const c=F.cab&&F.cab.res;return c?{kcal:c.kcal,protein:c.protein,fat:c.fat,carbs:c.carbs}:null},prefs=()=>({avoid:N.avoid,allergies:N.allergy});
+const macroTiles=c=>`<div class="stats">${[['fkcal',c.kcal,''],['fprot',c.protein,' '+t('fgr')],['ffat',c.fat,' '+t('fgr')],['fcarb',c.carbs,' '+t('fgr')]].map(([k,v,u])=>`<div><small>${t(k)}</small><b>${fmtn(v)}${u}</b></div>`).join('')}</div>`;
+
+/* --- дневник питания --- */
+const dkey=(d=new Date())=>d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+async function loadDiary(){const k=dkey();if(D.loaded&&D.key===k)return;D.key=k;D.items=(await jget('fd_'+k,{e:[]})).e||[];D.sum=await jget('fds',{});D.loaded=true}
+const dsum=()=>D.items.reduce((a,x)=>({k:a.k+x.kcal,p:a.p+x.protein,f:a.f+x.fat,c:a.c+x.carbs}),{k:0,p:0,f:0,c:0});
+async function saveDiary(){const k=D.key,T=dsum();await st.set('fd_'+k,JSON.stringify({e:D.items}));D.sum[k]=[Math.round(T.k),Math.round(T.p),Math.round(T.f),Math.round(T.c)];
+  const ks=Object.keys(D.sum).sort();while(ks.length>60){const o=ks.shift();delete D.sum[o];await st.del('fd_'+o)}await st.set('fds',JSON.stringify(D.sum))}
+function dietHtml(full){
+  const T=dsum(),c=tgt(),rows=[['fkcal','k','kcal',''],['fprot','p','protein',' '+t('fgr')],['ffat','f','fat',' '+t('fgr')],['fcarb','c','carbs',' '+t('fgr')]];
+  const eaten=`<div class="stats">${rows.map(([l,k,,u])=>`<div><small>${t(l)}</small><b>${fmtn(T[k])}${u}</b></div>`).join('')}</div>`;
+  if(!c)return `<div class="sec mb"><h2>${t('deaten')}</h2>${eaten}<p class="meta" style="margin-top:10px">${t('dnorm')}</p></div>`;
+  const left=`<div class="stats">${rows.map(([l,k,ck,u])=>{const r=c[ck]-T[k];return `<div class="${r<0?'over':''}"><small>${t(l)}</small><b>${r<0?'+'+fmtn(-r):fmtn(r)}${u}</b></div>`}).join('')}</div>`;
+  const bars=full?rows.map(([l,k,ck])=>`<div style="margin-top:10px"><div class="kv"><span>${t(l)}</span><b>${fmtn(T[k])} / ${fmtn(c[ck])}</b></div><div class="pbar"><i class="${T[k]>c[ck]?'over':''}" style="width:${Math.min(100,T[k]/c[ck]*100)}%"></i></div></div>`).join(''):'';
+  return `<div class="sec mb"><h2>${t('deaten')}</h2>${eaten}<h2 style="margin-top:16px">${t('dleft')}</h2>${left}${bars}</div>`}
+function dietCab(){return dietHtml(false).replace('<div class="sec mb"><h2>'+t('deaten')+'</h2>','<div class="sec mb"><h2>'+t('dcabh')+' · '+t('deaten')+'</h2>').replace(/<\/div>$/,`<button class="wide" data-a="opendiary" style="margin-top:12px">${t('dopen')}</button></div>`)}
+function weekBars(){const c=tgt(),days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return dkey(d)}),vals=days.map(k=>(D.sum[k]||[0])[0]),mx=Math.max(c?c.kcal:0,...vals,1);
+  return `<div class="wbars">${days.map((k,i)=>`<div class="wb"><span>${vals[i]?fmtn(vals[i]):''}</span><div class="col"><i style="height:${vals[i]/mx*100}%"></i></div><small>${new Date(k+'T12:00:00').toLocaleDateString(loc(),{weekday:'narrow'})}</small></div>`).join('')}</div>`}
+function vDiary(){
+  return back('menu')+title(t('nc_diary'))+dietHtml(true)
+  +`<div class="sec mb"><textarea data-f="dtext" maxlength="300" placeholder="${t('dtextph')}">${esc(N.dtext)}</textarea><button class="p wide" data-a="dadd" style="margin-top:10px" ${D.busy?'disabled':''}>${D.busy?t('dbusy'):t('dadd')}</button>${D.err?`<p class="meta" style="margin-top:8px">${esc(D.err)}</p>`:''}</div>`
+  +(D.items.length?D.items.map((x,i)=>`<div class="libi" style="cursor:default"><div class="lh"><b>${esc(x.n)}</b><small>${t('nkcal_u',x.kcal)}<button class="x2" data-a="ddel" data-i="${i}" aria-label="${t('fdel')}">✕</button></small></div><div class="meta" style="font-size:13px;margin-top:2px">${t('nmac',x.protein,x.fat,x.carbs)}</div></div>`).join(''):`<p class="msg">${t('dnone')}</p>`)
+  +`<div class="sec" style="margin-top:12px"><h2>${t('dweek')}</h2>${weekBars()}</div><p class="meta" style="margin-top:10px">${t('dnote')}</p>`}
+
+/* --- карточки блюд --- */
+function dishRow(d,attrs,o={}){return `<div class="libi${o.op?' op':''}" ${attrs}><div class="dc">${dimg(d.key,d.name,d.en)}<div class="dt"><div class="lh"><b>${esc(d.name)}</b></div><div class="meta" style="font-size:13px">${d.meal?t('m_'+d.meal)+' · ':''}${t('nkcal_u',d.kcal)} · ${t('nmac',d.protein,d.fat,d.carbs)}</div></div></div>${o.html||''}</div>`}
+const dn=d=>({key:d.id,name:d[lang],en:d.en,meal:d.m,kcal:d.k,protein:d.p,fat:d.f,carbs:d.c});
+const dishCard=d=>{const o=N.open===d.id;return dishRow(dn(d),`data-a="dopen" data-v="${d.id}"`,{op:o,html:o?`<div class="ld"><button class="p" data-a="drecipe" data-v="${d.id}">📖 ${t('nrecai')}</button></div>`:''})};
+const aiRow=(m,act,i)=>dishRow({name:m.name,en:m.en,meal:MK[m.meal]||'s',kcal:m.kcal,protein:m.protein,fat:m.fat,carbs:m.carbs},'style="cursor:default"',{html:`<div class="ld">${m.how?`<p class="meta" style="margin-bottom:8px">${esc(m.how)}</p>`:''}<button data-a="${act}" data-i="${i}">📖 ${t('nrecai')}</button></div>`});
+function vNMenu(){const g=goalNow(),c=tgt(),T=dsum();
+  return `<div class="ghero"><div class="gt" style="margin-bottom:6px">${t('tn')}</div>${g?`<p class="meta">${t('ngoal')}: <b>${t('p_'+g)}</b></p>${c?`<div style="margin-top:10px">${macroTiles(c)}</div>${D.loaded?`<p class="meta" style="margin-top:10px">${t('dtoday')}: <b>${fmtn(T.k)}</b> / ${fmtn(c.kcal)} ${t('fkcal')}</p>`:''}`:`<p class="meta" style="margin-top:6px">${t('ncalcneed')}</p>`}`:`<p class="meta">${t('ngoalnone')}</p>`}<button data-a="toft" style="margin-top:10px">${t(g?'ncab':'nopenft')}</button></div>
+  <div class="fgrid">${[['dishes','🥗','nc_dishes','nc_dishes_s'],['dmenu','✨','nc_menu','nc_menu_s'],['diary','📝','nc_diary','nc_diary_s'],['recs','📖','nc_rec','nc_rec_s']].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${t(s)}</small></div>`).join('')}</div>`}
+function vDishes(){const g=goalNow(),cats=g?GCAT[g]:['m'],list=DISH.filter(d=>d.g.some(x=>cats.includes(x))&&(N.meal==='all'||d.m===N.meal)),ai=N.ai.map((m,i)=>[m,i]).filter(([m])=>N.meal==='all'||MK[m.meal]===N.meal);
+  return back('menu')+title(t('nc_dishes'))+`<p class="meta" style="margin-bottom:10px">${g?`${t('ngoal')}: <b>${t('p_'+g)}</b>`:t('ngoalnone')}</p>
+  <div class="chips2">${['all','b','l','d','s'].map(m=>`<button class="${N.meal===m?'on':''}" data-a="meal" data-v="${m}">${m==='all'?t('nall'):t('m_'+m)}</button>`).join('')}</div>
+  <div style="margin-top:10px">${list.map(dishCard).join('')||`<p class="msg">${t('fnone')}</p>`}</div>
+  <button class="p wide" data-a="aidishes" style="margin:12px 0" ${N.aib?'disabled':''}>✨ ${N.aib?t('ndaibusy'):t('ndai')}</button>${N.aierr?`<p class="meta" style="margin-bottom:10px">${esc(N.aierr)}</p>`:''}
+  ${ai.length?`<h2>${t('ndaih')}</h2>${ai.map(([m,i])=>aiRow(m,'airecipe',i)).join('')}`:''}
+  <p class="meta" style="margin-top:10px">${t('nest')} ${t('nphoto')}</p>${N.allergy||N.avoid?`<p class="meta" style="margin-top:6px">${t('nallnote')}</p>`:''}`}
+function menuHtml(j){const ms=j.meals||[],tot=ms.reduce((a,m)=>({k:a.k+m.kcal,p:a.p+m.protein,f:a.f+m.fat,c:a.c+m.carbs}),{k:0,p:0,f:0,c:0}),c=tgt();
+  return ms.map((m,i)=>aiRow(m,'mrecipe',i)).join('')
+  +`<div class="sec" style="margin-top:12px"><div class="kv"><span>${t('ntotal')}</span><b>${t('nkcal_u',fmtn(tot.k))} · ${t('nmac',tot.p,tot.f,tot.c)}</b></div>${c?`<div class="kv"><span>${t('ntarget')}</span><b>${t('nkcal_u',fmtn(c.kcal))} · ${t('nmac',c.protein,c.fat,c.carbs)}</b></div>`:''}</div>${j.note?`<p class="meta" style="margin-top:10px">${esc(j.note)}</p>`:''}<p class="meta" style="margin-top:6px">${t('nest')}</p>`}
+function vDMenu(){const m=N.menu;
+  return back('menu')+title(t('nc_menu'))+`<label>${t('navoid')}</label><input data-f="avoid" maxlength="120" placeholder="${t('navoidph')}" value="${esc(N.avoid)}">
+  <label>${t('nallergy')}</label><input data-f="allergy" maxlength="120" placeholder="${t('nallergyph')}" value="${esc(N.allergy)}">
+  <button class="p wide" data-a="genmenu" style="margin:12px 0" ${N.busy?'disabled':''}>✨ ${N.busy?t('nmenubusy'):(m?t('nmenuregen'):t('nmenugen'))}</button>${N.err?`<p class="meta" style="margin-bottom:10px">${esc(N.err)}</p>`:''}${m?menuHtml(m):''}`}
+function vRecs(){
+  return back('menu')+title(t('nc_rec'))+`<div class="chips2">${['all','breakfast','soups','mains','salads','desserts'].map(c=>`<button class="${N.cat===c?'on':''}" data-a="rcat" data-v="${c}">${t('rc_'+c)}</button>`).join('')}</div>
+  <div style="margin-top:10px">${REC.filter(r=>N.cat==='all'||r.c===N.cat).map(r=>`<div class="libi" data-a="ropen" data-v="${r.id}"><div class="dc">${dimg(r.id,r.ru.t,r.en.t)}<div class="dt"><div class="lh"><b>${esc(r[lang].t)}</b></div><div class="meta" style="font-size:13px">${t('rc_'+r.c)} · ${t('nmin',r.min)}</div></div></div></div>`).join('')}</div>
+  <div class="sec" style="margin-top:14px"><h2>${t('nfind')}</h2><input data-f="rq" maxlength="100" placeholder="${t('nsearch')}" value="${esc(N.q)}"><button class="p wide" data-a="rfind" style="margin-top:10px">${t('nfind')}</button></div><p class="meta" style="margin-top:10px">${t('nphoto')}</p>`}
+function vRecipe(){const r=N.rec,bk=back(N.from);
+  if(r.loading)return bk+title(esc(r.title))+`<p class="msg">${t('nrecbusy')}</p>`;
+  if(r.err)return bk+title(esc(r.title))+`<p class="meta">${esc(r.err)}</p>`;
+  const b=r.ai?null:REC.find(z=>z.id===r.id),x=r.ai?r.j:{title:b[lang].t,minutes:b.min,servings:4,ingredients:b[lang].i,steps:b[lang].s,en:b.en.t};
+  const meta=[t('nmin',x.minutes),t('nserv',x.servings),x.kcal?`${t('nkcal_u',x.kcal)} ${t('nper')}`:'',x.kcal?t('nmac',x.protein,x.fat,x.carbs):''].filter(Boolean).join(' · ');
+  return bk+title(esc(x.title))+dimg(r.ai?null:r.id,x.title,x.en,' big')+`<p class="meta" style="margin:10px 0">${meta}</p><div class="sec mb"><h2>${t('ningr')}</h2><ul class="tips">${x.ingredients.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>
+  <div class="sec"><h2>${t('nsteps')}</h2>${x.steps.map((s,i)=>`<div class="st c" style="background:none;padding:6px 0;margin:0"><span class="dot">${i+1}</span><div>${esc(s)}</div></div>`).join('')}${x.tip?`<p class="meta" style="margin-top:10px">${t('ntip')}: ${esc(x.tip)}</p>`:''}</div>${r.ai?'':`<p class="meta" style="margin-top:10px">${t('nphoto')}</p>`}`}
+function renderNx(){const V={menu:vNMenu,dishes:vDishes,dmenu:vDMenu,recs:vRecs,recipe:vRecipe,diary:vDiary}[N.v];$('nx').innerHTML=V();if(N.lv!==N.v){N.lv=N.v;scrollTo(0,0)}fillImgs();loadPhotos().then(fillImgs)}
+async function aiRecipe(q,from){N.from=from;N.rec={loading:true,title:q};N.v='recipe';renderNx();
+  try{N.rec={ai:true,j:await api('/food',{mode:'recipe',query:q,goal:goalNow(),targets:tgt(),...prefs()})}}catch(e){N.rec={err:e.message,title:q}}
+  if(N.v==='recipe')renderNx()}
+const na={
+  menu(){N.v='menu';renderNx()},dishes(){N.v='dishes';renderNx()},dmenu(){N.v='dmenu';renderNx()},recs(){N.v='recs';renderNx()},diary(){N.v='diary';renderNx()},
+  async go(d){N.v=d.v;N.open=null;renderNx();if(d.v==='diary'||d.v==='menu'){await loadDiary();if(N.v===d.v)renderNx()}},
+  meal(d){N.meal=d.v;N.open=null;renderNx()},dopen(d){N.open=N.open===d.v?null:d.v;renderNx()},
+  drecipe(d){aiRecipe(DISH.find(x=>x.id===d.v)[lang],'dishes')},airecipe(d){aiRecipe(N.ai[+d.i].name,'dishes')},mrecipe(d){aiRecipe(N.menu.meals[+d.i].name,'dmenu')},
+  rcat(d){N.cat=d.v;renderNx()},ropen(d){N.rec={id:d.v};N.from='recs';N.v='recipe';renderNx()},rfind(){const q=N.q.trim();if(q)aiRecipe(q,'recs')},
+  toft(){document.querySelector('.tabs button[data-t="ft"]').click();if(F.prof)fa.cab()},
+  async aidishes(){N.aib=true;N.aierr='';renderNx();
+    try{const j=await api('/food',{mode:'dishes',goal:goalNow(),targets:tgt(),meal:N.meal==='all'?'any':MKI[N.meal],...prefs(),exclude:[...DISH.filter(d=>N.meal==='all'||d.m===N.meal).map(d=>d[lang]),...N.ai.map(x=>x.name)].slice(-30)});
+      N.ai=N.ai.concat(j.dishes)}catch(e){N.aierr=e.message}
+    N.aib=false;if(N.v==='dishes')renderNx()},
+  async genmenu(){N.busy=true;N.err='';renderNx();st.set('nx_avoid',N.avoid);st.set('nx_allergy',N.allergy);const p=F.prof;
+    try{N.menu=await api('/food',{mode:'menu',goal:goalNow(),targets:tgt(),profile:p?{h:p.h,w:p.w,tw:p.tw??null,body:p.body,age:p.age??null,sex:p.sex||null}:null,...prefs()});
+      st.set('nx_menu',JSON.stringify({day:new Date().toDateString(),j:N.menu}))}catch(e){N.err=e.message}
+    N.busy=false;if(N.v==='dmenu')renderNx()},
+  async dadd(){const text=N.dtext.trim();if(!text||D.busy)return;await loadDiary();if(D.items.length>=30){D.err=t('dfull');return renderNx()}
+    D.busy=true;D.err='';renderNx();
+    try{const j=await api('/food',{mode:'log',text});if(!j.items.length)throw new Error(t('dbad'));
+      j.items.forEach(x=>{if(D.items.length<30)D.items.push({n:x.name,kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs})});N.dtext='';await saveDiary()}catch(e){D.err=e.message}
+    D.busy=false;renderNx()},
+  async ddel(d){D.items.splice(+d.i,1);await saveDiary();renderNx()}};
+const ni={avoid(v){N.avoid=v},allergy(v){N.allergy=v},rq(v){N.q=v},dtext(v){N.dtext=v}};
+$('nx').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)na[b.dataset.a]?.(b.dataset,b)});
+$('nx').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)ni[d.f]?.(e.target.value)});
+$('nx').addEventListener('change',e=>{const f=e.target.dataset.f;if(f==='avoid')st.set('nx_avoid',N.avoid);if(f==='allergy')st.set('nx_allergy',N.allergy)});
+async function loadNx(){N.avoid=await jget('nx_avoid','');N.allergy=await jget('nx_allergy','');const m=await jget('nx_menu',null);if(m&&m.day===new Date().toDateString())N.menu=m.j;await loadDiary();renderNx()}
 
 /* ================= ПОГОДА ================= */
 const WE={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌦',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
@@ -809,10 +1056,10 @@ function renderGoals(){
 /* ================= СТАРТ ================= */
 async function init(){
   {const w0=await jget('wardrobe',[]);wardrobe=Array.isArray(w0)?w0:Object.values(w0).filter(v=>typeof v==='string');}renderWardrobe();
-  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();
+  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();loadNx();
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 }
-function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();renderFit();if(lastWeather)render(lastWeather.d,lastWeather.name)}
+function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();if(lastWeather)render(lastWeather.d,lastWeather.name)}
 (async()=>{
   $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${i*.08}s">${c}</span>`).join('');
   const q0=new URLSearchParams(location.search).get('lang'),qp=(q0==='ru'||q0==='en')?q0:null,sv=await st.get('lang'),seen=await st.get('blang'),th=await st.get('theme');
