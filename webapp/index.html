@@ -106,6 +106,10 @@ html[data-theme=light]{--bg:#fff;--text:#14181c;--hint:#6b7580;--panel:#f1f3f5}
 .gm{flex:1;min-width:0}.gv{flex:none;font-size:15px}.mb{margin-bottom:12px}
 .fig{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 2px;color:var(--text)}.fig svg{flex:1;min-width:0;max-width:200px;background:var(--bg);border-radius:14px}.fig i{font-style:normal;color:var(--hint)}
 .figl{display:flex;justify-content:space-around;color:var(--hint);font-size:12px;margin-bottom:10px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.sgrid>div{background:var(--panel);border-radius:16px;padding:12px 14px;min-width:0}.sgrid small{display:block;color:var(--hint);font-size:12px}.sgrid b{display:block;font-size:18px;margin-top:3px}
+.pbar{height:10px;border-radius:5px;background:var(--bg)}.pbar i{display:block;height:100%;border-radius:5px;background:var(--accent)}
+.cabbtn{position:relative;cursor:pointer;padding-right:44px}.cabbtn .chev{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:30px;color:var(--hint)}
+.cabbtn:active,.fcard:active,.libi:active,.opt:active{transform:scale(.97)}.cabbtn,.fcard,.libi,.opt{transition:transform .16s cubic-bezier(.3,1.6,.5,1)}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
 <nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="p" data-i="tp"></button></nav>
@@ -174,7 +178,7 @@ document.querySelectorAll('.tabs button[data-t]').forEach(b=>b.onclick=()=>{
   moveGlass(b);['w','g','ft','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
 
 /* ================= ИИ ================= */
-const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
+const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123
 async function api(path,body){
   if(!API_URL)throw new Error(t('e0'));
   let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify({...body,lang})})}
@@ -192,7 +196,7 @@ const LF={ru:{ft:'Фитнес',fonb:'Расскажите о себе: так �
  fnone:'Пока пусто',fnew:'Новая тренировка',fname:'Название',fgroups:'Группы мышц',fadd:'Добавить упражнение',fsearch:'Поиск',fsets:'Подходы',freps:'Повторы',fkg:'Кг',fsave:'Сохранить',fdel:'Удалить',fai:'ИИ подберёт упражнения',faib:'ИИ подбирает…',
  fneedg:'Выберите хотя бы одну группу мышц',fneedn:'Введите название и добавьте упражнения',fall:'Все',fchoose:'Выберите тренировку',fnowo:'Тренировок пока нет. Создайте их в «Персонализации».',fex_n:'упр.',
  faddset:'+ подход',ffinish:'Завершить тренировку',ffq:'Завершить тренировку?',fnosets:'Нет отмеченных подходов. Завершить без записи?',fstarted:'Начало',fdur:'Длительность',fvol:'Поднято всего',f1rm:'Максимум на 1 повтор ≈',frec:'Рекорд',
- fnote1:'Максимум на 1 повтор считается по формуле Эпли. Это оценка, а не тест.',fkgu:'кг',fh_:'ч',fm_:'мин',fs_:'с',faiw:'ИИ-тренер думает…',fait:'Совет ИИ-тренера',fask:'Спросить ИИ-тренера',ftech:'Совет по технике',fpr_h:'Рекорды (оценка максимума на 1 повтор)',fdq:'Удалить тренировку?',fst:'Старт',fen:'Финиш',fhold:'Положение',fphoto:'Фото',fvideo:'Видео',
+ fnote1:'Максимум на 1 повтор считается по формуле Эпли. Это оценка, а не тест.',fkgu:'кг',fh_:'ч',fm_:'мин',fs_:'с',faiw:'ИИ-тренер думает…',fait:'Совет ИИ-тренера',fask:'Спросить ИИ-тренера',ftech:'Совет по технике',fpr_h:'Рекорды (оценка максимума на 1 повтор)',fdq:'Удалить тренировку?',fst:'Старт',fen:'Финиш',fcab:'Личный кабинет',fstat_h:'Рост',fstat_w:'Вес',fstat_b:'Телосложение',fstat_t:'Тренировок всего',fbmi:'ИМТ',fbmi1:'ниже нормы',fbmi2:'в норме',fbmi3:'выше нормы',fbmi4:'высокий',fstat_g:'Желаемый вес',fabout:'О себе и цели',fage:'Возраст',fsex:'Пол',fsex_m:'Муж.',fsex_f:'Жен.',ftw:'Желаемый вес (кг)',fsavec:'Сохранить и пересчитать',fnutri:'Нормы на день (КБЖУ)',fkcal:'Ккал',fprot:'Белки',ffat:'Жиры',fcarb:'Углеводы',fgr:'г',fplanh:'Как прийти к желаемому весу',fweeks:'Около {0} нед.',fcalc:'ИИ считает нормы и план…',frecalc:'Пересчитать',fcabnote:'Расчёт ориентировочный и не заменяет консультацию врача или диетолога.',ftwneed:'Укажите желаемый вес, и ИИ составит план под него.',fprogress:'Путь к цели',fchprof:'Изменить рост и телосложение',fbadw:'Проверьте вес (30–300 кг), возраст (10–100) и желаемый вес (30–300 кг)',eq_all:'Все упражнения',eq_bb:'Штанга',eq_db:'Гантели',eq_mach:'Тренажёры',eq_cable:'Блочный тренажёр',eq_bw:'Собственный вес',eq_kb:'Гиря',eq_oth:'Прочее',fhold:'Положение',fphoto:'Фото',fvideo:'Видео',
  g_chest:'Грудь',g_back:'Спина',g_traps:'Трапеции',g_shoulders:'Плечи',g_biceps:'Бицепс',g_triceps:'Трицепс',g_forearms:'Предплечья',g_abs:'Пресс',g_glutes:'Ягодицы',g_quads:'Квадрицепс',g_hams:'Бицепс бедра',g_calves:'Икры'},
 en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.',fh:'Height (cm)',fw:'Weight (kg)',fbody:'Your body type',
  b_ecto:'Ectomorph',b_ectod:'Lean, fast metabolism, hard to gain mass',b_meso:'Mesomorph',b_mesod:'Athletic, builds muscle easily',b_endo:'Endomorph',b_endod:'Stocky, tends to store fat',
@@ -202,7 +206,7 @@ en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.
  fnone:'Nothing yet',fnew:'New workout',fname:'Name',fgroups:'Muscle groups',fadd:'Add exercise',fsearch:'Search',fsets:'Sets',freps:'Reps',fkg:'Kg',fsave:'Save',fdel:'Delete',fai:'AI picks exercises',faib:'AI is picking…',
  fneedg:'Pick at least one muscle group',fneedn:'Enter a name and add exercises',fall:'All',fchoose:'Choose a workout',fnowo:'No workouts yet. Create them in “Customize”.',fex_n:'ex.',
  faddset:'+ set',ffinish:'Finish workout',ffq:'Finish this workout?',fnosets:'No sets marked. Finish without saving?',fstarted:'Started',fdur:'Duration',fvol:'Total lifted',f1rm:'1-rep max ≈',frec:'Record',
- fnote1:'The 1-rep max is calculated with the Epley formula. It’s an estimate, not a test.',fkgu:'kg',fh_:'h',fm_:'min',fs_:'s',faiw:'AI coach is thinking…',fait:'AI coach advice',fask:'Ask AI coach',ftech:'Technique tips',fpr_h:'Records (estimated 1-rep max)',fdq:'Delete this workout?',fst:'Start',fen:'Finish',fhold:'Position',fphoto:'Photos',fvideo:'Video',
+ fnote1:'The 1-rep max is calculated with the Epley formula. It’s an estimate, not a test.',fkgu:'kg',fh_:'h',fm_:'min',fs_:'s',faiw:'AI coach is thinking…',fait:'AI coach advice',fask:'Ask AI coach',ftech:'Technique tips',fpr_h:'Records (estimated 1-rep max)',fdq:'Delete this workout?',fst:'Start',fen:'Finish',fcab:'My cabinet',fstat_h:'Height',fstat_w:'Weight',fstat_b:'Body type',fstat_t:'Total workouts',fbmi:'BMI',fbmi1:'below normal',fbmi2:'normal',fbmi3:'above normal',fbmi4:'high',fstat_g:'Target weight',fabout:'About you and your goal',fage:'Age',fsex:'Sex',fsex_m:'Male',fsex_f:'Female',ftw:'Target weight (kg)',fsavec:'Save and recalculate',fnutri:'Daily targets (macros)',fkcal:'Kcal',fprot:'Protein',ffat:'Fat',fcarb:'Carbs',fgr:'g',fplanh:'How to reach your target weight',fweeks:'About {0} wk.',fcalc:'AI is calculating your targets and plan…',frecalc:'Recalculate',fcabnote:'This is an estimate and is not a substitute for advice from a doctor or dietitian.',ftwneed:'Set a target weight and AI will build a plan for it.',fprogress:'Progress to goal',fchprof:'Change height and body type',fbadw:'Check weight (30–300 kg), age (10–100) and target weight (30–300 kg)',eq_all:'All exercises',eq_bb:'Barbell',eq_db:'Dumbbells',eq_mach:'Machines',eq_cable:'Cable machine',eq_bw:'Bodyweight',eq_kb:'Kettlebell',eq_oth:'Other',fhold:'Position',fphoto:'Photos',fvideo:'Video',
  g_chest:'Chest',g_back:'Back',g_traps:'Traps',g_shoulders:'Shoulders',g_biceps:'Biceps',g_triceps:'Triceps',g_forearms:'Forearms',g_abs:'Abs',g_glutes:'Glutes',g_quads:'Quads',g_hams:'Hamstrings',g_calves:'Calves'}};
 Object.assign(L.ru,LF.ru);Object.assign(L.en,LF.en);
 const EXR=`chest
@@ -214,6 +218,8 @@ dbinc|Жим гантелей на наклонной скамье|Incline dumbb
 dbfly|Разводка гантелей лёжа|Dumbbell fly
 incfly|Разводка гантелей на наклонной скамье|Incline dumbbell fly
 cablefly|Сведение рук в кроссовере|Cable crossover
+cablefly2|Сведение рук в блоке снизу вверх|Low-to-high cable fly
+cablepress|Жим в блоке стоя|Standing cable chest press
 pecdeck|Сведение рук в тренажёре (бабочка)|Pec deck fly
 chestpress|Жим в тренажёре на грудь|Machine chest press
 pushup|Отжимания от пола|Push-ups
@@ -226,6 +232,7 @@ pullup|Подтягивания широким хватом|Wide-grip pull-ups
 chinup|Подтягивания обратным хватом|Chin-ups
 latpd|Тяга верхнего блока к груди|Lat pulldown
 latpdn|Тяга верхнего блока узким хватом|Close-grip lat pulldown
+latpd1|Тяга верхнего блока одной рукой|One-arm lat pulldown
 bbrow|Тяга штанги в наклоне|Bent-over barbell row
 dbrow|Тяга гантели одной рукой|One-arm dumbbell row
 cablerow|Тяга нижнего блока к поясу|Seated cable row
@@ -250,6 +257,8 @@ cablelat|Махи в сторону в блоке|Cable lateral raise
 frontraise|Подъём гантелей перед собой|Front raise
 reardelt|Разведение гантелей в наклоне|Rear delt fly
 reardeck|Обратная бабочка|Reverse pec deck
+cablerear|Разведение рук в блоке на задние дельты|Cable rear delt fly
+kbpress|Жим гири стоя|Kettlebell press
 machsp|Жим в тренажёре на плечи|Machine shoulder press
 pushpress|Швунг жимовой|Push press
 biceps
@@ -261,6 +270,7 @@ preacher|Скамья Скотта|Preacher curl
 conccurl|Концентрированный подъём|Concentration curl
 inccurl|Сгибания на наклонной скамье|Incline dumbbell curl
 cablecurl|Сгибания в блоке|Cable curl
+cablecurl2|Сгибания рук в верхних блоках|Overhead cable curl
 spidercurl|Паук-карл|Spider curl
 zottman|Сгибания Зоттмана|Zottman curl
 triceps
@@ -270,6 +280,7 @@ frenchbb|Французский жим лёжа|Skull crushers
 frenchdb|Французский жим сидя с гантелью|Overhead dumbbell extension
 pushdown|Разгибания на блоке|Triceps pushdown
 ropepd|Разгибания с канатом|Rope pushdown
+ext1|Разгибание руки в блоке одной рукой|One-arm cable pushdown
 kickback|Разгибания в наклоне|Triceps kickback
 overcable|Разгибания над головой в блоке|Overhead cable extension
 diamond|Алмазные отжимания|Diamond push-ups
@@ -306,6 +317,7 @@ kickcable|Отведение ноги в блоке|Cable glute kickback
 abduct|Разведение ног в тренажёре|Hip abduction machine
 sumo|Становая тяга сумо|Sumo deadlift
 cabpull|Протяжка в блоке|Cable pull-through
+kbsnatch|Рывок гири|Kettlebell snatch
 quads
 squat|Приседания со штангой|Barbell squat
 frontsq|Фронтальные приседания|Front squat
@@ -317,6 +329,7 @@ smithsq|Приседания в Смите|Smith machine squat
 sissy|Сисси-приседания|Sissy squat
 pistol|Приседания на одной ноге|Pistol squat
 zercher|Приседания Зерчера|Zercher squat
+kbgoblet|Гоблет-приседания с гирей|Kettlebell goblet squat
 hams
 legcurl|Сгибание ног лёжа|Lying leg curl
 seatcurl|Сгибание ног сидя|Seated leg curl
@@ -366,7 +379,7 @@ const PAT={
  hyper:{a:'h:58,68 s:52,64 p:40,52 k:30,60 f:20,68',b:'h:67,40 s:60,44 p:40,52 k:30,60 f:20,68',c:'<path d="M34 56L46 56L44 72" stroke-width="3" opacity=".4"/>'},
  hold:{a:ST+' e:53,34 w:55,46',st:1,wt:4.4}
 };
-const PAT_OF=`press:bench,incbench,decbench,dbpress,dbinc,chestpress,smithbench,cgbench,frenchbb;fly:dbfly,incfly,pullover;pec:cablefly,pecdeck,reardeck;pushup:pushup,diamond;dip:dips_c,dips_t,benchdip;squat:squat,frontsq,hack,gobletsq,smithsq,sissy,pistol,zercher;legpress:legpress,calfpress;deadlift:deadlift,rackpull,rdl,stiffdl,gm,sumo,dbrdl,slrdl,cabpull;pullup:pullup,chinup,hang;pulldown:latpd,latpdn,straightpd;row:bbrow,dbrow,cablerow,tbar,machrow,invrow,facepull,reardelt;hyper:hyper,nordic,ghr;shrug:shrugbb,shrugdb,uprow;hold:farmer,wristcurl,revwrist,plateplm,gripper;ohp:ohp,dbohp,arnold,machsp,pushpress;raise:latraise,cablelat,frontraise;curl:bbcurl,ezcurl,dbcurl,hammer,preacher,conccurl,inccurl,cablecurl,spidercurl,zottman,revcurl;ext:frenchdb,pushdown,ropepd,kickback,overcable;crunch:crunch,cablecrunch,russian,bicycle,revcrunch,vup;legraise:legraise;plank:plank,sideplank,abwheel,mclimber;swing:woodchop,swing;hipthrust:hipthrust,glutebridge,kickcable,abduct;lunge:bss,lunge,walklunge,stepup;legext:legext;legcurl:legcurl,seatcurl;calf:calfstand,calfseat,donkey,calfsingle,jumprope`;
+const PAT_OF=`press:bench,incbench,decbench,dbpress,dbinc,chestpress,smithbench,cgbench,frenchbb;fly:dbfly,incfly,pullover;pec:cablefly,pecdeck,reardeck,cablefly2,cablepress,cablerear;pushup:pushup,diamond;dip:dips_c,dips_t,benchdip;squat:squat,frontsq,hack,gobletsq,smithsq,sissy,pistol,zercher,kbgoblet;legpress:legpress,calfpress;deadlift:deadlift,rackpull,rdl,stiffdl,gm,sumo,dbrdl,slrdl,cabpull;pullup:pullup,chinup,hang;pulldown:latpd,latpdn,straightpd,latpd1;row:bbrow,dbrow,cablerow,tbar,machrow,invrow,facepull,reardelt;hyper:hyper,nordic,ghr;shrug:shrugbb,shrugdb,uprow;hold:farmer,wristcurl,revwrist,plateplm,gripper;ohp:ohp,dbohp,arnold,machsp,pushpress,kbpress;raise:latraise,cablelat,frontraise;curl:bbcurl,ezcurl,dbcurl,hammer,preacher,conccurl,inccurl,cablecurl,spidercurl,zottman,revcurl,cablecurl2;ext:frenchdb,pushdown,ropepd,kickback,overcable,ext1;crunch:crunch,cablecrunch,russian,bicycle,revcrunch,vup;legraise:legraise;plank:plank,sideplank,abwheel,mclimber;swing:woodchop,swing,kbsnatch;hipthrust:hipthrust,glutebridge,kickcable,abduct;lunge:bss,lunge,walklunge,stepup;legext:legext;legcurl:legcurl,seatcurl;calf:calfstand,calfseat,donkey,calfsingle,jumprope`;
 const PM={};PAT_OF.split(';').forEach(s=>{const[p,l]=s.split(':');l.split(',').forEach(i=>PM[i]=p)});
 function figSvg(pat,ph){
   const P={},d=pat[ph]||pat.a;d.replace(/(\w+):(-?[\d.]+),(-?[\d.]+)/g,(m,k,x,y)=>{P[k]=[+x,+y]});
@@ -377,6 +390,8 @@ function figSvg(pat,ph){
 const MUSCLE={chest:'грудные мышцы (pectorals), тренировка груди в тренажёрном зале',back:'мышцы спины (lats, rhomboids)',traps:'трапециевидные мышцы (traps)',shoulders:'дельтовидные мышцы (deltoids)',biceps:'бицепс (мышца руки)',triceps:'трицепс (мышца руки)',forearms:'мышцы предплечий',abs:'мышцы пресса (abs, core)',glutes:'ягодичные мышцы (gluteus maximus), тренировка ягодиц в тренажёрном зале',quads:'квадрицепс (мышцы передней поверхности бедра)',hams:'задняя поверхность бедра (hamstrings)',calves:'икроножные мышцы (calves)'};
 const figHTML=id=>{const p=PAT[PM[id]];if(!p)return'';return `<div class="fig">${figSvg(p,'a')}${p.st?'':`<i>→</i>${figSvg(p,'b')}`}</div><div class="figl">${p.st?`<span>${t('fhold')}</span>`:`<span>${t('fst')}</span><span>${t('fen')}</span>`}</div>`};
 const openExt=u=>tg?.openLink?tg.openLink(u):window.open(u,'_blank');
+const EQ_OF=`bb:bench,incbench,decbench,deadlift,bbrow,tbar,rackpull,shrugbb,uprow,ohp,pushpress,bbcurl,ezcurl,preacher,cgbench,frenchbb,wristcurl,revwrist,revcurl,hipthrust,rdl,sumo,squat,frontsq,zercher,stiffdl,gm;db:dbpress,dbinc,dbfly,incfly,pullover,dbrow,shrugdb,dbohp,arnold,latraise,frontraise,reardelt,dbcurl,hammer,conccurl,inccurl,spidercurl,zottman,frenchdb,kickback,lunge,walklunge,stepup,bss,gobletsq,dbrdl,slrdl,farmer;mach:chestpress,pecdeck,smithbench,machrow,hyper,reardeck,machsp,legext,legpress,hack,smithsq,seatcurl,legcurl,abduct,calfstand,calfseat,calfpress,donkey,ghr;cable:cablefly,cablefly2,cablepress,latpd,latpdn,latpd1,cablerow,straightpd,facepull,cablelat,cablerear,cablecurl,cablecurl2,pushdown,ropepd,overcable,ext1,cablecrunch,kickcable,cabpull,woodchop;bw:pushup,dips_c,dips_t,benchdip,diamond,pullup,chinup,invrow,hang,legraise,crunch,plank,sideplank,russian,bicycle,revcrunch,vup,mclimber,glutebridge,sissy,pistol,nordic,calfsingle;kb:swing,kbsnatch,kbpress,kbgoblet;oth:abwheel,gripper,plateplm,jumprope`;
+const EQ={};EQ_OF.split(';').forEach(x=>{const[k,l]=x.split(':');l.split(',').forEach(i=>EQ[i]=k)});
 const exn=id=>EX[id]?EX[id][lang]:id,e1=(kg,r)=>r<=1?kg:kg*(1+Math.min(r,30)/30),R5=n=>Math.round(n*2)/2,cl=(v,a,b,d)=>{v=Math.round(+v);return isNaN(v)?d:Math.max(a,Math.min(b,v))};
 const fmtn=n=>Math.round(n).toLocaleString(loc()),hm=x=>new Date(x).toLocaleTimeString(loc(),{hour:'2-digit',minute:'2-digit'}),
   fdur=ms=>{const s=Math.round(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h} ${t('fh_')} ${m} ${t('fm_')}`:`${m} ${t('fm_')} ${s%60} ${t('fs_')}`},
@@ -384,10 +399,10 @@ const fmtn=n=>Math.round(n).toLocaleString(loc()),hm=x=>new Date(x).toLocaleTime
   popupOK=()=>!!(tg&&tg.initData&&tg.isVersionAtLeast?.('6.2')),
   note=m=>{if(popupOK()){try{return tg.showAlert(m)}catch{}}alert(m)},
   ask=m=>new Promise(r=>{if(popupOK()){try{return tg.showConfirm(m,r)}catch{}}r(confirm(m))});
-let F={v:'menu',prof:null,ws:[],pr:{},hid:[],hs:[],act:null,ed:null,filt:'all',q:'',open:null,ai:null,tech:null,rep:null,step:1,tmp:{},loaded:false,pick:false,busy:false,err:''};
+let F={v:'menu',eq:null,tot:0,cab:null,cl:false,cerr:'',cabf:{},prof:null,ws:[],pr:{},hid:[],hs:[],act:null,ed:null,filt:'all',q:'',open:null,ai:null,tech:null,rep:null,step:1,tmp:{},loaded:false,pick:false,busy:false,err:''};
 
 async function loadFit(){
-  F.prof=await jget('fit_profile',null);F.pr=await jget('fpr',{});F.act=await jget('fit_active',null);F.hid=await jget('fhi',[]);
+  F.prof=await jget('fit_profile',null);F.pr=await jget('fpr',{});F.act=await jget('fit_active',null);F.hid=await jget('fhi',[]);F.tot=await jget('ftot',null);if(F.tot==null)F.tot=F.hid.length;F.cab=await jget('fit_cab',null);
   const wi=await jget('fwi',[]);F.ws=(await Promise.all(wi.map(i=>jget('fw_'+i,null)))).filter(Boolean);
   F.loaded=true;F.v=F.prof?'menu':'onb';renderFit()}
 const saveAct=()=>F.act?st.set('fit_active',JSON.stringify(F.act)):st.del('fit_active');
@@ -398,18 +413,18 @@ const opt=(kind,k,on)=>`<button class="opt${on?' on':''}" data-a="pick" data-k="
 const back=a=>`<button data-a="${a}">${t('back')}</button>`,title=s=>`<div class="gt" style="margin:14px 0 10px">${s}</div>`;
 const aiHtml=a=>!a?'':a.loading?`<p class="meta">${t('faiw')}</p>`:a.err?`<p class="meta">${esc(a.err)}</p>`:`${a.j.summary?`<p>${esc(a.j.summary)}</p>`:''}<ul class="tips">${(a.j.tips||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
 function libList(mode){const q=F.q.toLowerCase(),gs=mode==='add'&&F.ed.groups.length?F.ed.groups:null;
-  return Object.values(EX).filter(x=>(gs?gs.includes(x.g):(F.filt==='all'||x.g===F.filt))&&(!q||x.ru.toLowerCase().includes(q)||x.en.toLowerCase().includes(q))).map(x=>{
+  return Object.values(EX).filter(x=>(gs?gs.includes(x.g):(F.filt==='all'||x.g===F.filt))&&(mode!=='lib'||F.eq==null||F.eq==='all'||EQ[x.id]===F.eq)&&(!q||x.ru.toLowerCase().includes(q)||x.en.toLowerCase().includes(q))).map(x=>{
     const o=mode==='lib'&&F.open===x.id;
     return `<div class="libi${o?' op':''}" data-a="${mode==='add'?'addex':'lopen'}" data-v="${x.id}"><div class="lh"><b>${esc(x[lang])}</b><small>${t('g_'+x.g)}</small></div>${o?`<div class="ld">${figHTML(x.id)}${F.pr[x.id]?`<p class="meta">${t('f1rm')} <b>${F.pr[x.id]} ${t('fkgu')}</b></p>`:''}<div class="row" style="flex-wrap:wrap"><button data-a="photo" data-v="${x.id}">📷 ${t('fphoto')}</button><button data-a="video" data-v="${x.id}">▶ ${t('fvideo')}</button><button data-a="tech" data-v="${x.id}">✨ ${t('ftech')}</button></div>${F.tech&&F.tech.id===x.id?`<div style="margin-top:8px">${aiHtml(F.tech)}</div>`:''}</div>`:''}</div>`}).join('')||`<p class="msg">${t('fnone')}</p>`}
 
 function vOnb(){
-  if(F.step===1)return `<div class="gt">${t('ft')}</div><p class="meta">${t('fonb')}</p>
+  if(F.step===1)return (F.prof?back('cab'):'')+`<div class="gt">${t('ft')}</div><p class="meta">${t('fonb')}</p>
     <div class="row"><div><label>${t('fh')}</label><input data-f="h" inputmode="numeric" value="${F.tmp.h||''}" placeholder="175"></div><div><label>${t('fw')}</label><input data-f="w" inputmode="decimal" value="${F.tmp.w||''}" placeholder="70"></div></div>
     <label>${t('fbody')}</label>${['ecto','meso','endo'].map(k=>opt('body',k,F.tmp.body===k)).join('')}<button class="p wide" data-a="next1" style="margin-top:14px">${t('fnext')}</button>`;
   return `<div class="gt">${t('fgoalq')}</div>${['fatloss','toned','athletic','muscle','strong'].map(k=>opt('goal',k,F.tmp.goal===k)).join('')}
     <div class="row" style="margin-top:14px"><button data-a="prev">${t('back')}</button><button class="p" style="flex:1" data-a="fin">${t('ok')}</button></div>`}
 function vMenu(){const p=F.prof;
-  return `<div class="ghero"><div class="gt" style="margin-bottom:6px">${t('ft')}</div><p class="meta">${p.h} ${t('fcm')} · ${p.w} ${t('fkgu')} · ${t('b_'+p.body)} → ${t('p_'+p.goal)}</p><button data-a="editprof" style="margin-top:10px">${t('fedit')}</button></div>
+  return `<div class="ghero cabbtn" data-a="cab"><small class="meta">${t('ft')}</small><div class="gt" style="margin:2px 0 6px">${t('fcab')}</div><p class="meta">${p.h} ${t('fcm')} · ${p.w} ${t('fkgu')} · ${t('b_'+p.body)} → ${t('p_'+p.goal)}</p><span class="chev">›</span></div>
   ${F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">▶ ${t('fcont')} · ${esc(F.act.name)}</button>`:''}
   <div class="fgrid">${[['hist','📈','fhist',t('fhist_s')],['cust','🛠','fcust',t('fcust_s')],['lib','📚','flib',t('flib_s',Object.keys(EX).length)],['start','⏱','fstart',t('fstart_s')]].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${s}</small></div>`).join('')}</div>`}
 function vHist(){const prs=Object.entries(F.pr).sort((a,b)=>b[1]-a[1]).slice(0,6);
@@ -434,8 +449,6 @@ function vEdit(){const e=F.ed;
    <button class="wide" data-a="togpick" style="margin-top:12px">＋ ${t('fadd')}</button>
    ${F.pick?`<input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin-top:10px"><div id="liblist" class="liblist">${libList('add')}</div>`:''}
    <div class="row" style="margin-top:16px"><button class="p" style="flex:1" data-a="wsave">${t('fsave')}</button></div>${e.id?`<button class="danger" data-a="wdel">${t('fdel')}</button>`:''}`}
-function vLib(){return back('menu')+title(t('flib'))+`<div class="chips2"><button class="${F.filt==='all'?'on':''}" data-a="filt" data-v="all">${t('fall')}</button>${GR.map(g=>`<button class="${F.filt===g?'on':''}" data-a="filt" data-v="${g}">${t('g_'+g)}</button>`).join('')}</div>
-  <input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin:10px 0"><div id="liblist" class="liblist">${libList('lib')}</div>`}
 function vStart(){return back('menu')+title(t('fstart'))+(F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">▶ ${t('fcont')} · ${esc(F.act.name)}</button>`:'')+(F.ws.length?`<p class="meta" style="margin-bottom:10px">${t('fchoose')}</p>`+F.ws.map(w=>`<div class="gcard" data-a="begin" data-id="${w.id}"><div><b>${esc(w.name)}</b><small>${w.groups.map(g=>t('g_'+g)).join(', ')} · ${w.ex.length} ${t('fex_n')}</small></div></div>`).join(''):`<p class="msg">${t('fnowo')}</p>`)}
 function vAct(){const a=F.act;
   return `<div class="ghero"><div class="gt" style="text-align:center">${esc(a.name)}</div><div class="tmr" id="tm">${clk(Date.now()-a.start)}</div><p class="meta" style="text-align:center">${t('fstarted')} ${hm(a.start)}</p></div>
@@ -443,9 +456,42 @@ function vAct(){const a=F.act;
     ${x.sets.map((s,si)=>`<div class="setr"><span>${si+1}</span><input data-f="set" data-e="${ei}" data-s="${si}" data-k="kg" inputmode="decimal" value="${s.kg||''}" placeholder="${t('fkg')}" aria-label="${t('fkg')}"><input data-f="set" data-e="${ei}" data-s="${si}" data-k="reps" inputmode="numeric" value="${s.reps||''}" placeholder="${t('freps')}" aria-label="${t('freps')}"><button class="ck${s.done?' on':''}" data-a="ck" data-e="${ei}" data-s="${si}">✓</button></div>`).join('')}
     <button data-a="addset" data-e="${ei}" style="margin-top:8px">${t('faddset')}</button></div>`).join('')}
   <button class="p wide" data-a="finish" style="margin-top:14px">${t('ffinish')}</button>`}
+const EQL=[['all','📚'],['bb','🏋️'],['db','💪'],['mach','⚙️'],['cable','🔗'],['bw','🤸'],['kb','🔔'],['oth','➕']];
+const eqCount=k=>Object.keys(EX).filter(i=>k==='all'||EQ[i]===k).length;
+function vLib(){
+  if(F.eq==null)return back('menu')+title(t('flib'))+`<div class="fgrid">${EQL.map(([k,i])=>`<div class="fcard" data-a="eq" data-v="${k}"><span class="ic2">${i}</span><b>${t('eq_'+k)}</b><small>${t('flib_s',eqCount(k))}</small></div>`).join('')}</div>`;
+  const gs=GR.filter(g=>Object.values(EX).some(x=>x.g===g&&(F.eq==='all'||EQ[x.id]===F.eq)));
+  return back('libroot')+title(t('eq_'+F.eq))+`<div class="chips2"><button class="${F.filt==='all'?'on':''}" data-a="filt" data-v="all">${t('fall')}</button>${gs.map(g=>`<button class="${F.filt===g?'on':''}" data-a="filt" data-v="${g}">${t('g_'+g)}</button>`).join('')}</div>
+  <input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin:10px 0"><div id="liblist" class="liblist">${libList('lib')}</div>`}
+async function calcCab(force){
+  const p=F.prof,sig=JSON.stringify([p.h,p.w,p.tw||0,p.age||0,p.sex||'',p.body,p.goal,lang,Math.floor(F.tot/10)]);
+  if(!force&&F.cab&&F.cab.sig===sig)return;
+  F.cl=true;F.cerr='';if(F.v==='cab')renderFit();
+  try{const res=await api('/fitness',{mode:'cabinet',profile:{h:p.h,w:p.w,tw:p.tw??null,age:p.age??null,sex:p.sex||null,body:p.body,goal:p.goal},workouts:F.tot});
+    if(!res.kcal)throw new Error(t('e4'));F.cab={sig,res};await st.set('fit_cab',JSON.stringify(F.cab))}catch(e){F.cerr=e.message}
+  F.cl=false;if(F.v==='cab')renderFit()}
+function cabAI(){const c=F.cab&&F.cab.res,p=F.prof;
+  if(F.cl)return `<div class="sec"><p class="meta">${t('fcalc')}</p></div>`;
+  if(F.cerr)return `<div class="sec"><p class="meta">${esc(F.cerr)}</p><button data-a="crecalc" style="margin-top:8px">${t('retry')}</button></div>`;
+  if(!c)return '';
+  return `<div class="sec mb"><h2>${t('fnutri')}</h2><div class="stats">${[['fkcal',c.kcal,''],['fprot',c.protein,' '+t('fgr')],['ffat',c.fat,' '+t('fgr')],['fcarb',c.carbs,' '+t('fgr')]].map(([k,v,u])=>`<div><small>${t(k)}</small><b>${fmtn(v)}${u}</b></div>`).join('')}</div>${c.note?`<p class="meta" style="margin-top:10px">${esc(c.note)}</p>`:''}</div>
+  <div class="sec"><h2>${t('fplanh')}</h2>${p.tw==null?`<p class="meta" style="margin-bottom:6px">${t('ftwneed')}</p>`:''}<p class="meta">${[c.weeks?t('fweeks',c.weeks):'',c.pace?esc(c.pace):''].filter(Boolean).join(' · ')}</p>
+    <ul class="tips">${(c.plan||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul><button data-a="crecalc" style="margin-top:10px">${t('frecalc')}</button><p class="meta" style="margin-top:10px">${t('fcabnote')}</p></div>`}
+function vCab(){
+  const p=F.prof,f=F.cabf||{},bmi=p.w/((p.h/100)**2),bc=bmi<18.5?1:bmi<25?2:bmi<30?3:4,
+    pr=p.tw!=null&&p.w0!=null&&p.tw!==p.w0?Math.max(0,Math.min(100,Math.round((p.w-p.w0)/(p.tw-p.w0)*100))):null,d=p.tw!=null?Math.round((p.tw-p.w)*10)/10:null;
+  return back('menu')+title(t('fcab'))
+  +`<div class="sgrid"><div><small>${t('fstat_h')}</small><b>${p.h} ${t('fcm')}</b></div><div><small>${t('fstat_w')}</small><b>${p.w} ${t('fkgu')}</b></div><div><small>${t('fstat_b')}</small><b>${t('b_'+p.body)}</b></div>
+   <div><small>${t('fstat_t')}</small><b>${F.tot}</b></div><div><small>${t('fbmi')} · ${t('fbmi'+bc)}</small><b>${bmi.toFixed(1)}</b></div>
+   <div><small>${t('fstat_g')}</small><b>${p.tw!=null?`${p.tw} ${t('fkgu')} <span class="meta">(${d>0?'+':''}${d})</span>`:'—'}</b></div></div>`
+  +(pr!=null?`<div class="sec mb"><h2>${t('fprogress')} · ${pr}%</h2><div class="pbar"><i style="width:${pr}%"></i></div></div>`:'')
+  +`<div class="sec mb"><h2>${t('fabout')}</h2>
+    <div class="row"><div><label>${t('fw')}</label><input data-f="cw" inputmode="decimal" value="${f.w??''}"></div><div><label>${t('ftw')}</label><input data-f="ctw" inputmode="decimal" value="${f.tw??''}"></div></div>
+    <div class="row"><div><label>${t('fage')}</label><input data-f="cage" inputmode="numeric" value="${f.age??''}"></div><div><label>${t('fsex')}</label><div class="seg"><button class="${f.sex==='m'?'on':''}" data-a="sex" data-v="m">${t('fsex_m')}</button><button class="${f.sex==='f'?'on':''}" data-a="sex" data-v="f">${t('fsex_f')}</button></div></div></div>
+    <button class="p wide" data-a="csave" style="margin-top:14px">${t('fsavec')}</button><button class="wide" data-a="editprof" style="margin-top:8px">${t('fchprof')}</button></div>`+cabAI()}
 function renderFit(){
   const el=$('ft');clearInterval(F.tk);
-  const V={onb:vOnb,menu:vMenu,hist:vHist,cust:vCust,edit:vEdit,lib:vLib,start:vStart,act:vAct,report:vReport}[F.v];
+  const V={onb:vOnb,menu:vMenu,hist:vHist,cust:vCust,edit:vEdit,lib:vLib,start:vStart,act:vAct,report:vReport,cab:vCab}[F.v];
   el.innerHTML=F.loaded?V():`<p class="msg">…</p>`;
   if(F.v==='act')F.tk=setInterval(()=>{const x=$('tm');if(x)x.textContent=clk(Date.now()-F.act.start)},1000);
   if(F.v==='report')$('fai').innerHTML=aiHtml(F.ai);
@@ -459,16 +505,25 @@ async function finishWo(){
   const a=F.act,done={id:Date.now().toString(36),name:a.name,start:a.start,end:Date.now(),pr:[],ex:a.ex.map(x=>({id:x.id,sets:x.sets.filter(s=>s.done&&s.reps>0).map(s=>[s.kg||0,s.reps])})).filter(x=>x.sets.length)};
   if(!done.ex.length){if(!await ask(t('fnosets')))return;F.act=null;await saveAct();F.v='menu';return renderFit()}
   sumry(done).ex.forEach(x=>{const old=F.pr[x.id];if(x.best>0){if(old&&x.best>old)done.pr.push(x.id);if(!old||x.best>old)F.pr[x.id]=x.best}});
-  await st.set('fh_'+done.id,JSON.stringify(done));F.hid.push(done.id);while(F.hid.length>300)await st.del('fh_'+F.hid.shift());
+  await st.set('fh_'+done.id,JSON.stringify(done));F.hid.push(done.id);F.tot++;await st.set('ftot',JSON.stringify(F.tot));while(F.hid.length>300)await st.del('fh_'+F.hid.shift());
   await st.set('fhi',JSON.stringify(F.hid));await st.set('fpr',JSON.stringify(F.pr));F.act=null;await saveAct();
   F.rep=done;F.from='act';F.ai=null;F.v='report';renderFit();review()}
 const fa={
-  menu(){F.v='menu';renderFit()},async hist(){await fa.go({v:'hist'})},cust(){F.v='cust';renderFit()},prev(){F.step=1;renderFit()},
+  menu(){F.v='menu';renderFit()},async hist(){await fa.go({v:'hist'})},
+  cab(){const p=F.prof;F.cabf={w:p.w,age:p.age??'',sex:p.sex||'',tw:p.tw??''};F.v='cab';renderFit();calcCab(false)},
+  sex(d){F.cabf.sex=F.cabf.sex===d.v?'':d.v;renderFit()},
+  crecalc(){return calcCab(true)},
+  async csave(){const f=F.cabf,w=num(f.w),age=f.age===''?null:num(f.age),tw=f.tw===''?null:num(f.tw);
+    if(!(w>=30&&w<=300)||(age!=null&&!(age>=10&&age<=100))||(tw!=null&&!(tw>=30&&tw<=300)))return note(t('fbadw'));
+    const p=F.prof;if(tw!=null&&(p.tw!==tw||p.w0==null))p.w0=w;p.w=w;p.age=age;p.sex=f.sex||null;if(tw==null){delete p.tw;delete p.w0}else p.tw=tw;
+    await st.set('fit_profile',JSON.stringify(p));await calcCab(true)},
+  libroot(){F.eq=null;F.filt='all';F.q='';F.open=null;renderFit()},
+  eq(d){F.eq=d.v;F.filt='all';F.q='';F.open=null;renderFit()},cust(){F.v='cust';renderFit()},prev(){F.step=1;renderFit()},
   pick(d){F.tmp[d.k]=d.v;renderFit()},
   next1(){const h=num(F.tmp.h),w=num(F.tmp.w);if(!(h>=100&&h<=250)||!(w>=30&&w<=300)||!F.tmp.body)return note(t('fneed'));F.tmp.h=h;F.tmp.w=w;F.step=2;renderFit()},
-  async fin(){if(!F.tmp.goal)return note(t('fgneed'));F.prof={h:F.tmp.h,w:F.tmp.w,body:F.tmp.body,goal:F.tmp.goal};await st.set('fit_profile',JSON.stringify(F.prof));F.v='menu';renderFit()},
-  editprof(){F.tmp={...F.prof};F.step=1;F.v='onb';renderFit()},
-  async go(d){F.q='';F.filt='all';F.open=null;F.tech=null;F.err='';
+  async fin(){if(!F.tmp.goal)return note(t('fgneed'));F.prof={...F.prof,h:F.tmp.h,w:F.tmp.w,body:F.tmp.body,goal:F.tmp.goal};await st.set('fit_profile',JSON.stringify(F.prof));const c=F.fromCab;F.fromCab=false;F.v=c?'cab':'menu';if(c)fa.cab();else renderFit()},
+  editprof(){F.fromCab=true;F.tmp={...F.prof};F.step=1;F.v='onb';renderFit()},
+  async go(d){F.eq=null;F.q='';F.filt='all';F.open=null;F.tech=null;F.err='';
     if(d.v==='hist')F.hs=(await Promise.all(F.hid.slice(-25).reverse().map(i=>jget('fh_'+i,null)))).filter(Boolean);
     F.v=d.v;renderFit()},
   hopen(d){F.rep=F.hs.find(s=>s.id===d.id);F.from='hist';F.ai=null;F.v='report';renderFit()},
@@ -501,7 +556,7 @@ const fa={
   ck(d,b){const s=F.act.ex[d.e].sets[d.s];s.done=!s.done;b.classList.toggle('on',s.done);tg?.HapticFeedback?.impactOccurred?.('medium');saveAct()},
   addset(d){const x=F.act.ex[d.e],l=x.sets.at(-1)||{kg:0,reps:10};x.sets.push({kg:l.kg,reps:l.reps,done:false});saveAct();renderFit()},
   async finish(){if(await ask(t('ffq')))finishWo()}};
-const fi={h(v){F.tmp.h=v},w(v){F.tmp.w=v},name(v){F.ed.name=v},ex(v,d){F.ed.ex[d.i][d.k]=v===''?0:num(v)||0},
+const fi={cw(v){F.cabf.w=v},ctw(v){F.cabf.tw=v},cage(v){F.cabf.age=v},h(v){F.tmp.h=v},w(v){F.tmp.w=v},name(v){F.ed.name=v},ex(v,d){F.ed.ex[d.i][d.k]=v===''?0:num(v)||0},
   q(v){F.q=v;$('liblist').innerHTML=libList(F.v==='edit'?'add':'lib')},
   set(v,d){F.act.ex[d.e].sets[d.s][d.k]=num(v)||0;clearTimeout(F.pt);F.pt=setTimeout(saveAct,500)}};
 $('ft').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)fa[b.dataset.a]?.(b.dataset,b)});
