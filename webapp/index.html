@@ -119,6 +119,7 @@ textarea{width:100%;min-height:76px;padding:11px 14px;border-radius:12px;border:
 .stats .over b{color:#e0483c}.pbar i.over{background:#e0483c}.x2{background:none;padding:0 0 0 10px;color:var(--hint);font-size:13px}
 .wbars{display:flex;gap:6px;height:120px}.wb{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}.wb span{font-size:10px;color:var(--hint);height:12px}.wb small{font-size:11px;color:var(--hint)}
 .wb .col{position:relative;flex:1;width:100%;background:var(--bg);border-radius:8px;overflow:hidden}.wb .col i{position:absolute;left:0;right:0;bottom:0;background:var(--accent)}
+.sec .sgrid>div{background:var(--bg)}.arow{background:var(--bg);border-radius:12px;padding:10px 12px;margin-top:6px}.ah{display:flex;justify-content:space-between;gap:8px}.ah span{font-size:12px;color:var(--hint);white-space:nowrap}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
 <nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="p" data-i="tp"></button></nav>
@@ -185,7 +186,7 @@ function applyStatic(){document.documentElement.lang=lang;
 
 document.querySelectorAll('.tabs button[data-t]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
-  moveGlass(b);if(b.dataset.t==='nx')renderNx();['w','g','ft','nx','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
+  moveGlass(b);if(b.dataset.t==='nx')renderNx();if(b.dataset.t==='p'&&isAdmin())adminLoad(AD.show);['w','g','ft','nx','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
 
 /* ================= ИИ ================= */
 const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
@@ -193,7 +194,7 @@ async function api(path,body){
   if(!API_URL)throw new Error(t('e0'));
   let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify({...body,lang})})}
   catch{throw new Error(t('e1'))}
-  if(r.status===429)throw new Error(t('e2'));if(r.status===401)throw new Error(t('e3'));if(!r.ok)throw new Error(t('e4'));
+  if(r.status===429)throw new Error(t('e2'));if(r.status===401)throw new Error(t('e3'));if(r.status===403)throw new Error(t('e5'));if(!r.ok)throw new Error(t('e4'));
   return r.json();
 }
 
@@ -888,6 +889,25 @@ applyTheme(tg?.colorScheme==='dark'?'dark':'light');
 const SUNI='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>',
  MOONI='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
  COPYI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>';
+/* ---- админ-панель (видна только владельцу, данные проверяет сервер) ---- */
+const ADMIN_ID=1352419357,isAdmin=()=>tg?.initDataUnsafe?.user?.id===ADMIN_ID;
+Object.assign(L.ru,{adm:'Админ-панель',admu:'Всего пользователей',adma:'Открывали приложение',admt:'Активны за 24 ч',admw:'Активны за 7 дней',admn:'Новых за 24 ч',admlang:'Язык в боте',admlist:'Посмотреть список',admhide:'Скрыть список',admref:'Обновить',admfind:'Поиск: имя, @ник или ID',admshown:'Показано {0} из {1}',admseen:'был(а): {0}',admjoin:'с нами с {0}',admnever:'нет данных',admnote:'Данные хранятся в базе бота (users.db). Приложение отмечает пользователя при каждом запуске.',e5:'Нет доступа.'});
+Object.assign(L.en,{adm:'Admin panel',admu:'Total users',adma:'Opened the app',admt:'Active in 24 h',admw:'Active in 7 days',admn:'New in 24 h',admlang:'Bot language',admlist:'View list',admhide:'Hide list',admref:'Refresh',admfind:'Search: name, @username or ID',admshown:'Showing {0} of {1}',admseen:'last seen: {0}',admjoin:'joined {0}',admnever:'no data',admnote:'Data is stored in the bot database (users.db). The app marks the user on every launch.',e5:'No access.'});
+let AD={stats:null,list:null,show:false,busy:false,err:'',q:''};
+const fdt=ts=>ts?new Date(ts*1000).toLocaleString(loc(),{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):t('admnever');
+async function adminLoad(withList){AD.busy=true;AD.err='';renderAdmin();
+  try{const j=await api('/admin',{action:withList?'list':'stats'});AD.stats=j.stats;if(withList)AD.list=j.users}catch(e){AD.err=e.message}
+  AD.busy=false;renderAdmin()}
+function adminRows(){const q=AD.q.trim().toLowerCase().replace(/^@/,''),us=(AD.list||[]).filter(u=>!q||String(u.id).includes(q)||(u.username||'').toLowerCase().includes(q)||(u.name||'').toLowerCase().includes(q));
+  return `<p class="meta" style="margin:8px 0">${t('admshown',us.length,(AD.list||[]).length)}</p>`+us.map(u=>`<div class="arow"><div class="ah"><b>${esc(u.name||'—')}</b><span>${u.app?'📱 ':''}${u.lang?u.lang.toUpperCase():''}</span></div><div class="meta" style="font-size:13px">${u.username?'@'+esc(u.username):'—'} · ID <code>${u.id}</code></div><div class="meta" style="font-size:12px">${t('admjoin',fdt(u.joined))} · ${t('admseen',fdt(u.last))}</div></div>`).join('')}
+function renderAdmin(){const el=$('adm');if(!el||!isAdmin())return;const s=AD.stats;
+  el.innerHTML=`<div class="sec mb"><h2>🛡 ${t('adm')}</h2>${AD.err?`<p class="meta" style="margin-bottom:8px">${esc(AD.err)}</p>`:''}
+  ${s?`<div class="sgrid"><div><small>${t('admu')}</small><b>${s.total}</b></div><div><small>${t('adma')}</small><b>${s.app}</b></div><div><small>${t('admt')}</small><b>${s.today}</b></div><div><small>${t('admw')}</small><b>${s.week}</b></div><div><small>${t('admn')}</small><b>${s.new}</b></div><div><small>${t('admlang')}</small><b>RU ${s.ru} · EN ${s.en}</b></div></div>`:`<p class="meta">${AD.busy?'…':''}</p>`}
+  <div class="row" style="margin-top:12px"><button class="p" id="adlist" style="flex:1" ${AD.busy?'disabled':''}>${AD.show?t('admhide'):t('admlist')}</button><button id="adref" ${AD.busy?'disabled':''}>${t('admref')}</button></div>
+  ${AD.show&&AD.list?`<input id="adq" placeholder="${t('admfind')}" value="${esc(AD.q)}" style="margin-top:10px"><div id="adl">${adminRows()}</div>`:''}<p class="meta" style="margin-top:10px">${t('admnote')}</p></div>`;
+  $('adlist').onclick=()=>{AD.show=!AD.show;if(AD.show&&!AD.list)adminLoad(true);else renderAdmin()};
+  $('adref').onclick=()=>adminLoad(AD.show);
+  if($('adq'))$('adq').oninput=e=>{AD.q=e.target.value;$('adl').innerHTML=adminRows()}}
 function renderProfile(){
   const u=tg?.initDataUnsafe?.user||{},name=[u.first_name,u.last_name].filter(Boolean).join(' ')||'NUVIO',un=u.username?'@'+u.username:'',th=document.documentElement.dataset.theme;
   $('p').innerHTML=`<div class="pcard"><div class="ava"><span>${esc((name[0]||'N').toUpperCase())}</span>${u.photo_url?`<img src="${esc(u.photo_url)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:''}</div>
@@ -896,7 +916,7 @@ function renderProfile(){
     <div class="subm"><small>${t('pexp')}</small><div><b>—</b> <span>${t('pdays')}</span></div></div><button id="renew">${t('prenew')}</button></div>
   <div class="sec"><h2>${t('plang')}</h2><div class="seg"><button data-l="ru" class="${lang==='ru'?'on':''}">${FLAG.ru}Русский</button><button data-l="en" class="${lang==='en'?'on':''}">${FLAG.en}English</button></div>
     <h2 style="margin-top:18px">${t('ptheme')}</h2><div class="seg"><button data-th="light" class="${th==='light'?'on':''}">${SUNI}${t('plight')}</button><button data-th="dark" class="${th==='dark'?'on':''}">${MOONI}${t('pdark')}</button></div></div>
-  <button class="chan" id="chan">📣 ${t('pchan')}</button>`;
+  <button class="chan" id="chan">📣 ${t('pchan')}</button>${isAdmin()?'<div id="adm" style="margin-top:12px"></div>':''}`;
   $('idp').onclick=async()=>{const id=String(u.id||'');if(!id)return;
     try{await navigator.clipboard.writeText(id)}catch{const a=document.createElement('textarea');a.value=id;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch{}a.remove()}
     const sp=$('idt');sp.textContent=t('pcopied');tg?.HapticFeedback?.notificationOccurred?.('success');setTimeout(()=>{sp.textContent=id},1200)};
@@ -904,6 +924,7 @@ function renderProfile(){
   $('chan').onclick=()=>tg?.openTelegramLink?tg.openTelegramLink('https://t.me/AINUVIO'):window.open('https://t.me/AINUVIO','_blank');
   $('p').querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
   $('p').querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{applyTheme(b.dataset.th,true);renderProfile()});
+  renderAdmin();
 }
 
 let wardrobe=[],lastWeather=null,outSeq=0;
@@ -1056,7 +1077,7 @@ function renderGoals(){
 /* ================= СТАРТ ================= */
 async function init(){
   {const w0=await jget('wardrobe',[]);wardrobe=Array.isArray(w0)?w0:Object.values(w0).filter(v=>typeof v==='string');}renderWardrobe();
-  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();loadNx();
+  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();loadNx();api('/hello',{}).catch(()=>{});
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 }
 function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();if(lastWeather)render(lastWeather.d,lastWeather.name)}
