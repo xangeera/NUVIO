@@ -120,9 +120,18 @@ textarea{width:100%;min-height:76px;padding:11px 14px;border-radius:12px;border:
 .wbars{display:flex;gap:6px;height:120px}.wb{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}.wb span{font-size:10px;color:var(--hint);height:12px}.wb small{font-size:11px;color:var(--hint)}
 .wb .col{position:relative;flex:1;width:100%;background:var(--bg);border-radius:8px;overflow:hidden}.wb .col i{position:absolute;left:0;right:0;bottom:0;background:var(--accent)}
 .sec .sgrid>div{background:var(--bg)}.arow{background:var(--bg);border-radius:12px;padding:10px 12px;margin-top:6px}.ah{display:flex;justify-content:space-between;gap:8px}.ah span{font-size:12px;color:var(--hint);white-space:nowrap}
+#hl{--accent:hsl(350 78% 56%);--tint:hsl(350 85% 56%/.13);animation:fade .32s ease}
+.hlist{background:var(--panel);border-radius:20px;overflow:hidden}
+.hrow{position:relative;display:flex;align-items:center;gap:14px;padding:13px 16px;cursor:pointer;transition:background .15s,transform .16s cubic-bezier(.3,1.6,.5,1)}.hrow:active{background:var(--bg);transform:scale(.985)}
+.hrow+.hrow::before{content:"";position:absolute;left:60px;right:0;top:0;height:1px;background:var(--bg)}
+.hic{font-size:25px;width:32px;text-align:center;flex:none}.htx{flex:1;min-width:0}.htx b{display:block;font-size:17px;font-weight:600}.htx small{display:block;color:var(--hint);font-size:13px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chv{color:var(--hint);font-size:24px;flex:none}
+.faces{display:flex;gap:8px}.faces button{flex:1;font-size:26px;padding:10px 0}.faces .on{background:var(--accent)}
+.st-warn b{color:hsl(35 95% 50%)}.st-alert b{color:#e0483c}
+.brw{display:grid;place-items:center;height:250px}.brc{width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--tint),var(--accent));display:grid;place-items:center;color:#fff;font-weight:800;font-size:19px;transition:transform .1s linear}
+.tabs button{padding:11px 2px;font-size:12.5px}
 </style></head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
-<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="p" data-i="tp"></button></nav>
+<nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="p" data-i="tp"></button></nav>
 <section id="w">
   <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS">📍</button></form>
   <div id="app"><p class="msg" data-i="loadw"></p></div>
@@ -131,6 +140,7 @@ textarea{width:100%;min-height:76px;padding:11px 14px;border-radius:12px;border:
 <section id="g" hidden></section>
 <section id="ft" hidden></section>
 <section id="nx" hidden></section>
+<section id="hl" hidden></section>
 <section id="p" hidden></section>
 <script>
 const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
@@ -186,10 +196,10 @@ function applyStatic(){document.documentElement.lang=lang;
 
 document.querySelectorAll('.tabs button[data-t]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
-  moveGlass(b);if(b.dataset.t==='nx')renderNx();if(b.dataset.t==='p'&&isAdmin())adminLoad(AD.show);['w','g','ft','nx','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
+  moveGlass(b);if(b.dataset.t==='nx')renderNx();if(b.dataset.t==='hl')renderHl();if(b.dataset.t==='p'&&isAdmin())adminLoad(AD.show);['w','g','ft','nx','hl','p'].forEach(k=>$(k).hidden=b.dataset.t!==k)});
 
 /* ================= ИИ ================= */
-const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev/";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
+const API_URL="https://gondola-hyperlink-showcase.ngrok-free.dev";   // ← адрес сервера ИИ (Cloudflare или ngrok), например https://abc123.ngrok-free.app
 async function api(path,body){
   if(!API_URL)throw new Error(t('e0'));
   let r;try{r=await fetch(API_URL+path,{method:'POST',headers:{'Content-Type':'application/json','X-Init-Data':tg?.initData||'','ngrok-skip-browser-warning':'1'},body:JSON.stringify({...body,lang})})}
@@ -580,12 +590,12 @@ $('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e
 
 
 /* ================= ПИТАНИЕ ================= */
-const NL={ru:{tn:'Питание',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
+const NL={ru:{tn:'Питание',thl:'Здоровье',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
  nc_dishes:'Блюда под цель',nc_dishes_s:'Подобраны под вашу цель',nc_menu:'Меню на день',nc_menu_s:'Составит ИИ',nc_rec:'Рецепты',nc_rec_s:'Классические блюда',
  m_b:'Завтрак',m_l:'Обед',m_d:'Ужин',m_s:'Перекус',nall:'Все',nkcal_u:'{0} ккал',nmac:'Б {0} · Ж {1} · У {2}',nest:'Калории и БЖУ ориентировочные, указаны на одну порцию.',nper:'на порцию',
  nrecai:'Рецепт от ИИ',nrecbusy:'ИИ пишет рецепт…',nmenugen:'Составить меню',nmenuregen:'Составить заново',nmenubusy:'ИИ составляет меню…',navoid:'Не ем / аллергии (необязательно)',navoidph:'Например: орехи, молочное',ntotal:'Итого за день',ntarget:'Ваша норма',
  rc_all:'Все',rc_breakfast:'Завтраки',rc_soups:'Супы',rc_mains:'Основные блюда',rc_salads:'Салаты',rc_desserts:'Выпечка и десерты',nsearch:'Название блюда или продукты, которые есть',nfind:'Найти рецепт (ИИ)',ningr:'Ингредиенты',nsteps:'Приготовление',nmin:'{0} мин',nserv:'{0} порц.',ntip:'Совет'},
-en:{tn:'Nutrition',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
+en:{tn:'Nutrition',thl:'Health',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
  nc_dishes:'Dishes for your goal',nc_dishes_s:'Picked for your goal',nc_menu:'Menu for the day',nc_menu_s:'Made by AI',nc_rec:'Recipes',nc_rec_s:'Classic dishes',
  m_b:'Breakfast',m_l:'Lunch',m_d:'Dinner',m_s:'Snack',nall:'All',nkcal_u:'{0} kcal',nmac:'P {0} · F {1} · C {2}',nest:'Calories and macros are approximate, per serving.',nper:'per serving',
  nrecai:'AI recipe',nrecbusy:'AI is writing the recipe…',nmenugen:'Create menu',nmenuregen:'Create again',nmenubusy:'AI is creating your menu…',navoid:'I don’t eat / allergies (optional)',navoidph:'E.g.: nuts, dairy',ntotal:'Daily total',ntarget:'Your target',
@@ -810,6 +820,213 @@ $('nx').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)n
 $('nx').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)ni[d.f]?.(e.target.value)});
 $('nx').addEventListener('change',e=>{const f=e.target.dataset.f;if(f==='avoid')st.set('nx_avoid',N.avoid);if(f==='allergy')st.set('nx_allergy',N.allergy)});
 async function loadNx(){N.avoid=await jget('nx_avoid','');N.allergy=await jget('nx_allergy','');const m=await jget('nx_menu',null);if(m&&m.day===new Date().toDateString())N.menu=m.j;await loadDiary();renderNx()}
+
+/* ================= ЗДОРОВЬЕ ================= */
+const bi=(r,e)=>lang==='en'?e:r;
+const CATS=[['act','🔥','Активность','Activity'],['cyc','🌸','Дневник цикла','Cycle diary'],['br','🫁','Дыхание','Breathing'],['body','🧍','Измерения тела','Body measurements'],['med','💊','Лекарства','Medications'],['mind','🧠','Ментальное здоровье','Mental health'],['vit','📈','Основные показатели','Vitals'],['mob','🔄','Подвижность','Mobility'],['heart','❤️','Сердце','Heart'],['sym','🩺','Симптомы','Symptoms'],['hear','👂','Слух','Hearing'],['sleep','🛏️','Сон','Sleep'],['oth','➕','Другие данные','Other data']];
+const CCOL={act:20,cyc:330,br:190,body:285,med:200,mind:170,vit:350,mob:30,heart:350,sym:250,hear:210,sleep:245,oth:215},DCATS=['act','sleep','body','vit','mind','sym','hear','br','mob','cyc','oth'];
+let HL={v:'list',c:null,d:{},cfg:{sg:8000,mg:30,sl:480,age:null,om:[]},med:{list:[],log:{}},f:{},ai:{},ack:false,loaded:false,brs:null,mbs:null,crisis:false,urgent:false,tk:null,lv:''};
+const cName=c=>{const x=CATS.find(y=>y[0]===c);return bi(x[2],x[3])},nowS=()=>Math.floor(Date.now()/1000),
+  lastD=n=>[...Array(n)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-(n-1)+i);return dkey(d)}),
+  fts=s=>new Date(s*1000).toLocaleString(loc(),{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}),fdy=d=>new Date(d+'T12:00:00').toLocaleDateString(loc(),{day:'numeric',month:'short'}),
+  tmin=s=>{const[h,m]=s.split(':').map(Number);return h*60+m},hmm=m=>`${Math.floor(m/60)} ${bi('ч','h')} ${Math.round(m%60)} ${bi('мин','min')}`,
+  hlast=(a,n)=>a.slice(-n),avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0,hfmt1=n=>Math.round(n*10)/10;
+const hbars=(ds,vs,ref,fm=fmtn)=>{const mx=Math.max(ref||0,...vs,1);return `<div class="wbars">${ds.map((d,i)=>`<div class="wb"><span>${vs[i]?fm(vs[i]):''}</span><div class="col"><i style="height:${vs[i]/mx*100}%"></i></div><small>${new Date(d+'T12:00:00').toLocaleDateString(loc(),{weekday:'narrow'})}</small></div>`).join('')}</div>`};
+const RE_CRISIS=/суицид|самоубий|покончить с собой|убить себя|не хочу жить|хочу умереть|навредить себе|порезать себя|suicid|kill myself|end my life|want to die|hurt myself|self[- ]?harm/i,
+  RE_URG=/боль в груди|не могу дышать|трудно дышать|затруднено дыхание|потеря сознания|потерял сознание|потеряла сознание|онемение лица|онемела рука|обморок|судорог|сильное кровотечение|chest pain|can'?t breathe|trouble breathing|fainted|passed out|face numb|seizure|severe bleeding/i;
+const crisisCard=()=>`<div class="step" style="margin-bottom:12px;border:2px solid hsl(350 80% 58%)"><b>${bi('Вы не одни','You’re not alone')}</b><br>${bi('Мне жаль, что сейчас так тяжело. Пожалуйста, прямо сейчас свяжитесь с близким человеком или с местной экстренной службой либо кризисной линией вашей страны (во многих странах экстренная служба 112). Если вы в опасности, не оставайтесь одни.','I’m sorry it feels this heavy right now. Please reach out right now to someone close to you, or to your local emergency service or crisis line (112 works in many countries). If you are in danger, don’t stay alone.')}</div>`,
+  urgentCard=()=>`<div class="step" style="margin-bottom:12px;border:2px solid hsl(35 95% 50%)"><b>${bi('Это может быть серьёзно','This could be serious')}</b><br>${bi('Такие симптомы нельзя откладывать: обратитесь за неотложной помощью или вызовите скорую (во многих странах 112).','Symptoms like this shouldn’t wait: seek urgent care or call emergency services (112 in many countries).')}</div>`;
+
+async function loadHl(){
+  HL.cfg={...HL.cfg,...await jget('h_cfg',{})};HL.ack=!!(await st.get('h_ack'));
+  await Promise.all(DCATS.map(async c=>{HL.d[c]=await jget('h_'+c,[])}));HL.med=await jget('h_med',{list:[],log:{}});HL.loaded=true;renderHl()}
+async function hsave(c){const a=HL.d[c];while(JSON.stringify(a).length>3800&&a.length>5)a.shift();await st.set('h_'+c,JSON.stringify(a))}
+const hcfg=()=>st.set('h_cfg',JSON.stringify(HL.cfg));
+async function hmedSave(){const l=HL.med.log,ks=Object.keys(l).sort();while(ks.length>45)delete l[ks.shift()];while(JSON.stringify(HL.med).length>3800&&ks.length)delete l[ks.shift()];await st.set('h_med',JSON.stringify(HL.med))}
+const hprof=()=>({age:HL.cfg.age??F.prof?.age??null,sex:F.prof?.sex||null,heightCm:F.prof?.h||null,weightKg:F.prof?.w||null});
+
+/* --- типовые показатели --- */
+const BT=[['weight','Вес','Weight','кг','kg'],['waist','Талия','Waist','см','cm'],['chest','Обхват груди','Chest size','см','cm'],['hips','Бёдра','Hips','см','cm'],['arm','Рука','Arm','см','cm'],['fat','Жир в теле','Body fat','%','%']];
+const VT=[['pulse','Пульс','Pulse','уд/мин','bpm'],['bp','Давление','Blood pressure','мм рт. ст.','mmHg'],['temp','Температура','Temperature','°C','°C'],['spo2','Кислород в крови','Blood oxygen','%','%'],['rr','Частота дыхания','Respiratory rate','в мин','/min']];
+function vstat(ty,a,c){
+  if(ty==='pulse')return a<40||a>140?2:a<50||a>100?1:0;
+  if(ty==='bp')return a>=180||c>=120?2:(a<90||c<60||a>=130||c>=80)?1:0;
+  if(ty==='temp')return a<35||a>=39.5?2:a<36||a>=37.6?1:0;
+  if(ty==='spo2')return a<90?2:a<95?1:0;
+  return a<8||a>30?2:a<12||a>20?1:0}
+const vmsg=s=>s===0?bi('В типичном диапазоне для взрослого в покое.','Within the typical range for an adult at rest.'):s===1?bi('Вне типичного диапазона. Повторите измерение в покое; если это беспокоит, обратитесь к врачу.','Outside the typical range. Re-measure at rest; if it worries you, see a doctor.'):bi('Значение сильно отличается от типичного. При симптомах (боль в груди, одышка, слабость, спутанность) вызовите скорую, иначе повторите измерение и срочно свяжитесь с врачом.','This value is far from typical. With symptoms (chest pain, shortness of breath, weakness, confusion) call emergency services; otherwise re-measure and contact a doctor promptly.');
+const vlab=ty=>{const x=VT.find(y=>y[0]===ty);return x?bi(x[1],x[2]):ty},vunit=ty=>{const x=VT.find(y=>y[0]===ty);return x?bi(x[3],x[4]):''},vval=e=>e[1]==='bp'?`${e[2]}/${e[3]}`:e[2];
+const MOODS=['😞','😕','😐','🙂','😄'],TAGS=[['calm','Спокойно','Calm'],['anx','Тревожно','Anxious'],['tired','Устал(а)','Tired'],['happy','Радость','Joy'],['angry','Злость','Anger'],['sad','Грусть','Sadness'],['stress','Стресс','Stressed'],['lonely','Одиноко','Lonely'],['energy','Бодро','Energetic'],['grat','Благодарность','Grateful']],
+  SYM=[['Головная боль','Headache'],['Температура','Fever'],['Кашель','Cough'],['Тошнота','Nausea'],['Усталость','Fatigue'],['Боль в горле','Sore throat'],['Боль в спине','Back pain'],['Головокружение','Dizziness']],
+  BRT=[['box','Квадратное дыхание','Box breathing',[4,4,4,4]],['478','Дыхание 4-7-8','4-7-8 breathing',[4,7,8,0]],['coh','Ровное дыхание','Coherent breathing',[5,0,5,0]]],
+  BRL=[['Вдох','Inhale'],['Задержка','Hold'],['Выдох','Exhale'],['Задержка','Hold']],
+  MOB=[['am','Утренняя разминка','Morning warm-up',[['Наклоны головы','Neck tilts',30],['Круги плечами','Shoulder rolls',30],['Кошка-корова','Cat-cow',40],['Выпады с поворотом','Lunge with twist',40],['Наклон к ногам','Forward fold',40],['Круги тазом','Hip circles',30]]],
+   ['neck','Шея и плечи','Neck and shoulders',[['Наклон головы вправо','Tilt head right',30],['Наклон головы влево','Tilt head left',30],['Подбородок к груди','Chin to chest',30],['Круги плечами назад','Shoulder rolls back',30],['Растяжка трицепса','Triceps stretch',40]]],
+   ['back','Спина и осанка','Back and posture',[['Поза ребёнка','Child’s pose',40],['Кошка-корова','Cat-cow',40],['Скручивание лёжа','Lying twist',40],['Ягодичный мостик','Glute bridge',30],['Потягивание вверх','Reach up',30]]],
+   ['hip','Бёдра и ноги','Hips and legs',[['Выпад на колено','Kneeling lunge',40],['Растяжка квадрицепса','Quad stretch',30],['Растяжка задней поверхности бедра','Hamstring stretch',40],['Бабочка','Butterfly stretch',40],['Подъём на носки','Calf raises',30]]]];
+
+/* --- общие блоки --- */
+const chipRow=(k,opts,cur)=>`<div class="chips2">${opts.map(([v,l])=>`<button class="${String(cur)===String(v)?'on':''}" data-a="set" data-k="${k}" data-v="${v}">${l}</button>`).join('')}</div>`;
+const inp=(k,lab,ph='',mode='decimal',val)=>`<div><label>${lab}</label><input data-f="${k}" inputmode="${mode}" placeholder="${ph}" value="${esc(val??HL.f[k]??'')}"></div>`;
+const hDel=(c,i)=>`<button class="x2" data-a="del" data-c="${c}" data-i="${i}" aria-label="${bi('Удалить','Delete')}">✕</button>`;
+const hAiHtml=a=>!a?'':a.loading?`<p class="meta">${bi('ИИ анализирует…','AI is analyzing…')}</p>`:a.err?`<p class="meta">${esc(a.err)}</p>`:`${a.j.summary?`<p>${esc(a.j.summary)}</p>`:''}${(a.j.points||[]).length?`<ul class="tips">${a.j.points.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}${(a.j.attention||[]).length?`<div class="step" style="margin-top:10px"><b>${bi('Обратите внимание','Worth attention')}</b><ul class="tips">${a.j.attention.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}`;
+const aiCard=c=>`<div class="sec"><h2>✨ ${bi('ИИ-помощник','AI assistant')}</h2><div id="hai">${hAiHtml(HL.ai[c])}</div><button class="p wide" data-a="ai" data-c="${c}" style="margin-top:10px">${bi('Проанализировать мои данные','Analyze my data')}</button><p class="meta" style="margin-top:8px">${bi('ИИ не врач и не ставит диагнозов. При беспокоящих симптомах обратитесь к специалисту.','AI is not a doctor and doesn’t diagnose. If symptoms worry you, see a professional.')}</p></div>`;
+const noData=()=>`<p class="msg">${bi('Записей пока нет','No entries yet')}</p>`;
+const histList=(c,rows)=>rows.length?`<div class="sec"><h2>${bi('История','History')}</h2>${rows.map(([i,txt,sub])=>`<div class="kv"><span>${txt}${sub?`<br><small class="meta">${sub}</small>`:''}</span>${hDel(c,i)}</div>`).join('')}</div>`:'';
+const HV={};
+HV.act=()=>{const A=HL.d.act,td=dkey(),t0=A.find(e=>e[0]===td)||[td,0,0],g=HL.cfg.sg,ds=lastD(7),vs=ds.map(d=>(A.find(e=>e[0]===d)||[0,0])[1]);
+  return `<div class="sec mb"><h2>${bi('Сегодня','Today')}</h2><div class="stats"><div><small>${bi('Шаги','Steps')}</small><b>${fmtn(t0[1])}</b></div><div><small>${bi('Минуты','Minutes')}</small><b>${t0[2]}</b></div><div><small>${bi('Цель','Goal')}</small><b>${fmtn(g)}</b></div></div><div class="pbar" style="margin-top:10px"><i style="width:${Math.min(100,t0[1]/g*100)}%"></i></div></div>
+  <div class="sec mb"><h2>${bi('Записать за сегодня','Log for today')}</h2><div class="row">${inp('steps',bi('Шаги','Steps'),'','numeric',HL.f.steps??(t0[1]||''))}${inp('min',bi('Активные минуты','Active minutes'),'','numeric',HL.f.min??(t0[2]||''))}</div><div class="row">${inp('sg',bi('Цель по шагам','Step goal'),'','numeric',HL.f.sg??g)}</div><button class="p wide" data-a="actsave" style="margin-top:12px">${bi('Сохранить','Save')}</button></div>
+  <div class="sec mb"><h2>${bi('Шаги за 7 дней','Steps, 7 days')}</h2>${hbars(ds,vs,g)}</div>`};
+HV.sleep=()=>{const S=HL.d.sleep,ds=lastD(7),vs=ds.map(d=>{const e=S.find(x=>x[0]===d);return e?hfmt1(e[1]/60):0}),l=S.at(-1),a7=avg(S.filter(e=>ds.includes(e[0])).map(e=>e[1])),
+    beds=S.slice(-7).map(e=>{let m=tmin(e[3]);if(m<720)m+=1440;return m}),sd=beds.length>1?Math.sqrt(avg(beds.map(x=>(x-avg(beds))**2))):null;
+  return `<div class="sec mb"><div class="stats"><div><small>${bi('Последняя ночь','Last night')}</small><b>${l?hmm(l[1]):'—'}</b></div><div><small>${bi('Среднее за 7 дней','7-day average')}</small><b>${a7?hmm(a7):'—'}</b></div><div><small>${bi('Цель','Goal')}</small><b>${hmm(HL.cfg.sl)}</b></div></div>${sd!=null?`<p class="meta" style="margin-top:10px">${bi('Разброс времени отхода ко сну','Bedtime variation')}: ±${Math.round(sd)} ${bi('мин','min')}</p>`:''}</div>
+  <div class="sec mb"><h2>${bi('Записать сон','Log sleep')}</h2><div class="row"><div><label>${bi('Лёг(ла)','Bedtime')}</label><input type="time" data-f="bed" value="${HL.f.bed??'23:00'}"></div><div><label>${bi('Проснулся(ась)','Wake-up')}</label><input type="time" data-f="wake" value="${HL.f.wake??'07:00'}"></div></div><label>${bi('Качество сна','Sleep quality')}</label><div class="faces">${MOODS.map((m,i)=>`<button class="${(HL.f.q||3)==i+1?'on':''}" data-a="set" data-k="q" data-v="${i+1}">${m}</button>`).join('')}</div><button class="p wide" data-a="slsave" style="margin-top:12px">${bi('Сохранить','Save')}</button></div>
+  <div class="sec mb"><h2>${bi('Часы сна, 7 дней','Hours of sleep, 7 days')}</h2>${hbars(ds,vs,HL.cfg.sl/60,hfmt1)}</div>`+histList('sleep',S.map((e,i)=>[i,`${fdy(e[0])} · ${hmm(e[1])}`,`${MOODS[e[2]-1]||''} ${bi('лёг(ла)','bed')} ${e[3]}`]).reverse().slice(0,7))};
+const bname=k=>{const z=BT.find(y=>y[0]===k);return z?bi(z[1],z[2]):k},bunit=k=>{const z=BT.find(y=>y[0]===k);return z?bi(z[3],z[4]):''};
+HV.body=()=>{const B=HL.d.body,ty=HL.f.bt||'weight',x=BT.find(y=>y[0]===ty),
+    tiles=BT.map(([k,r,e,ur,ue])=>{const a=B.filter(z=>z[1]===k);if(!a.length)return '';const l=a.at(-1)[2],p=a.length>1?a.at(-2)[2]:null;return `<div><small>${bi(r,e)}</small><b>${l} ${bi(ur,ue)}</b>${p!=null?`<small>${l-p>0?'+':''}${hfmt1(l-p)}</small>`:''}</div>`}).join('');
+  return `${tiles?`<div class="sgrid">${tiles}</div>`:''}<div class="sec mb"><h2>${bi('Новое измерение','New measurement')}</h2>${chipRow('bt',BT.map(y=>[y[0],bi(y[1],y[2])]),ty)}<div class="row" style="margin-top:10px">${inp('bv',`${bi(x[1],x[2])}, ${bi(x[3],x[4])}`)}</div><button class="p wide" data-a="bsave" style="margin-top:12px">${bi('Добавить','Add')}</button></div>`
+  +histList('body',B.map((e,i)=>[i,`${bname(e[1])}: ${e[2]} ${bunit(e[1])}`,fdy(e[0])]).reverse().slice(0,10))};
+const vitForm=types=>{const ty=types.includes(HL.f.vt)?HL.f.vt:types[0];
+  return `<div class="sec mb"><h2>${bi('Новое измерение','New measurement')}</h2>${chipRow('vt',types.map(k=>[k,vlab(k)]),ty)}<div class="row" style="margin-top:10px">${inp('v1',ty==='bp'?bi('Верхнее (систолическое)','Systolic'):`${vlab(ty)}, ${vunit(ty)}`)}${ty==='bp'?inp('v2',bi('Нижнее (диастолическое)','Diastolic'),'','numeric'):''}</div><button class="p wide" data-a="vsave" data-t="${ty}" style="margin-top:12px">${bi('Добавить','Add')}</button></div>`};
+const vitTiles=types=>{const t2=types.map(k=>{const a=HL.d.vit.filter(e=>e[1]===k);if(!a.length)return '';const e=a.at(-1),s=vstat(k,e[2],e[3]);return `<div class="${s===2?'st-alert':s===1?'st-warn':''}"><small>${vlab(k)}</small><b>${vval(e)} <span class="meta">${vunit(k)}</span></b><small>${fts(e[0])}</small></div>`}).join('');return t2?`<div class="sgrid">${t2}</div>`:''};
+const vitAlert=types=>{let w=null;types.forEach(k=>{const a=HL.d.vit.filter(e=>e[1]===k);if(!a.length)return;const e=a.at(-1),s=vstat(k,e[2],e[3]);if(s>0&&(!w||s>w.s))w={s,k,e}});
+  return w?`<div class="step" style="margin-bottom:12px;border:2px solid ${w.s===2?'#e0483c':'hsl(35 95% 50%)'}"><b>${vlab(w.k)}: ${vval(w.e)} ${vunit(w.k)}</b><br>${vmsg(w.s)}</div>`:''};
+const vitHist=types=>histList('vit',HL.d.vit.map((e,i)=>[i,`${vlab(e[1])}: ${vval(e)} ${vunit(e[1])}`,fts(e[0]),e[1]]).filter(r=>types.includes(r[3])).reverse().slice(0,10).map(r=>r.slice(0,3)));
+HV.vit=()=>{const ty=VT.map(x=>x[0]);return vitAlert(ty)+vitTiles(ty)+vitForm(ty)+vitHist(ty)+`<p class="meta" style="margin-top:10px">${bi('Типичные диапазоны даны для взрослых в покое и не являются диагнозом.','Typical ranges are for adults at rest and are not a diagnosis.')}</p>`};
+HV.heart=()=>{const ty=['pulse','bp'],P=HL.d.vit.filter(e=>e[1]==='pulse'),age=HL.cfg.age??F.prof?.age??null,mx=age?220-age:null,ds=lastD(7),
+    pv=ds.map(d=>{const a=P.filter(e=>dkey(new Date(e[0]*1000))===d).map(e=>e[2]);return a.length?Math.round(avg(a)):0});
+  return vitAlert(ty)+vitTiles(ty)+vitForm(ty)+`<div class="sec mb"><h2>${bi('Пульс по дням','Pulse by day')}</h2>${hbars(ds,pv,0)}</div>
+  <div class="sec mb"><h2>${bi('Пульсовые зоны','Heart-rate zones')}</h2><div class="row">${inp('age',bi('Возраст','Age'),'','numeric',HL.f.age??(age||''))}</div><button class="wide" data-a="agesave" style="margin:8px 0">${bi('Рассчитать','Calculate')}</button>${mx?`<p class="meta" style="margin-bottom:6px">${bi('Оценка максимума','Estimated max')}: ${mx} ${bi('уд/мин (220 − возраст)','bpm (220 − age)')}</p>${[[50,60,'Лёгкая','Light'],[60,70,'Жиросжигание','Fat burn'],[70,80,'Аэробная','Aerobic'],[80,90,'Тяжёлая','Hard'],[90,100,'Максимум','Max']].map(([lo,hi2,r,e])=>`<div class="kv"><span>${bi(r,e)}</span><b>${Math.round(mx*lo/100)}–${Math.round(mx*hi2/100)}</b></div>`).join('')}`:''}</div>`+vitHist(ty)};
+HV.mind=()=>{const M=HL.d.mind,mood=HL.f.mood||0,tgs=HL.f.tags||[],ds=lastD(14),vs=ds.map(d=>{const a=M.filter(e=>dkey(new Date(e[0]*1000))===d).map(e=>e[1]);return a.length?hfmt1(avg(a)):0});
+  return `<div class="sec mb"><h2>${bi('Как вы себя чувствуете?','How are you feeling?')}</h2><div class="faces">${MOODS.map((m,i)=>`<button class="${mood==i+1?'on':''}" data-a="set" data-k="mood" data-v="${i+1}">${m}</button>`).join('')}</div><label>${bi('Что ощущаете','What you feel')}</label><div class="chips2">${TAGS.map(([k,r,e])=>`<button class="${tgs.includes(k)?'on':''}" data-a="tag" data-v="${k}">${bi(r,e)}</button>`).join('')}</div><label>${bi('Заметка (необязательно)','Note (optional)')}</label><textarea data-f="note" maxlength="140">${esc(HL.f.note??'')}</textarea><button class="p wide" data-a="msave" style="margin-top:12px">${bi('Сохранить','Save')}</button></div>
+  <div class="sec mb"><h2>${bi('Настроение, 14 дней','Mood, 14 days')}</h2>${hbars(ds,vs,5,hfmt1)}</div>`+histList('mind',M.map((e,i)=>[i,`${MOODS[e[1]-1]} ${e[2].split(',').filter(Boolean).map(k=>{const z=TAGS.find(y=>y[0]===k);return z?bi(z[1],z[2]):''}).join(', ')}`,`${fts(e[0])}${e[3]?' · '+esc(e[3]):''}`]).reverse().slice(0,7))};
+HV.sym=()=>{const S=HL.d.sym,sev=HL.f.sev||2;
+  return `<div class="sec mb"><h2>${bi('Новый симптом','New symptom')}</h2><div class="chips2">${SYM.map(([r,e])=>`<button data-a="set" data-k="sname" data-v="${bi(r,e)}">${bi(r,e)}</button>`).join('')}</div><div style="margin-top:10px">${inp('sname',bi('Симптом','Symptom'),'','text',HL.f.sname??'')}</div><label>${bi('Выраженность','Severity')}</label>${chipRow('sev',[[1,bi('Слабо','Mild')],[2,bi('Средне','Moderate')],[3,bi('Сильно','Severe')]],sev)}<div style="margin-top:10px">${inp('snote',bi('Заметка (необязательно)','Note (optional)'),'','text',HL.f.snote??'')}</div><button class="p wide" data-a="ssave" style="margin-top:12px">${bi('Добавить','Add')}</button></div>`
+  +histList('sym',S.map((e,i)=>[i,`${esc(e[1])} · ${[bi('слабо','mild'),bi('средне','moderate'),bi('сильно','severe')][e[2]-1]}`,`${fts(e[0])}${e[3]?' · '+esc(e[3]):''}`]).reverse().slice(0,10))};
+HV.hear=()=>{const Hh=HL.d.hear,ds=lastD(7),mins=ds.map(d=>Hh.filter(e=>e[0]===d).reduce((a,e)=>a+e[1],0)),loud=Hh.filter(e=>ds.includes(e[0])&&e[2]===3).reduce((a,e)=>a+e[1],0),lvl=HL.f.lv||2;
+  return `<div class="sec mb"><div class="stats"><div><small>${bi('За 7 дней','Last 7 days')}</small><b>${fmtn(mins.reduce((a,x)=>a+x,0))} ${bi('мин','min')}</b></div><div class="${loud>300?'over':''}"><small>${bi('Громко','Loud')}</small><b>${fmtn(loud)} ${bi('мин','min')}</b></div></div>${loud>300?`<p class="meta" style="margin-top:10px">${bi('Много громкого прослушивания за неделю: сделайте тише и чаще отдыхайте от наушников.','A lot of loud listening this week: turn the volume down and give your ears more breaks.')}</p>`:''}</div>
+  <div class="sec mb"><h2>${bi('Записать прослушивание','Log listening')}</h2>${chipRow('lv',[[1,bi('Тихо','Quiet')],[2,bi('Средне','Medium')],[3,bi('Громко','Loud')]],lvl)}<div class="row" style="margin-top:10px">${inp('hmin',bi('Минут в наушниках','Minutes with headphones'),'','numeric')}</div><button class="p wide" data-a="hearsave" style="margin-top:12px">${bi('Добавить','Add')}</button></div>
+  <div class="sec mb"><h2>${bi('Минуты по дням','Minutes by day')}</h2>${hbars(ds,mins,0)}</div>
+  <div class="sec mb"><h2>${bi('Советы','Tips')}</h2><ul class="tips"><li>${bi('Держите громкость примерно до 60% максимума и делайте перерыв каждый час (общий ориентир).','Keep volume around 60% of maximum and take a break every hour (general guideline).')}</li><li>${bi('Если при музыке вы не слышите окружающих, она слишком громкая.','If you can’t hear people around you over the music, it’s too loud.')}</li><li>${bi('Звон в ушах или ощущение ваты после прослушивания повод сделать паузу, а если не проходит, обратиться к врачу.','Ringing or a muffled feeling after listening is a reason to pause, and if it doesn’t fade, to see a doctor.')}</li></ul></div>`
+  +histList('hear',Hh.map((e,i)=>[i,`${e[1]} ${bi('мин','min')} · ${[bi('тихо','quiet'),bi('средне','medium'),bi('громко','loud')][e[2]-1]}`,fdy(e[0])]).reverse().slice(0,7))};
+const brName=k=>{const z=BRT.find(y=>y[0]===k);return z?bi(z[1],z[2]):k};
+const vBrRun=()=>`<div class="sec mb" style="text-align:center"><div class="brw"><div class="brc" id="brc"><span id="brl">…</span></div></div><div class="tmr" id="brt">0:00</div><button class="wide" data-a="brstop" style="margin-top:8px">${bi('Завершить','Finish')}</button></div>`;
+HV.br=()=>{if(HL.brs)return vBrRun();const k=HL.f.tech||'box',mins=HL.f.bm||3,B=HL.d.br,ds=lastD(7),wk=B.filter(e=>ds.includes(e[0]));
+  return `<div class="sec mb"><div class="stats"><div><small>${bi('Сессий за 7 дней','Sessions, 7 days')}</small><b>${wk.length}</b></div><div><small>${bi('Минут за 7 дней','Minutes, 7 days')}</small><b>${wk.reduce((a,e)=>a+e[1],0)}</b></div></div></div>
+  <div class="sec mb"><h2>${bi('Упражнение','Exercise')}</h2>${BRT.map(([id,r,e,p])=>`<button class="opt${k===id?' on':''}" data-a="set" data-k="tech" data-v="${id}"><b>${bi(r,e)}</b><small>${p.filter(Boolean).join('-')} ${bi('секунд','seconds')}</small></button>`).join('')}<label>${bi('Длительность','Duration')}</label>${chipRow('bm',[1,3,5,10].map(x=>[x,x+' '+bi('мин','min')]),mins)}<button class="p wide" data-a="brstart" style="margin-top:12px">▶ ${bi('Начать','Start')}</button></div>`
+  +histList('br',B.map((e,i)=>[i,`${brName(e[2])} · ${e[1]} ${bi('мин','min')}`,fdy(e[0])]).reverse().slice(0,5))};
+function brTick(){const s=HL.brs;if(!s)return;const el=Date.now()-s.t0;if(el>=s.dur)return brEnd();
+  const P=s.pat,cyc=P.reduce((a,x)=>a+x,0);let m=(el/1000)%cyc,i=0;for(;i<4;i++){if(P[i]===0)continue;if(m<P[i])break;m-=P[i]}i=Math.min(i,3);
+  const sc=i===0?1+.5*m/P[0]:i===1?1.5:i===2?1.5-.5*m/P[2]:1;if(s.ph!==i){s.ph=i;tg?.HapticFeedback?.impactOccurred?.('light')}
+  const c=$('brc');if(c){c.style.transform=`scale(${sc})`;$('brl').textContent=bi(BRL[i][0],BRL[i][1])+' '+Math.max(1,Math.ceil(P[i]-m));const rem=Math.ceil((s.dur-el)/1000);$('brt').textContent=`${Math.floor(rem/60)}:${p2(rem%60)}`}}
+async function brEnd(){const s=HL.brs;if(!s)return;clearInterval(HL.tk);HL.brs=null;const el=Date.now()-s.t0;if(el>=20000){HL.d.br.push([dkey(),Math.max(1,Math.round(Math.min(el,s.dur)/60000)),s.tech]);await hsave('br')}renderHl()}
+const mbRoutine=k=>MOB.find(x=>x[0]===k);
+const vMbRun=()=>{const s=HL.mbs,r=mbRoutine(s.r),cur=r[3][s.i],nx=r[3][s.i+1];
+  return `<div class="sec mb" style="text-align:center"><p class="meta">${bi('Шаг','Step')} ${s.i+1}/${r[3].length}</p><div class="gt" style="margin:8px 0">${bi(cur[0],cur[1])}</div><div class="tmr" id="mbt">${s.left}</div><p class="meta">${nx?bi('Дальше','Next')+': '+bi(nx[0],nx[1]):bi('Последнее упражнение','Last exercise')}</p><div class="row" style="margin-top:12px"><button data-a="mbskip" style="flex:1">${bi('Пропустить','Skip')}</button><button class="p" data-a="mbstop" style="flex:1">${bi('Завершить','Finish')}</button></div></div>`};
+function mbTick(){const s=HL.mbs;if(!s)return;s.left--;if(s.left<=0)return mbNext();const e=$('mbt');if(e)e.textContent=s.left}
+function mbNext(){const s=HL.mbs,r=mbRoutine(s.r);s.i++;if(s.i>=r[3].length)return mbEnd();s.left=r[3][s.i][2];tg?.HapticFeedback?.impactOccurred?.('medium');renderHl()}
+async function mbEnd(){const s=HL.mbs;if(!s)return;clearInterval(HL.tk);HL.mbs=null;const el=Date.now()-s.t0;if(el>=20000){HL.d.mob.push([dkey(),s.r,Math.max(1,Math.round(el/60000))]);await hsave('mob')}renderHl()}
+HV.mob=()=>{if(HL.mbs)return vMbRun();const M=HL.d.mob,ds=lastD(7);
+  return `<div class="sec mb"><div class="stats"><div><small>${bi('Занятий за 7 дней','Sessions, 7 days')}</small><b>${M.filter(e=>ds.includes(e[0])).length}</b></div></div></div><div class="sec mb"><h2>${bi('Комплексы','Routines')}</h2>${MOB.map(([k,r,e,st3])=>`<div class="libi" data-a="mbstart" data-r="${k}"><div class="lh"><b>${bi(r,e)}</b><small>${Math.round(st3.reduce((a,x)=>a+x[2],0)/60)} ${bi('мин','min')}</small></div><div class="meta" style="font-size:13px">${st3.length} ${bi('упражнений','exercises')}</div></div>`).join('')}<p class="meta" style="margin-top:10px">${bi('Двигайтесь плавно и без боли. При травмах или боли посоветуйтесь с врачом.','Move smoothly and without pain. With an injury or pain, consult a doctor.')}</p></div>`
+  +histList('mob',M.map((e,i)=>{const r=mbRoutine(e[1]);return [i,`${r?bi(r[1],r[2]):e[1]} · ${e[2]} ${bi('мин','min')}`,fdy(e[0])]}).reverse().slice(0,5))};
+HV.cyc=()=>{const C=HL.d.cyc,td=dkey(),starts=C.map(e=>e[0]).sort(),gaps=starts.slice(1).map((s,i)=>Math.round((new Date(s)-new Date(starts[i]))/864e5)),ac=gaps.length?Math.round(avg(gaps)):null,
+    pl=C.filter(e=>e[1]).map(e=>Math.round((new Date(e[1])-new Date(e[0]))/864e5)+1),ap=pl.length?Math.round(avg(pl)):null,ls=starts.at(-1),day=ls?Math.round((new Date(td)-new Date(ls))/864e5)+1:null,open=C.length&&!C[C.length-1][1];
+  let nx=null;if(ls&&ac){nx=new Date(ls+'T12:00:00');nx.setDate(nx.getDate()+ac)}
+  return `<div class="sec mb"><div class="stats"><div><small>${bi('День цикла','Cycle day')}</small><b>${day&&day>0&&day<=90?day:'—'}</b></div><div><small>${bi('Длина цикла','Cycle length')}</small><b>${ac?ac+' '+bi('дн.','d'):'—'}</b></div><div><small>${bi('Период','Period')}</small><b>${ap?ap+' '+bi('дн.','d'):'—'}</b></div></div><p class="meta" style="margin-top:10px">${nx?`${bi('Ориентировочно следующий период около','Next period expected around')}: <b>${nx.toLocaleDateString(loc(),{day:'numeric',month:'long'})}</b>`:bi('Отметьте несколько циклов, и появится прогноз.','Log a few cycles to see an estimate.')}</p></div>
+  <div class="sec mb"><h2>${bi('Отметить','Log')}</h2><button class="p wide" data-a="cystart">${bi('Период начался сегодня','Period started today')}</button>${open?`<button class="wide" data-a="cyend" style="margin-top:8px">${bi('Период закончился сегодня','Period ended today')}</button>`:''}
+  <div class="row" style="margin-top:12px"><div><label>${bi('Начало','Start')}</label><input type="date" data-f="cs" value="${HL.f.cs??''}"></div><div><label>${bi('Конец (необязательно)','End (optional)')}</label><input type="date" data-f="ce" value="${HL.f.ce??''}"></div></div><button class="wide" data-a="cyadd" style="margin-top:8px">${bi('Добавить за прошлую дату','Add a past date')}</button></div>
+  <p class="meta" style="margin-bottom:12px">${bi('Прогноз ориентировочный: это не метод контрацепции и не диагноз. При нерегулярных циклах, сильной боли или задержке обратитесь к врачу.','The estimate is approximate: it is not contraception or a diagnosis. For irregular cycles, severe pain or a delay, see a doctor.')}</p>`
+  +histList('cyc',C.map((e,i)=>[i,fdy(e[0])+(e[1]?' – '+fdy(e[1]):''),'']).reverse().slice(0,8))};
+HV.med=()=>{const M=HL.med,td=dkey(),ds=lastD(7);let exp=0,tk=0;ds.forEach(d=>M.list.forEach(m=>{exp+=m.per;tk+=Math.min(m.per,(M.log[d]||{})[m.id]||0)}));
+  return `${M.list.length?`<div class="sec mb"><h2>${bi('Сегодня','Today')}</h2>${M.list.map((m,i)=>{const got=(M.log[td]||{})[m.id]||0;return `<div style="margin-bottom:12px"><div class="kv"><span><b>${esc(m.n)}</b>${m.dose?`<br><small class="meta">${esc(m.dose)}</small>`:''}</span><button class="x2" data-a="mdel" data-i="${i}" aria-label="${bi('Удалить','Delete')}">✕</button></div><div class="chips2">${[...Array(m.per)].map((_,j)=>`<button class="${j<got?'on':''}" data-a="mtake" data-i="${i}" data-j="${j}">${j<got?'✓ ':''}${bi('Приём','Dose')} ${j+1}</button>`).join('')}</div></div>`}).join('')}${exp?`<p class="meta">${bi('Выполнение за 7 дней','7-day adherence')}: <b>${Math.round(tk/exp*100)}%</b></p>`:''}</div>`:''}
+  <div class="sec mb"><h2>${bi('Добавить лекарство','Add medication')}</h2><div class="row">${inp('mn',bi('Название','Name'),'','text',HL.f.mn??'')}${inp('md',bi('Дозировка (как назначил врач)','Dose (as prescribed)'),'','text',HL.f.md??'')}</div><label>${bi('Приёмов в день','Times per day')}</label>${chipRow('mp',[1,2,3,4].map(x=>[x,x]),HL.f.mp||1)}<button class="p wide" data-a="madd" style="margin-top:12px">${bi('Добавить','Add')}</button></div>
+  <p class="meta">${bi('Приложение отмечает приёмы, но пока не присылает напоминания. Дозировки и схему приёма назначает только врач.','The app tracks doses but doesn’t send reminders yet. Only your doctor decides doses and schedules.')}</p>`};
+HV.oth=()=>{const O=HL.d.oth,ms=HL.cfg.om,sel=ms.find(m=>m.id===HL.f.om)||ms[0],ds=lastD(14),vs=sel?ds.map(d=>{const a=O.filter(e=>e[1]===sel.id&&dkey(new Date(e[0]*1000))===d).map(e=>e[2]);return a.length?hfmt1(avg(a)):0}):[];
+  return `${sel?`<div class="sec mb"><h2>${bi('Метрики','Metrics')}</h2>${chipRow('om',ms.map(m=>[m.id,esc(m.n)]),sel.id)}<div class="row" style="margin-top:10px">${inp('ov',`${esc(sel.n)}${sel.u?', '+esc(sel.u):''}`)}</div><button class="p wide" data-a="osave" data-m="${sel.id}" style="margin-top:12px">${bi('Добавить значение','Add value')}</button><div style="margin-top:12px">${hbars(ds,vs,0,hfmt1)}</div><button class="x2" data-a="odelm" data-m="${sel.id}" style="margin-top:8px">${bi('Удалить метрику','Delete metric')}</button></div>`:''}
+  <div class="sec mb"><h2>${bi('Новая метрика','New metric')}</h2><div class="row">${inp('on',bi('Название','Name'),'','text',HL.f.on??'')}${inp('ou',bi('Единица','Unit'),'','text',HL.f.ou??'')}</div><button class="p wide" data-a="oadd" style="margin-top:12px">${bi('Создать','Create')}</button></div>`
+  +histList('oth',O.map((e,i)=>[i,`${e[2]} ${esc((ms.find(m=>m.id===e[1])||{}).u||'')}`,`${esc((ms.find(m=>m.id===e[1])||{n:'?'}).n)} · ${fts(e[0])}`,e[1]]).filter(r=>sel&&r[3]===sel.id).reverse().slice(0,8).map(r=>r.slice(0,3)))};
+function hsub(c){const D=HL.d,td=dkey(),no=bi('Нет данных','No data'),wk=lastD(7);
+  switch(c){
+    case 'act':{const e=D.act.find(x=>x[0]===td);return e?`${fmtn(e[1])} ${bi('шагов','steps')}`:no}
+    case 'sleep':{const e=D.sleep.at(-1);return e?hmm(e[1]):no}
+    case 'body':{const a=D.body.filter(x=>x[1]==='weight').at(-1);return a?`${a[2]} ${bi('кг','kg')}`:no}
+    case 'vit':{const e=D.vit.at(-1);return e?`${vlab(e[1])} ${vval(e)}`:no}
+    case 'heart':{const e=D.vit.filter(x=>x[1]==='pulse').at(-1);return e?`${e[2]} ${bi('уд/мин','bpm')}`:no}
+    case 'mind':{const e=D.mind.at(-1);return e?`${MOODS[e[1]-1]} ${fts(e[0])}`:no}
+    case 'sym':{const e=D.sym.at(-1);return e?`${esc(e[1])} · ${fts(e[0])}`:no}
+    case 'hear':{const m=D.hear.filter(x=>x[0]===td).reduce((a,x)=>a+x[1],0);return m?`${m} ${bi('мин сегодня','min today')}`:no}
+    case 'br':{const n=D.br.filter(x=>wk.includes(x[0])).length;return n?`${n} ${bi('сессий за неделю','sessions this week')}`:no}
+    case 'mob':{const n=D.mob.filter(x=>wk.includes(x[0])).length;return n?`${n} ${bi('занятий за неделю','sessions this week')}`:no}
+    case 'cyc':{const e=D.cyc.at(-1);return e?`${bi('Последний','Last')}: ${fdy(e[0])}`:no}
+    case 'med':{const l=HL.med.list;if(!l.length)return no;const exp=l.reduce((a,m)=>a+m.per,0),got=l.reduce((a,m)=>a+Math.min(m.per,(HL.med.log[td]||{})[m.id]||0),0);return `${got}/${exp} ${bi('сегодня','today')}`}
+    default:return HL.cfg.om.length?`${HL.cfg.om.length} ${bi('метрик','metrics')}`:no}}
+const ackCard=()=>HL.ack?'':`<div class="sec mb"><h2>🔒 ${bi('Конфиденциальность','Privacy')}</h2><p class="meta">${bi('Ваши записи хранятся в вашем аккаунте Телеграма. Когда вы просите ИИ их проанализировать, нужные записи (включая заметки) отправляются ИИ-сервису. Не вносите лишнего.','Your entries are stored in your Telegram account. When you ask AI to analyze them, the relevant entries (including notes) are sent to the AI service. Don’t enter more than you’re comfortable sharing.')}</p><button class="wide" data-a="ack" style="margin-top:10px">${bi('Понятно','Got it')}</button></div>`,
+  ovCard=()=>`<div class="sec mb"><h2>✨ ${bi('ИИ-обзор здоровья','AI health overview')}</h2><div id="hov">${hAiHtml(HL.ai.ov)}</div><button class="p wide" data-a="ovai" style="margin-top:10px">${bi('Составить обзор','Create overview')}</button><p class="meta" style="margin-top:8px">${bi('ИИ анализирует данные, когда вы просите. Фонового наблюдения и уведомлений пока нет.','AI analyzes your data when you ask. There’s no background monitoring or notifications yet.')}</p></div>`;
+function vHlList(){return title(bi('Здоровье','Health'))+ackCard()+ovCard()+`<div class="hlist">${CATS.map(([id,ic,r,e])=>`<div class="hrow" data-a="open" data-c="${id}"><span class="hic">${ic}</span><div class="htx"><b>${bi(r,e)}</b><small>${hsub(id)}</small></div><span class="chv">›</span></div>`).join('')}</div>`}
+function renderHl(){const el=$('hl');if(!HL.loaded){el.innerHTML='<p class="msg">…</p>';return}
+  const col=HL.c?CCOL[HL.c]:350,body=HL.v==='list'?vHlList():back('home')+title(cName(HL.c))+(HL.crisis?crisisCard():'')+(HL.urgent?urgentCard():'')+HV[HL.c]()+(HL.brs||HL.mbs?'':aiCard(HL.c));
+  el.innerHTML=`<div style="--accent:hsl(${col} 78% 56%);--tint:hsl(${col} 85% 56%/.13)">${body}</div>`;
+  const k=HL.v+HL.c;if(HL.lv!==k){HL.lv=k;scrollTo(0,0)}}
+/* --- сводки для ИИ (кратко) --- */
+const hasData=c=>c==='med'?HL.med.list.length>0:c==='heart'?HL.d.vit.some(e=>e[1]==='pulse'||e[1]==='bp'):c==='oth'?HL.d.oth.length>0:(HL.d[c]||[]).length>0;
+function hsum(c,n){const D=HL.d;
+  switch(c){
+    case 'act':return{stepGoal:HL.cfg.sg,days:hlast(D.act,n)};
+    case 'sleep':return{goalMin:HL.cfg.sl,nights:hlast(D.sleep,n)};
+    case 'body':return{entries:hlast(D.body,n*2)};
+    case 'vit':return{entries:hlast(D.vit,n*2)};
+    case 'heart':return{entries:hlast(D.vit.filter(e=>e[1]==='pulse'||e[1]==='bp'),n*2),ageForZones:HL.cfg.age};
+    case 'mind':return{entries:hlast(D.mind,n+4)};
+    case 'sym':return{entries:hlast(D.sym,n+4)};
+    case 'hear':return{entries:hlast(D.hear,n+4)};
+    case 'br':return{sessions:hlast(D.br,n)};
+    case 'mob':return{sessions:hlast(D.mob,n)};
+    case 'cyc':return{cycles:hlast(D.cyc,n)};
+    case 'med':return{meds:HL.med.list.map(m=>({name:m.n,dose:m.dose,timesPerDay:m.per})),takenLast7Days:lastD(7).map(d=>[d,HL.med.log[d]||{}])};
+    default:return{metrics:HL.cfg.om,entries:hlast(D.oth,n*2)}}}
+const hAll=()=>Object.fromEntries(CATS.filter(([c])=>hasData(c)).map(([c])=>[c,hsum(c,5)]));
+const updAi=k=>{const el=$(k==='ov'?'hov':'hai');if(el)el.innerHTML=hAiHtml(HL.ai[k])};
+async function hAI(mode,c){
+  if(!HL.ack){if(!await ask(bi('Для анализа нужные записи будут отправлены ИИ-сервису. Продолжить?','To analyze, the relevant entries will be sent to the AI service. Continue?')))return;HL.ack=true;st.set('h_ack','1');renderHl()}
+  const key=mode==='overview'?'ov':c;if(mode==='category'&&!hasData(c)){HL.ai[key]={err:bi('Сначала добавьте несколько записей.','Add a few entries first.')};return updAi(key)}
+  HL.ai[key]={loading:true};updAi(key);
+  try{HL.ai[key]={j:await api('/health',{mode,cat:c,profile:hprof(),data:mode==='overview'?hAll():hsum(c,10)})}}catch(e){HL.ai[key]={err:e.message}}
+  updAi(key)}
+/* --- действия --- */
+const ha={
+  home(){brEnd();mbEnd();HL.v='list';HL.c=null;HL.f={};HL.crisis=HL.urgent=false;renderHl()},
+  open(d){HL.v='cat';HL.c=d.c;HL.f={};HL.crisis=HL.urgent=false;renderHl()},
+  set(d){HL.f[d.k]=d.v;renderHl()},
+  tag(d){const a=HL.f.tags||(HL.f.tags=[]),i=a.indexOf(d.v);i<0?a.push(d.v):a.splice(i,1);renderHl()},
+  async del(d){HL.d[d.c].splice(+d.i,1);await hsave(d.c);renderHl()},
+  async actsave(){const td=dkey(),A=HL.d.act,i=A.findIndex(e=>e[0]===td),o=i<0?[td,0,0]:A[i],s=Math.max(0,Math.round(num(HL.f.steps??o[1])||0)),m=Math.max(0,Math.round(num(HL.f.min??o[2])||0)),g=num(HL.f.sg);
+    if(g>0)HL.cfg.sg=Math.round(g);i<0?A.push([td,s,m]):A[i]=[td,s,m];await hsave('act');await hcfg();HL.f={};renderHl()},
+  async slsave(){const bed=HL.f.bed||'23:00',wake=HL.f.wake||'07:00',mins=(tmin(wake)-tmin(bed)+1440)%1440||1440,td=dkey(),S=HL.d.sleep,i=S.findIndex(e=>e[0]===td),e=[td,mins,+(HL.f.q||3),bed];
+    i<0?S.push(e):S[i]=e;await hsave('sleep');HL.f={};renderHl()},
+  async bsave(){const ty=HL.f.bt||'weight',v=num(HL.f.bv);if(!(v>0))return;HL.d.body.push([dkey(),ty,v]);await hsave('body');HL.f={bt:ty};renderHl()},
+  async vsave(d){const ty=d.t,v1=num(HL.f.v1),v2=ty==='bp'?num(HL.f.v2):0;if(!(v1>0)||(ty==='bp'&&!(v2>0)))return;HL.d.vit.push([nowS(),ty,v1,v2]);await hsave('vit');HL.f={vt:ty};renderHl()},
+  agesave(){const a=num(HL.f.age);if(a>=5&&a<=110){HL.cfg.age=Math.round(a);hcfg();HL.f={};renderHl()}},
+  async msave(){const mood=+HL.f.mood;if(!mood)return;const note=(HL.f.note||'').trim().slice(0,140);HL.d.mind.push([nowS(),mood,(HL.f.tags||[]).join(','),note]);await hsave('mind');HL.crisis=RE_CRISIS.test(note);HL.f={};renderHl()},
+  async ssave(){const n=(HL.f.sname||'').trim().slice(0,60);if(!n)return;const note=(HL.f.snote||'').trim().slice(0,100),all=n+' '+note;HL.d.sym.push([nowS(),n,+(HL.f.sev||2),note]);await hsave('sym');HL.urgent=RE_URG.test(all);HL.crisis=RE_CRISIS.test(all);HL.f={};renderHl()},
+  async hearsave(){const m=Math.round(num(HL.f.hmin)||0);if(m<=0)return;HL.d.hear.push([dkey(),m,+(HL.f.lv||2)]);await hsave('hear');HL.f={};renderHl()},
+  brstart(){const k=HL.f.tech||'box',mins=+(HL.f.bm||3);HL.brs={tech:k,pat:BRT.find(x=>x[0]===k)[3],t0:Date.now(),dur:mins*60000,ph:-1};clearInterval(HL.tk);HL.tk=setInterval(brTick,100);renderHl();brTick()},
+  brstop(){brEnd()},
+  mbstart(d){const r=mbRoutine(d.r);HL.mbs={r:d.r,i:0,left:r[3][0][2],t0:Date.now()};clearInterval(HL.tk);HL.tk=setInterval(mbTick,1000);renderHl()},
+  mbskip(){mbNext()},mbstop(){mbEnd()},
+  async cystart(){const td=dkey(),C=HL.d.cyc;if(!C.find(e=>e[0]===td)){C.push([td,'']);C.sort((x,y)=>x[0]<y[0]?-1:1)}await hsave('cyc');renderHl()},
+  async cyend(){const C=HL.d.cyc,l=C[C.length-1];if(l&&!l[1]){l[1]=dkey();await hsave('cyc')}renderHl()},
+  async cyadd(){const s=HL.f.cs,e=HL.f.ce||'';if(!s||(e&&e<s))return;const C=HL.d.cyc;if(!C.find(x=>x[0]===s))C.push([s,e]);C.sort((x,y)=>x[0]<y[0]?-1:1);await hsave('cyc');HL.f={};renderHl()},
+  async madd(){const n=(HL.f.mn||'').trim().slice(0,40);if(!n||HL.med.list.length>=12)return;HL.med.list.push({id:Date.now().toString(36),n,dose:(HL.f.md||'').trim().slice(0,40),per:+(HL.f.mp||1)});await hmedSave();HL.f={};renderHl()},
+  async mtake(d){const m=HL.med.list[+d.i],td=dkey(),l=HL.med.log[td]||(HL.med.log[td]={}),got=l[m.id]||0,j=+d.j;l[m.id]=j<got?j:j+1;await hmedSave();renderHl()},
+  async mdel(d){if(!await ask(bi('Удалить лекарство?','Delete this medication?')))return;HL.med.list.splice(+d.i,1);await hmedSave();renderHl()},
+  async oadd(){const n=(HL.f.on||'').trim().slice(0,30);if(!n||HL.cfg.om.length>=8)return;const id=Date.now().toString(36);HL.cfg.om.push({id,n,u:(HL.f.ou||'').trim().slice(0,12)});await hcfg();HL.f={om:id};renderHl()},
+  async osave(d){const v=num(HL.f.ov);if(v==null)return;HL.d.oth.push([nowS(),d.m,v]);await hsave('oth');HL.f={om:d.m};renderHl()},
+  async odelm(d){if(!await ask(bi('Удалить метрику и её значения?','Delete this metric and its values?')))return;HL.cfg.om=HL.cfg.om.filter(m=>m.id!==d.m);HL.d.oth=HL.d.oth.filter(e=>e[1]!==d.m);await hcfg();await hsave('oth');HL.f={};renderHl()},
+  ack(){HL.ack=true;st.set('h_ack','1');renderHl()},ai(d){hAI('category',d.c)},ovai(){hAI('overview',null)}};
+$('hl').addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(el)ha[el.dataset.a]?.(el.dataset,el)});
+$('hl').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)HL.f[d.f]=e.target.value});
 
 /* ================= ПОГОДА ================= */
 const WE={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌦',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
@@ -1077,10 +1294,10 @@ function renderGoals(){
 /* ================= СТАРТ ================= */
 async function init(){
   {const w0=await jget('wardrobe',[]);wardrobe=Array.isArray(w0)?w0:Object.values(w0).filter(v=>typeof v==='string');}renderWardrobe();
-  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();loadNx();api('/hello',{}).catch(()=>{});
+  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();loadNx();loadHl();api('/hello',{}).catch(()=>{});
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 }
-function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();if(lastWeather)render(lastWeather.d,lastWeather.name)}
+function setLang(l){lang=l;st.set('lang',l);applyStatic();renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();renderHl();if(lastWeather)render(lastWeather.d,lastWeather.name)}
 (async()=>{
   $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${i*.08}s">${c}</span>`).join('');
   const q0=new URLSearchParams(location.search).get('lang'),qp=(q0==='ru'||q0==='en')?q0:null,sv=await st.get('lang'),seen=await st.get('blang'),th=await st.get('theme');
