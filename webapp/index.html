@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="ru"><head><meta charset="utf-8">
+﻿<!doctype html>
+<html lang="ru"><head><meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>nuvio</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -414,6 +414,24 @@ html[data-theme=dark] .sec input,html[data-theme=dark] input,html[data-theme=dar
     font-size: clamp(21px, 6vw, 28px) !important;
     padding: 0 !important;
   }
+}
+</style>
+<style id="nuvio-weather-panel-redesign">
+.hero{min-height:clamp(238px,66vw,286px)!important;margin:13px 0 10px!important;padding:19px 18px 58px!important;border-radius:26px!important;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(239,246,255,.92) 55%,rgba(224,239,255,.94))!important;border:1px solid rgba(255,255,255,.92)!important;box-shadow:0 13px 30px rgba(36,67,110,.12),inset 0 1px 0 rgba(255,255,255,.95)!important;color:#151a23!important}
+.hero::before{content:""!important;position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;background:radial-gradient(circle at 92% 8%,rgba(112,170,255,.16),transparent 38%),linear-gradient(115deg,rgba(255,255,255,.24),rgba(255,255,255,.02))!important}
+.hero .city{color:#343d4b!important;font-weight:600!important;font-size:13px!important;letter-spacing:.01em!important}
+.hero .verdict{color:#111827!important;text-shadow:none!important;font-weight:800!important;letter-spacing:-.045em!important}
+.hero .wi{color:#202b3b!important;filter:drop-shadow(0 2px 5px rgba(20,40,70,.12))}
+.hero .globe{background:rgba(255,255,255,.84)!important;color:#26364c!important;border:1px solid rgba(120,145,180,.22)!important;box-shadow:0 5px 16px rgba(31,55,90,.12)!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important}
+@media(max-width:600px){.hero{min-height:230px!important;padding:17px 16px 54px!important;margin:11px 0 9px!important;border-radius:23px!important}.hero .city{font-size:12px!important}.hero .verdict{font-size:clamp(21px,5.8vw,26px)!important}}
+@media(prefers-reduced-motion:reduce){.hero,.hero .globe{transition:none!important}}
+</style>
+<style id="nuvio-weather-image-fit">
+@media(max-width:600px){
+ .hero{height:230px!important;min-height:0!important;box-sizing:border-box!important;padding:17px 16px 52px!important;overflow:hidden!important}
+ .hero .weather-bg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain!important;object-position:center center!important;transform:none!important}
+ .hero .city{position:relative!important;z-index:3!important}
+ .hero .verdict{position:relative!important;z-index:3!important;white-space:normal!important;max-width:82%!important}
 }
 </style>
 </head><body>
