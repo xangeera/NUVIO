@@ -434,6 +434,95 @@ html[data-theme=dark] .sec input,html[data-theme=dark] input,html[data-theme=dar
  .hero .verdict{position:relative!important;z-index:3!important;white-space:normal!important;max-width:82%!important}
 }
 </style>
+<style id="nuvio-mobile-weather-hero-polish">
+/* Mobile weather card: fill the card with the artwork and keep every line on one axis. */
+@media(max-width:600px){
+  .hero{
+    min-height:232px!important;
+    height:auto!important;
+    padding:20px 18px 22px!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    gap:0!important;
+  }
+  .hero .weather-bg{
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    object-position:center 56%!important;
+    background:transparent!important;
+  }
+  .hero::before{
+    background:
+      linear-gradient(90deg,rgba(5,12,28,.66) 0%,rgba(5,12,28,.38) 62%,rgba(5,12,28,.14) 100%),
+      linear-gradient(180deg,rgba(5,12,28,.22) 0%,rgba(5,12,28,.04) 48%,rgba(5,12,28,.28) 100%)!important;
+  }
+  .hero .city{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    color:#fff!important;
+    text-align:left!important;
+    font-size:13px!important;
+    line-height:1.4!important;
+    font-weight:600!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    text-shadow:0 1px 7px rgba(0,0,0,.58)!important;
+  }
+  .hero .verdict{
+    display:block!important;
+    align-self:flex-start!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:12px 0 0!important;
+    padding:0!important;
+    color:#fff!important;
+    text-align:left!important;
+    font-size:clamp(25px,7vw,30px)!important;
+    line-height:1.12!important;
+    font-weight:800!important;
+    letter-spacing:-.035em!important;
+    white-space:normal!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    hyphens:none!important;
+    text-wrap:balance;
+    text-shadow:0 2px 12px rgba(0,0,0,.55)!important;
+  }
+}
+</style>
+
+<style id="nuvio-mobile-weather-layout-v2">
+.hero .hero-date,.hero .hero-location,.hero .hero-title{display:none}
+@media(max-width:600px){
+  #w #app{display:flex;flex-direction:column;}
+  #w .hero{
+    order:0;position:relative!important;isolation:isolate!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+    width:100%;height:clamp(218px,64vw,258px)!important;min-height:0!important;margin:10px 0 13px!important;padding:19px 18px 20px!important;
+    overflow:hidden!important;border-radius:25px!important;border:1px solid rgba(255,255,255,.22)!important;
+    background:#18233c!important;box-shadow:0 13px 32px rgba(15,28,55,.18)!important;
+  }
+  #w .hero .weather-bg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;transform:none!important;object-fit:cover!important;object-position:center 54%!important;z-index:-2!important}
+  #w .hero::before{content:""!important;position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;
+    background:linear-gradient(90deg,rgba(5,12,27,.62),rgba(5,12,27,.22) 72%,rgba(5,12,27,.08)),linear-gradient(180deg,rgba(5,12,27,.16),transparent 48%,rgba(5,12,27,.24))!important}
+  #w .hero .city,#w .hero .verdict{display:none!important}
+  #w .hero .hero-date{display:block!important;position:relative!important;z-index:2!important;color:rgba(255,255,255,.96)!important;font-size:14px!important;font-weight:650!important;line-height:1.3!important;letter-spacing:.01em!important;text-shadow:0 1px 8px rgba(0,0,0,.35)!important}
+  #w .hero .hero-location{display:block!important;position:relative!important;z-index:2!important;margin:4px 0 0!important;color:rgba(255,255,255,.8)!important;font-size:12px!important;font-weight:550!important;line-height:1.35!important;text-shadow:0 1px 8px rgba(0,0,0,.4)!important}
+  #w .hero .hero-title{display:block!important;position:relative!important;z-index:2!important;width:auto!important;max-width:88%!important;margin:15px 0 0!important;padding:0!important;color:#fff!important;font-size:clamp(27px,7.2vw,34px)!important;line-height:1.04!important;font-weight:800!important;letter-spacing:-.045em!important;white-space:normal!important;text-shadow:0 2px 14px rgba(0,0,0,.42)!important}
+  #w .out{order:1;margin:0 0 15px!important;padding:19px!important;border-radius:23px!important;background:var(--nv-panel)!important;border:1px solid var(--nv-line)!important;box-shadow:var(--nv-shadow)!important}
+  #w .out-heading{margin:0 0 13px!important;color:var(--nv-text)!important;font-size:16px!important;line-height:1.25!important;font-weight:720!important;letter-spacing:-.025em!important}
+  #w #outfit{min-height:32px;color:var(--nv-text)!important}
+  #w #outfit .items{gap:8px!important}
+  #w #outfit .items span{padding:9px 13px!important;border-radius:15px!important;background:var(--nv-panel-2)!important;border:1px solid var(--nv-line)!important;font-size:13px!important;font-weight:650!important;line-height:1.3!important}
+  #w #outfit .meta{font-size:13px!important;line-height:1.45!important;color:var(--nv-secondary)!important}
+  #w .now{order:2;margin:3px 2px 12px!important}
+  #w #app>h2,#w #app>.hours,#w #app>.d{order:3}
+}
+@media(prefers-reduced-motion:reduce){#w .hero{scroll-behavior:auto!important}}
+</style>
 </head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
 <header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button></nav>
@@ -464,7 +553,7 @@ const jget=async(k,d)=>{try{return JSON.parse(await st.get(k))??d}catch{return d
 
 /* ---- языки ---- */
 const L={ru:{tw:'Погода',tg:'Цели',city:'Город',find:'Найти',loadw:'Загружаю погоду…',errw:'Не удалось загрузить погоду. Проверьте соединение и попробуйте ещё раз.',nocity:'Город не найден. Проверьте название.',errs:'Поиск не сработал. Попробуйте ещё раз.',near:'Рядом с вами',map:'Карта погоды',tp:'Профиль',psub:'Подписка',pdev:'В разработке',pexp:'Истекает через',pdays:'дн.',prenew:'Продлить',psoon:'Подписка скоро появится.',plang:'Язык',ptheme:'Тема',plight:'Светлая',pdark:'Тёмная',pchan:'Телеграм канал',pcopied:'Скопировано',pcopy:'Скопировать ID',
- wtw:'{0} • {1} • Что надеть',v1:'Одевайтесь максимально тепло',v2:'Зимняя куртка и шапка',v3:'Тёплая куртка',v4:'Лёгкая куртка',v5:'Кофта или худи',v6:'Футболка и лёгкие брюки',v7:'Самое лёгкое, что есть',
+ wtw:'{0} • {1} • Что надеть',wearTitle:'Что надеть',v1:'Одевайтесь максимально тепло',v2:'Зимняя куртка и шапка',v3:'Тёплая куртка',v4:'Лёгкая куртка',v5:'Кофта или худи',v6:'Футболка и лёгкие брюки',v7:'Самое лёгкое, что есть',
  outt:'Совет ИИ из вашего гардероба',outl:'ИИ подбирает образ…',gen:'Показан общий совет.',feels:'ощущается как {0}°, ветер {1} км/ч',h12:'Ближайшие 12 часов',wk:'Неделя',today:'Сегодня',pr:'осадки {0}%',
  wt:'Мой гардероб',wi:'Впишите, что у вас есть: можно по одной вещи или списком через запятую. ИИ соберёт образ из ваших вещей. Всё хранится в вашем аккаунте Телеграма.',wph:'Что у вас есть из одежды и обуви',add:'Добавить',wempty:'Пока пусто. Добавьте вещи, и ИИ будет собирать образ из них.',del:'Удалить',
  e0:'ИИ не подключён.',e1:'Нет связи с сервером ИИ.',e2:'Слишком много запросов, попробуйте позже.',e3:'Откройте приложение через бота в Телеграме.',e4:'ИИ сейчас не ответил.',
@@ -477,7 +566,7 @@ const L={ru:{tw:'Погода',tg:'Цели',city:'Город',find:'Найти'
  done:'Выполнено: {0}',mark:'Отметка прогресса: {0} {1}',note:'Запись: {0}',steps:'Шаги от ИИ',busy:'ИИ подбирает шаги под вашу цель…',retry:'Повторить',nosteps:'Шагов пока нет.',getsteps:'Получить шаги от ИИ',ok:'Готово',alldone:'Все шаги выполнены. Получить новые',upd:'Обновить шаги по моему прогрессу',
  logt:'Запись о прогрессе',logph:'Что вы сделали (необязательно)',valph:'Число (необязательно)',rec:'Записать',delg:'Удалить цель',delq:'Удалить цель?'},
 en:{tw:'Weather',tg:'Goals',city:'City',find:'Search',loadw:'Loading weather…',errw:'Couldn’t load the weather. Check your connection and try again.',nocity:'City not found. Check the name.',errs:'Search failed. Try again.',near:'Near you',map:'Weather map',tp:'Profile',psub:'Subscription',pdev:'In development',pexp:'Expires in',pdays:'days',prenew:'Renew',psoon:'Subscriptions are coming soon.',plang:'Language',ptheme:'Theme',plight:'Light',pdark:'Dark',pchan:'Telegram channel',pcopied:'Copied',pcopy:'Copy ID',
- wtw:'{0} • {1} • What to wear',v1:'Bundle up as warm as you can',v2:'Winter coat and a hat',v3:'A warm jacket',v4:'A light jacket',v5:'A sweater or hoodie',v6:'T-shirt and light pants',v7:'The lightest you’ve got',
+ wtw:'{0} • {1} • What to wear',wearTitle:'What to wear',v1:'Bundle up as warm as you can',v2:'Winter coat and a hat',v3:'A warm jacket',v4:'A light jacket',v5:'A sweater or hoodie',v6:'T-shirt and light pants',v7:'The lightest you’ve got',
  outt:'AI outfit from your wardrobe',outl:'AI is styling your look…',gen:'Showing general advice.',feels:'feels like {0}°, wind {1} km/h',h12:'Next 12 hours',wk:'Week',today:'Today',pr:'precip. {0}%',
  wt:'My wardrobe',wi:'Add what you own, one item at a time or a comma-separated list. AI will build outfits from your things. Everything is stored in your Telegram account.',wph:'Clothes and shoes you own',add:'Add',wempty:'Nothing yet. Add your clothes and AI will style outfits from them.',del:'Remove',
  e0:'AI is not connected.',e1:'Can’t reach the AI server.',e2:'Too many requests, try again later.',e3:'Open the app through the bot in Telegram.',e4:'AI didn’t respond.',
@@ -1505,8 +1594,8 @@ function render(d,name){
   const n=d.hourly.time.findIndex(x=>x>=c.time),sh=Math.round(215-Math.max(0,Math.min(1,(f+5)/29))*80),date=new Date().toLocaleDateString(loc(),{day:'numeric',month:'long'}),sunny=!night&&(c.weather_code<=1||(c.weather_code===2&&f>=15));
   const hours=d.hourly.time.slice(n,n+12).map((tm,i)=>`<div class="h">${tm.slice(11,16)}<i>${w(d.hourly.weather_code[n+i],isNight(+tm.slice(11,13)))[0]}</i><b>${Math.round(d.hourly.temperature_2m[n+i])}°</b></div>`).join('');
   const days=dl.time.map((x,i)=>`<div class="d"><span>${i?wdn(x+'T12:00:00')+', '+x.slice(8):t('today')}</span><span>${w(dl.weather_code[i])[0]}</span><small>${t('pr',dl.precipitation_probability_max[i]??0)}</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join('');
-  $('app').innerHTML=`<section class="hero" style="--sh:${sh}"><img class="weather-bg" src="${art}" alt="" aria-hidden="true"><div class="city">${t('wtw',date,esc(name||t('near')))}</div><div class="verdict">${t('v'+head)}</div></section>
-  <div class="out"><div class="meta" style="margin-bottom:10px">${t('outt')}</div><div id="outfit"></div></div>
+  $('app').innerHTML=`<section class="hero" style="--sh:${sh}"><img class="weather-bg" src="${art}" alt="" aria-hidden="true"><div class="city">${t('wtw',date,esc(name||t('near')))}</div><div class="verdict">${t('v'+head)}</div><div class="hero-date">${date}</div><div class="hero-location">${esc(name||t('near'))}</div><div class="hero-title">${t('wearTitle')}</div></section>
+  <div class="out"><div class="out-heading">${t('outt')}</div><div id="outfit"></div></div>
   <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span><span class="meta">${w(c.weather_code,night)[0]} ${w(c.weather_code,night)[1]}<br>${t('feels',Math.round(f),Math.round(c.wind_speed_10m))}</span></div>
   <h2>${t('h12')}</h2><div class="hours">${hours}</div><h2>${t('wk')}</h2>${days}`;
   outfit();
