@@ -394,6 +394,28 @@ html[data-theme=dark] .sec input,html[data-theme=dark] input,html[data-theme=dar
 @media(max-width:420px){.hero{min-height:280px!important;padding:20px 18px 0!important}.hero .weather-bg{object-fit:contain!important;object-position:center center!important}.hero .verdict{max-width:72%;font-size:27px}.wl>span{min-height:40px}}
 @media(prefers-reduced-motion:reduce){.wl>span>button:active{transform:none!important}}
 </style>
+<style id="nuvio-mobile-image-heading-fix">
+@media (max-width: 600px) {
+  .hero .weather-bg {
+    inset: 0 auto auto 50% !important;
+    width: 78% !important;
+    height: 100% !important;
+    transform: translateX(-50%) !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+  .hero .verdict {
+    display: block !important;
+    width: max-content !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    font-size: clamp(21px, 6vw, 28px) !important;
+    padding: 0 !important;
+  }
+}
+</style>
 </head><body>
 <div id="splash"><div class="mark" id="mark" aria-label="nuvio"></div><div id="langs"></div></div>
 <header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button></nav>
