@@ -505,7 +505,7 @@ html[data-theme=dark] .sec input,html[data-theme=dark] input,html[data-theme=dar
     overflow:hidden!important;border-radius:25px!important;border:1px solid rgba(255,255,255,.22)!important;
     background:#18233c!important;box-shadow:0 13px 32px rgba(15,28,55,.18)!important;
   }
-  #w .hero .weather-bg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;transform:none!important;object-fit:cover!important;object-position:center 54%!important;z-index:-2!important}
+  #w .hero .weather-bg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;transform:none!important;object-fit:cover!important;object-position:56% 54%!important;z-index:-2!important}
   #w .hero::before{content:""!important;position:absolute!important;inset:0!important;z-index:-1!important;pointer-events:none!important;
     background:linear-gradient(90deg,rgba(5,12,27,.62),rgba(5,12,27,.22) 72%,rgba(5,12,27,.08)),linear-gradient(180deg,rgba(5,12,27,.16),transparent 48%,rgba(5,12,27,.24))!important}
   #w .hero .city,#w .hero .verdict{display:none!important}
@@ -1594,7 +1594,7 @@ function render(d,name){
   const n=d.hourly.time.findIndex(x=>x>=c.time),sh=Math.round(215-Math.max(0,Math.min(1,(f+5)/29))*80),date=new Date().toLocaleDateString(loc(),{day:'numeric',month:'long'}),sunny=!night&&(c.weather_code<=1||(c.weather_code===2&&f>=15));
   const hours=d.hourly.time.slice(n,n+12).map((tm,i)=>`<div class="h">${tm.slice(11,16)}<i>${w(d.hourly.weather_code[n+i],isNight(+tm.slice(11,13)))[0]}</i><b>${Math.round(d.hourly.temperature_2m[n+i])}°</b></div>`).join('');
   const days=dl.time.map((x,i)=>`<div class="d"><span>${i?wdn(x+'T12:00:00')+', '+x.slice(8):t('today')}</span><span>${w(dl.weather_code[i])[0]}</span><small>${t('pr',dl.precipitation_probability_max[i]??0)}</small><b>${Math.round(dl.temperature_2m_min[i])}° / ${Math.round(dl.temperature_2m_max[i])}°</b></div>`).join('');
-  $('app').innerHTML=`<section class="hero" style="--sh:${sh}"><img class="weather-bg" src="${art}" alt="" aria-hidden="true"><div class="city">${t('wtw',date,esc(name||t('near')))}</div><div class="verdict">${t('v'+head)}</div><div class="hero-date">${date}</div><div class="hero-location">${esc(name||t('near'))}</div><div class="hero-title">${t('wearTitle')}</div></section>
+  $('app').innerHTML=`<section class="hero" style="--sh:${sh}"><img class="weather-bg" src="${art}" alt="" aria-hidden="true"><div class="city">${t('wtw',date,esc(name||t('near')))}</div><div class="verdict">${t('v'+head)}</div><div class="hero-date">${date}</div><div class="hero-location">${esc(name||t('near'))}</div><div class="hero-title">${t('v'+head)}</div></section>
   <div class="out"><div class="out-heading">${t('outt')}</div><div id="outfit"></div></div>
   <div class="now"><span class="temp">${Math.round(c.temperature_2m)}°</span><span class="meta">${w(c.weather_code,night)[0]} ${w(c.weather_code,night)[1]}<br>${t('feels',Math.round(f),Math.round(c.wind_speed_10m))}</span></div>
   <h2>${t('h12')}</h2><div class="hours">${hours}</div><h2>${t('wk')}</h2>${days}`;
