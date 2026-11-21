@@ -901,6 +901,201 @@ html body #w .hero .hero-location{display:block!important;position:absolute!impo
 html body #w .hero .hero-title{display:block!important;position:absolute!important;z-index:2!important;left:18px!important;top:40px!important;margin:0!important;padding:0!important;width:auto!important;max-width:64%!important;font-size:clamp(23px,7vw,32px)!important;line-height:1.05!important;font-weight:800!important;letter-spacing:-.04em!important;color:#fff!important;text-shadow:0 2px 14px rgba(0,0,0,.5)!important;white-space:normal!important;overflow-wrap:break-word!important}
 @media(min-width:601px){html body #w .hero .hero-location{left:24px!important;top:22px!important;font-size:14px!important}html body #w .hero .hero-title{left:24px!important;top:48px!important;max-width:58%!important}}
 </style>
+<style id="nuvio-goals-v2">
+/* Goals v2: arc gauge, plan chart, entry feed, day grid with reports. */
+#g{--gx-a:#2f6bf0;--gx-b:#0f9e8c;--gx-good:#11845f;--gx-bad:#c2492e;--gx-warn:#a86b00;--gx-card:var(--nv-panel);--gx-sunk:var(--nv-panel-2);--gx-line:var(--nv-line);--gx-dim:var(--nv-secondary);--gx-track:rgba(60,60,67,.13);--gx-btn:#2c5fd4;--gx-shadow:var(--nv-shadow);--gx-knob:#fff;--gx-knob-edge:var(--gx-a);--gx-glow:rgba(47,107,240,.45)}
+html[data-theme=dark] #g{--gx-a:#5b8cff;--gx-b:#5ad5c3;--gx-good:#62d6a4;--gx-bad:#ff9479;--gx-warn:#f2c14e;--gx-track:rgba(225,232,255,.17);--gx-btn:#3762d6;--gx-shadow:0 16px 36px rgba(0,0,0,.26);--gx-knob:#f4f8ff;--gx-knob-edge:transparent;--gx-glow:rgba(235,243,255,.9)}
+html[data-theme=dark]:not([data-palette]) #g{--gx-card:linear-gradient(180deg,#1d293b 0%,#182233 100%);--gx-sunk:#1b2638;--gx-line:rgba(168,192,235,.15);--gx-dim:#9eabc2}
+#g ::selection{background:color-mix(in srgb,var(--gx-a) 34%,transparent)}
+#g input{caret-color:var(--gx-a)}
+#g .gx-card{position:relative;margin-top:14px;padding:22px 20px 20px;border:1px solid var(--gx-line);border-radius:28px;background:var(--gx-card);box-shadow:var(--gx-shadow);color:var(--nv-text)}
+#g .gx-title{margin:0;font-size:30px;line-height:1.1;font-weight:760;letter-spacing:-.035em;text-wrap:balance;overflow-wrap:anywhere;color:var(--nv-text)}
+#g h3{margin:24px 0 10px;font-size:18px;line-height:1.25;font-weight:700;letter-spacing:-.02em;color:var(--nv-text)}
+#g .gx-mut{margin:0;color:var(--gx-dim);font-size:14.5px;line-height:1.45}
+#g .gx-good{color:var(--gx-good);font-weight:600;margin-top:12px}
+#g .gx-err{color:var(--gx-bad);margin-bottom:12px}
+/* back */
+#g .gx-back{display:inline-flex;align-items:center;gap:2px;min-height:40px;margin:2px 0 0 -8px;padding:0 12px 0 4px!important;border:0!important;border-radius:14px!important;background:transparent!important;box-shadow:none!important;color:var(--gx-a)!important;font-size:16px;font-weight:650}
+#g .gx-back svg{width:22px;height:22px}
+/* hero */
+#g .gx-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,166px) minmax(0,1fr);align-items:start;margin-top:10px}
+#g .gx-d{display:flex;flex-direction:column;gap:3px;padding-top:2px;font-variant-numeric:tabular-nums}
+#g .gx-d small{font-size:15px;line-height:1.2;color:var(--gx-dim)}
+#g .gx-d b{font-size:17px;line-height:1.2;font-weight:700;white-space:nowrap}
+#g .gx-d.r{text-align:right;align-items:flex-end}
+#g .gx-gauge{display:block;width:100%;height:auto;overflow:visible}
+#g .gx-trk{fill:none;stroke:var(--gx-track);stroke-width:9;stroke-linecap:round}
+#g .gx-arc{fill:none;stroke-width:9;stroke-linecap:round}
+#g .gx-glow{fill:var(--gx-glow);opacity:.7}
+#g .gx-knob{fill:var(--gx-knob);stroke:var(--gx-knob-edge);stroke-width:3}
+#g .gx-pct{fill:currentColor;font-size:35px;font-weight:700;letter-spacing:-.03em;text-anchor:middle;font-variant-numeric:tabular-nums}
+#g .gx-psub{fill:var(--gx-dim);font-size:12px;font-weight:600;text-anchor:middle}
+#g .gx-dev{display:flex;align-items:center;justify-content:center;gap:8px;margin:0;font-size:15px;line-height:1.35;font-weight:600;text-align:center;color:var(--nv-text)}
+#g .gx-dev i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--gx-dim)}
+#g .gx-dev.ahead i,#g .gx-dev.on i{background:var(--gx-good)}
+#g .gx-dev.behind i{background:var(--gx-bad)}
+#g .gx-chart{display:block;width:calc(100% + 16px);height:auto;margin:8px -8px 0;overflow:visible}
+#g .gx-ideal{stroke:var(--gx-dim);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:0 7.5;opacity:.75}
+#g .gx-line{fill:none;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}
+#g .gx-guide{stroke:var(--gx-a);stroke-opacity:.38;stroke-width:1.4}
+#g .gx-todayl{stroke:var(--gx-dim);stroke-opacity:.45;stroke-width:1.2;stroke-dasharray:2 4}
+#g .gx-ax{fill:var(--gx-dim);font-size:11px;text-anchor:middle}
+#g .gx-pt{fill:var(--gx-a);stroke:#dbe6ff;stroke-width:3}
+#g .gx-ptg{fill:var(--gx-a);opacity:.75}
+#g .gx-end{fill:var(--gx-b)}
+#g .gx-endg{fill:var(--gx-b);opacity:.6}
+#g .gx-val{fill:currentColor;font-size:15px;font-weight:700;text-anchor:middle;font-variant-numeric:tabular-nums}
+#g .gx-lbl{fill:var(--gx-dim);font-size:12.5px;font-weight:500}
+#g .gx-lbl.b{fill:currentColor;font-size:14.5px;font-weight:700;font-variant-numeric:tabular-nums}
+#g .gx-tl{margin:6px 0 0;font-size:14px;line-height:1.4;text-align:center;color:var(--gx-dim)}
+/* log form */
+#g .gx-log{display:grid;gap:10px}
+#g .gx-log h3{margin:26px 0 2px;font-size:17px;color:var(--gx-dim)}
+#g input{width:100%;min-width:0;min-height:56px!important;padding:15px 18px!important;border:1px solid var(--gx-line)!important;border-radius:18px!important;background:var(--gx-sunk)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:17px!important;line-height:1.3;text-overflow:ellipsis}
+#g input::placeholder{color:var(--gx-dim);opacity:1}
+#g input:focus{border-color:var(--gx-a)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--gx-a) 22%,transparent)!important;outline:none}
+#g input[type=date]{padding:14px 12px!important;font-size:16px!important}
+#g .gx-lact{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:2px}
+#g .gx-hint{min-width:0;font-size:13.5px;line-height:1.35;color:var(--gx-dim);font-variant-numeric:tabular-nums}
+#g .gx-hint.bad{color:var(--gx-bad)}
+#g .gx-hint .up{color:var(--gx-good)}#g .gx-hint .dn{color:var(--gx-bad)}
+#g button.p{flex:none;min-height:54px;padding:0 30px!important;border:0!important;border-radius:20px!important;background:var(--gx-btn)!important;color:#fff!important;font-size:17px;font-weight:700;box-shadow:0 10px 22px color-mix(in srgb,var(--gx-btn) 32%,transparent)!important}
+#g button.p:disabled{opacity:.5}
+#g .gx-cta{width:100%;margin-top:12px}
+/* feed */
+#g .gx-feed{display:flex;gap:8px;margin:0 -20px;padding:2px 20px 4px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain}
+#g .gx-feed::-webkit-scrollbar{display:none}
+#g .gx-chip{flex:none;display:flex;align-items:baseline;gap:7px;min-height:48px;padding:12px 16px!important;border:1px solid var(--gx-line)!important;border-radius:18px!important;background:transparent!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:15.5px;white-space:nowrap;scroll-snap-align:start;font-variant-numeric:tabular-nums}
+#g .gx-chip span{color:var(--nv-text);font-weight:500}
+#g .gx-chip span:after{content:"·";margin-left:7px;color:var(--gx-dim)}
+#g .gx-chip b{font-weight:600}
+#g .gx-chip em{font-style:normal;font-size:13px;font-weight:650}
+#g .up{color:var(--gx-good)}#g .dn{color:var(--gx-bad)}
+/* today */
+#g .gx-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+#g .gx-h h3,#g .gx-h3{margin:0;font-size:24px;font-weight:740;letter-spacing:-.03em}
+#g .gx-h3{margin-bottom:14px}
+#g .gx-link{min-height:36px;padding:4px 0!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--gx-a)!important;font-size:15px;font-weight:650}
+#g .gx-c{justify-self:center}
+#g .gx-todo{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+#g .gx-ti{display:flex;align-items:flex-start;gap:12px;width:100%;min-height:52px;padding:14px!important;border:1px solid var(--gx-line)!important;border-radius:18px!important;background:var(--gx-sunk)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:15.5px;line-height:1.4;font-weight:500;text-align:left}
+#g .gx-ck{flex:none;display:grid;place-items:center;width:24px;height:24px;border:2px solid var(--gx-dim);border-radius:8px;color:transparent;transition:background-color .2s,border-color .2s}
+#g .gx-ck svg{width:16px;height:16px}
+#g .gx-ti.d{color:var(--gx-dim)!important}
+#g .gx-ti.d .gx-ck{border-color:var(--gx-a);background:var(--gx-a);color:#fff}
+#g .gx-ti.d span:last-child{text-decoration:line-through;text-decoration-thickness:1px}
+#g .gx-btn2{min-height:50px;padding:0 18px!important;border:1px solid var(--gx-line)!important;border-radius:16px!important;background:var(--gx-sunk)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:16px;font-weight:650}
+#g .gx-btn2.gx-sm{min-height:42px;margin-top:10px;font-size:15px}
+#g .gx-skel{display:grid;gap:8px;margin-bottom:10px}
+#g .gx-skel i{display:block;height:52px;border-radius:18px;background:linear-gradient(100deg,var(--gx-sunk) 30%,color-mix(in srgb,var(--gx-a) 12%,var(--gx-sunk)) 50%,var(--gx-sunk) 70%);background-size:300% 100%;animation:gxsh 1.4s linear infinite}
+@keyframes gxsh{from{background-position:100% 0}to{background-position:0 0}}
+#g .gx-ctx{margin-top:16px;border-top:1px solid var(--gx-line)}
+#g .gx-row{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:12px 0!important;border:0!important;border-bottom:1px solid var(--gx-line)!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--nv-text)!important;text-align:left}
+#g .gx-row:last-child{border-bottom:0!important;padding-bottom:0!important}
+#g .gx-ic{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:color-mix(in srgb,var(--gx-a) 16%,transparent);color:var(--gx-a)}
+#g .gx-ic.f{background:color-mix(in srgb,var(--gx-b) 16%,transparent);color:var(--gx-b)}
+#g .gx-ic svg{width:22px;height:22px}
+#g .gx-rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#g .gx-rt b{font-size:15.5px;font-weight:650}
+#g .gx-rt small{font-size:13.5px;color:var(--gx-dim)}
+#g .gx-bar{display:block;height:5px;margin-top:6px;border-radius:3px;background:var(--gx-track);overflow:hidden}
+#g .gx-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gx-a),var(--gx-b))}
+#g .gx-chev{flex:none;width:18px;height:18px;color:var(--gx-dim)}
+/* days */
+#g .gx-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+#g .gx-day{display:grid;place-items:center;aspect-ratio:1;min-width:0!important;min-height:0!important;height:auto!important;padding:0!important;border:1.5px solid var(--gx-line)!important;border-radius:14px!important;background:transparent!important;box-shadow:none!important;color:var(--gx-dim)!important;font-size:14px;font-weight:650;font-variant-numeric:tabular-nums;transition:transform .15s,background-color .2s,border-color .2s}
+#g .gx-day.ok{border-color:transparent!important;background:var(--gx-a)!important;color:var(--gx-a)!important}
+#g .gx-day.ok svg{width:24px;height:24px;padding:4px;border-radius:50%;background:rgba(255,255,255,.9)}
+#g .gx-day.part{border-color:color-mix(in srgb,var(--gx-b) 60%,transparent)!important;background:color-mix(in srgb,var(--gx-b) 13%,transparent)!important;color:var(--nv-text)!important}
+#g .gx-day.miss{border-color:color-mix(in srgb,var(--gx-bad) 30%,transparent)!important;background:var(--gx-sunk)!important}
+#g .gx-day.now{color:var(--nv-text)!important}
+#g .gx-day.pre,#g .gx-day.fut{opacity:.5}
+#g .gx-day.td{outline:2.5px solid var(--gx-a);outline-offset:2.5px}
+#g .gx-day.sel{border-color:var(--nv-text)!important;border-width:2px!important;color:var(--nv-text)!important;opacity:1}
+#g .gx-day.ok.sel{box-shadow:inset 0 0 0 2px var(--nv-text)!important;color:var(--gx-a)!important}
+#g .gx-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:13px;color:var(--gx-dim)}
+#g .gx-legend i{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:3px;vertical-align:-1px}
+#g .gx-legend .ok{background:var(--gx-a)}
+#g .gx-legend .part{background:color-mix(in srgb,var(--gx-b) 30%,transparent);box-shadow:inset 0 0 0 1.5px var(--gx-b)}
+#g .gx-legend .miss{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--gx-bad) 60%,transparent)}
+#g .gx-rep{margin-top:16px;border-top:1px solid var(--gx-line);scroll-margin-bottom:110px}
+#g .gx-repd{padding:14px 0 4px}
+#g .gx-repd+.gx-repd{border-top:1px solid var(--gx-line)}
+#g .gx-rh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}
+#g .gx-rh b{font-size:16px;font-weight:700}
+#g .gx-tag{padding:4px 10px;border-radius:999px;background:var(--gx-sunk);color:var(--gx-dim);font-size:12.5px;font-weight:650;white-space:nowrap}
+#g .gx-tag.ok{background:color-mix(in srgb,var(--gx-a) 18%,transparent);color:var(--gx-a)}
+#g .gx-tag.part{background:color-mix(in srgb,var(--gx-b) 16%,transparent);color:var(--gx-b)}
+#g .gx-tag.miss{background:color-mix(in srgb,var(--gx-bad) 15%,transparent);color:var(--gx-bad)}
+#g .gx-ri{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gx-line)}
+#g .gx-ri:last-of-type{border-bottom:0}
+#g .gx-rk{flex:none;width:96px;font-size:13.5px;color:var(--gx-dim)}
+#g .gx-rv{flex:1;min-width:0;font-size:15px;font-weight:600;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+#g .gx-rv small{display:block;margin-top:1px;font-size:13px;font-weight:500;color:var(--gx-dim)}
+#g .gx-x{flex:none;display:grid;place-items:center;width:38px;height:38px;padding:0!important;border:0!important;border-radius:12px!important;background:transparent!important;box-shadow:none!important;color:var(--gx-dim)!important}
+#g .gx-x svg{width:18px;height:18px}
+#g .gx-repd>.gx-mut{padding:6px 0 4px}
+#g .gx-del{margin-top:18px}
+/* finished banner + summary */
+#g .gx-banner{display:flex;align-items:center;gap:10px;width:100%;margin:-4px 0 16px;padding:12px 14px!important;border:1px solid color-mix(in srgb,var(--gx-good) 36%,transparent)!important;border-radius:18px!important;background:color-mix(in srgb,var(--gx-good) 13%,transparent)!important;box-shadow:none!important;color:var(--nv-text)!important;text-align:left}
+#g .gx-banner span{flex:1;font-weight:650}
+#g .gx-banner b{color:var(--gx-good);font-weight:700}
+#g .gx-sub{margin:6px 0 0;font-size:15px;color:var(--gx-dim)}
+#g .gx-sum .gx-gauge{max-width:230px;margin:10px auto 0}
+#g .gx-sum .gx-arc{animation:gxfill 1.2s cubic-bezier(.16,1,.3,1) .1s both}
+@keyframes gxfill{from{stroke-dasharray:0 100}}
+#g .gx-verdict{margin:0 auto;max-width:30ch;font-size:17px;line-height:1.4;font-weight:650;text-align:center;text-wrap:balance}
+#g .gx-dl{display:grid;margin:18px 0 0}
+#g .gx-dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--gx-line);font-size:15px}
+#g .gx-dl dt{color:var(--gx-dim)}
+#g .gx-dl dd{margin:0;font-weight:650;text-align:right;font-variant-numeric:tabular-nums}
+#g .gx-acts{display:grid;gap:10px;margin-top:22px}
+#g .gx-ext{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+/* list */
+#g .gx-lh{margin:14px 2px 12px;font-size:24px;font-weight:740;letter-spacing:-.03em}
+#g .gx-gc{display:flex;align-items:center;gap:14px;width:100%;margin-bottom:10px;padding:14px 16px!important;border:1px solid var(--gx-line)!important;border-radius:24px!important;background:var(--gx-card)!important;box-shadow:var(--gx-shadow)!important;color:var(--nv-text)!important;text-align:left}
+#g .gx-gc.closed{opacity:.7;box-shadow:none!important}
+#g .gx-mr{position:relative;flex:none;width:64px;height:58px}
+#g .gx-mr svg{width:100%;height:100%}
+#g .gx-mr .gx-trk,#g .gx-mr .gx-arc{stroke-width:6}
+#g .gx-mr b{position:absolute;inset:0;display:grid;place-items:center;padding-top:6px;font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums}
+#g .gx-gct{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#g .gx-gct b{font-size:17px;font-weight:700;overflow-wrap:anywhere}
+#g .gx-gct small{font-size:13.5px;color:var(--gx-dim)}
+#g .gx-st{font-weight:600;color:var(--gx-dim)}
+#g .gx-st.ahead,#g .gx-st.on{color:var(--gx-good)}
+#g .gx-st.behind{color:var(--gx-bad)}
+/* new goal */
+#g .gx-new label{display:block;margin:18px 0 7px;font-size:14px;font-weight:620;color:var(--gx-dim)}
+#g .gx-2,#g .gx-3{display:grid;gap:10px}
+#g .gx-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+#g .gx-3{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.8fr)}
+#g .gx-new>.gx-mut{margin-top:20px}
+#g .gx-pill{margin-top:12px;min-height:40px;padding:0 15px!important;border:0!important;border-radius:999px!important;background:color-mix(in srgb,var(--gx-a) 15%,transparent)!important;box-shadow:none!important;color:var(--gx-a)!important;font-size:14px;font-weight:650}
+#g .gx-real{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:13px 15px;border:1px solid var(--gx-line);border-radius:16px;background:var(--gx-sunk);font-size:14.5px;line-height:1.45}
+#g .gx-real:empty{display:none}
+#g .gx-real i{flex:none;width:9px;height:9px;margin-top:6px;border-radius:50%;background:var(--gx-dim)}
+#g .gx-real.ok i{background:var(--gx-good)}
+#g .gx-real.warn i{background:var(--gx-warn)}
+#g .gx-real.bad{border-color:color-mix(in srgb,var(--gx-bad) 45%,transparent)}
+#g .gx-real.bad i{background:var(--gx-bad)}
+#g .gx-real p{margin:0}
+#g .gx-real .gx-link{margin-top:2px}
+#g .gx-real.pulse{animation:gxpulse .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes gxpulse{30%{transform:translateX(-5px)}60%{transform:translateX(4px)}}
+#g button:focus-visible,#g input:focus-visible{outline:2.5px solid var(--gx-a);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){#g .gx-chip:hover,#g .gx-row:hover b,#g .gx-gc:hover b{color:var(--gx-a)!important}#g .gx-day:hover{transform:translateY(-1px)}}
+@media(max-width:370px){
+  #g .gx-card{padding:20px 16px 18px}
+  #g .gx-feed{margin:0 -16px;padding:2px 16px 4px}
+  #g .gx-head{grid-template-columns:minmax(0,1fr) minmax(0,138px) minmax(0,1fr)}
+  #g .gx-d small{font-size:13.5px}#g .gx-d b{font-size:15.5px}
+  #g .gx-days{gap:6px}#g .gx-day{border-radius:12px!important}
+  #g .gx-3{grid-template-columns:repeat(2,minmax(0,1fr))}#g .gx-3>div:last-child{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){#g .gx-sum .gx-arc,#g .gx-skel i,#g .gx-real.pulse{animation:none}#g .gx-day{transition:none}}
+
+</style>
 </head><body>
 <div id="splash"><div class="splash-aura" aria-hidden="true"><i></i><b></b><em></em></div><div class="splash-core"><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress"><i></i></div><div id="langs"></div></div></div>
 <header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button><button data-t="mo">Настроение</button></nav>
@@ -995,6 +1190,7 @@ function showTab(key){
   const selected=document.querySelector('.tabs button[data-t="'+key+'"]');
   document.querySelectorAll('.tabs button[data-t]').forEach(x=>x.classList.toggle('on',x===selected));
   if(selected)moveGlass(selected,false);
+  if(key==='g')gEnter();
   if(key==='nx')renderNx();
   if(key==='hl')renderHl();
   if(key==='pl')renderPlanner();if(key==='mo')renderMood();
@@ -2022,93 +2218,365 @@ const locate=()=>navigator.geolocation?.getCurrentPosition(p=>load(p.coords.lati
 $('f').onsubmit=e=>{e.preventDefault();const q=$('q').value.trim();if(q)search(q)};
 $('geo').onclick=locate;
 
-/* ================= ЦЕЛИ ================= */
-let goals=[],cur=null,adding=false,busy=false,aiErr='',selDay=null;
+/* ================= ЦЕЛИ (v2) ================= */
+Object.assign(L.ru,{
+ gx_all:'Все цели',gx_dayf:'день|дня|дней',gx_wof:'тренировка|тренировки|тренировок',
+ gx_dev_a:'Опережаете план на {0}',gx_dev_b:'Отстаёте от плана на {0}',gx_dev_on:'Идёте точно по плану',gx_dev_none:'Сделайте первую отметку, чтобы сравнить с планом',
+ gx_reg:'регулярность',gx_reg_v:'Прогресс был в {0} из {1}',
+ gx_left:'Осталось {0}',gx_lastday:'Сегодня последний день',gx_over:'Срок вышел',gx_eta:'при текущем темпе цель к {0}',gx_eta_late:'при текущем темпе цель к {0}, позже срока',gx_stall:'последние отметки не приближают к цели',
+ gx_plan:'план',gx_today:'сегодня',gx_chart:'График: старт {0}, сейчас {1}, цель {2}',
+ gx_log:'Запись о прогрессе',gx_valph:'Новое значение, {0}',gx_valph0:'Новое значение',gx_noteph:'Что сделали? Необязательно',gx_noteph2:'Что сделали сегодня?',gx_save:'Записать',
+ gx_hint:'{0} к прошлой отметке · план на сегодня {1}',gx_hint0:'План на сегодня {0}',gx_badnum:'Введите число, например 72,5',gx_jump:'Значение {0} сильно отличается от прошлого. Записать?',
+ gx_feed:'Лента записей',gx_feed0:'Здесь появятся ваши отметки.',
+ gx_todayh:'На сегодня',gx_more:'Другие шаги',gx_busy:'ИИ подбирает шаги на сегодня…',gx_get:'Получить шаги на сегодня',gx_alldone:'Всё на сегодня сделано. Так держать.',
+ gx_food:'Питание',gx_fit:'Фитнес',gx_food_v:'Сегодня {0} из {1} ккал',gx_food_v0:'Сегодня {0} ккал',gx_food_none:'Сегодня ещё ничего не записано',gx_fit_v:'{0} за 7 дней',gx_fit_last:'последняя {0}',gx_fit_none:'За неделю тренировок не было',
+ gx_leg_ok:'прогресс',gx_leg_part:'активность',gx_leg_miss:'пропуск',gx_wk:'клетка = неделя',
+ gx_tag_ok:'Прогресс',gx_tag_part:'Активность',gx_tag_miss:'Пропуск',gx_tag_pre:'До старта',gx_tag_now:'Сегодня',gx_tag_fut:'Впереди',
+ gx_r_mark:'Отметка',gx_r_note:'Заметка',gx_r_step:'Шаг',gx_r_food:'Питание',gx_r_wo:'Тренировка',gx_r_plan:'план {0}',gx_r_kcal:'{0} из {1} ккал',gx_r_kcal0:'{0} ккал',
+ gx_r_empty:'В этот день записей нет.',gx_r_now:'Сегодня записей пока нет.',gx_r_fut:'Этот день ещё впереди.',gx_r_pre:'Цель тогда ещё не была создана.',gx_r_add:'Записать прогресс',gx_r_del:'Удалить запись',gx_r_delq:'Удалить эту запись?',
+ gx_nums:'Если цель измеряется числом, заполните поля ниже. Тогда процент, отклонение от плана и прогноз посчитаются сами.',gx_fromfit:'Подставить вес из «Фитнеса»: {0} кг',
+ gx_real_ok:'Реалистичный темп: {0} в неделю.',gx_real_warn:'Амбициозно: {0} в неделю. Комфортный темп до {1} в неделю.',gx_real_bad:'Слишком быстро: {0} в неделю. Безопасный темп до {1} в неделю.',
+ gx_real_bmi:'Цель ниже здорового веса для вашего роста. Нижняя граница около {0}.',gx_real_dates:'Дата конца раньше даты начала.',gx_real_short:'Срок меньше недели. Убедитесь, что успеете.',gx_real_days:'На цель {0}.',gx_sug:'Поставить срок {0}',gx_anyway:'Всё равно создать',
+ gx_sum_ok:'Цель достигнута',gx_sum_end:'Срок цели вышел',gx_sum_open:'Итоги',gx_v_ok:'Вы дошли до цели за {0}.',gx_v_num:'Пройдено {0}% пути, до цели оставалось {1}.',gx_v_reg:'Прогресс был в {0}% дней.',
+ gx_s_res:'Результат',gx_s_reg:'Дней с прогрессом',gx_s_streak:'Лучшая серия',gx_s_entries:'Отметок',gx_s_steps:'Шагов выполнено',gx_s_wo:'Тренировок за период',gx_s_food:'Питание в среднем',gx_s_kcal:'{0} ккал в день',
+ gx_ext:'Продлить срок',gx_ext_save:'Сохранить',gx_next:'Новая цель с этого результата',gx_close:'Завершить цель',gx_details:'Подробности по дням',gx_done_list:'Завершённые',gx_b_ok:'Достигнута',gx_b_end:'Срок вышел',gx_steps_n:'Сегодня {0} из {1} шагов'
+});
+Object.assign(L.en,{
+ gx_all:'All goals',gx_dayf:'day|days',gx_wof:'workout|workouts',
+ gx_dev_a:'Ahead of plan by {0}',gx_dev_b:'Behind plan by {0}',gx_dev_on:'Right on plan',gx_dev_none:'Log your first value to compare with the plan',
+ gx_reg:'consistency',gx_reg_v:'Progress on {0} of {1}',
+ gx_left:'{0} left',gx_lastday:'Last day today',gx_over:'Deadline passed',gx_eta:'at this pace you’ll get there by {0}',gx_eta_late:'at this pace: {0}, after the deadline',gx_stall:'recent entries aren’t moving toward the goal',
+ gx_plan:'plan',gx_today:'today',gx_chart:'Chart: start {0}, now {1}, goal {2}',
+ gx_log:'Log progress',gx_valph:'New value, {0}',gx_valph0:'New value',gx_noteph:'What did you do? Optional',gx_noteph2:'What did you do today?',gx_save:'Save',
+ gx_hint:'{0} vs last entry · plan for today {1}',gx_hint0:'Plan for today {0}',gx_badnum:'Enter a number, e.g. 72.5',gx_jump:'{0} is very different from your last value. Save anyway?',
+ gx_feed:'Entries',gx_feed0:'Your entries will show up here.',
+ gx_todayh:'For today',gx_more:'Other steps',gx_busy:'AI is picking steps for today…',gx_get:'Get steps for today',gx_alldone:'All done for today. Keep it up.',
+ gx_food:'Nutrition',gx_fit:'Fitness',gx_food_v:'Today {0} of {1} kcal',gx_food_v0:'Today {0} kcal',gx_food_none:'Nothing logged today yet',gx_fit_v:'{0} in 7 days',gx_fit_last:'last on {0}',gx_fit_none:'No workouts this week',
+ gx_leg_ok:'progress',gx_leg_part:'activity',gx_leg_miss:'missed',gx_wk:'cell = week',
+ gx_tag_ok:'Progress',gx_tag_part:'Activity',gx_tag_miss:'Missed',gx_tag_pre:'Before start',gx_tag_now:'Today',gx_tag_fut:'Ahead',
+ gx_r_mark:'Value',gx_r_note:'Note',gx_r_step:'Step',gx_r_food:'Nutrition',gx_r_wo:'Workout',gx_r_plan:'plan {0}',gx_r_kcal:'{0} of {1} kcal',gx_r_kcal0:'{0} kcal',
+ gx_r_empty:'No entries this day.',gx_r_now:'No entries today yet.',gx_r_fut:'This day is still ahead.',gx_r_pre:'The goal didn’t exist yet.',gx_r_add:'Log progress',gx_r_del:'Delete entry',gx_r_delq:'Delete this entry?',
+ gx_nums:'If your goal is measurable, fill in the fields below. Progress, plan deviation and forecast will be calculated for you.',gx_fromfit:'Use weight from Fitness: {0} kg',
+ gx_real_ok:'Realistic pace: {0} per week.',gx_real_warn:'Ambitious: {0} per week. A comfortable pace is up to {1} per week.',gx_real_bad:'Too fast: {0} per week. A safe pace is up to {1} per week.',
+ gx_real_bmi:'This is below a healthy weight for your height. The lower bound is about {0}.',gx_real_dates:'The end date is before the start date.',gx_real_short:'Less than a week. Make sure you can make it.',gx_real_days:'{0} for this goal.',gx_sug:'Set deadline to {0}',gx_anyway:'Create anyway',
+ gx_sum_ok:'Goal reached',gx_sum_end:'The deadline has passed',gx_sum_open:'Summary',gx_v_ok:'You reached your goal in {0}.',gx_v_num:'You covered {0}% of the way, {1} short of the goal.',gx_v_reg:'You made progress on {0}% of days.',
+ gx_s_res:'Result',gx_s_reg:'Days with progress',gx_s_streak:'Best streak',gx_s_entries:'Entries',gx_s_steps:'Steps done',gx_s_wo:'Workouts in this period',gx_s_food:'Average intake',gx_s_kcal:'{0} kcal a day',
+ gx_ext:'Extend deadline',gx_ext_save:'Save',gx_next:'New goal from this result',gx_close:'Close goal',gx_details:'Day-by-day details',gx_done_list:'Completed',gx_b_ok:'Reached',gx_b_end:'Deadline passed',gx_steps_n:'Today {0} of {1} steps'
+});
+
+let goals=[],cur=null,adding=false,busy=false,aiErr='',selDay=null,gview='detail',gform=null,extOpen=false;
+const CX={fds:{},wo:[],at:0},asked=new Set();
 const DAY=864e5,fmt=n=>Math.round(n*10)/10,sod=x=>{const d=new Date(x);d.setHours(0,0,0,0);return d},p2=n=>String(n).padStart(2,'0'),
   iso=x=>{const d=new Date(x);return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())},endOf=g=>+new Date(g.deadline+'T00:00:00');
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),todayTs=()=>+sod(Date.now());
+const nf=v=>fmt(v).toLocaleString(loc(),{maximumFractionDigits:1});
+const fu=(v,u)=>nf(v)+(u?' '+esc(u):'');
+const fuPlain=(v,u)=>nf(v)+(u?' '+u:'');
+const sgn=v=>(v>0?'+':v<0?'−':'')+nf(Math.abs(v));
+const plu=(n,k)=>{const f=t(k).split('|');if(lang==='en')return n+' '+(n===1?f[0]:f[1]);const a=n%10,b=n%100;return n+' '+f[a===1&&b!==11?0:a>=2&&a<=4&&(b<10||b>=20)?1:2]};
+const hapt=k=>{try{tg?.HapticFeedback?.notificationOccurred?.(k)}catch{}};
+const isNum=g=>g.from!=null&&g.to!=null&&g.from!==g.to;
 const lastVal=g=>g.log.slice().reverse().find(x=>x[1]!=null);
-const saveGoal=async g=>{while(JSON.stringify(g).length>3800&&g.log.length>5)g.log.shift();
-  await st.set('g_'+g.id,JSON.stringify(g));await st.set('gi',JSON.stringify(goals.map(x=>x.id)))};
-async function askAI(g){
-  const j=await api('/advice',{title:g.title,unit:g.unit,from:g.from,to:g.to,deadline:g.deadline,start:iso(g.created),today:iso(Date.now()),
-    log:g.log.slice(-10).map(([x,v,n])=>[iso(x),v,n||'']),done:g.steps.filter(s=>s.done).map(s=>s.text)});
-  return j.steps.map(text=>({text,done:false}));
-}
-async function refresh(g){busy=true;aiErr='';renderGoals();
-  try{const n=await askAI(g);g.steps=g.steps.filter(s=>s.done).slice(-6).concat(n);await saveGoal(g)}catch(e){aiErr=friendlyError(e)}
-  busy=false;renderGoals()}
-const expected=g=>g.from+(g.to-g.from)*Math.min(1,Math.max(0,(Date.now()-g.created)/((endOf(g)-g.created)||1)));
-const pct=g=>{const l=lastVal(g);if(g.to!=null&&l)return Math.max(0,Math.min(100,Math.round((l[1]-g.from)/(g.to-g.from)*100)));
-  return g.steps.length?Math.round(g.steps.filter(s=>s.done).length/g.steps.length*100):0};
-function timeline(g){
-  const s=+sod(g.created),e=endOf(g),x=+sod(Date.now()),p=Math.max(0,Math.min(100,(x-s)/((e-s)||1)*100)),tot=Math.max(1,Math.round((e-s)/DAY)),left=Math.round((e-x)/DAY);
-  return `<div class="tl"><span>${t('gs')}<b>${dm(s)}</b></span><div class="trk"><i style="width:${p}%"></i><u style="left:${p}%"></u></div><span style="text-align:right">${t('ge')}<b>${dm(e)}</b></span></div>
-  <p class="meta" style="margin-top:8px">${x<s?t('tnot'):left>0?t('tleft',left,tot):left===0?t('tfin'):t('tover')}</p>`}
-const geo=g=>{const a=sod(g.created),n=Math.max(1,Math.round((endOf(g)-a)/DAY)+1);
-  return{n,k:n>62?7:1,m:+sod(g.made||g.created),today:+sod(Date.now()),dd:j=>{const d=new Date(a);d.setDate(a.getDate()+j);return +d}}};
-const dayActs=(g,ts)=>{const k=+sod(ts),a=g.steps.filter(s=>s.at&&+sod(s.at)===k).map(s=>t('done',s.text));
-  g.log.filter(x=>+sod(x[0])===k).forEach(x=>{if(x[1]!=null)a.push(t('mark',x[1],g.unit));if(x[2])a.push(t('note',x[2]))});return a};
-const dayState=(g,G,ts)=>dayActs(g,ts).length?'ok':ts<G.m?'pre':ts<G.today?'miss':'fut';
-function dayBlock(g){
-  const G=geo(g),cells=[];
-  for(let i=0;i<G.n;i+=G.k){const e=Math.min(G.n,i+G.k)-1,f=G.dd(i),l=G.dd(e);let s='';
-    for(let j=i;j<=e;j++)if(dayState(g,G,G.dd(j))==='ok'){s='ok';break}
-    if(!s)s=l<G.m?'pre':l<G.today?'miss':'fut';
-    cells.push(`<button class="${s}${f<=G.today&&G.today<=l?' td':''}${selDay===i?' sel':''}" data-i="${i}" aria-label="${dm(f)}"></button>`)}
-  let panel='';
-  if(selDay!=null&&selDay<G.n){const e=Math.min(G.n,selDay+G.k)-1;
-    panel=`<div class="wk"><h3>${G.k>1?t('wkh',dm(G.dd(selDay)),dm(G.dd(e))):dm(G.dd(selDay))}</h3>`+Array.from({length:e-selDay+1},(_,x)=>{
-      const ts=G.dd(selDay+x),a=dayActs(g,ts),s=dayState(g,G,ts),tag={ok:t('tagok'),miss:t('tagmiss'),pre:t('tagpre'),fut:ts===G.today?t('tagnow'):t('tagfut')}[s];
-      return `<div class="wd ${s}">${a.length?`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}<div class="wdh"><span>${wdn(ts)}, ${dm(ts)}</span><span class="tag">${tag}</span></div></div>`}).join('')+'</div>'}
-  return `<div class="days">${cells.join('')}</div><p class="meta" style="margin-top:10px"><span class="lg ok"></span>${t('legok')}<span class="lg miss"></span>${t('legmiss')}${G.k>1?' · '+t('legwk'):''}</p>${panel}`}
-function bindDays(g){$('dayblk').querySelectorAll('.days button').forEach(b=>b.onclick=()=>{selDay=selDay===+b.dataset.i?null:+b.dataset.i;$('dayblk').innerHTML=dayBlock(g);bindDays(g)})}
+const curVal=g=>{const l=lastVal(g);return l?l[1]:g.from};
+const dirOf=g=>g.to>g.from?1:-1;
+const g0=g=>+sod(g.created);
+const dIdx=(g,ts)=>Math.round((+sod(ts)-g0(g))/DAY);
+const dAt=(g,i)=>{const d=new Date(g0(g));d.setDate(d.getDate()+i);return +d};
+const nDays=g=>Math.max(1,Math.round((endOf(g)-g0(g))/DAY)+1);
+const cellK=g=>nDays(g)>62?7:1;
+const cellOf=(g,ts)=>{const i=dIdx(g,ts),k=cellK(g);return i<0||i>=nDays(g)?null:Math.floor(i/k)*k};
+const planAt=(g,ts)=>{const s=g0(g),e=endOf(g);return g.from+(g.to-g.from)*clamp((+sod(ts)-s)/((e-s)||1),0,1)};
+const reached=g=>isNum(g)&&!!lastVal(g)&&(curVal(g)-g.to)*dirOf(g)>=0;
+const ended=g=>todayTs()>endOf(g);
+const finished=g=>reached(g)||ended(g);
+const RELV=/вес|похуд|худе|сброс|масс|набра|сушк|жир|фитнес|спорт|бег|трен|пресс|питан|калор|здоров|weight|lose|fat|muscle|bulk|run|fit|gym|gain|diet|kcal|calor|health/i;
+const relevant=g=>/^(кг|kg|lb|lbs|фунт)/i.test(g.unit||'')||RELV.test(g.title);
+const prevVal=(g,j)=>{for(let i=j-1;i>=0;i--)if(g.log[i][1]!=null)return g.log[i][1];return isNum(g)?g.from:null};
+const kcalGoal=()=>{try{return typeof tgt==='function'?tgt()?.kcal||null:null}catch{return null}};
 
-function renderGoals(){
-  const el=$('g'),g=goals.find(x=>x.id===cur);
-  if(adding){el.innerHTML=`<button id="back">${t('back')}</button><div class="gt" style="margin:14px 0 4px">${t('gnew')}</div>
-    <label for="nt">${t('gq')}</label><input id="nt" maxlength="80" placeholder="${t('gph')}">
-    <div class="row"><div><label for="nd0">${t('gs')}</label><input id="nd0" type="date" value="${iso(Date.now())}"></div><div><label for="nd">${t('ge')}</label><input id="nd" type="date"></div></div>
-    <p class="meta" style="margin-top:16px">${t('gopt')}</p>
-    <div class="row"><div><label for="nf">${t('gnow')}</label><input id="nf" inputmode="decimal" placeholder="85"></div><div><label for="nto">${t('gto')}</label><input id="nto" inputmode="decimal" placeholder="78"></div><div><label for="nu">${t('gu')}</label><input id="nu" maxlength="10" placeholder="kg"></div></div>
-    <div class="row" style="margin-top:18px"><button class="p" id="create" style="flex:1">${t('gcreate')}</button></div>`;
-    $('back').onclick=()=>{adding=false;renderGoals()};
-    $('create').onclick=async()=>{
-      const title=$('nt').value.trim(),from=num($('nf').value),to=num($('nto').value),s0=$('nd0').value,deadline=$('nd').value;
-      if(!title)return $('nt').focus();if(!s0)return $('nd0').focus();if(!deadline||deadline<s0)return $('nd').focus();
-      const m=from!=null&&to!=null&&from!==to,ng={id:Date.now().toString(36),title,unit:$('nu').value.trim(),from:m?from:null,to:m?to:null,deadline,created:+new Date(s0+'T00:00:00'),made:Date.now(),log:[],steps:[]};
-      goals.push(ng);await saveGoal(ng);adding=false;cur=ng.id;selDay=null;refresh(ng)};return}
-  if(!g){el.innerHTML=(goals.length?goals.map(x=>{const nx=x.steps.find(s=>!s.done);
-      return `<div class="gcard" data-id="${x.id}"><div class="ring" style="--p:${pct(x)}"><span>${pct(x)}%</span></div><div><b>${esc(x.title)}</b><small>${dm(x.created)} → ${dm(endOf(x))}</small>${nx?`<small class="nx">${esc(nx.text)}</small>`:''}</div></div>`}).join('')
-      :`<div class="ghero"><div class="gt">${t('gtitle')}</div><p class="meta">${t('gintro')}</p></div>`)+`<button class="p" id="add" style="width:100%;margin-top:6px">${t('gnew')}</button>`;
-    el.querySelectorAll('.gcard').forEach(c=>c.onclick=()=>{cur=c.dataset.id;aiErr='';selDay=null;renderGoals()});
-    $('add').onclick=()=>{adding=true;renderGoals()};return}
-  const fi=g.steps.findIndex(s=>!s.done),l=lastVal(g),num_=g.to!=null;
-  const list=busy?`<p class="msg">${t('busy')}</p>`:aiErr?`<div class="step">${esc(aiErr)}<br><button class="p" id="refresh">${t('retry')}</button></div>`
-    :!g.steps.length?`<div class="step">${t('nosteps')}<br><button class="p" id="refresh">${t('getsteps')}</button></div>`
-    :g.steps.map((s,i)=>`<div class="st ${s.done?'d':i===fi?'c':''}"><span class="dot">${s.done?'✓':i+1}</span><div>${esc(s.text)}${i===fi?`<br><button class="p" id="done">${t('ok')}</button>`:''}</div></div>`).join('')
-      +`<button id="refresh" style="margin-top:8px">${fi<0?t('alldone'):t('upd')}</button>`;
-  el.innerHTML=`<button id="back">${t('backall')}</button>
-    <div class="ghero"><div class="gt">${esc(g.title)}</div>${timeline(g)}</div>
-    <div class="sec"><h2>${t('prog',pct(g))}</h2><div class="scale">${g.steps.map((s,i)=>`<i class="${s.done?'d':i===fi?'c':''}"></i>`).join('')||'<i></i>'}</div>
-    ${num_?`<p class="meta" style="margin-top:10px">${l?t('gnow2',l[1],esc(g.unit)):t('gnone')} · ${t('gplan',fmt(expected(g)))} · ${t('gtarget',g.to,esc(g.unit))}</p>`:''}
-    <label style="margin-top:14px">${t('logt')}</label>${num_?`<input id="val" inputmode="decimal" placeholder="${t('valph')}" style="margin-bottom:8px">`:''}
-    <div class="row"><input id="note" maxlength="200" placeholder="${t('logph')}"><button class="p" id="logit">${t('rec')}</button></div></div>
-    <div class="sec"><h2>${t('days')}</h2><div id="dayblk">${dayBlock(g)}</div></div>
-    <div class="sec"><h2>${t('steps')}</h2>${list}</div><button class="danger" id="del">${t('delg')}</button>`;
-  bindDays(g);$('back').onclick=()=>{cur=null;renderGoals()};
-  if($('refresh'))$('refresh').onclick=()=>refresh(g);
-  if($('done'))$('done').onclick=async()=>{g.steps[fi].done=true;g.steps[fi].at=Date.now();await saveGoal(g);renderGoals()};
-  $('logit').onclick=async()=>{const v=num_?num($('val').value):null,n=$('note').value.trim();if(v==null&&!n)return $(num_?'val':'note').focus();
-    g.log.push([Date.now(),v,n]);await saveGoal(g);renderGoals()};
-  $('del').onclick=async()=>{if(!await ask(t('delq')))return;
-    goals=goals.filter(x=>x.id!==g.id);await st.del('g_'+g.id);await st.set('gi',JSON.stringify(goals.map(x=>x.id)));cur=null;renderGoals()};
+const GI={
+ check:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5l4 4L18.5 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ chev:'<svg class="gx-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ back:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ x:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+ food:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5h17a8.5 8.5 0 0 1-17 0zM9 8.5c0-1.6 1.2-2 1.2-3.7M13.5 8.5c0-1.6 1.2-2 1.2-3.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ fit:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 7.5v9M3.5 10v4M17.5 7.5v9M20.5 10v4M6.5 12h11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>'
+};
+
+/* --- данные из «Питания» и «Фитнеса» --- */
+async function loadCtx(force){
+  if(!force&&Date.now()-CX.at<15e3)return;CX.at=Date.now();
+  try{CX.fds=(await jget('fds',{}))||{}}catch{CX.fds={}}
+  let ids=[];try{ids=(F&&F.hid&&F.hid.length)?F.hid:((await jget('fhi',[]))||[])}catch{}
+  const from=Date.now()-150*DAY,have=new Map(CX.wo.map(w=>[w.id,w]));
+  CX.wo=(await Promise.all(ids.filter(i=>parseInt(i,36)>=from).map(async i=>have.get(i)||{id:i,ts:parseInt(i,36),name:((await jget('fh_'+i,null))||{}).name||''}))).filter(Boolean);
 }
+
+/* --- хранение --- */
+function migrate(g){
+  g.log=Array.isArray(g.log)?g.log:[];g.steps=Array.isArray(g.steps)?g.steps:[];g.sd=Array.isArray(g.sd)?g.sd:[];
+  if(g.nd==null){g.nd=g.steps.filter(s=>s.done).length;g.steps.forEach(s=>{if(s.done&&s.at){const i=dIdx(g,s.at);if(!g.sd.includes(i))g.sd.push(i)}});g.steps=g.steps.filter(s=>s.d)}
+  return g}
+const saveGoal=async g=>{
+  const k=iso(Date.now()),old=iso(Date.now()-7*DAY);g.steps=g.steps.filter(s=>s.d>=old);
+  while(JSON.stringify(g).length>3800){
+    const i=g.steps.findIndex(s=>s.d!==k);if(i>=0){g.steps.splice(i,1);continue}
+    const j=g.log.findIndex(x=>x[2]);if(j>=0&&j<g.log.length-5){g.log[j][2]='';continue}
+    if(g.log.length>5){g.log.shift();continue}
+    if(g.sd.length>20){g.sd.shift();continue}break}
+  await st.set('g_'+g.id,JSON.stringify(g));await st.set('gi',JSON.stringify(goals.map(x=>x.id)))};
+
+/* --- расчёты --- */
+function dayInfo(g,ts){const k=+sod(ts),key=iso(ts),rel=relevant(g);
+  return{k,entries:g.log.map((x,j)=>[x,j]).filter(([x])=>+sod(x[0])===k),steps:g.steps.filter(s=>s.done&&s.at&&+sod(s.at)===k),sd:g.sd.includes(dIdx(g,ts)),
+    food:rel&&CX.fds[key]&&CX.fds[key][0]>0?CX.fds[key]:null,wo:rel?CX.wo.filter(w=>+sod(w.ts)===k):[]}}
+function dayState(g,ts){const I=dayInfo(g,ts),td=todayTs();
+  if(I.entries.length||I.steps.length||I.sd)return'ok';
+  if(I.k>td)return'fut';
+  if(I.k<+sod(g.made||g.created))return'pre';
+  if(I.wo.length||I.food)return'part';
+  return I.k===td?'now':'miss'}
+function regular(g){const n=nDays(g),last=Math.min(n-1,dIdx(g,Date.now()));let ok=0,cnt=0,best=0,run=0;
+  for(let i=0;i<=last;i++){const s=dayState(g,dAt(g,i));if(s==='pre')continue;if(s==='now'){continue}cnt++;if(s==='ok'){ok++;run++;best=Math.max(best,run)}else run=0}
+  return{ok,n:Math.max(cnt,1),p:cnt?Math.round(ok/cnt*100):0,best}}
+const pct=g=>isNum(g)?clamp(Math.round((curVal(g)-g.from)/(g.to-g.from)*100),0,100):regular(g).p;
+function devOf(g){const l=lastVal(g);if(!isNum(g)||!l)return null;const d=l[1]-planAt(g,l[0]),a=d*dirOf(g),tol=Math.abs(g.to-g.from)*.02;
+  return{d,st:Math.abs(d)<=tol?'on':a>0?'ahead':'behind'}}
+const devText=(g,dv)=>dv.st==='on'?t('gx_dev_on'):t(dv.st==='ahead'?'gx_dev_a':'gx_dev_b',fu(Math.abs(dv.d),g.unit));
+function forecast(g){if(!isNum(g))return null;const P=g.log.filter(x=>x[1]!=null&&x[0]>=Date.now()-21*DAY);if(P.length<3)return null;
+  const n=P.length,mx=P.reduce((a,x)=>a+x[0],0)/n,my=P.reduce((a,x)=>a+x[1],0)/n;let sxy=0,sxx=0;P.forEach(([x,y])=>{sxy+=(x-mx)*(y-my);sxx+=(x-mx)**2});
+  if(!sxx)return null;const k=sxy/sxx,rem=g.to-curVal(g);if(rem*dirOf(g)<=0)return null;if(k*dirOf(g)<=0)return{stall:true};
+  const eta=P[n-1][0]+rem/k;return{eta,late:+sod(eta)>endOf(g)}}
+
+/* --- проверка реалистичности --- */
+function realism(f){
+  if(!f.s0||!f.dl)return null;const days=Math.round((+new Date(f.dl+'T00:00:00')-+new Date(f.s0+'T00:00:00'))/DAY);
+  if(days<0)return{lvl:'bad',msg:t('gx_real_dates')};
+  const kg=/^(кг|kg|килограмм)/i.test(f.unit),lb=/^(lb|lbs|фунт)/i.test(f.unit),num_=f.from!=null&&f.to!=null&&f.from!==f.to;
+  if(num_&&(kg||lb)){const k=lb?.4536:1,diff=(f.to-f.from)*k,lose=diff<0,wk=Math.max(days,1)/7,rate=Math.abs(diff)/wk,
+      comf=lose?1:.5,hard=lose?1.5:1,safe=lose?.75:.35,u=f.unit,rt=v=>fuPlain(v/k,u),
+      sug=iso(+new Date(f.s0+'T00:00:00')+Math.ceil(Math.abs(diff)/safe*7)*DAY);
+    const h=F?.prof?.h;if(lose&&h){const minW=18.5*(h/100)**2;if(f.to*k<minW)return{lvl:'bad',msg:t('gx_real_bmi',esc(rt(minW)))}}
+    if(rate>hard)return{lvl:'bad',msg:t('gx_real_bad',esc(rt(rate)),esc(rt(comf))),sug};
+    if(rate>comf)return{lvl:'warn',msg:t('gx_real_warn',esc(rt(rate)),esc(rt(comf))),sug};
+    return{lvl:'ok',msg:t('gx_real_ok',esc(rt(rate)))}}
+  if(days<7&&num_)return{lvl:'warn',msg:t('gx_real_short')};
+  return{lvl:'ok',msg:t('gx_real_days',plu(days+1,'gx_dayf'))}}
+
+/* --- графика --- */
+const arcPt=(cx,cy,R,a)=>{const r=a*Math.PI/180;return[+(cx+R*Math.cos(r)).toFixed(2),+(cy-R*Math.sin(r)).toFixed(2)]};
+const arcD=(cx,cy,R)=>{const[a,b]=arcPt(cx,cy,R,210),[c,d]=arcPt(cx,cy,R,-30);return`M${a} ${b}A${R} ${R} 0 1 1 ${c} ${d}`};
+function gxGauge(p,sub,id){const d=arcD(80,74,62),[kx,ky]=arcPt(80,74,62,210-240*p/100);
+  return`<svg class="gx-gauge" viewBox="0 0 160 118" role="img" aria-label="${p}%${sub?' '+esc(sub):''}"><defs><linearGradient id="ga${id}" x1="0" x2="1"><stop offset="0" style="stop-color:var(--gx-a)"/><stop offset="1" style="stop-color:var(--gx-b)"/></linearGradient><filter id="gg${id}" x="-2" y="-2" width="5" height="5"><feGaussianBlur stdDeviation="4.5"/></filter></defs>
+  <path d="${d}" class="gx-trk" pathLength="100"/>${p>0?`<path d="${d}" class="gx-arc" pathLength="100" stroke="url(#ga${id})" stroke-dasharray="${p} 100"/>`:''}
+  <circle cx="${kx}" cy="${ky}" r="10" class="gx-glow" filter="url(#gg${id})"/><circle cx="${kx}" cy="${ky}" r="6.5" class="gx-knob"/>
+  <text x="80" y="${sub?78:86}" class="gx-pct">${p}%</text>${sub?`<text x="80" y="98" class="gx-psub">${esc(sub)}</text>`:''}</svg>`}
+function miniRing(p){const d=arcD(26,25,19);
+  return`<span class="gx-mr" aria-hidden="true"><svg viewBox="0 0 52 46"><path d="${d}" class="gx-trk" pathLength="100"/>${p>0?`<path d="${d}" class="gx-arc" pathLength="100" stroke="var(--gx-a)" stroke-dasharray="${p} 100"/>`:''}</svg><b>${p}%</b></span>`}
+function smooth(P){const n=P.length;if(n<2)return n?`M${P[0][0]} ${P[0][1]}`:'';const dx=[],m=[],tg_=[];
+  for(let i=0;i<n-1;i++){dx[i]=(P[i+1][0]-P[i][0])||1e-6;m[i]=(P[i+1][1]-P[i][1])/dx[i]}
+  tg_[0]=m[0];tg_[n-1]=m[n-2];for(let i=1;i<n-1;i++)tg_[i]=m[i-1]*m[i]<=0?0:(m[i-1]+m[i])/2;
+  for(let i=0;i<n-1;i++){if(!m[i]){tg_[i]=tg_[i+1]=0;continue}const a=tg_[i]/m[i],b=tg_[i+1]/m[i],h=a*a+b*b;if(h>9){const s=3/Math.sqrt(h);tg_[i]=s*a*m[i];tg_[i+1]=s*b*m[i]}}
+  let d=`M${P[0][0].toFixed(1)} ${P[0][1].toFixed(1)}`;
+  for(let i=0;i<n-1;i++){const h=dx[i]/3;d+=`C${(P[i][0]+h).toFixed(1)} ${(P[i][1]+tg_[i]*h).toFixed(1)} ${(P[i+1][0]-h).toFixed(1)} ${(P[i+1][1]-tg_[i+1]*h).toFixed(1)} ${P[i+1][0].toFixed(1)} ${P[i+1][1].toFixed(1)}`}
+  return d}
+function gxChart(g,id){if(!isNum(g))return'';
+  const W=320,H=150,L0=10,R0=12,T0=36,B0=22,s=g0(g),e=Math.max(endOf(g),s+DAY),byDay=new Map();
+  g.log.forEach(x=>{if(x[1]!=null)byDay.set(+sod(x[0]),x[1])});
+  const P=[...byDay.entries()].filter(([ts])=>ts>=s).sort((a,b)=>a[0]-b[0]);if(!P.length||P[0][0]>s)P.unshift([s,g.from]);
+  const vs=[g.from,g.to,...P.map(p=>p[1])],mn=Math.min(...vs),mx=Math.max(...vs),pad=(mx-mn)*.14||1,lo=mn-pad,hi=mx+pad;
+  const X=ts=>L0+clamp((ts-s)/(e-s),0,1)*(W-L0-R0),Y=v=>T0+(hi-v)/(hi-lo)*(H-T0-B0);
+  const pts=P.map(([ts,v])=>[X(ts),Y(v)]),line=smooth(pts),[lx,ly]=pts[pts.length-1],lv=P[P.length-1][1];
+  const sx=X(s),sy=Y(g.from),ex=X(e),ey=Y(g.to),tx=X(todayTs()),base=H-B0+10;
+  const area=`${line}L${lx.toFixed(1)} ${base}L${pts[0][0].toFixed(1)} ${base}Z`;
+  const near=Math.abs(lx-ex)<64&&Math.abs(ly-ey)<30,vy=near?ly+26:ly-15,vx=clamp(lx,22,W-22);
+  const ix=sx+(ex-sx)*.22,iy=sy+(ey-sy)*.22+(dirOf(g)<0?17:-9);
+  return`<svg class="gx-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t('gx_chart',fuPlain(g.from,g.unit),fuPlain(lv,g.unit),fuPlain(g.to,g.unit)))}"><defs>
+  <linearGradient id="cl${id}" gradientUnits="userSpaceOnUse" x1="${L0}" x2="${W-R0}" y1="0" y2="0"><stop offset="0" style="stop-color:var(--gx-a)"/><stop offset="1" style="stop-color:var(--gx-b)"/></linearGradient>
+  <linearGradient id="cf${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--gx-a);stop-opacity:.3"/><stop offset="1" style="stop-color:var(--gx-b);stop-opacity:0"/></linearGradient>
+  <filter id="cg${id}" x="-2" y="-2" width="5" height="5"><feGaussianBlur stdDeviation="4"/></filter></defs>
+  ${tx>sx&&tx<ex?`<line x1="${tx.toFixed(1)}" x2="${tx.toFixed(1)}" y1="${T0-8}" y2="${H-B0+4}" class="gx-todayl"/><text x="${tx.toFixed(1)}" y="${H-3}" class="gx-ax">${t('gx_today')}</text>`:''}
+  <path d="${area}" fill="url(#cf${id})"/>
+  <line x1="${sx.toFixed(1)}" y1="${sy.toFixed(1)}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" class="gx-ideal"/>
+  <text x="${ix.toFixed(1)}" y="${iy.toFixed(1)}" class="gx-lbl">${t('gx_plan')}</text>
+  <line x1="${Math.max(L0,lx-58).toFixed(1)}" x2="${Math.min(W-R0,lx+58).toFixed(1)}" y1="${ly.toFixed(1)}" y2="${ly.toFixed(1)}" class="gx-guide"/>
+  <path d="${line}" class="gx-line" stroke="url(#cl${id})"/>
+  <circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="9" class="gx-endg" filter="url(#cg${id})"/><circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="5.5" class="gx-end"/>
+  <text x="${(ex+2).toFixed(1)}" y="${(ey-13).toFixed(1)}" class="gx-lbl b" text-anchor="end">${fu(g.to,g.unit)}</text>
+  <circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="12" class="gx-ptg" filter="url(#cg${id})"/><circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="7.5" class="gx-pt"/>
+  <text x="${vx.toFixed(1)}" y="${vy.toFixed(1)}" class="gx-val">${nf(lv)}</text></svg>`}
+
+/* --- блоки --- */
+function feedHtml(g){const es=g.log.map((x,j)=>[x,j]).reverse().slice(0,40);if(!es.length)return`<p class="gx-mut">${t('gx_feed0')}</p>`;
+  return`<div class="gx-feed">${es.map(([x,j])=>{let d='';if(x[1]!=null){const pv=prevVal(g,j);if(pv!=null&&x[1]!==pv){const dd=x[1]-pv;d=`<em class="${isNum(g)&&dd*dirOf(g)>0?'up':'dn'}">${sgn(dd)}</em>`}}
+    const v=x[1]!=null?fu(x[1],g.unit):esc(x[2].length>26?x[2].slice(0,26)+'…':x[2]);
+    return`<button type="button" class="gx-chip" data-a="chip" data-ts="${x[0]}"><span>${dm(x[0])}</span><b>${v}</b>${d}</button>`}).join('')}</div>`}
+function ctxHtml(g){if(!relevant(g))return'';
+  const f=CX.fds[iso(Date.now())],T=kcalGoal(),w7=CX.wo.filter(w=>w.ts>=todayTs()-6*DAY),lastW=CX.wo.reduce((a,w)=>Math.max(a,w.ts),0);
+  const fv=f&&f[0]>0?(T?t('gx_food_v',nf(f[0]),nf(T)):t('gx_food_v0',nf(f[0]))):t('gx_food_none');
+  const bar=f&&f[0]>0&&T?`<b class="gx-bar"><i style="width:${clamp(f[0]/T*100,2,100).toFixed(0)}%"></i></b>`:'';
+  const wv=w7.length?t('gx_fit_v',plu(w7.length,'gx_wof'))+(lastW?' · '+t('gx_fit_last',dm(lastW)):''):t('gx_fit_none');
+  return`<div class="gx-ctx"><button type="button" class="gx-row" data-a="gofood"><span class="gx-ic f">${GI.food}</span><span class="gx-rt"><b>${t('gx_food')}</b><small>${fv}</small>${bar}</span>${GI.chev}</button>
+  <button type="button" class="gx-row" data-a="gofit"><span class="gx-ic">${GI.fit}</span><span class="gx-rt"><b>${t('gx_fit')}</b><small>${wv}</small></span>${GI.chev}</button></div>`}
+function todayHtml(g){const k=iso(Date.now()),list=g.steps.map((s,i)=>[s,i]).filter(([s])=>s.d===k);let body;
+  if(busy)body=`<div class="gx-skel" aria-hidden="true"><i></i><i></i><i></i></div><p class="gx-mut" role="status">${t('gx_busy')}</p>`;
+  else if(!list.length)body=`${aiErr?`<p class="gx-mut gx-err" role="alert">${esc(aiErr)}</p>`:''}<button type="button" class="gx-btn2" data-a="regen">${aiErr?t('retry'):t('gx_get')}</button>`;
+  else body=`<ul class="gx-todo">${list.map(([s,i])=>`<li><button type="button" class="gx-ti${s.done?' d':''}" data-a="step" data-k="${i}" role="checkbox" aria-checked="${!!s.done}"><span class="gx-ck">${GI.check}</span><span>${esc(s.text)}</span></button></li>`).join('')}</ul>${list.every(([s])=>s.done)?`<p class="gx-mut gx-good">${t('gx_alldone')}</p>`:''}${aiErr?`<p class="gx-mut gx-err" role="alert">${esc(aiErr)}</p>`:''}`;
+  return`<section class="gx-card"><div class="gx-h"><h3>${t('gx_todayh')}</h3>${list.length&&!busy?`<button type="button" class="gx-link" data-a="regen">${t('gx_more')}</button>`:''}</div>${body}${ctxHtml(g)}</section>`}
+function daysHtml(g){const n=nDays(g),k=cellK(g),td=todayTs(),cells=[];
+  for(let i=0;i<n;i+=k){const e=Math.min(n,i+k)-1,f=dAt(g,i),l=dAt(g,e);let s;
+    if(k===1)s=dayState(g,f);else{const ss=[];for(let j=i;j<=e;j++)ss.push(dayState(g,dAt(g,j)));s=ss.includes('ok')?'ok':ss.includes('part')?'part':ss.includes('now')?'now':ss.every(x=>x==='fut')?'fut':ss.every(x=>x==='pre')?'pre':'miss'}
+    const on=f<=td&&td<=l;
+    cells.push(`<button type="button" class="gx-day ${s}${on?' td':''}${selDay===i?' sel':''}" data-a="day" data-i="${i}" aria-pressed="${selDay===i}" aria-label="${dm(f)}${k>1?' – '+dm(l):''}: ${t('gx_tag_'+s)}">${s==='ok'?GI.check:`<span>${new Date(f).getDate()}</span>`}</button>`)}
+  const rel=relevant(g);
+  return`<div class="gx-days">${cells.join('')}</div><div class="gx-legend"><span><i class="ok"></i>${t('gx_leg_ok')}</span>${rel?`<span><i class="part"></i>${t('gx_leg_part')}</span>`:''}<span><i class="miss"></i>${t('gx_leg_miss')}</span>${k>1?`<span>${t('gx_wk')}</span>`:''}</div>${repHtml(g)}`}
+function repHtml(g){if(selDay==null)return'';const n=nDays(g),k=cellK(g);if(selDay>=n)return'';const e=Math.min(n,selDay+k)-1,T=kcalGoal(),row=(kk,v,sub,j)=>`<div class="gx-ri"><span class="gx-rk">${kk}</span><span class="gx-rv">${v}${sub?`<small>${sub}</small>`:''}</span>${j!=null?`<button type="button" class="gx-x" data-a="delentry" data-j="${j}" aria-label="${t('gx_r_del')}">${GI.x}</button>`:''}</div>`;
+  let out='';
+  for(let d=selDay;d<=e;d++){const ts=dAt(g,d),I=dayInfo(g,ts),s=dayState(g,ts),rows=[];
+    if(k>1&&(s==='fut'||s==='pre'))continue;
+    I.entries.forEach(([x,j])=>{if(x[1]!=null){const pv=prevVal(g,j),sub=[pv!=null&&x[1]!==pv?sgn(x[1]-pv):'',isNum(g)?t('gx_r_plan',fu(planAt(g,x[0]),g.unit)):''].filter(Boolean).join(' · ');rows.push(row(t('gx_r_mark'),fu(x[1],g.unit),sub,x[2]?null:j))}
+      if(x[2])rows.push(row(t('gx_r_note'),esc(x[2]),'',j))});
+    I.steps.forEach(st_=>rows.push(row(t('gx_r_step'),esc(st_.text))));
+    if(I.food)rows.push(row(t('gx_r_food'),T?t('gx_r_kcal',nf(I.food[0]),nf(T)):t('gx_r_kcal0',nf(I.food[0]))));
+    I.wo.forEach(w=>rows.push(row(t('gx_r_wo'),esc(w.name||t('gx_r_wo')))));
+    const empty=s==='fut'?t('gx_r_fut'):s==='pre'?t('gx_r_pre'):s==='now'?t('gx_r_now'):t('gx_r_empty');
+    out+=`<div class="gx-repd"><div class="gx-rh"><b>${wdn(ts)}, ${dm(ts)}</b><span class="gx-tag ${s}">${t('gx_tag_'+s)}</span></div>${rows.length?rows.join(''):`<p class="gx-mut">${empty}</p>`}${s==='now'||(I.k===todayTs()&&!finished(g))?`<button type="button" class="gx-btn2 gx-sm" data-a="focuslog">${t('gx_r_add')}</button>`:''}</div>`}
+  return`<div class="gx-rep" id="gxrep" aria-live="polite">${out}</div>`}
+
+/* --- экраны --- */
+function vList(){const act=goals.filter(g=>!g.closed),done=goals.filter(g=>g.closed),k=iso(Date.now());
+  const card=g=>{const p=pct(g),dv=devOf(g),ts=g.steps.filter(s=>s.d===k);let st_='';
+    if(finished(g))st_=`<small class="gx-st ${reached(g)?'ahead':''}">${reached(g)?t('gx_b_ok'):t('gx_b_end')}</small>`;
+    else if(dv)st_=`<small class="gx-st ${dv.st}">${devText(g,dv)}</small>`;
+    else if(ts.length)st_=`<small class="gx-st">${t('gx_steps_n',ts.filter(s=>s.done).length,ts.length)}</small>`;
+    return`<button type="button" class="gx-gc${g.closed?' closed':''}" data-a="open" data-id="${g.id}">${miniRing(p)}<span class="gx-gct"><b>${esc(g.title)}</b><small>${dm(g.created)} – ${dm(endOf(g))}</small>${st_}</span>${GI.chev}</button>`};
+  return(act.length?`<h2 class="gx-lh">${t('gtitle')}</h2>${act.map(card).join('')}`:`<section class="gx-card gx-empty"><h2 class="gx-title">${t('gtitle')}</h2><p class="gx-mut">${t('gintro')}</p></section>`)
+    +`<button type="button" class="p gx-cta" data-a="add">${t('gnew')}</button>`
+    +(done.length?`<h2 class="gx-lh">${t('gx_done_list')}</h2>${done.map(card).join('')}`:'')}
+function vNew(){const f=gform||{},fw=F?.prof?.w;
+  return`<button type="button" class="gx-back" data-a="back">${GI.back}${t('gx_all')}</button>
+  <form class="gx-card gx-new" id="gxnew" novalidate autocomplete="off"><h2 class="gx-title">${t('gnew')}</h2>
+  <label for="gxt">${t('gq')}</label><input id="gxt" maxlength="80" placeholder="${t('gph')}" value="${esc(f.title||'')}">
+  <div class="gx-2"><div><label for="gxs">${t('gs')}</label><input id="gxs" type="date" value="${f.s0||iso(Date.now())}"></div><div><label for="gxe">${t('ge')}</label><input id="gxe" type="date" value="${f.dl||''}"></div></div>
+  <p class="gx-mut">${t('gx_nums')}</p>
+  <div class="gx-3"><div><label for="gxf">${t('gnow')}</label><input id="gxf" inputmode="decimal" placeholder="85" value="${f.from??''}"></div><div><label for="gxto">${t('gto')}</label><input id="gxto" inputmode="decimal" placeholder="78" value="${f.to??''}"></div><div><label for="gxu">${t('gu')}</label><input id="gxu" maxlength="10" placeholder="${lang==='en'?'kg':'кг'}" value="${esc(f.unit||'')}"></div></div>
+  ${fw?`<button type="button" class="gx-pill" data-a="fromfit" id="gxfit">${t('gx_fromfit',nf(fw))}</button>`:''}
+  <div id="gxreal" class="gx-real" aria-live="polite"></div>
+  <button class="p gx-cta" type="submit" id="gxcreate">${t('gcreate')}</button></form>`}
+function vDetail(g){const num_=isNum(g),p=pct(g),R=regular(g),dv=devOf(g),fin=finished(g),fc=fin?null:forecast(g),left=Math.round((endOf(g)-todayTs())/DAY);
+  const devH=num_?(dv?`<p class="gx-dev ${dv.st}"><i></i>${devText(g,dv)}</p>`:`<p class="gx-dev"><i></i>${t('gx_dev_none')}</p>`):`<p class="gx-dev"><i></i>${t('gx_reg_v',R.ok,plu(R.n,'gx_dayf'))}</p>`;
+  const tl=[left<0?t('gx_over'):left===0?t('gx_lastday'):t('gx_left',plu(left,'gx_dayf')),fc?(fc.stall?t('gx_stall'):t(fc.late?'gx_eta_late':'gx_eta',dm(fc.eta))):''].filter(Boolean).join(' · ');
+  return`<button type="button" class="gx-back" data-a="back">${GI.back}${t('gx_all')}</button>
+  <section class="gx-card gx-hero">
+  ${fin?`<button type="button" class="gx-banner" data-a="sum"><span>${reached(g)?t('gx_sum_ok'):t('gx_sum_end')}</span><b>${t('gx_sum_open')}</b>${GI.chev}</button>`:''}
+  <h2 class="gx-title">${esc(g.title)}</h2>
+  <div class="gx-head"><div class="gx-d"><small>${t('gs')}</small><b>${dm(g.created)}</b></div>${gxGauge(p,num_?'':t('gx_reg'),'d')}<div class="gx-d r"><small>${t('ge')}</small><b>${dm(endOf(g))}</b></div></div>
+  ${devH}${gxChart(g,'d')}<p class="gx-tl">${tl}</p>
+  <form class="gx-log" id="gxlog" autocomplete="off" novalidate><h3>${t('gx_log')}</h3>
+  ${num_?`<input id="gxval" inputmode="decimal" enterkeyhint="next" aria-label="${esc(t('gx_valph0'))}" placeholder="${esc(g.unit?t('gx_valph',g.unit):t('gx_valph0'))}">`:''}
+  <input id="gxnote" maxlength="200" enterkeyhint="done" aria-label="${t('gx_r_note')}" placeholder="${t(num_?'gx_noteph':'gx_noteph2')}">
+  <div class="gx-lact"><span class="gx-hint" id="gxhint" aria-live="polite">${num_?t('gx_hint0',fu(planAt(g,Date.now()),g.unit)):''}</span><button class="p" type="submit">${t('gx_save')}</button></div></form>
+  <h3>${t('gx_feed')}</h3>${feedHtml(g)}</section>
+  ${fin?'':todayHtml(g)}
+  <section class="gx-card"><h3 class="gx-h3">${t('days')}</h3><div id="gxdblk">${daysHtml(g)}</div></section>
+  <button type="button" class="danger gx-del" data-a="del">${t('delg')}</button>`}
+function vSum(g){const R=regular(g),num_=isNum(g),ok=reached(g),p=pct(g),s=g0(g),e=endOf(g),rel=relevant(g),cv=curVal(g);
+  const spent=Math.max(1,dIdx(g,ok&&lastVal(g)?lastVal(g)[0]:Math.min(Date.now(),e))+1);
+  const verdict=ok?t('gx_v_ok',plu(spent,'gx_dayf')):num_?t('gx_v_num',p,fu(Math.abs(g.to-cv),g.unit)):t('gx_v_reg',R.p);
+  const wo=CX.wo.filter(w=>w.ts>=s&&w.ts<e+DAY).length,kc=Object.entries(CX.fds).filter(([d,v])=>{const ts=+new Date(d+'T00:00:00');return ts>=s&&ts<=e&&v[0]>0}).map(([,v])=>v[0]);
+  const rows=[num_?[t('gx_s_res'),`${fu(g.from,g.unit)} → ${fu(cv,g.unit)}`]:null,[t('gx_s_reg'),`${R.ok} / ${R.n} · ${R.p}%`],[t('gx_s_streak'),plu(R.best,'gx_dayf')],[t('gx_s_entries'),g.log.length],[t('gx_s_steps'),g.nd||0],
+    rel?[t('gx_s_wo'),wo]:null,rel&&kc.length?[t('gx_s_food'),t('gx_s_kcal',nf(Math.round(kc.reduce((a,b)=>a+b,0)/kc.length)))]:null].filter(Boolean);
+  return`<button type="button" class="gx-back" data-a="back">${GI.back}${t('gx_all')}</button>
+  <section class="gx-card gx-hero gx-sum"><h2 class="gx-title">${ok?t('gx_sum_ok'):t('gx_sum_end')}</h2><p class="gx-sub">${esc(g.title)} · ${dm(s)} – ${dm(e)}</p>
+  ${gxGauge(p,num_?'':t('gx_reg'),'s')}<p class="gx-verdict">${verdict}</p>${gxChart(g,'s')}
+  <dl class="gx-dl">${rows.map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join('')}</dl>
+  <div class="gx-acts">${extOpen?`<form class="gx-ext" id="gxext"><input id="gxextd" type="date" min="${iso(Date.now()+DAY)}" value="${iso(Math.max(e,todayTs())+14*DAY)}" aria-label="${t('ge')}"><button class="p" type="submit">${t('gx_ext_save')}</button></form>`:`<button type="button" class="p" data-a="ext">${t('gx_ext')}</button>`}
+  <button type="button" class="gx-btn2" data-a="next">${t('gx_next')}</button>${g.closed?'':`<button type="button" class="gx-btn2" data-a="close">${t('gx_close')}</button>`}<button type="button" class="gx-link gx-c" data-a="details">${t('gx_details')}</button></div></section>`}
+
+function renderGoals(){const el=$('g');
+  if(adding){el.innerHTML=vNew();updReal();return}
+  const g=goals.find(x=>x.id===cur);
+  if(!g){el.innerHTML=vList();return}
+  el.innerHTML=gview==='sum'?vSum(g):vDetail(g);
+  const k=iso(Date.now());
+  if(gview!=='sum'&&!busy&&!finished(g)&&!g.steps.some(s=>s.d===k)&&!asked.has(g.id+k)){asked.add(g.id+k);setTimeout(()=>refresh(g),0)}}
+async function gEnter(){await loadCtx();renderGoals()}
+
+/* --- ИИ --- */
+function aiCtx(g){const c={},dv=devOf(g),fc=forecast(g),R=regular(g);
+  if(dv)c.deviation={value:fmt(dv.d),status:dv.st,plan_today:fmt(planAt(g,Date.now())),current:curVal(g)};
+  if(fc)c.forecast=fc.stall?'stalled':iso(fc.eta);
+  c.regularity={days_with_progress:R.ok,days:R.n,best_streak:R.best};
+  if(relevant(g)){const k=iso(Date.now()),f=CX.fds[k],ds=Object.keys(CX.fds).filter(d=>d>=iso(Date.now()-7*DAY)&&d<k&&CX.fds[d][0]>0);
+    c.nutrition={today_kcal:f?f[0]:null,target_kcal:kcalGoal(),avg_kcal_prev_days:ds.length?Math.round(ds.reduce((a,d)=>a+CX.fds[d][0],0)/ds.length):null};
+    const w7=CX.wo.filter(w=>w.ts>=todayTs()-6*DAY);c.fitness={workouts_7d:w7.length,last_workout:CX.wo.length?iso(Math.max(...CX.wo.map(w=>w.ts))):null}}
+  return c}
+async function askAI(g){const j=await api('/advice',{mode:'today',title:g.title,unit:g.unit,from:g.from,to:g.to,deadline:g.deadline,start:iso(g.created),today:iso(Date.now()),
+    log:g.log.slice(-10).map(([x,v,n])=>[iso(x),v,n||'']),done:g.steps.filter(s=>s.done).slice(-8).map(s=>s.text),context:aiCtx(g)});
+  return(j.steps||[]).map(s=>String(s).trim()).filter(Boolean).slice(0,3)}
+async function refresh(g){busy=true;aiErr='';if(cur===g.id)renderGoals();
+  try{const n=await askAI(g),k=iso(Date.now());if(!n.length)throw new Error(t('e4'));g.steps=g.steps.filter(s=>s.d!==k||s.done).concat(n.map(text=>({text,done:false,d:k})));await saveGoal(g)}catch(e){aiErr=friendlyError(e)}
+  busy=false;if(cur===g.id&&!adding)renderGoals()}
+
+/* --- действия --- */
+function readForm(){const v=id=>$(id)?.value??'';return{title:v('gxt').trim(),s0:v('gxs'),dl:v('gxe'),from:num(v('gxf')),to:num(v('gxto')),unit:v('gxu').trim()}}
+function updReal(){const el=$('gxreal');if(!el)return;const f=readForm(),r=realism(f);gform={...(gform||{}),...f,force:false};
+  el.className='gx-real'+(r?' '+r.lvl:'');
+  el.innerHTML=r?`<i></i><div><p>${r.msg}</p>${r.sug?`<button type="button" class="gx-link" data-a="sug" data-v="${r.sug}">${t('gx_sug',dm(+new Date(r.sug+'T00:00:00')))}</button>`:''}</div>`:'';
+  const b=$('gxcreate');if(b)b.textContent=t('gcreate');const fb=$('gxfit');if(fb)fb.hidden=f.from!=null}
+async function createGoal(){const f=readForm();
+  if(!f.title)return $('gxt').focus();if(!f.s0)return $('gxs').focus();if(!f.dl||f.dl<f.s0){updReal();return $('gxe').focus()}
+  const r=realism(f);if(r&&r.lvl==='bad'&&!gform?.force){gform={...gform,force:true};$('gxcreate').textContent=t('gx_anyway');$('gxreal').classList.remove('pulse');void $('gxreal').offsetWidth;$('gxreal').classList.add('pulse');hapt('warning');return}
+  const m=f.from!=null&&f.to!=null&&f.from!==f.to,ng={id:Date.now().toString(36),title:f.title.slice(0,80),unit:f.unit.slice(0,10),from:m?f.from:null,to:m?f.to:null,deadline:f.dl,created:+new Date(f.s0+'T00:00:00'),made:Date.now(),log:[],steps:[],sd:[],nd:0};
+  goals.push(ng);await saveGoal(ng);adding=false;gform=null;cur=ng.id;gview='detail';selDay=cellOf(ng,Date.now());renderGoals();scrollTo(0,0)}
+async function logEntry(g){const num_=isNum(g),vi=$('gxval'),ni=$('gxnote'),raw=vi?vi.value.trim():'',v=num_?num(raw):null,n=ni.value.trim().slice(0,200);
+  if(raw&&v==null){$('gxhint').textContent=t('gx_badnum');$('gxhint').classList.add('bad');return vi.focus()}
+  if(v==null&&!n)return(num_?vi:ni).focus();
+  const lv=lastVal(g)?.[1];if(v!=null&&lv&&Math.abs(v-lv)/Math.abs(lv)>.25&&!await ask(t('gx_jump',fuPlain(v,g.unit))))return;
+  const was=reached(g);g.log.push([Date.now(),v,n]);
+  if(!was&&reached(g)){g.doneAt=Date.now();gview='sum';hapt('success')}else hapt('success');
+  await saveGoal(g);selDay=cellOf(g,Date.now());renderGoals();if(gview==='sum')scrollTo(0,0)}
+async function toggleStep(g,i){const s=g.steps[i];if(!s)return;s.done=!s.done;s.at=s.done?Date.now():null;g.nd=Math.max(0,(g.nd||0)+(s.done?1:-1));
+  const di=dIdx(g,Date.now()),any=g.steps.some(x=>x.done&&x.at&&+sod(x.at)===todayTs());
+  if(any&&!g.sd.includes(di))g.sd.push(di);if(!any)g.sd=g.sd.filter(x=>x!==di);
+  if(s.done)hapt('success');await saveGoal(g);renderGoals()}
+function redrawDays(g,scroll){const b=$('gxdblk');if(!b)return;b.innerHTML=daysHtml(g);if(scroll)$('gxrep')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'})}
+const GEL=$('g');
+GEL.addEventListener('click',async e=>{const b=e.target.closest('[data-a]');if(!b||!GEL.contains(b))return;const a=b.dataset.a,g=goals.find(x=>x.id===cur);
+  switch(a){
+  case'open':cur=b.dataset.id;aiErr='';extOpen=false;{const x=goals.find(y=>y.id===cur);selDay=cellOf(x,Date.now());gview=finished(x)&&!x.closed&&!x.sumSeen?'sum':'detail';if(gview==='sum'){x.sumSeen=1;saveGoal(x)}}renderGoals();scrollTo(0,0);return;
+  case'add':adding=true;gform=null;renderGoals();scrollTo(0,0);return;
+  case'back':if(adding){adding=false;gform=null}else{cur=null;gview='detail';extOpen=false}renderGoals();scrollTo(0,0);return;
+  case'sug':$('gxe').value=b.dataset.v;updReal();return;
+  case'fromfit':$('gxf').value=F.prof.w;if(!$('gxu').value)$('gxu').value=lang==='en'?'kg':'кг';updReal();return;
+  case'chip':selDay=cellOf(g,+b.dataset.ts);redrawDays(g,true);return;
+  case'day':selDay=selDay===+b.dataset.i?null:+b.dataset.i;redrawDays(g,selDay!=null);return;
+  case'focuslog':{const i=$('gxval')||$('gxnote');i?.scrollIntoView({block:'center'});i?.focus({preventScroll:true});return}
+  case'step':return toggleStep(g,+b.dataset.k);
+  case'regen':return refresh(g);
+  case'gofood':document.querySelector('.tabs button[data-t="nx"]')?.click();return;
+  case'gofit':document.querySelector('.tabs button[data-t="ft"]')?.click();return;
+  case'delentry':if(!await ask(t('gx_r_delq')))return;g.log.splice(+b.dataset.j,1);if(g.doneAt&&!reached(g))g.doneAt=null;await saveGoal(g);renderGoals();return;
+  case'sum':gview='sum';extOpen=false;renderGoals();scrollTo(0,0);return;
+  case'details':gview='detail';renderGoals();scrollTo(0,0);return;
+  case'ext':extOpen=true;renderGoals();$('gxextd')?.focus();return;
+  case'next':{const x=g;adding=true;cur=null;gview='detail';gform={title:x.title,from:isNum(x)?curVal(x):null,to:isNum(x)&&!reached(x)?x.to:null,unit:x.unit,s0:iso(Date.now())};renderGoals();scrollTo(0,0);return}
+  case'close':g.closed=true;await saveGoal(g);cur=null;gview='detail';renderGoals();scrollTo(0,0);return;
+  case'del':if(!await ask(t('delq')))return;goals=goals.filter(x=>x.id!==g.id);await st.del('g_'+g.id);await st.set('gi',JSON.stringify(goals.map(x=>x.id)));cur=null;gview='detail';renderGoals();return}});
+GEL.addEventListener('submit',async e=>{e.preventDefault();const g=goals.find(x=>x.id===cur);
+  if(e.target.id==='gxnew')return createGoal();
+  if(e.target.id==='gxlog'&&g)return logEntry(g);
+  if(e.target.id==='gxext'&&g){const v=$('gxextd').value;if(!v||v<=iso(Date.now()))return $('gxextd').focus();g.deadline=v;g.closed=false;g.sumSeen=0;if(reached(g))g.doneAt=g.doneAt||Date.now();extOpen=false;gview='detail';await saveGoal(g);renderGoals();scrollTo(0,0)}});
+GEL.addEventListener('input',e=>{if(e.target.closest('#gxnew'))return updReal();
+  if(e.target.id==='gxval'){const g=goals.find(x=>x.id===cur),h=$('gxhint');if(!g||!h)return;h.classList.remove('bad');const v=num(e.target.value),lv=lastVal(g)?.[1]??g.from,pl=fu(planAt(g,Date.now()),g.unit);
+    if(e.target.value.trim()&&v==null){h.textContent=t('gx_badnum');h.classList.add('bad');return}
+    h.innerHTML=v!=null&&lv!=null?t('gx_hint',`<b class="${(v-lv)*dirOf(g)>0?'up':(v-lv)?'dn':''}">${sgn(v-lv)}${g.unit?' '+esc(g.unit):''}</b>`,pl):t('gx_hint0',pl)}});
 
 /* ================= СТАРТ ================= */
 async function init(){
   renderDayGreeting();setInterval(renderDayGreeting,60000);
   {const w0=await jget('wardrobe',[]);wardrobe=Array.isArray(w0)?w0:Object.values(w0).filter(v=>typeof v==='string');}renderWardrobe();
-  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean);renderGoals();renderProfile();loadFit();loadNx();loadHl();api('/hello',{}).catch(()=>{});
+  const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean).map(migrate);renderGoals();loadCtx(true).then(()=>{if(!adding)renderGoals()});renderProfile();loadFit();loadNx();loadHl();api('/hello',{}).catch(()=>{});
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 }
 function setLang(l){lang=l;st.set('lang',l);renderDayGreeting();applyStatic();const nt=$('nvTitle'),pb=$('profileOpen');if(nt)nt.textContent=activeTab==='p'?t('tp'):'nuvio';if(pb)pb.setAttribute('aria-label',activeTab==='p'?(lang==='en'?'Back':'Назад'):t('tp'));renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();renderHl();renderMood();if(lastWeather)render(lastWeather.d,lastWeather.name)}
