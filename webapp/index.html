@@ -747,53 +747,83 @@ html[data-liquid-glass=off] .tabs button.on{background:var(--nv-panel)!important
 
 </style>
 <style id="nuvio-opening-motion">
+/* Opening: "your day, in sync". Three orbits (the parts of the day) draw in around one core,
+   the wordmark is revealed from a mask, the bar fills for real, then everything releases outward. */
 #splash{
-  isolation:isolate;overflow:hidden;gap:0;
-  background:
-    radial-gradient(ellipse at 50% 43%,rgba(107,132,255,.16),transparent 36%),
-    radial-gradient(ellipse at 50% 100%,rgba(65,191,211,.09),transparent 45%),
-    var(--nv-bg,var(--bg));
-  transition:opacity .62s cubic-bezier(.22,.72,.18,1),visibility .62s;
+  --so-a:#2f6bf0;--so-b:#109c8a;--so-dot:#1d3f9e;--so-track:rgba(40,60,110,.12);
+  --sp-icon:linear-gradient(160deg,#ffffff,#eef2fb);--sp-icon-edge:rgba(40,60,110,.12);--sp-icon-shadow:0 18px 36px rgba(30,45,90,.16),0 2px 6px rgba(30,45,90,.08);
+  isolation:isolate;overflow:hidden;gap:0!important;
+  background:radial-gradient(60% 42% at 50% 40%,rgba(47,107,240,.10),transparent 70%),var(--nv-bg,var(--bg))!important;
+  transition:opacity .42s cubic-bezier(.4,0,.2,1),visibility .42s;
 }
-#splash:before,#splash:after{content:"";position:absolute;pointer-events:none;border-radius:50%;z-index:-1}
-#splash:before{width:min(78vw,430px);aspect-ratio:1;border:1px solid rgba(130,151,255,.12);box-shadow:0 0 70px rgba(111,131,255,.08),inset 0 0 70px rgba(111,131,255,.05);animation:splashOrbit 18s linear infinite}
-#splash:after{width:min(58vw,310px);aspect-ratio:1;border:1px solid rgba(255,255,255,.07);transform:rotateX(68deg);animation:splashPulse 3.8s ease-in-out infinite}
+html[data-theme=dark] #splash{
+  --so-a:#6f8cff;--so-b:#56d3c1;--so-dot:#eaf6ff;--so-track:rgba(255,255,255,.09);
+  --sp-icon:linear-gradient(160deg,#3b404c 0%,#23262f 55%,#1b1d24 100%);--sp-icon-edge:rgba(255,255,255,.13);--sp-icon-shadow:0 22px 44px rgba(0,0,0,.55),0 3px 8px rgba(0,0,0,.35);
+  background:
+    radial-gradient(55% 38% at 50% 38%,rgba(52,168,186,.17),transparent 72%),
+    radial-gradient(80% 50% at 50% 105%,rgba(70,92,200,.10),transparent 70%),
+    #07090d!important;
+}
+#splash:before,#splash:after{content:none!important}
 #splash.off{opacity:0;visibility:hidden}
-.splash-core{position:relative;display:flex;flex-direction:column;align-items:center;gap:17px;transform:translateY(-8px);animation:splashArrive .9s cubic-bezier(.18,.8,.2,1) both}
-.splash-aura{position:absolute;width:180px;height:180px;top:calc(50% - 145px);left:50%;transform:translate(-50%,-50%);pointer-events:none;filter:blur(.2px)}
-.splash-aura i,.splash-aura b,.splash-aura em{position:absolute;inset:15px;border-radius:50%;border:1px solid rgba(119,145,255,.26);box-shadow:0 0 28px rgba(111,135,255,.13),inset 0 0 25px rgba(111,135,255,.1)}
-.splash-aura b{inset:0;border-color:rgba(89,195,218,.2);transform:scale(.72);animation:auraBreath 3.2s ease-in-out infinite}
-.splash-aura em{inset:31px;border-color:rgba(255,255,255,.12);border-left-color:rgba(126,151,255,.75);animation:splashOrbit 7s linear infinite}
-.splash-symbol{width:58px;height:58px;position:relative;display:grid;place-items:center;margin-bottom:2px;border-radius:19px;background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.055));border:1px solid rgba(255,255,255,.24);box-shadow:0 12px 34px rgba(65,83,160,.22),inset 0 1px 0 rgba(255,255,255,.4);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:symbolFloat 4s ease-in-out infinite}
-.splash-symbol span{position:absolute;width:25px;height:25px;border:2px solid #8da5ff;border-radius:9px;transform:rotate(45deg);box-shadow:0 0 14px rgba(130,151,255,.32)}
-.splash-symbol span:nth-child(2){width:16px;height:16px;border-color:#76d6dc;transform:rotate(45deg) translate(5px,5px);opacity:.9}
-.splash-symbol span:nth-child(3){width:6px;height:6px;border:0;background:#fff;border-radius:50%;box-shadow:0 0 12px #fff}
-#splash .mark{font-size:49px;font-weight:780;letter-spacing:-.075em;line-height:1;color:var(--nv-text,var(--text));gap:0}
-#splash .mark span{opacity:0;transform:translateY(18px) scale(.94);animation:splashLetter .72s cubic-bezier(.2,.8,.2,1) forwards}
-#splash .mark span:nth-child(1){animation-delay:.12s}#splash .mark span:nth-child(2){animation-delay:.19s}#splash .mark span:nth-child(3){animation-delay:.26s}#splash .mark span:nth-child(4){animation-delay:.33s}#splash .mark span:nth-child(5){animation-delay:.40s}
-.splash-caption{font-size:9px;font-weight:700;letter-spacing:.28em;color:var(--nv-secondary,var(--hint));opacity:0;animation:splashCaption .6s .58s ease forwards}
-.splash-bottom{position:absolute;bottom:calc(42px + env(safe-area-inset-bottom));left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:20px}
-.splash-progress{width:74px;height:2px;overflow:hidden;border-radius:9px;background:rgba(130,145,190,.16)}
-.splash-progress i{display:block;width:38%;height:100%;border-radius:9px;background:linear-gradient(90deg,#7b91ff,#76d6dc);animation:splashLoad 1.45s cubic-bezier(.45,.05,.55,.95) infinite}
+
+.splash-core{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;transform:translateY(-10px)}
+.splash-emblem{position:relative;display:grid;place-items:center;width:84px;height:84px;margin-bottom:24px}
+.splash-orbits{position:absolute;left:50%;top:50%;z-index:0;width:min(112vw,460px);height:auto;overflow:visible;pointer-events:none;
+  transform:translate(-50%,-50%);transition:transform .5s cubic-bezier(.4,0,.2,1),opacity .4s ease}
+.so-spin{transform-origin:200px 200px;animation:soSpin 56s linear infinite}
+.so-p{fill:none;stroke-width:1.25;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:soDraw 1.35s cubic-bezier(.65,0,.35,1) forwards}
+.so-g1 .so-p{animation-delay:.18s}.so-g2 .so-p{animation-delay:.32s}.so-g3 .so-p{animation-delay:.46s;stroke-width:1}
+.so-dot{fill:var(--so-dot);opacity:0;animation:soFade .5s 1.35s ease forwards}
+.so-halo{fill:var(--so-b);opacity:0;animation:soHalo .5s 1.35s ease forwards}
+
+.splash-symbol{position:relative;z-index:1;width:84px!important;height:84px!important;margin:0!important;border-radius:26px!important;
+  display:grid;place-items:center;background:var(--sp-icon)!important;border:1px solid var(--sp-icon-edge)!important;
+  box-shadow:var(--sp-icon-shadow),inset 0 1px 0 rgba(255,255,255,.16)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  opacity:0;transform:scale(.86);filter:blur(10px);animation:spFocus .8s cubic-bezier(.16,1,.3,1) .05s forwards}
+.splash-symbol span{position:absolute;width:31px;height:31px;border:2.5px solid #7f97ff;border-radius:11px;transform:rotate(45deg);box-shadow:none}
+.splash-symbol span:nth-child(2){width:20px;height:20px;border:2.5px solid #6fd7d0;border-radius:50%;transform:translate(0,6px);opacity:1}
+.splash-symbol span:nth-child(3){width:7px;height:7px;border:0;background:#fff;border-radius:50%;transform:translate(0,-4px);box-shadow:none}
+html:not([data-theme=dark]) .splash-symbol span:nth-child(3){background:#1d3f9e}
+
+#splash .mark{display:flex;overflow:hidden;padding:.06em .04em .14em;font-size:52px;font-weight:780;letter-spacing:-.06em;line-height:1;color:var(--nv-text,var(--text))}
+#splash .mark span{display:inline-block;opacity:1;transform:translateY(108%);animation:spRise .75s cubic-bezier(.16,1,.3,1) forwards}
+.splash-caption{margin-top:-6px;font-size:11px;font-weight:650;letter-spacing:.42em;padding-left:.42em;color:var(--nv-secondary,var(--hint));opacity:0;
+  animation:spTrack .9s cubic-bezier(.16,1,.3,1) .8s forwards}
+
+.splash-bottom{position:absolute;bottom:calc(46px + env(safe-area-inset-bottom));left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:22px}
+.splash-progress{width:140px;height:2px;overflow:hidden;border-radius:2px;background:var(--so-track);transition:opacity .25s ease}
+.splash-progress i{display:block;width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--so-b),var(--so-a));
+  transform:scaleX(0);transform-origin:0 50%;animation:spLoad 1.6s cubic-bezier(.3,.7,.2,1) .25s forwards}
+#splash.done .splash-progress i{animation:none;transform:scaleX(1);transition:transform .22s ease-out}
+#splash.ask .splash-progress{opacity:0}
 #splash #langs{animation:langsReveal .45s .15s ease both}
 #splash #langs button{border-radius:8px;padding:3px;box-shadow:0 0 0 1px var(--nv-line,var(--hint))}
-@keyframes splashArrive{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:translateY(-8px) scale(1)}}
-@keyframes splashLetter{to{opacity:1;transform:none}}
-@keyframes splashCaption{to{opacity:.72}}
-@keyframes splashLoad{0%{transform:translateX(-120%)}100%{transform:translateX(270%)}}
-@keyframes splashOrbit{to{transform:rotate(360deg)}}
-@keyframes splashPulse{50%{opacity:.45;transform:rotateX(68deg) scale(1.1)}}
-@keyframes auraBreath{50%{transform:scale(.9);opacity:.55}}
-@keyframes symbolFloat{50%{transform:translateY(-5px)}}
+
+/* release */
+#splash.off .splash-orbits{opacity:0;transform:translate(-50%,-50%) scale(1.18)}
+#splash.off .splash-core{transform:translateY(-10px) scale(1.03);transition:transform .42s cubic-bezier(.4,0,.2,1)}
+
+@keyframes soDraw{to{stroke-dashoffset:0}}
+@keyframes soSpin{to{transform:rotate(360deg)}}
+@keyframes soFade{to{opacity:1}}
+@keyframes soHalo{to{opacity:.28}}
+@keyframes spFocus{to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes spRise{to{transform:none}}
+@keyframes spTrack{to{opacity:.75;letter-spacing:.28em;padding-left:.28em}}
+@keyframes spLoad{to{transform:scaleX(.88)}}
 @keyframes langsReveal{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-html[data-theme=dark] #splash{background:radial-gradient(ellipse at 50% 43%,rgba(87,106,220,.19),transparent 38%),radial-gradient(ellipse at 50% 100%,rgba(44,155,174,.1),transparent 45%),#090a0d}
+
 @media(prefers-reduced-motion:reduce){
- #splash:before,#splash:after,.splash-aura em,.splash-aura b,.splash-symbol,#splash .mark span,#splash #langs,.splash-core,.splash-progress i{animation:none!important}
- #splash .mark span{opacity:1;transform:none}
- #splash .splash-caption{opacity:.72;animation:none}
- #splash,#splash.off{transition:none}
+  .so-spin,.so-p,.splash-symbol,#splash .mark span,.splash-caption,.splash-progress i,#splash #langs{animation:none!important}
+  .so-p{stroke-dashoffset:0}.so-dot,.so-halo{display:none}
+  .splash-symbol{opacity:1;transform:none;filter:none}
+  #splash .mark span{transform:none}
+  .splash-caption{opacity:.75;letter-spacing:.28em;padding-left:.28em}
+  .splash-progress i{transform:scaleX(.88)}
+  .splash-orbits,#splash.off .splash-orbits{transform:translate(-50%,-50%)}
+  #splash.off .splash-core{transform:translateY(-10px)}
 }
-@media(prefers-reduced-transparency:reduce){.splash-symbol{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--nv-panel,var(--panel))}}
 </style>
 <style id="nuvio-theme-presets">
 html[data-palette="mono"]{--bg:#f1f1f1;--panel:#e5e5e5;--text:#171717;--hint:#666;--accent:#333;--tint:rgba(30,30,30,.1);--nv-bg:#f1f1f1;--nv-panel:#fff;--nv-panel-2:#e8e8e8;--nv-text:#171717;--nv-secondary:#666;--nv-tertiary:#666;--nv-blue:#333;--nv-blue-soft:rgba(30,30,30,.1);--nv-line:rgba(20,20,20,.14);color-scheme:light}
@@ -1097,7 +1127,7 @@ html[data-theme=dark]:not([data-palette]) #g{--gx-card:linear-gradient(180deg,#1
 
 </style>
 </head><body>
-<div id="splash"><div class="splash-aura" aria-hidden="true"><i></i><b></b><em></em></div><div class="splash-core"><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress"><i></i></div><div id="langs"></div></div></div>
+<div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
 <header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button><button data-t="mo">Настроение</button></nav>
 <section id="w">
   <div id="dayGreeting" class="day-greeting" aria-live="polite"><div class="day-greeting-title"></div><div class="day-greeting-date"></div></div>
@@ -2581,14 +2611,14 @@ async function init(){
 }
 function setLang(l){lang=l;st.set('lang',l);renderDayGreeting();applyStatic();const nt=$('nvTitle'),pb=$('profileOpen');if(nt)nt.textContent=activeTab==='p'?t('tp'):'nuvio';if(pb)pb.setAttribute('aria-label',activeTab==='p'?(lang==='en'?'Back':'Назад'):t('tp'));renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();renderHl();renderMood();if(lastWeather)render(lastWeather.d,lastWeather.name)}
 (async()=>{
-  $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${i*.08}s">${c}</span>`).join('');
+  $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${(.42+i*.055).toFixed(3)}s">${c}</span>`).join('');
   const q0=new URLSearchParams(location.search).get('lang'),qp=(q0==='ru'||q0==='en')?q0:null,sv=await st.get('lang'),seen=await st.get('blang'),th=await st.get('theme'),pal=await st.get('palette'),lg=await st.get('liquid_glass');
   if(th)applyTheme(th);applyPalette(pal,false);applyLiquidGlass(lg!=='off',false);if(qp)st.set('blang',qp);const l=qp&&qp!==seen?qp:((sv==='ru'||sv==='en')?sv:qp);
   if(l==='ru'||l==='en'){lang=l;st.set('lang',l);applyStatic();moveGlass(document.querySelector('.tabs .on'),true);init();await new Promise(r=>setTimeout(r,1500))}
-  else{$('langs').innerHTML=`<button data-l="ru" aria-label="Русский">${FLAG.ru}</button><button data-l="en" aria-label="English">${FLAG.en}</button>`;
+  else{$('splash').classList.add('ask');$('langs').innerHTML=`<button data-l="ru" aria-label="Русский">${FLAG.ru}</button><button data-l="en" aria-label="English">${FLAG.en}</button>`;
     lang=await new Promise(r=>$('langs').querySelectorAll('button').forEach(b=>b.onclick=()=>r(b.dataset.l)));
     st.set('lang',lang);applyStatic();moveGlass(document.querySelector('.tabs .on'),true);init()}
-  $('splash').classList.add('off');
+  {const sp=$('splash');sp.classList.add('done');await new Promise(r=>setTimeout(r,230));sp.classList.add('off');setTimeout(()=>{sp.style.display='none'},520)}
 })();
 </script>
 <script>
