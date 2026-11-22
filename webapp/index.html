@@ -1576,6 +1576,55 @@ html[data-theme=dark] #w{--wd-bad:#ff8a78}
 #wdPage .wd-editf>*{min-width:0}
 #wdPage .wd-empty{margin:22px 0 0!important;text-align:center;line-height:1.5}
 </style>
+<style id="nuvio-v4-fixes">
+/* v4: selected options look selected and every button answers a press */
+html:not(#_) section:not(#study) button.on:not(.palette-choice):not(.wd-chip):not(.ck):not(.sy-chip){border-color:var(--nv-blue)!important;background:var(--nv-blue-soft)!important;box-shadow:inset 0 0 0 1.5px var(--nv-blue)!important;color:var(--nv-text)!important}
+html:not(#_) section:not(#study) button.on:not(.palette-choice):not(.wd-chip):not(.ck):not(.sy-chip) small{color:var(--nv-text)!important;opacity:.78}
+html:not(#_) section button:not(:disabled):active{opacity:.66}
+/* Nutrition: optional mark in field labels */
+#nx .nx-opt{font-weight:400;color:var(--nv-secondary)}
+/* Health: why a value was not saved */
+#hl{--hl-bad:#c8402f}
+html[data-theme=dark] #hl{--hl-bad:#ff8a78}
+#hl .hl-err{margin:10px 0 0!important;color:var(--hl-bad);font-size:14px;font-weight:600;line-height:1.4}
+/* Planner: country of holidays */
+#pl .pl-cc{display:flex;align-items:center;gap:12px;margin:16px 0 8px}
+#pl .pl-cc label{flex:none;margin:0!important;font-size:15px;font-weight:600;color:var(--nv-text)}
+#pl .pl-cc select{flex:1;min-width:0}
+#pl .pl-holnote{margin:4px 0 10px;color:var(--nv-secondary);font-size:14px;line-height:1.45}
+#pl .pl-retry{min-height:36px!important;margin-left:6px;padding:0 12px!important;border:1px solid var(--nv-line)!important;border-radius:12px!important;background:transparent!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:14px!important;font-weight:600!important}
+/* Fitness: a cardio set is minutes only */
+#ft .setr.setc{grid-template-columns:24px 1fr 44px}
+/* the floated ⓘ / ✕ in an exercise title squeezed the first set row */
+#ft .sec>h2{display:flex;align-items:center;gap:8px}
+#ft .sec>h2 .x{float:none;flex:none;margin-left:auto}
+/* Study: links as buttons, task card, shared text, even rows */
+#study .sy-obtns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+#study .sy-obtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;max-width:100%;padding:0 12px 0 14px!important;border:1px solid var(--nv-line)!important;border-radius:14px!important;background:var(--nv-panel-2)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:14px;font-weight:600;line-height:1.25;text-align:left;cursor:pointer;vertical-align:middle}
+#study .sy-obtn span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#study .sy-obtn svg{flex:none;width:16px;height:16px;fill:none;stroke:var(--sy-a);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#study .sy-src .sy-obtn{min-height:34px;margin:2px 0;font-size:13px}
+#study .sy-taskd>.p.sy-wide{margin:14px 0 4px}
+#study .sy-acts.sy-acts3{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:8px}
+#study .sy-acts3 .sy-btn2{min-width:0;padding:0 8px!important;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#study .sy-fp .sy-ch{display:block}
+#study .sy-fp .sy-ch>span{display:block;margin-top:4px;white-space:normal;line-height:1.4}
+#study .sy-ftext{margin:10px 0;padding:10px 14px;border:1px solid var(--nv-line);border-radius:14px;background:var(--nv-panel-2)}
+#study .sy-ftext summary{cursor:pointer;font-size:14.5px;font-weight:650;color:var(--sy-a)}
+#study .sy-ftext .sy-fqt{margin-top:8px;font-size:15px;line-height:1.55}
+#study .sy-ftext .sy-fqt p{margin:0 0 8px}
+#study .sy-fqt,#study .sy-text,#study .sy-ai p,#study .sy-muted,#study .sy-src{text-align:left!important;hyphens:manual!important;-webkit-hyphens:manual!important}
+#study .sy-topic{display:grid;grid-template-columns:minmax(0,1fr) auto 36px;align-items:center;column-gap:6px;min-height:52px;padding:8px 0}
+#study .sy-topic>span{font-size:15px;line-height:1.35}
+#study .sy-topic.sy-tsub>span{padding-left:14px;border-left:2px solid var(--nv-line);margin-left:2px;font-size:14.5px;font-weight:500;color:var(--nv-secondary)}
+#study .sy-topic .sy-m{min-height:30px!important;padding:0 10px!important;font-size:12.5px!important;line-height:1!important;white-space:nowrap}
+#study .sy-ch{flex-wrap:wrap;row-gap:2px}
+#study .sy-ch>span{flex:0 1 auto;white-space:normal}
+#study .sy-obtns{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+#study .sy-obtns .sy-obtn{justify-content:space-between;width:100%;min-height:46px}
+#study .sy-grid1{display:grid;gap:0}
+#study .sy-subs li>span:first-child{flex:1 1 160px}
+</style>
 </head><body>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
 <header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button><button data-t="study" data-i="tsy"></button></nav>
@@ -1711,7 +1760,7 @@ const LF={ru:{ft:'Фитнес',fonb:'Расскажите о себе: так �
  fneedg:'Выберите хотя бы одну группу мышц',fneedn:'Введите название и добавьте упражнения',fall:'Все',fchoose:'Выберите тренировку',fnowo:'Тренировок пока нет. Создайте их в «Персонализации».',fex_n:'упр.',
  faddset:'+ подход',ffinish:'Завершить тренировку',ffq:'Завершить тренировку?',fnosets:'Нет отмеченных подходов. Завершить без записи?',fstarted:'Начало',fdur:'Длительность',fvol:'Поднято всего',f1rm:'Максимум на 1 повтор ≈',frec:'Рекорд',
  fnote1:'Максимум на 1 повтор считается по формуле Эпли. Это оценка, а не тест.',fkgu:'кг',fh_:'ч',fm_:'мин',fs_:'с',faiw:'ИИ-тренер думает…',fait:'Совет ИИ-тренера',fask:'Спросить ИИ-тренера',ftech:'Совет по технике',fpr_h:'Рекорды (оценка максимума на 1 повтор)',fdq:'Удалить тренировку?',fst:'Старт',fen:'Финиш',fcab:'Личный кабинет',fstat_h:'Рост',fstat_w:'Вес',fstat_b:'Телосложение',fstat_t:'Тренировок всего',fbmi:'ИМТ',fbmi1:'ниже нормы',fbmi2:'в норме',fbmi3:'выше нормы',fbmi4:'высокий',fstat_g:'Желаемый вес',fabout:'О себе и цели',fage:'Возраст',fsex:'Пол',fsex_m:'Муж.',fsex_f:'Жен.',ftw:'Желаемый вес (кг)',fsavec:'Сохранить и пересчитать',fnutri:'Нормы на день (КБЖУ)',fkcal:'Ккал',fprot:'Белки',ffat:'Жиры',fcarb:'Углеводы',fgr:'г',fplanh:'Как прийти к желаемому весу',fweeks:'Около {0} нед.',fcalc:'ИИ считает нормы и план…',frecalc:'Пересчитать',fcabnote:'Расчёт ориентировочный и не заменяет консультацию врача или диетолога.',ftwneed:'Укажите желаемый вес, и ИИ составит план под него.',fprogress:'Путь к цели',fchprof:'Изменить рост и телосложение',fbadw:'Проверьте вес (30–300 кг), возраст (10–100) и желаемый вес (30–300 кг)',eq_all:'Все упражнения',eq_bb:'Штанга',eq_db:'Гантели',eq_mach:'Тренажёры',eq_cable:'Блочный тренажёр',eq_bw:'Собственный вес',eq_kb:'Гиря',eq_oth:'Прочее',fhold:'Положение',fphoto:'Фото',fvideo:'Видео',
- g_chest:'Грудь',g_back:'Спина',g_traps:'Трапеции',g_shoulders:'Плечи',g_biceps:'Бицепс',g_triceps:'Трицепс',g_forearms:'Предплечья',g_abs:'Пресс',g_glutes:'Ягодицы',g_quads:'Квадрицепс',g_hams:'Бицепс бедра',g_calves:'Икры'},
+ g_chest:'Грудь',g_back:'Спина',g_traps:'Трапеции',g_shoulders:'Плечи',g_biceps:'Бицепс',g_triceps:'Трицепс',g_forearms:'Предплечья',g_abs:'Пресс',g_glutes:'Ягодицы',g_quads:'Квадрицепс',g_hams:'Бицепс бедра',g_calves:'Икры',g_cardio:'Кардио',fmin:'Минут',fminu:'мин',fcmin:'Кардио'},
 en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.',fh:'Height (cm)',fw:'Weight (kg)',fbody:'Your body type',
  b_ecto:'Ectomorph',b_ectod:'Lean, fast metabolism, hard to gain mass',b_meso:'Mesomorph',b_mesod:'Athletic, builds muscle easily',b_endo:'Endomorph',b_endod:'Stocky, tends to store fat',
  fnext:'Next',fgoalq:'Desired physique',p_fatloss:'Lose weight',p_fatlossd:'Less fat, more energy',p_toned:'Toned',p_tonedd:'Light definition without extra size',p_athletic:'Athletic',p_athleticd:'Balance of strength, definition and endurance',p_muscle:'Muscular',p_muscled:'Big muscle mass',p_strong:'Strong',p_strongd:'Maximum working weights',
@@ -1721,7 +1770,7 @@ en:{ft:'Fitness',fonb:'Tell us about yourself so AI can tune your training load.
  fneedg:'Pick at least one muscle group',fneedn:'Enter a name and add exercises',fall:'All',fchoose:'Choose a workout',fnowo:'No workouts yet. Create them in “Customize”.',fex_n:'ex.',
  faddset:'+ set',ffinish:'Finish workout',ffq:'Finish this workout?',fnosets:'No sets marked. Finish without saving?',fstarted:'Started',fdur:'Duration',fvol:'Total lifted',f1rm:'1-rep max ≈',frec:'Record',
  fnote1:'The 1-rep max is calculated with the Epley formula. It’s an estimate, not a test.',fkgu:'kg',fh_:'h',fm_:'min',fs_:'s',faiw:'AI coach is thinking…',fait:'AI coach advice',fask:'Ask AI coach',ftech:'Technique tips',fpr_h:'Records (estimated 1-rep max)',fdq:'Delete this workout?',fst:'Start',fen:'Finish',fcab:'My cabinet',fstat_h:'Height',fstat_w:'Weight',fstat_b:'Body type',fstat_t:'Total workouts',fbmi:'BMI',fbmi1:'below normal',fbmi2:'normal',fbmi3:'above normal',fbmi4:'high',fstat_g:'Target weight',fabout:'About you and your goal',fage:'Age',fsex:'Sex',fsex_m:'Male',fsex_f:'Female',ftw:'Target weight (kg)',fsavec:'Save and recalculate',fnutri:'Daily targets (macros)',fkcal:'Kcal',fprot:'Protein',ffat:'Fat',fcarb:'Carbs',fgr:'g',fplanh:'How to reach your target weight',fweeks:'About {0} wk.',fcalc:'AI is calculating your targets and plan…',frecalc:'Recalculate',fcabnote:'This is an estimate and is not a substitute for advice from a doctor or dietitian.',ftwneed:'Set a target weight and AI will build a plan for it.',fprogress:'Progress to goal',fchprof:'Change height and body type',fbadw:'Check weight (30–300 kg), age (10–100) and target weight (30–300 kg)',eq_all:'All exercises',eq_bb:'Barbell',eq_db:'Dumbbells',eq_mach:'Machines',eq_cable:'Cable machine',eq_bw:'Bodyweight',eq_kb:'Kettlebell',eq_oth:'Other',fhold:'Position',fphoto:'Photos',fvideo:'Video',
- g_chest:'Chest',g_back:'Back',g_traps:'Traps',g_shoulders:'Shoulders',g_biceps:'Biceps',g_triceps:'Triceps',g_forearms:'Forearms',g_abs:'Abs',g_glutes:'Glutes',g_quads:'Quads',g_hams:'Hamstrings',g_calves:'Calves'}};
+ g_chest:'Chest',g_back:'Back',g_traps:'Traps',g_shoulders:'Shoulders',g_biceps:'Biceps',g_triceps:'Triceps',g_forearms:'Forearms',g_abs:'Abs',g_glutes:'Glutes',g_quads:'Quads',g_hams:'Hamstrings',g_calves:'Calves',g_cardio:'Cardio',fmin:'Minutes',fminu:'min',fcmin:'Cardio'}};
 Object.assign(L.ru,LF.ru);Object.assign(L.en,LF.en);
 const EXR=`chest
 bench|Жим штанги лёжа|Barbell bench press
@@ -1860,7 +1909,26 @@ calfseat|Подъём на носки сидя|Seated calf raise
 calfpress|Подъём на носки в жиме ногами|Leg press calf raise
 donkey|Ослиные подъёмы|Donkey calf raise
 calfsingle|Подъём на носок на одной ноге|Single-leg calf raise
-jumprope|Прыжки на скакалке|Jump rope`;
+jumprope|Прыжки на скакалке|Jump rope
+cardio
+run|Бег|Running
+treadmill|Бег на беговой дорожке|Treadmill running
+walkfast|Быстрая ходьба|Brisk walking
+inclinewalk|Ходьба в гору на дорожке|Incline treadmill walk
+bike|Велотренажёр|Stationary bike
+cycling|Велосипед|Cycling
+elliptical|Эллиптический тренажёр|Elliptical trainer
+rowerg|Гребной тренажёр|Rowing machine
+stairs|Степпер|Stair climber
+skierg|Лыжный тренажёр|Ski erg
+airbike|Эйр-байк|Air bike
+swim|Плавание|Swimming
+hiit|Интервальная тренировка (HIIT)|HIIT intervals
+burpee|Бёрпи|Burpees
+jjacks|Прыжки «звёздочка»|Jumping jacks
+climbers|Скалолаз|Mountain climbers
+highknees|Бег на месте с высоким подниманием колен|High knees
+boxjump|Прыжки на тумбу|Box jumps`;
 const EX={},GR=[];{let g;EXR.split('\n').forEach(l=>{if(!l.includes('|')){g=l.trim();GR.push(g)}else{const[a,r,e]=l.split('|');EX[a]={id:a,g,ru:r,en:e}}})}
 const ST='h:50,13 s:50,22 p:50,42 k:51,57 f:48,71';
 const BAR=y=>`<path d="M30 ${y}H72" stroke-width="3" opacity=".45"/>`;
@@ -1901,12 +1969,12 @@ function figSvg(pat,ph){
   const leg=(k,f,t)=>k&&f?`<path d="M${P.p[0]} ${P.p[1]}L${k[0]} ${k[1]}L${f[0]} ${f[1]}"/>`+foot(f,t):'';
   return `<svg viewBox="0 0 100 78" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 72H96" opacity=".25"/>${pat.c||''}${pat['x'+ph]||''}${leg(P.k,P.f,P.t)}${leg(P.k2,P.f2,P.t2)}${L(P.s,P.p)}${P.e?`<path d="M${P.s[0]} ${P.s[1]}L${P.e[0]} ${P.e[1]}L${P.w[0]} ${P.w[1]}"/>`:''}<circle cx="${P.h[0]}" cy="${P.h[1]}" r="4.6"/>${P.w&&pat.wt?`<circle cx="${P.w[0]}" cy="${P.w[1]}" r="${pat.wt}" fill="currentColor" stroke="none" opacity=".85"/>`:''}</svg>`}
 
-const MUSCLE={chest:'грудные мышцы (pectorals), тренировка груди в тренажёрном зале',back:'мышцы спины (lats, rhomboids)',traps:'трапециевидные мышцы (traps)',shoulders:'дельтовидные мышцы (deltoids)',biceps:'бицепс (мышца руки)',triceps:'трицепс (мышца руки)',forearms:'мышцы предплечий',abs:'мышцы пресса (abs, core)',glutes:'ягодичные мышцы (gluteus maximus), тренировка ягодиц в тренажёрном зале',quads:'квадрицепс (мышцы передней поверхности бедра)',hams:'задняя поверхность бедра (hamstrings)',calves:'икроножные мышцы (calves)'};
+const MUSCLE={chest:'грудные мышцы (pectorals), тренировка груди в тренажёрном зале',back:'мышцы спины (lats, rhomboids)',traps:'трапециевидные мышцы (traps)',shoulders:'дельтовидные мышцы (deltoids)',biceps:'бицепс (мышца руки)',triceps:'трицепс (мышца руки)',forearms:'мышцы предплечий',abs:'мышцы пресса (abs, core)',glutes:'ягодичные мышцы (gluteus maximus), тренировка ягодиц в тренажёрном зале',quads:'квадрицепс (мышцы передней поверхности бедра)',hams:'задняя поверхность бедра (hamstrings)',calves:'икроножные мышцы (calves)',cardio:'кардио: выносливость и сердечно-сосудистая система (для этих упражнений reps = минуты работы)'};
 const figHTML=id=>{const p=PAT[PM[id]];if(!p)return'';return `<div class="fig">${figSvg(p,'a')}${p.st?'':`<i>→</i>${figSvg(p,'b')}`}</div><div class="figl">${p.st?`<span>${t('fhold')}</span>`:`<span>${t('fst')}</span><span>${t('fen')}</span>`}</div>`};
 const openExt=u=>tg?.openLink?tg.openLink(u):window.open(u,'_blank');
-const EQ_OF=`bb:bench,incbench,decbench,deadlift,bbrow,tbar,rackpull,shrugbb,uprow,ohp,pushpress,bbcurl,ezcurl,preacher,cgbench,frenchbb,wristcurl,revwrist,revcurl,hipthrust,rdl,sumo,squat,frontsq,zercher,stiffdl,gm;db:dbpress,dbinc,dbfly,incfly,pullover,dbrow,shrugdb,dbohp,arnold,latraise,frontraise,reardelt,dbcurl,hammer,conccurl,inccurl,spidercurl,zottman,frenchdb,kickback,lunge,walklunge,stepup,bss,gobletsq,dbrdl,slrdl,farmer;mach:chestpress,pecdeck,smithbench,machrow,hyper,reardeck,machsp,legext,legpress,hack,smithsq,seatcurl,legcurl,abduct,calfstand,calfseat,calfpress,donkey,ghr;cable:cablefly,cablefly2,cablepress,latpd,latpdn,latpd1,cablerow,straightpd,facepull,cablelat,cablerear,cablecurl,cablecurl2,pushdown,ropepd,overcable,ext1,cablecrunch,kickcable,cabpull,woodchop;bw:pushup,dips_c,dips_t,benchdip,diamond,pullup,chinup,invrow,hang,legraise,crunch,plank,sideplank,russian,bicycle,revcrunch,vup,mclimber,glutebridge,sissy,pistol,nordic,calfsingle;kb:swing,kbsnatch,kbpress,kbgoblet;oth:abwheel,gripper,plateplm,jumprope`;
+const EQ_OF=`bb:bench,incbench,decbench,deadlift,bbrow,tbar,rackpull,shrugbb,uprow,ohp,pushpress,bbcurl,ezcurl,preacher,cgbench,frenchbb,wristcurl,revwrist,revcurl,hipthrust,rdl,sumo,squat,frontsq,zercher,stiffdl,gm;db:dbpress,dbinc,dbfly,incfly,pullover,dbrow,shrugdb,dbohp,arnold,latraise,frontraise,reardelt,dbcurl,hammer,conccurl,inccurl,spidercurl,zottman,frenchdb,kickback,lunge,walklunge,stepup,bss,gobletsq,dbrdl,slrdl,farmer;mach:chestpress,pecdeck,smithbench,machrow,hyper,reardeck,machsp,legext,legpress,hack,smithsq,seatcurl,legcurl,abduct,calfstand,calfseat,calfpress,donkey,ghr;cable:cablefly,cablefly2,cablepress,latpd,latpdn,latpd1,cablerow,straightpd,facepull,cablelat,cablerear,cablecurl,cablecurl2,pushdown,ropepd,overcable,ext1,cablecrunch,kickcable,cabpull,woodchop;bw:pushup,dips_c,dips_t,benchdip,diamond,pullup,chinup,invrow,hang,legraise,crunch,plank,sideplank,russian,bicycle,revcrunch,vup,mclimber,glutebridge,sissy,pistol,nordic,calfsingle;kb:swing,kbsnatch,kbpress,kbgoblet;oth:abwheel,gripper,plateplm,jumprope,cycling,hiit,boxjump;mach:treadmill,inclinewalk,bike,elliptical,rowerg,stairs,skierg,airbike;bw:run,walkfast,swim,burpee,jjacks,climbers,highknees`;
 const EQ={};EQ_OF.split(';').forEach(x=>{const[k,l]=x.split(':');l.split(',').forEach(i=>EQ[i]=k)});
-const exn=id=>EX[id]?EX[id][lang]:id,e1=(kg,r)=>r<=1?kg:kg*(1+Math.min(r,30)/30),R5=n=>Math.round(n*2)/2,cl=(v,a,b,d)=>{v=Math.round(+v);return isNaN(v)?d:Math.max(a,Math.min(b,v))};
+const isC=id=>EX[id]?.g==='cardio',exn=id=>EX[id]?EX[id][lang]:id,e1=(kg,r)=>r<=1?kg:kg*(1+Math.min(r,30)/30),R5=n=>Math.round(n*2)/2,cl=(v,a,b,d)=>{v=Math.round(+v);return isNaN(v)?d:Math.max(a,Math.min(b,v))};
 const fmtn=n=>Math.round(n).toLocaleString(loc()),hm=x=>new Date(x).toLocaleTimeString(loc(),{hour:'2-digit',minute:'2-digit'}),
   fdur=ms=>{const s=Math.round(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h} ${t('fh_')} ${m} ${t('fm_')}`:`${m} ${t('fm_')} ${s%60} ${t('fs_')}`},
   clk=ms=>{const s=Math.max(0,Math.floor(ms/1000));return [Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(p2).join(':')},
@@ -1921,7 +1989,7 @@ async function loadFit(){
   F.loaded=true;F.v=F.prof?'menu':'onb';renderFit()}
 const saveAct=()=>F.act?st.set('fit_active',JSON.stringify(F.act)):st.del('fit_active');
 const saveIdx=()=>st.set('fwi',JSON.stringify(F.ws.map(x=>x.id)));
-function sumry(s){const ex=s.ex.map(x=>{const sets=x.sets.filter(a=>a[1]>0);return{id:x.id,sets,vol:sets.reduce((a,[k,r])=>a+k*r,0),best:R5(sets.reduce((m,[k,r])=>Math.max(m,k>0?e1(k,r):0),0))}}).filter(x=>x.sets.length);
+function sumry(s){const ex=s.ex.map(x=>{const sets=x.sets.filter(a=>a[1]>0);return{id:x.id,sets,c:isC(x.id),min:isC(x.id)?sets.reduce((a,[,r])=>a+r,0):0,vol:sets.reduce((a,[k,r])=>a+k*r,0),best:R5(sets.reduce((m,[k,r])=>Math.max(m,k>0?e1(k,r):0),0))}}).filter(x=>x.sets.length);
   return{ex,vol:ex.reduce((a,x)=>a+x.vol,0),dur:s.end-s.start}}
 const opt=(kind,k,on)=>`<button class="opt${on?' on':''}" data-a="pick" data-k="${kind}" data-v="${k}"><b>${t((kind==='goal'?'p_':'b_')+k)}</b><small>${t((kind==='goal'?'p_':'b_')+k+'d')}</small></button>`;
 const back=a=>`<button data-a="${a}">${t('back')}</button>`,title=s=>`<div class="gt" style="margin:14px 0 10px">${s}</div>`;
@@ -1943,13 +2011,13 @@ function vMenu(){const p=F.prof;
   <div class="fgrid">${[['hist','📈','fhist',t('fhist_s')],['cust','🛠','fcust',t('fcust_s')],['lib','📚','flib',t('flib_s',Object.keys(EX).length)],['start','⏱','fstart',t('fstart_s')]].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${s}</small></div>`).join('')}</div>`}
 function vHist(){const prs=Object.entries(F.pr).sort((a,b)=>b[1]-a[1]).slice(0,6);
   return back('menu')+title(t('fhist'))+(prs.length?`<div class="sec mb"><h2>${t('fpr_h')}</h2>${prs.map(([id,v])=>`<div class="kv"><span>${esc(exn(id))}</span><b>${v} ${t('fkgu')}</b></div>`).join('')}</div>`:'')
-    +(F.hs.length?F.hs.map(s=>{const m=sumry(s);return `<div class="gcard" data-a="hopen" data-id="${s.id}"><div class="gm"><b>${esc(s.name)}</b><small>${dm(s.start)} · ${hm(s.start)} · ${fdur(m.dur)}</small></div><b class="gv">${fmtn(m.vol)} ${t('fkgu')}</b></div>`}).join(''):`<p class="msg">${t('fnone')}</p>`)}
+    +(F.hs.length?F.hs.map(s=>{const m=sumry(s);return `<div class="gcard" data-a="hopen" data-id="${s.id}"><div class="gm"><b>${esc(s.name)}</b><small>${dm(s.start)} · ${hm(s.start)} · ${fdur(m.dur)}</small></div><b class="gv">${!m.vol&&m.ex.some(x=>x.c)?m.ex.reduce((a,x)=>a+x.min,0)+' '+t('fminu'):fmtn(m.vol)+' '+t('fkgu')}</b></div>`}).join(''):`<p class="msg">${t('fnone')}</p>`)}
 function vReport(){const s=F.rep,m=sumry(s);
   return back(F.from==='act'?'menu':'hist')+`<div class="ghero"><div class="gt">${esc(s.name)}</div><p class="meta">${dm(s.start)}</p>
-    <div class="stats"><div><small>${t('fstarted')}</small><b>${hm(s.start)}</b></div><div><small>${t('fdur')}</small><b>${fdur(m.dur)}</b></div><div><small>${t('fvol')}</small><b>${fmtn(m.vol)} ${t('fkgu')}</b></div></div></div>
+    <div class="stats"><div><small>${t('fstarted')}</small><b>${hm(s.start)}</b></div><div><small>${t('fdur')}</small><b>${fdur(m.dur)}</b></div>${!m.vol&&m.ex.some(x=>x.c)?`<div><small>${t('fcmin')}</small><b>${m.ex.reduce((a,x)=>a+x.min,0)} ${t('fminu')}</b></div>`:`<div><small>${t('fvol')}</small><b>${fmtn(m.vol)} ${t('fkgu')}</b></div>`}</div></div>
   ${m.ex.map(x=>`<div class="sec"><h2>${esc(exn(x.id))}${(s.pr||[]).includes(x.id)?` <span class="rec">🏆 ${t('frec')}</span>`:''}</h2>
-    <div class="items">${x.sets.map(([k,r])=>`<span>${k} ${t('fkgu')} × ${r}</span>`).join('')}</div>
-    <div class="kv" style="margin-top:10px"><span>${t('fvol')}</span><b>${fmtn(x.vol)} ${t('fkgu')}</b></div>${x.best?`<div class="kv"><span>${t('f1rm')}</span><b>${x.best} ${t('fkgu')}</b></div>`:''}</div>`).join('')}
+    <div class="items">${x.sets.map(([k,r])=>`<span>${x.c?r+' '+t('fminu'):k+' '+t('fkgu')+' × '+r}</span>`).join('')}</div>
+    <div class="kv" style="margin-top:10px">${x.c?`<span>${t('fmin')}</span><b>${x.min} ${t('fminu')}</b>`:`<span>${t('fvol')}</span><b>${fmtn(x.vol)} ${t('fkgu')}</b>`}</div>${x.best?`<div class="kv"><span>${t('f1rm')}</span><b>${x.best} ${t('fkgu')}</b></div>`:''}</div>`).join('')}
   <p class="meta" style="margin-top:10px">${t('fnote1')}</p>
   <div class="sec"><h2>${t('fait')}</h2><div id="fai"></div><button id="faibtn" data-a="review" ${F.ai&&F.ai.j?'hidden':''} style="margin-top:8px">${t('fask')}</button></div>`}
 function vCust(){return back('menu')+title(t('fcust'))+(F.ws.map(w=>`<div class="gcard" data-a="wedit" data-id="${w.id}"><div><b>${esc(w.name)}</b><small>${w.groups.map(g=>t('g_'+g)).join(', ')} · ${w.ex.length} ${t('fex_n')}</small></div></div>`).join('')||`<p class="msg">${t('fnone')}</p>`)+`<button class="p wide" data-a="wnew">${t('fnew')}</button>`}
@@ -1959,7 +2027,7 @@ function vEdit(){const e=F.ed;
    <div class="chips2">${GR.map(g=>`<button class="${e.groups.includes(g)?'on':''}" data-a="tg" data-v="${g}">${t('g_'+g)}</button>`).join('')}</div>
    <button class="wide" data-a="aiplan" style="margin-top:12px" ${F.busy?'disabled':''}>✨ ${F.busy?t('faib'):t('fai')}</button>
    ${e.ex.map((x,i)=>`<div class="sec"><h2>${esc(exn(x.id))} <button class="x" data-a="rmex" data-i="${i}" aria-label="${t('fdel')}">✕</button></h2>
-     <div class="row3"><div><label>${t('fsets')}</label><input data-f="ex" data-i="${i}" data-k="sets" inputmode="numeric" value="${x.sets}"></div><div><label>${t('freps')}</label><input data-f="ex" data-i="${i}" data-k="reps" inputmode="numeric" value="${x.reps}"></div><div><label>${t('fkg')}</label><input data-f="ex" data-i="${i}" data-k="kg" inputmode="decimal" value="${x.kg||''}" placeholder="0"></div></div></div>`).join('')}
+     <div class="${isC(x.id)?'row':'row3'}"><div><label>${t('fsets')}</label><input data-f="ex" data-i="${i}" data-k="sets" inputmode="numeric" value="${x.sets}"></div><div><label>${isC(x.id)?t('fmin'):t('freps')}</label><input data-f="ex" data-i="${i}" data-k="reps" inputmode="numeric" value="${x.reps}"></div>${isC(x.id)?'':`<div><label>${t('fkg')}</label><input data-f="ex" data-i="${i}" data-k="kg" inputmode="decimal" value="${x.kg||''}" placeholder="0"></div>`}</div></div>`).join('')}
    <button class="wide" data-a="togpick" style="margin-top:12px">＋ ${t('fadd')}</button>
    ${F.pick?`<input data-f="q" placeholder="${t('fsearch')}" value="${esc(F.q)}" style="margin-top:10px"><div id="liblist" class="liblist">${libList('add')}</div>`:''}
    <div class="row" style="margin-top:16px"><button class="p" style="flex:1" data-a="wsave">${t('fsave')}</button></div>${e.id?`<button class="danger" data-a="wdel">${t('fdel')}</button>`:''}`}
@@ -1967,7 +2035,7 @@ function vStart(){return back('menu')+title(t('fstart'))+(F.act?`<button class="
 function vAct(){const a=F.act;
   return `<div class="ghero"><div class="gt" style="text-align:center">${esc(a.name)}</div><div class="tmr" id="tm">${clk(Date.now()-a.start)}</div><p class="meta" style="text-align:center">${t('fstarted')} ${hm(a.start)}</p></div>
   ${a.ex.map((x,ei)=>`<div class="sec"><h2>${esc(exn(x.id))}${F.pr[x.id]?` <small class="meta">· ${t('f1rm')} ${F.pr[x.id]} ${t('fkgu')}</small>`:''}<button class="x" data-a="xinfo" data-i="${ei}" aria-label="info">ⓘ</button></h2>${F.info===ei?figHTML(x.id):''}
-    ${x.sets.map((s,si)=>`<div class="setr"><span>${si+1}</span><input data-f="set" data-e="${ei}" data-s="${si}" data-k="kg" inputmode="decimal" value="${s.kg||''}" placeholder="${t('fkg')}" aria-label="${t('fkg')}"><input data-f="set" data-e="${ei}" data-s="${si}" data-k="reps" inputmode="numeric" value="${s.reps||''}" placeholder="${t('freps')}" aria-label="${t('freps')}"><button class="ck${s.done?' on':''}" data-a="ck" data-e="${ei}" data-s="${si}">✓</button></div>`).join('')}
+    ${x.sets.map((s,si)=>`<div class="setr${isC(x.id)?' setc':''}"><span>${si+1}</span>${isC(x.id)?'':`<input data-f="set" data-e="${ei}" data-s="${si}" data-k="kg" inputmode="decimal" value="${s.kg||''}" placeholder="${t('fkg')}" aria-label="${t('fkg')}">`}<input data-f="set" data-e="${ei}" data-s="${si}" data-k="reps" inputmode="numeric" value="${s.reps||''}" placeholder="${isC(x.id)?t('fmin'):t('freps')}" aria-label="${isC(x.id)?t('fmin'):t('freps')}"><button class="ck${s.done?' on':''}" data-a="ck" data-e="${ei}" data-s="${si}">✓</button></div>`).join('')}
     <button data-a="addset" data-e="${ei}" style="margin-top:8px">${t('faddset')}</button></div>`).join('')}
   <button class="p wide" data-a="finish" style="margin-top:14px">${t('ffinish')}</button>`}
 const EQL=[['all','📚'],['bb','🏋️'],['db','💪'],['mach','⚙️'],['cable','🔗'],['bw','🤸'],['kb','🔔'],['oth','➕']];
@@ -2058,15 +2126,15 @@ const fa={
   wedit(d){F.ed=JSON.parse(JSON.stringify(F.ws.find(w=>w.id===d.id)));F.pick=false;F.err='';F.q='';F.v='edit';renderFit()},
   tg(d){const g=F.ed.groups,i=g.indexOf(d.v);i<0?g.push(d.v):g.splice(i,1);renderFit()},
   togpick(){F.pick=!F.pick;renderFit()},
-  addex(d){if(!F.ed.ex.find(x=>x.id===d.v))F.ed.ex.push({id:d.v,sets:3,reps:10,kg:0});renderFit()},
+  addex(d){if(!F.ed.ex.find(x=>x.id===d.v))F.ed.ex.push(isC(d.v)?{id:d.v,sets:1,reps:20,kg:0}:{id:d.v,sets:3,reps:10,kg:0});renderFit()},
   rmex(d){F.ed.ex.splice(+d.i,1);renderFit()},
   async aiplan(){const e=F.ed;if(!e.groups.length)return note(t('fneedg'));F.busy=true;F.err='';renderFit();
-    try{const j=await api('/fitness',{mode:'plan',groups:e.groups.map(g=>MUSCLE[g]),allowed:Object.values(EX).filter(x=>e.groups.includes(x.g)).map(x=>({id:x.id,name:x[lang]})),profile:F.prof,pr:F.pr});
-      const ok=(j.exercises||[]).filter(x=>EX[x.id]&&e.groups.includes(EX[x.id].g)).map(x=>({id:x.id,sets:cl(x.sets,1,8,3),reps:cl(x.reps,1,30,10),kg:Math.max(0,+x.kg||0)}));
+    try{const j=await api('/fitness',{mode:'plan',groups:e.groups.map(g=>MUSCLE[g]),allowed:Object.values(EX).filter(x=>e.groups.includes(x.g)).map(x=>x.g==='cardio'?{id:x.id,name:x[lang],c:1}:{id:x.id,name:x[lang]}),profile:F.prof,pr:F.pr});
+      const ok=(j.exercises||[]).filter(x=>EX[x.id]&&e.groups.includes(EX[x.id].g)).map(x=>isC(x.id)?{id:x.id,sets:cl(x.sets,1,5,1),reps:cl(x.reps,3,90,20),kg:0}:{id:x.id,sets:cl(x.sets,1,8,3),reps:cl(x.reps,1,30,10),kg:Math.max(0,+x.kg||0)});
       if(ok.length){e.ex=ok;if(!e.name&&j.name)e.name=String(j.name).slice(0,40)}}catch(er){F.err=friendlyError(er)}
     F.busy=false;renderFit()},
   async wsave(){const e=F.ed;if(!e.name.trim()||!e.ex.length)return note(t('fneedn'));
-    const w={id:e.id||Date.now().toString(36),name:e.name.trim(),groups:e.groups.length?e.groups:[...new Set(e.ex.map(x=>EX[x.id]?.g).filter(Boolean))],ex:e.ex.map(x=>({id:x.id,sets:cl(x.sets,1,10,3),reps:cl(x.reps,1,50,10),kg:Math.max(0,+x.kg||0)}))};
+    const w={id:e.id||Date.now().toString(36),name:e.name.trim(),groups:e.groups.length?e.groups:[...new Set(e.ex.map(x=>EX[x.id]?.g).filter(Boolean))],ex:e.ex.map(x=>isC(x.id)?{id:x.id,sets:cl(x.sets,1,10,1),reps:cl(x.reps,1,180,20),kg:0}:{id:x.id,sets:cl(x.sets,1,10,3),reps:cl(x.reps,1,50,10),kg:Math.max(0,+x.kg||0)})};
     const i=F.ws.findIndex(x=>x.id===w.id);i<0?F.ws.push(w):F.ws[i]=w;await st.set('fw_'+w.id,JSON.stringify(w));await saveIdx();F.v='cust';renderFit()},
   async wdel(){if(!await ask(t('fdq')))return;F.ws=F.ws.filter(x=>x.id!==F.ed.id);await st.del('fw_'+F.ed.id);await saveIdx();F.v='cust';renderFit()},
   async begin(d){if(F.act&&!await ask(t('ffq')))return;const w=F.ws.find(x=>x.id===d.id);
@@ -2086,12 +2154,12 @@ $('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e
 const NL={ru:{tn:'Питание',thl:'Здоровье',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
  nc_dishes:'Блюда под цель',nc_dishes_s:'Подобраны под вашу цель',nc_menu:'Меню на день',nc_menu_s:'Составит ИИ',nc_rec:'Рецепты',nc_rec_s:'Классические блюда',
  m_b:'Завтрак',m_l:'Обед',m_d:'Ужин',m_s:'Перекус',nall:'Все',nkcal_u:'{0} ккал',nmac:'Б {0} · Ж {1} · У {2}',nest:'Калории и БЖУ ориентировочные, указаны на одну порцию.',nper:'на порцию',
- nrecai:'Рецепт от ИИ',nrecbusy:'ИИ пишет рецепт…',nmenugen:'Составить меню',nmenuregen:'Составить заново',nmenubusy:'ИИ составляет меню…',navoid:'Не ем / аллергии (необязательно)',navoidph:'Например: орехи, молочное',ntotal:'Итого за день',ntarget:'Ваша норма',
+ nrecai:'Рецепт от ИИ',nrecbusy:'ИИ пишет рецепт…',nmenugen:'Составить меню',nmenuregen:'Составить заново',nmenubusy:'ИИ составляет меню…',navoid:'Не ем',navoidph:'Например: свинина, грибы',npantry:'Что есть дома',npantryph:'Например: курица, рис, яйца, помидоры',nopt:'необязательно',ntotal:'Итого за день',ntarget:'Ваша норма',
  rc_all:'Все',rc_breakfast:'Завтраки',rc_soups:'Супы',rc_mains:'Основные блюда',rc_salads:'Салаты',rc_desserts:'Выпечка и десерты',nsearch:'Название блюда или продукты, которые есть',nfind:'Найти рецепт (ИИ)',ningr:'Ингредиенты',nsteps:'Приготовление',nmin:'{0} мин',nserv:'{0} порц.',ntip:'Совет'},
 en:{tn:'Nutrition',thl:'Health',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
  nc_dishes:'Dishes for your goal',nc_dishes_s:'Picked for your goal',nc_menu:'Menu for the day',nc_menu_s:'Made by AI',nc_rec:'Recipes',nc_rec_s:'Classic dishes',
  m_b:'Breakfast',m_l:'Lunch',m_d:'Dinner',m_s:'Snack',nall:'All',nkcal_u:'{0} kcal',nmac:'P {0} · F {1} · C {2}',nest:'Calories and macros are approximate, per serving.',nper:'per serving',
- nrecai:'AI recipe',nrecbusy:'AI is writing the recipe…',nmenugen:'Create menu',nmenuregen:'Create again',nmenubusy:'AI is creating your menu…',navoid:'I don’t eat / allergies (optional)',navoidph:'E.g.: nuts, dairy',ntotal:'Daily total',ntarget:'Your target',
+ nrecai:'AI recipe',nrecbusy:'AI is writing the recipe…',nmenugen:'Create menu',nmenuregen:'Create again',nmenubusy:'AI is creating your menu…',navoid:'I don’t eat',navoidph:'E.g.: pork, mushrooms',npantry:'What I have at home',npantryph:'E.g.: chicken, rice, eggs, tomatoes',nopt:'optional',ntotal:'Daily total',ntarget:'Your target',
  rc_all:'All',rc_breakfast:'Breakfast',rc_soups:'Soups',rc_mains:'Main dishes',rc_salads:'Salads',rc_desserts:'Baking and desserts',nsearch:'Dish name or products you have',nfind:'Find a recipe (AI)',ningr:'Ingredients',nsteps:'Method',nmin:'{0} min',nserv:'{0} servings',ntip:'Tip'}};
 Object.assign(L.ru,NL.ru);Object.assign(L.en,NL.en);
 Object.assign(L.ru,{nc_diary:'Дневник питания',nc_diary_s:'Что вы съели за день',deaten:'Съедено',dleft:'Осталось до нормы',dadd:'Добавить',dtextph:'Что вы съели? Например: 2 яйца, тост с маслом, кофе с молоком',dbusy:'ИИ считает КБЖУ…',dnone:'Сегодня записей пока нет',dnorm:'Норма не рассчитана. Откройте личный кабинет в «Фитнесе».',dweek:'Последние 7 дней, ккал',dbad:'Не удалось распознать еду. Опишите подробнее.',dtoday:'Сегодня',dnote:'ИИ оценивает КБЖУ приблизительно, точность зависит от описания порции.',dopen:'Открыть дневник питания',dcabh:'Питание сегодня',dfull:'Лимит записей на сегодня достигнут',
@@ -2223,7 +2291,7 @@ function plateSvg(name){
   return `<svg viewBox="0 0 120 90" aria-hidden="true"><rect width="120" height="90" fill="hsl(${h} 55% 90%)"/><circle cx="60" cy="48" r="38" fill="#fff" stroke="#e3e3e8" stroke-width="2"/><circle cx="60" cy="48" r="29" fill="#f7f7f9"/>${ic.map((k,i)=>`<g transform="translate(${P[i][0]} ${P[i][1]}) scale(${P[i][2]})">${ICON[k]}</g>`).join('')}</svg>`}
 const dimg=(key,ru,en,cls='')=>`<div class="dimg${cls}"${key?` data-k="${key}"`:''}>${plateSvg(ru+' '+(en||''))}${key&&PH[key]?`<img src="${esc(PH[key])}" alt="" onerror="this.remove()">`:''}</div>`;
 
-let N={v:'menu',meal:'all',open:null,cat:'all',rec:null,from:'menu',menu:null,busy:false,err:'',avoid:'',allergy:'',q:'',lv:null,ai:[],aib:false,aierr:'',dtext:''};
+let N={v:'menu',meal:'all',open:null,cat:'all',rec:null,from:'menu',menu:null,busy:false,err:'',avoid:'',allergy:'',pantry:'',q:'',lv:null,ai:[],aib:false,aierr:'',dtext:''};
 let D={key:'',items:[],sum:{},loaded:false,busy:false,err:''};
 const goalNow=()=>F.prof?.goal||null,tgt=()=>{const c=F.cab&&F.cab.res;return c?{kcal:c.kcal,protein:c.protein,fat:c.fat,carbs:c.carbs}:null},prefs=()=>({avoid:N.avoid,allergies:N.allergy});
 const macroTiles=c=>`<div class="stats">${[['fkcal',c.kcal,''],['fprot',c.protein,' '+t('fgr')],['ffat',c.fat,' '+t('fgr')],['fcarb',c.carbs,' '+t('fgr')]].map(([k,v,u])=>`<div><small>${t(k)}</small><b>${fmtn(v)}${u}</b></div>`).join('')}</div>`;
@@ -2269,8 +2337,9 @@ function menuHtml(j){const ms=j.meals||[],tot=ms.reduce((a,m)=>({k:a.k+m.kcal,p:
   return ms.map((m,i)=>aiRow(m,'mrecipe',i)).join('')
   +`<div class="sec" style="margin-top:12px"><div class="kv"><span>${t('ntotal')}</span><b>${t('nkcal_u',fmtn(tot.k))} · ${t('nmac',tot.p,tot.f,tot.c)}</b></div>${c?`<div class="kv"><span>${t('ntarget')}</span><b>${t('nkcal_u',fmtn(c.kcal))} · ${t('nmac',c.protein,c.fat,c.carbs)}</b></div>`:''}</div>${j.note?`<p class="meta" style="margin-top:10px">${esc(j.note)}</p>`:''}<p class="meta" style="margin-top:6px">${t('nest')}</p>`}
 function vDMenu(){const m=N.menu;
-  return back('menu')+title(t('nc_menu'))+`<label>${t('navoid')}</label><input data-f="avoid" maxlength="120" placeholder="${t('navoidph')}" value="${esc(N.avoid)}">
-  <label>${t('nallergy')}</label><input data-f="allergy" maxlength="120" placeholder="${t('nallergyph')}" value="${esc(N.allergy)}">
+  return back('menu')+title(t('nc_menu'))+`<label>${t('npantry')} <span class="nx-opt">· ${t('nopt')}</span></label><input data-f="pantry" maxlength="200" placeholder="${t('npantryph')}" value="${esc(N.pantry)}">
+  <label>${t('navoid')} <span class="nx-opt">· ${t('nopt')}</span></label><input data-f="avoid" maxlength="120" placeholder="${t('navoidph')}" value="${esc(N.avoid)}">
+  <label>${t('nallergy')} <span class="nx-opt">· ${t('nopt')}</span></label><input data-f="allergy" maxlength="120" placeholder="${t('nallergyph')}" value="${esc(N.allergy)}">
   <button class="p wide" data-a="genmenu" style="margin:12px 0" ${N.busy?'disabled':''}>✨ ${N.busy?t('nmenubusy'):(m?t('nmenuregen'):t('nmenugen'))}</button>${N.err?`<p class="meta" style="margin-bottom:10px">${esc(N.err)}</p>`:''}${m?menuHtml(m):''}`}
 function vRecs(){
   return back('menu')+title(t('nc_rec'))+`<div class="chips2">${['all','breakfast','soups','mains','salads','desserts'].map(c=>`<button class="${N.cat===c?'on':''}" data-a="rcat" data-v="${c}">${t('rc_'+c)}</button>`).join('')}</div>
@@ -2298,8 +2367,8 @@ const na={
     try{const j=await api('/food',{mode:'dishes',goal:goalNow(),targets:tgt(),meal:N.meal==='all'?'any':MKI[N.meal],...prefs(),exclude:[...DISH.filter(d=>N.meal==='all'||d.m===N.meal).map(d=>d[lang]),...N.ai.map(x=>x.name)].slice(-30)});
       N.ai=N.ai.concat(j.dishes)}catch(e){N.aierr=friendlyError(e)}
     N.aib=false;if(N.v==='dishes')renderNx()},
-  async genmenu(){N.busy=true;N.err='';renderNx();st.set('nx_avoid',N.avoid);st.set('nx_allergy',N.allergy);const p=F.prof;
-    try{N.menu=await api('/food',{mode:'menu',goal:goalNow(),targets:tgt(),profile:p?{h:p.h,w:p.w,tw:p.tw??null,body:p.body,age:p.age??null,sex:p.sex||null}:null,...prefs()});
+  async genmenu(){N.busy=true;N.err='';renderNx();st.set('nx_avoid',N.avoid);st.set('nx_allergy',N.allergy);st.set('nx_pantry',N.pantry);const p=F.prof;
+    try{N.menu=await api('/food',{mode:'menu',goal:goalNow(),targets:tgt(),profile:p?{h:p.h,w:p.w,tw:p.tw??null,body:p.body,age:p.age??null,sex:p.sex||null}:null,pantry:N.pantry,...prefs()});
       st.set('nx_menu',JSON.stringify({day:new Date().toDateString(),j:N.menu}))}catch(e){N.err=friendlyError(e)}
     N.busy=false;if(N.v==='dmenu')renderNx()},
   async dadd(){const text=N.dtext.trim();if(!text||D.busy)return;await loadDiary();if(D.items.length>=30){D.err=t('dfull');return renderNx()}
@@ -2308,11 +2377,11 @@ const na={
       j.items.forEach(x=>{if(D.items.length<30)D.items.push({n:x.name,kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs})});N.dtext='';await saveDiary()}catch(e){D.err=friendlyError(e)}
     D.busy=false;renderNx()},
   async ddel(d){D.items.splice(+d.i,1);await saveDiary();renderNx()}};
-const ni={avoid(v){N.avoid=v},allergy(v){N.allergy=v},rq(v){N.q=v},dtext(v){N.dtext=v}};
+const ni={avoid(v){N.avoid=v},allergy(v){N.allergy=v},pantry(v){N.pantry=v},rq(v){N.q=v},dtext(v){N.dtext=v}};
 $('nx').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)na[b.dataset.a]?.(b.dataset,b)});
 $('nx').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)ni[d.f]?.(e.target.value)});
-$('nx').addEventListener('change',e=>{const f=e.target.dataset.f;if(f==='avoid')st.set('nx_avoid',N.avoid);if(f==='allergy')st.set('nx_allergy',N.allergy)});
-async function loadNx(){N.avoid=await jget('nx_avoid','');N.allergy=await jget('nx_allergy','');const m=await jget('nx_menu',null);if(m&&m.day===new Date().toDateString())N.menu=m.j;await loadDiary();renderNx()}
+$('nx').addEventListener('change',e=>{const f=e.target.dataset.f;if(f==='avoid')st.set('nx_avoid',N.avoid);if(f==='allergy')st.set('nx_allergy',N.allergy);if(f==='pantry')st.set('nx_pantry',N.pantry)});
+async function loadNx(){N.avoid=await jget('nx_avoid','');N.allergy=await jget('nx_allergy','');N.pantry=await jget('nx_pantry','');const m=await jget('nx_menu',null);if(m&&m.day===new Date().toDateString())N.menu=m.j;await loadDiary();renderNx()}
 
 /* ================= ЗДОРОВЬЕ ================= */
 const bi=(r,e)=>lang==='en'?e:r;
@@ -2518,7 +2587,37 @@ const ha={
   async osave(d){const v=num(HL.f.ov);if(v==null)return;HL.d.oth.push([nowS(),d.m,v]);await hsave('oth');HL.f={om:d.m};renderHl()},
   async odelm(d){if(!await ask(bi('Удалить метрику и её значения?','Delete this metric and its values?')))return;HL.cfg.om=HL.cfg.om.filter(m=>m.id!==d.m);HL.d.oth=HL.d.oth.filter(e=>e[1]!==d.m);await hcfg();await hsave('oth');HL.f={};renderHl()},
   ack(){HL.ack=true;st.set('h_ack','1');renderHl()},ai(d){hAI('category',d.c)},ovai(){hAI('overview',null)}};
-$('hl').addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(el)ha[el.dataset.a]?.(el.dataset,el)});
+// Health input check: values outside a human range and keyboard mash are not saved; the reason shows under the button.
+const H_V=/[аеёиоуыэюяaeiouy]/g;
+function hjunk(s,need=2){s=String(s||'').trim();if(!s)return false;const L=(s.match(/\p{L}/gu)||[]).length,ch=s.replace(/\s/g,'').length;
+ return L<need||(ch>=4&&L/ch<.5)||hmash(s)}
+// keyboard mash in free text (also used alone for notes and doses, where digits are fine)
+function hmash(s){s=String(s||'').trim();if(!s)return false;
+ if(/(\p{L})\1{3,}/u.test(s)||/фыва|йцук|ячсм|qwer|asdf|zxcv|hjkl/i.test(s))return true;
+ for(const w of s.toLowerCase().match(/\p{L}+/gu)||[]){
+  if(w.length>=6&&/^(.{1,3})\1{2,}/u.test(w))return true;
+  if(w.length>=5&&/^[а-яё]+$/.test(w)&&!/[аеёиоуыэюя]/.test(w))return true;
+  if(/[бвгджзйклмнпрстфхцчшщъь]{6,}|[bcdfghjklmnpqrstvwxz]{6,}/.test(w))return true;
+  if(w.length>=7&&new Set(w).size<=3)return true;
+  if(w.length>=8){const v=(w.match(H_V)||[]).length/w.length;if(v<.2||v>.8)return true}}
+ return false}
+const H_RANGE={weight:[20,350],waist:[30,250],chest:[40,250],hips:[40,250],arm:[10,80],fat:[2,70],pulse:[25,250],temp:[33,43],spo2:[50,100],rr:[4,60]};
+function hchk(a,d){const f=HL.f,blank=v=>v==null||String(v).trim()==='',bad=bi('Это не похоже на реальное значение — проверьте.','This doesn’t look like a real value. Please check it.'),
+ rng=(v,lo,hi,u)=>{const n=num(v);return n==null||n<lo||n>hi?bi(`Введите число от ${lo} до ${hi}${u?' '+u:''}.`,`Enter a number from ${lo} to ${hi}${u?' '+u:''}.`):null};
+ if(a==='actsave')return(!blank(f.steps)&&rng(f.steps,0,100000))||(!blank(f.min)&&rng(f.min,0,1440,bi('мин','min')))||(!blank(f.sg)&&rng(f.sg,1000,100000))||null;
+ if(a==='bsave'){const t=f.bt||'weight',r=H_RANGE[t],x=BT.find(y=>y[0]===t);return rng(f.bv,r[0],r[1],x?bi(x[3],x[4]):'')}
+ if(a==='vsave'){const t=d.t;if(t==='bp'){const e=rng(f.v1,60,260)||rng(f.v2,30,160);if(e)return e;return num(f.v1)<=num(f.v2)?bi('Верхнее давление должно быть больше нижнего.','Systolic must be higher than diastolic.'):null}
+  const r=H_RANGE[t];return r?rng(f.v1,r[0],r[1]):null}
+ if(a==='agesave')return rng(f.age,5,110);
+ if(a==='hearsave')return rng(f.hmin,1,1440,bi('мин','min'));
+ if(a==='ssave')return blank(f.sname)?bi('Напишите симптом.','Name the symptom.'):(hjunk(f.sname)||hmash(f.snote)?bad:null);
+ if(a==='msave')return hmash(f.note)?bad:null;
+ if(a==='madd')return blank(f.mn)?bi('Напишите название.','Enter the name.'):(hjunk(f.mn,1)||hmash(f.md)?bad:null);
+ if(a==='oadd')return blank(f.on)?bi('Напишите название.','Enter the name.'):(hjunk(f.on)?bad:null);
+ if(a==='osave'){const n=num(f.ov);return n==null||!isFinite(n)||Math.abs(n)>1e6?bi('Введите число.','Enter a number.'):null}
+ return null}
+function hbad(el,m){let p=el.nextElementSibling;if(!p||!p.classList.contains('hl-err')){p=document.createElement('p');p.className='hl-err';p.setAttribute('role','alert');el.insertAdjacentElement('afterend',p)}p.textContent=m;try{tg?.HapticFeedback?.notificationOccurred?.('error')}catch{}}
+$('hl').addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const m=hchk(el.dataset.a,el.dataset);if(m)return hbad(el,m);ha[el.dataset.a]?.(el.dataset,el)});
 $('hl').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)HL.f[d.f]=e.target.value});
 
 /* ================= ПОГОДА ================= */
@@ -3315,23 +3414,36 @@ function safe(s){return esc(String(s??''))}
 const loc=()=>ru()?'ru-RU':'en-US';
 // Orthodox Easter (Meeus, Julian calendar) moved to the Gregorian date: +13 days for 1900–2099.
 function orthodoxEaster(y){const a=y%4,b=y%7,c=y%19,d=(19*c+15)%30,e=(2*a+4*b-d+34)%7,m=Math.floor((d+e+114)/31),day=(d+e+114)%31+1;return new Date(y,m-1,day+13)}
-// Western Easter (anonymous Gregorian algorithm), only shown in English.
-function westernEaster(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=(h+l-7*m+114)%31+1;return new Date(y,mo-1,da)}
 // [month-day, ru, en, kind] kind: off = public day off in Russia, day = notable day. en:null hides it in English.
-const FIXED=[['01-01','Новый год',"New Year's Day",'off'],['01-07','Рождество Христово','Orthodox Christmas','off'],['01-25','Татьянин день',null,'day'],
- ['02-14','День святого Валентина',"Valentine's Day",'day'],['02-23','День защитника Отечества',null,'off'],['03-08','Международный женский день',"International Women's Day",'off'],
- ['04-01','День смеха',"April Fools' Day",'day'],['04-12','День космонавтики','Cosmonautics Day','day'],['04-22',null,'Earth Day','day'],['05-01','Праздник весны и труда','Labour Day','off'],
- ['05-09','День Победы','Victory Day','off'],['06-01','День защиты детей',"Children's Day",'day'],['06-12','День России',null,'off'],['07-08','День семьи, любви и верности',null,'day'],
- ['09-01','День знаний',null,'day'],['10-31','Хэллоуин','Halloween','day'],['11-04','День народного единства',null,'off'],['12-25',null,'Christmas Day','day'],['12-31','Новогодняя ночь',"New Year's Eve",'day']];
+const FIXED=[['01-01','Новый год',"New Year's Day",'off'],['01-07','Рождество Христово','Orthodox Christmas','off'],['01-25','Татьянин день',"Tatiana Day",'day'],
+ ['02-14','День святого Валентина',"Valentine's Day",'day'],['02-23','День защитника Отечества','Defender of the Fatherland Day','off'],['03-08','Международный женский день',"International Women's Day",'off'],
+ ['04-01','День смеха',"April Fools' Day",'day'],['04-12','День космонавтики','Cosmonautics Day','day'],['04-22','День Земли','Earth Day','day'],['05-01','Праздник весны и труда','Labour Day','off'],
+ ['05-09','День Победы','Victory Day','off'],['06-01','День защиты детей',"Children's Day",'day'],['06-12','День России','Russia Day','off'],['07-08','День семьи, любви и верности','Day of Family, Love and Fidelity','day'],
+ ['09-01','День знаний','Knowledge Day','day'],['10-31','Хэллоуин','Halloween','day'],['11-04','День народного единства','Unity Day','off'],['12-31','Новогодняя ночь',"New Year's Eve",'day']];
 const holCache={};
-function holidays(y){const id=y+lang;if(holCache[id])return holCache[id];const out={},add=(d,name,kind)=>{if(name)out[dayKey(d)]={name,kind}};
+// Other countries: public holidays from Nager.Date (free, no key, CORS). Russia keeps the built-in list above (it also has notable days).
+const PL_CC='AD AG AI AL AM AO AR AT AU AW AX BA BB BD BE BF BG BH BI BJ BL BM BO BQ BR BS BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG ER ES ET FI FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GT GW GY HK HN HR HT HU ID IE IM IQ IS IT JE JM JP KE KH KI KM KN KR KY KZ LC LI LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MN MP MQ MR MS MT MW MX MZ NA NC NE NF NG NI NL NO NR NU NZ PA PE PF PG PH PL PM PN PR PT PW PY RO RS RU RW SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TG TK TN TO TR TT TV TZ UA UG US UY VA VC VE VG VI VN VU WF WS YE ZA ZM ZW'.split(' ');
+const HOL_RU={"New Year's Day":'Новый год',"New Year's Eve":'Новогодняя ночь',"International Women's Day":'Международный женский день','Labour Day':'День труда','Labor Day':'День труда','Victory Day':'День Победы','Independence Day':'День независимости','Constitution Day':'День Конституции','Christmas Day':'Рождество','Christmas Eve':'Сочельник','Orthodox Christmas':'Рождество Христово','Orthodox Christmas Day':'Рождество Христово','Easter Sunday':'Пасха','Easter Monday':'Пасхальный понедельник','Good Friday':'Страстная пятница','Orthodox Easter':'Пасха','Orthodox Easter Monday':'Пасхальный понедельник','Whit Monday':'Духов день','Whit Sunday':'Троица','Pentecost':'Троица','Ascension Day':'Вознесение','Assumption Day':'Успение Богородицы','All Saints Day':"День всех святых","All Saints' Day":"День всех святых",'Boxing Day':'Второй день Рождества',"St. Stephen's Day":'День святого Стефана','Epiphany':'Крещение','Corpus Christi':'Праздник Тела Христова','Immaculate Conception':'Непорочное зачатие Девы Марии','Reformation Day':'День Реформации','Assumption of Mary':'Успение Богородицы','Republic Day':'День Республики','National Day':'Национальный праздник','Unity Day':'День единства','Day of German Unity':'День германского единства','Thanksgiving Day':'День благодарения','Memorial Day':'День памяти','Veterans Day':'День ветеранов','Nowruz':'Наурыз',"Kurban Ait":'Курбан-айт','Eid al-Adha':'Курбан-байрам','Eid al-Fitr':'Ураза-байрам',"Defender of the Fatherland Day":'День защитника Отечества','Spring and Labour Day':'Праздник весны и труда'};
+let country=null;const holNet={},holWait={};
+const ccOk=c=>PL_CC.includes(c);
+function defCountry(){const r=String(navigator.language||'').split('-')[1]?.toUpperCase();return r&&ccOk(r)&&r!=='RU'&&!ru()?r:(ru()?'RU':'US')}
+function ccName(c){try{return new Intl.DisplayNames([loc()],{type:'region'}).of(c)||c}catch{return c}}
+function netHol(y){const id=country+y;if(holNet[id])return holNet[id];
+ try{const c=localStorage.getItem('pl_hol_'+id);if(c)return holNet[id]=JSON.parse(c)}catch{}
+ if(!holWait[id])holWait[id]=fetch('https://date.nager.at/api/v3/PublicHolidays/'+y+'/'+country).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(a=>{const o={};
+   (Array.isArray(a)?a:[]).forEach(x=>{if(!x||!/^\d{4}-\d\d-\d\d$/.test(x.date))return;const kind=x.global!==false&&(x.types||[]).includes('Public')?'off':'day',p=o[x.date];
+    o[x.date]=p?(p.n.includes(x.name)?p:{n:p.n+' · '+x.name,kind:p.kind==='off'?'off':kind,r:p.r&&x.global===false}):{n:String(x.name||x.localName||''),kind,r:x.global===false}});
+   holNet[id]=o;try{localStorage.setItem('pl_hol_'+id,JSON.stringify(o))}catch{}}).catch(()=>{holNet[id]={_err:1};delete holWait[id]}).finally(()=>{Object.keys(holCache).forEach(k=>delete holCache[k]);render()});
+ return null}
+const holName=n=>ru()?n.split(' · ').map(x=>HOL_RU[x]||x).join(' · '):n;
+function holidays(y){const id=y+lang+country;if(holCache[id])return holCache[id];const out={},add=(d,name,kind)=>{if(name)out[dayKey(d)]={name,kind}};
+ if(country&&country!=='RU'){const n=netHol(y);if(!n||n._err)return out;Object.entries(n).forEach(([k,v])=>{out[k]={name:holName(v.n)+(v.r?tr(' (some regions)',' (в части регионов)'):''),kind:v.kind}});return holCache[id]=out}
  FIXED.forEach(([md,r,e,kind])=>{const[m,d]=md.split('-').map(Number);add(new Date(y,m-1,d),ru()?r:e,kind)});
  const oe=orthodoxEaster(y);add(oe,tr('Orthodox Easter','Пасха'),'day');
- const ms=new Date(oe);ms.setDate(ms.getDate()-49);add(ms,ru()?'Масленица, Прощёное воскресенье':null,'day');
- if(!ru())add(westernEaster(y),'Easter','day');
+ const ms=new Date(oe);ms.setDate(ms.getDate()-49);add(ms,tr('Maslenitsa, Forgiveness Sunday','Масленица, Прощёное воскресенье'),'day');
  return holCache[id]=out}
 const holOf=k=>holidays(+k.slice(0,4))[k]||null;
-async function load(){if(loaded)return;try{const x=await jget(key,[]);events=Array.isArray(x)?x:[]}catch{events=[]}loaded=true}
+async function load(){if(loaded)return;try{const x=await jget(key,[]);events=Array.isArray(x)?x:[]}catch{events=[]}const c=await jget('pl_country',null);country=ccOk(c)?c:defCountry();loaded=true}
 async function persist(){await st.set(key,JSON.stringify(fitCloud(events,e=>e.date+' '+(e.time||''))))}
 function render(){
  const el=root();if(!el)return;
@@ -3345,6 +3457,11 @@ function render(){
   h+='<button class="'+cls+'" data-pl="day" data-date="'+k+'" aria-label="'+safe(lab)+'"'+(k===selected?' aria-current="date"':'')+'><b>'+d.getDate()+'</b><i class="pl-dots">'+'<u></u>'.repeat(Math.min(n,3))+'</i></button>'}
  h+='</div></div>';
  const hm=Object.entries(H).filter(([k])=>k.slice(0,7)===dayKey(first).slice(0,7)).sort(([a],[b])=>a.localeCompare(b));
+ const nh=country!=='RU'?holNet[country+y]:null,cl=new Intl.Collator(loc());
+ h+='<div class="pl-cc"><label for="plCC">'+tr('Holidays','Праздники')+'</label><select id="plCC">'+PL_CC.map(c=>[c,ccName(c)]).sort((a,b)=>cl.compare(a[1],b[1])).map(([c,n])=>'<option value="'+c+'"'+(c===country?' selected':'')+'>'+safe(n)+'</option>').join('')+'</select></div>';
+ if(country!=='RU'&&!nh)h+='<p class="pl-holnote">'+tr('Loading holidays…','Загружаем праздники…')+'</p>';
+ else if(nh&&nh._err)h+='<p class="pl-holnote">'+tr('Could not load holidays. Check the connection.','Не удалось загрузить праздники. Проверьте интернет.')+' <button class="pl-retry" data-pl="holretry">'+tr('Retry','Повторить')+'</button></p>';
+ else if(country!=='RU'&&!hm.length)h+='<p class="pl-holnote">'+tr('No public holidays this month.','В этом месяце нет государственных праздников.')+'</p>';
  if(hm.length)h+='<div class="pl-hols">'+hm.map(([k,v])=>'<button class="pl-hol '+v.kind+(k===selected?' sel':'')+'" data-pl="day" data-date="'+k+'"><b>'+parseDay(k).getDate()+'</b><span>'+safe(v.name)+'</span>'+(v.kind==='off'?'<em>'+tr('day off','выходной')+'</em>':'')+'</button>').join('')+'</div>';
  const sd=parseDay(selected),sh=holOf(selected),list=events.filter(x=>x.date===selected).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
  h+='<div class="pl-dayhead"><div><h3>'+safe(sd.toLocaleDateString(loc(),{weekday:'long',day:'numeric',month:'long'}))+'</h3>'+(sh?'<p class="pl-holname '+sh.kind+'">'+safe(sh.name)+'</p>':'')+'</div><button class="p pl-add" data-pl="new">'+tr('Add event','Добавить')+'</button></div>';
@@ -3358,6 +3475,7 @@ async function renderPlanner(){await load();render()}
 const go=n=>{month=new Date(month.getFullYear(),month.getMonth()+n,1);render();const c=document.getElementById('plCal');if(c&&!matchMedia('(prefers-reduced-motion:reduce)').matches)c.animate([{opacity:.35,transform:'translateX('+(n>0?24:-24)+'px)'},{opacity:1,transform:'none'}],{duration:260,easing:'cubic-bezier(.16,1,.3,1)'})};
 document.addEventListener('click',async ev=>{const b=ev.target.closest('#pl [data-pl]');if(!b)return;const a=b.dataset.pl;
  if(a==='prev')return go(-1);
+ if(a==='holretry'){Object.keys(holNet).forEach(k=>{if(holNet[k]._err)delete holNet[k]});return render()}
  if(a==='next')return go(1);
  if(a==='today'){selected=dayKey(new Date());month=new Date(new Date().getFullYear(),new Date().getMonth(),1);return render()}
  if(a==='day'){selected=b.dataset.date;const d=parseDay(selected);month=new Date(d.getFullYear(),d.getMonth(),1);editing=null;try{tg?.HapticFeedback?.selectionChanged?.()}catch{}return render()}
@@ -3373,6 +3491,7 @@ let sx=null,sy=0;
 document.addEventListener('pointerdown',e=>{if(e.target.closest('#plCal')){sx=e.clientX;sy=e.clientY}},{passive:true});
 document.addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.5)go(dx<0?1:-1)},{passive:true});
 document.addEventListener('pointercancel',()=>{sx=null},{passive:true});
+document.addEventListener('change',e=>{if(e.target.id!=='plCC'||!ccOk(e.target.value))return;country=e.target.value;st.set('pl_country',JSON.stringify(country));render()});
 window.renderPlanner=renderPlanner;
 window.nuvioHoliday=holOf;
 })();
@@ -3562,11 +3681,19 @@ function mmlText(html){const d=document.createElement('div');d.innerHTML=html;co
 // Learning topics prefilled from the FIPI codifier: sections and their topics, or sections only when everything does not fit one storage value
 function codifierTopics(S){const mk=(c,n,p)=>({id:uid(),n:cut(c+' '+n,60),p,m:0}),roots=S.themes.filter(t=>!t[0].includes('.')).map(r=>[r,mk(r[0],r[1],null)]);
  const all=roots.flatMap(([r,R])=>[R,...S.themes.filter(t=>t[0].split('.').length===2&&t[0].startsWith(r[0]+'.')).map(c=>mk(c[0],c[1],R.id))]);
- return JSON.stringify(all).length<=3800?all:roots.map(x=>x[1])}
+ return all}
 // FIPI panel: redraw in place (keeps the page and typed answers), load the next page of the bank
 const keepFa=()=>V.fp?.items.forEach((q,i)=>{const el=$('syFa'+i);if(el)q.ans=el.value.trim()});
 function drawFipi(scroll){const el=$('syFipi');if(!el)return render();el.innerHTML=fipiPanel();if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'})}
-async function loadFp(){const P=V.fp;try{const j=await api('/fipi',{exam:P.ex,proj:P.proj,theme:P.theme,page:P.page});if(V.fp!==P)return;P.items.push(...(j.items||[]));P.more=!!j.more&&(j.items||[]).length>0;if(j.source)P.bank=j.source}catch(e){P.err=friendlyError(e)}P.busy=false;if(V.fp===P)drawFipi()}
+async function loadFp(){const P=V.fp;try{const j=await api('/fipi',{exam:P.ex,proj:P.proj,theme:P.theme,page:P.page});if(V.fp!==P)return;const got=j.items||[];
+ P.items.push(...got.filter(q=>!(P.seen&&P.seen[q.id])));if(P.seen)got.forEach(q=>P.seen[q.id]=1);P.pmore=!!j.more&&got.length>0;P.more=P.pmore||!!(P.themes&&P.ti<P.themes.length-1);if(j.source)P.bank=j.source;
+ // a task view keeps loading until a few prototypes of that number are found
+ if(P.only&&P.more&&fpVis(P).length<4&&(P.auto=(P.auto||0)+1)<=6){fpNext(P);return loadFp()}}catch(e){P.err=friendlyError(e)}P.busy=false;if(V.fp===P)drawFipi()}
+function fpNext(P){if(P.pmore||!P.themes)P.page++;else{P.ti++;P.theme=P.themes[P.ti];P.page=0}}
+const qCodes=q=>(q.kes||[]).map(k=>(String(k).match(/^\d+(?:\.\d+)*/)||[''])[0]).filter(Boolean);
+// for task N: every codifier topic of the prototype belongs to task N, and 1-point tasks never have an extended answer
+function fpOk(P,q){if(!P.only)return true;const cs=qCodes(q);return cs.length>0&&cs.every(c=>P.only.codes.some(k=>c===k||c.startsWith(k+'.')))&&!(P.only.one&&/разв[её]рнут/i.test(q.kind||''))}
+const fpVis=P=>P.items.map((q,i)=>[q,i]).filter(([q])=>fpOk(P,q));
 const EXAMS=[
  {id:'sat',name:'SAT',org:'College Board',c:'US',sys:'us-hs',type:'admission',url:'https://satsuite.collegeboard.org/sat',
   sections:[['Reading and Writing',54,64],['Math',44,70]],facts:{ru:['Общее время 2 ч 14 мин, 98 вопросов, перерыв 10 минут между разделами','Цифровой формат с адаптивными модулями, приложение Bluebook'],en:['2 h 14 min, 98 questions, 10-minute break between sections','Digital and adaptive by module, taken in the Bluebook app']}},
@@ -3584,7 +3711,7 @@ const EXAMS=[
  {id:'pte',name:'PTE Academic',org:'Pearson',c:'INT',type:'language',url:'https://www.pearsonpte.com'},
  {id:'ege',name:'ЕГЭ',en:'Unified State Exam (EGE)',org:'Рособрнадзор, ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/ege',
   facts:{ru:['Форма государственной итоговой аттестации по программам среднего общего образования','Русский язык и математика обязательны, остальные предметы — по выбору','Экзамен письменный на русском языке, иностранные языки — с устной частью'],en:['State final attestation for secondary general education in Russia','Russian and mathematics are compulsory, other subjects are optional','Written, in Russian; foreign languages also have an oral part']},
-  bank:'https://ege.fipi.ru/bank/index.php?proj=AC437B34557F88EA4115D2F374B0A07B',demo:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',fipi:'ege',extra:[['Банк задач (Профиматика)','https://bank-zadach.ru/tasks']]},
+  bank:'https://ege.fipi.ru/bank/index.php?proj=AC437B34557F88EA4115D2F374B0A07B',demo:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',fipi:'ege'},
  {id:'oge',name:'ОГЭ',en:'Basic State Exam (OGE)',org:'ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/oge',fipi:'oge',demo:'https://fipi.ru/oge/demoversii-specifikacii-kodifikatory',
   facts:{ru:['Форма государственной итоговой аттестации по программам основного общего образования','4 экзамена: русский язык и математика обязательны, ещё два — по выбору'],en:['State final attestation for basic general education in Russia','4 exams: Russian and mathematics are compulsory, two more are chosen']}}
 ];
@@ -3606,12 +3733,22 @@ async function load(){if(D.loaded)return;const g=(k,d)=>jget(k,d).then(v=>v??d);
 // One CloudStorage value holds 4096 chars: lists that must not lose data refuse to grow and tell the user.
 async function put(k,v){const s=JSON.stringify(v);if(s.length>4000)throw new Error(tr('This list is full (Telegram storage limit). Remove older items first.','Список заполнен (лимит хранилища Telegram). Удалите старые записи.'));await st.set(k,s)}
 const safePut=async(k,v)=>{try{await put(k,v);return true}catch(e){note(e.message);return false}};
-async function subjData(sid){if(D.topics[sid])return;const g=(k,d)=>jget(k,d).then(v=>v??d);[D.topics[sid],D.mats[sid],D.cards[sid]]=await Promise.all([g('sy_t_'+sid,[]),g('sy_m_'+sid,[]),loadPages('sy_c_'+sid)])}
+async function subjData(sid){if(D.topics[sid])return;const g=(k,d)=>jget(k,d).then(v=>v??d);[D.topics[sid],D.mats[sid],D.cards[sid]]=await Promise.all([loadPages('sy_t_'+sid),g('sy_m_'+sid,[]),loadPages('sy_c_'+sid)])}
 // Long lists (card decks) are split into pages; the base key keeps the page count (or, in old data, the list itself).
 async function loadPages(base){const head=await jget(base,[]);if(Array.isArray(head))return head;const n=+head.pages||0,parts=await Promise.all(Array.from({length:n},(_,i)=>jget(base+'.'+i,[])));return parts.flat().filter(Boolean)}
 async function savePages(base,list){const pages=[];let cur=[],len=2;for(const x of list){const l=JSON.stringify(x).length+1;if(len+l>3900&&cur.length){pages.push(cur);cur=[];len=2}cur.push(x);len+=l}if(cur.length)pages.push(cur);
  if(pages.length>40)throw new Error(tr('This deck is full. Split it into another subject.','Колода переполнена. Разделите её на другой предмет.'));
  const prev=await jget(base,[]),old=Array.isArray(prev)?0:+prev.pages||0;for(let i=0;i<pages.length;i++)await st.set(base+'.'+i,JSON.stringify(pages[i]));for(let i=pages.length;i<old;i++)await st.del(base+'.'+i);await st.set(base,JSON.stringify({pages:pages.length}))}
+async function putTopics(sid){try{await savePages('sy_t_'+sid,D.topics[sid]||[]);return true}catch(e){note(String(e.message||e));return false}}
+// subject typed by name -> official ЕГЭ/ОГЭ subject: every word stem of the name is in the official name (one match, or an exact one)
+const nameKey=n=>new Set(String(n||'').toLowerCase().replace(/ё/g,'е').split(/[^a-zа-я]+/).filter(w=>w.length>2).map(w=>w.slice(0,5)));
+function subjByName(x,n){const k=nameKey(n),L=offList(x)||[],sub=(a,b)=>[...a].every(w=>b.has(w));if(!k.size)return null;
+ const hit=L.filter(S=>[S.ru,S.en].some(m=>sub(k,nameKey(m))));return hit.length===1?hit[0]:hit.find(S=>[S.ru,S.en].some(m=>{const q=nameKey(m);return q.size===k.size&&sub(q,k)}))||null}
+// once per subject: add the FIPI codifier tree to ЕГЭ/ОГЭ subjects added before the data loaded or saved when long lists were cut to sections
+async function fillTopics(s){const x=exam(s.ex);if(s.tf||!x?.fipi)return false;try{await loadFipi()}catch{return false}await subjData(s.id);
+ const S=offSubj(x,s.ref)||subjByName(x,s.n);if(!S)return false;const full=codifierTopics(S),T=D.topics[s.id]||[],have=new Map(T.map(t=>[t.n,t])),out=[...T];
+ for(const t of full){if(have.has(t.n))continue;if(!t.p){out.push(t);have.set(t.n,t);continue}const par=full.find(r=>r.id===t.p),P=par&&have.get(par.n);if(P)out.push({...t,p:P.id})}
+ s.tf=1;if(!s.ref)s.ref=S.id;await safePut(KEYS.subj,D.subj);if(out.length===T.length)return false;D.topics[s.id]=out;return putTopics(s.id)}
 const saveCards=async sid=>{try{await savePages('sy_c_'+sid,D.cards[sid]);return true}catch(e){note(e.message);return false}};
 async function examData(id){if(D.res[id])return;const g=(k,d)=>jget(k,d).then(v=>v??d);[D.res[id],D.err[id]]=await Promise.all([g('sy_r_'+id,[]),g('sy_e_'+id,[])])}
 // study log: [dayNumber, minutes, subjectId] — shortcut: keeps ~180 days in one value; older days drop first.
@@ -3653,7 +3790,7 @@ const bar=(p,lab)=>'<span class="sy-bar" role="img" aria-label="'+E(lab||p+'%')+
 const subjName=sid=>D.subj.find(s=>s.id===sid)?.n||'';
 const mastery=sid=>{const t=D.topics[sid]||[];return t.length?Math.round(t.reduce((a,x)=>a+(x.m||0),0)/(t.length*4)*100):null};
 const dueCards=sid=>(D.cards[sid]||[]).filter(c=>(c.d??0)<=nowN()).length;
-const OFFICIAL=u=>'<button class="sy-link" data-sy="open" data-u="'+E(u)+'">'+E(u.replace(/^https?:\/\//,'').replace(/\/$/,''))+' ↗</button>';
+const OFFICIAL=(u,l)=>'<button class="sy-obtn" data-sy="open" data-u="'+E(u)+'"><span>'+E(l||u.replace(/^https?:\/\/(www\.)?/,'').split('/')[0])+'</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6"/></svg></button>';
 
 /* ---------- render ---------- */
 async function renderStudy(){await load();render()}
@@ -3666,7 +3803,7 @@ const VIEWS={};
 
 /* Dashboard */
 VIEWS.home=()=>{const p=D.prof,t=today(),n=nowN(),wk=minutesOn(n-6,n),td=minutesOn(n,n);
- let h='<header class="sy-head"><h2>'+tr('Study','Учёба')+'</h2><p>Learn without borders</p></header>';
+ let h='<header class="sy-head"><h2>'+tr('Study','Учёба')+'</h2><p>'+tr('Learn without borders','Учись без границ')+'</p></header>';
  if(!p.setup)h+=setupCard();
  // today
  const items=D.plan.filter(x=>!x.done&&x.d&&x.d<=t).sort((a,b)=>(a.d+(a.tm||'')).localeCompare(b.d+(b.tm||''))),due=D.subj.reduce((a,s)=>a+dueCards(s.id),0);
@@ -3725,10 +3862,10 @@ VIEWS.subject=()=>{const sid=V.d.id,s=D.subj.find(x=>x.id===sid);if(!s){V.d=null
  let h=back(tr('Subjects','Предметы'))+'<header class="sy-head"><h2>'+E(s.n)+'</h2><p>'+(mastery(sid)??0)+'% '+tr('mastered','освоено')+(s.ex?' · '+E(exName(exam(s.ex))):'')+' · <button class="sy-link sy-del" data-sy="delsubj">'+tr('Delete subject','Удалить предмет')+'</button></p></header>';
  h+='<div class="sy-seg" role="tablist">'+T.map(([k,r,e])=>'<button role="tab" aria-selected="'+(sub===k)+'" data-sy="sub" data-v="'+k+'"'+(sub===k?' class="on"':'')+'>'+(ru()?r:e)+(k==='cards'&&dueCards(sid)?' <span class="sy-pill">'+dueCards(sid)+'</span>':'')+'</button>').join('')+'</div>';
  if(sub==='topics'){const tp=D.topics[sid],roots=tp.filter(t=>!t.p);
-  const row=(t,lvl)=>'<li class="sy-topic'+(lvl?' sub':'')+'"><span>'+E(t.n)+'</span><button class="sy-m m'+(t.m||0)+'" data-sy="mast" data-id="'+t.id+'" aria-label="'+E(t.n)+': '+(ru()?MASTERY[t.m||0][0]:MASTERY[t.m||0][1])+'">'+(ru()?MASTERY[t.m||0][0]:MASTERY[t.m||0][1])+'</button><button class="sy-x" data-sy="deltopic" data-id="'+t.id+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>';
+  const row=(t,lvl)=>'<li class="sy-topic'+(lvl?' sy-tsub':'')+'"><span>'+E(t.n)+'</span><button class="sy-m m'+(t.m||0)+'" data-sy="mast" data-id="'+t.id+'" aria-label="'+E(t.n)+': '+(ru()?MASTERY[t.m||0][0]:MASTERY[t.m||0][1])+'">'+(ru()?MASTERY[t.m||0][0]:MASTERY[t.m||0][1])+'</button><button class="sy-x" data-sy="deltopic" data-id="'+t.id+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>';
   h+=tp.length?'<ul class="sy-topics">'+roots.map(t=>row(t,0)+tp.filter(c=>c.p===t.id).map(c=>row(c,1)).join('')).join('')+'</ul><p class="sy-muted">'+tr('Tap the status to change how well you know a topic.','Нажмите на статус, чтобы отметить, как вы знаете тему.')+'</p>'
    :empty(tr('No topics yet','Тем пока нет'),tr('Break the subject into topics and subtopics.','Разбейте предмет на темы и подтемы.'));
-  h+='<section class="sy-card"><div class="sy-grid2">'+inp('syTopN',tr('Topic','Тема'),'','text','maxlength="60"')+sel('syTopP',[['',tr('Top level','Основная тема')],...roots.map(t=>[t.id,t.n])],'',tr('Inside','Внутри темы'))+'</div><button class="p" data-sy="addtopic">'+tr('Add topic','Добавить тему')+'</button></section>'}
+  h+='<section class="sy-card"><div class="sy-grid1">'+inp('syTopN',tr('Topic','Тема'),'','text','maxlength="60"')+sel('syTopP',[['',tr('Top level','Основная тема')],...roots.map(t=>[t.id,t.n])],'',tr('Inside','Внутри темы'))+'</div><button class="p" data-sy="addtopic">'+tr('Add topic','Добавить тему')+'</button></section>'}
  else if(sub==='mats'){const ms=D.mats[sid];
   h+=ms.length?'<ul class="sy-list">'+ms.map(m=>'<li><button class="sy-row" data-sy="mat" data-id="'+m.id+'"><span><b>'+E(m.t)+'</b><small>'+fd(dk(m.at))+(m.src?' · '+E(m.src):'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul>':empty(tr('No materials yet','Материалов пока нет'),tr('Write a note or upload a PDF, photo or text file. NUVIO keeps the extracted text, not the file.','Напишите конспект или загрузите PDF, фото или текстовый файл. NUVIO сохраняет извлечённый текст, а не сам файл.'));
   if(V.mat){const m=ms.find(x=>x.id===V.mat);h+=m?matView(m,sid):''}
@@ -3754,11 +3891,11 @@ function quizBox(sid){const q=V.quiz;let h='';
  const qs=D.quiz[sid];if(qs)h+='<p class="sy-muted">'+tr('All tests: ','Все тесты: ')+qs[0]+' '+tr('correct','верно')+' · '+qs[1]+' '+tr('wrong','неверно')+'</p>';return h}
 
 /* Exams */
-VIEWS.exams=()=>{if(V.d?.k==='exam')return VIEWS.exam();const f=V.f,list=EXAMS.filter(x=>(!f.c||x.c===f.c)&&(!f.s||x.sys===f.s)&&(!f.t||x.type===f.t)),mine=D.prof.exams.map(exam).filter(Boolean);
+VIEWS.exams=()=>{if(V.d?.k==='exam')return VIEWS.exam();const f=V.f,list=EXAMS.filter(x=>(f.c==='*'||(f.c?x.c===f.c:(ru()?x.c==='RU':x.c!=='RU')))&&(!f.s||x.sys===f.s)&&(!f.t||x.type===f.t)),mine=D.prof.exams.map(exam).filter(Boolean);
  let h='<header class="sy-head"><h2>'+tr('Exams','Экзамены')+'</h2><p>'+tr('International catalog. Facts come from official sites; follow the links for full details.','Международный каталог. Сведения — с официальных сайтов, подробности по ссылкам.')+'</p></header>';
  if(mine.length)h+='<section class="sy-card"><h3>'+tr('My exams','Мои экзамены')+'</h3><ul class="sy-list">'+mine.map(x=>examRow(x,true)).join('')+'</ul></section>';
  const cs=[...new Set(EXAMS.map(x=>x.c))],ss=[...new Set(EXAMS.map(x=>x.sys).filter(Boolean))];
- h+='<div class="sy-filters">'+sel('syFC',[['',tr('All countries','Все страны')],...cs.map(c=>[c,region(c)])],f.c,tr('Country','Страна'),'data-sy-f="c"')+sel('syFS',[['',tr('All systems','Все системы')],...ss.map(s=>[s,(y=>ru()?y.ru:y.en)(SYSTEMS.find(z=>z.id===s)||{ru:s,en:s})])],f.s,tr('System','Система'),'data-sy-f="s"')+sel('syFT',[['',tr('All types','Все типы')],...Object.entries(TYPES).map(([k,v])=>[k,ru()?v[0]:v[1]])],f.t,tr('Type','Тип'),'data-sy-f="t"')+'</div>';
+ h+='<div class="sy-filters">'+sel('syFC',[['',ru()?region('RU')+' · язык приложения':'English-language and international'],['*',tr('All countries','Все страны')],...cs.filter(Boolean).map(c=>[c,region(c)])],f.c||'',tr('Country','Страна'),'data-sy-f="c"')+sel('syFS',[['',tr('All systems','Все системы')],...ss.map(s=>[s,(y=>ru()?y.ru:y.en)(SYSTEMS.find(z=>z.id===s)||{ru:s,en:s})])],f.s,tr('System','Система'),'data-sy-f="s"')+sel('syFT',[['',tr('All types','Все типы')],...Object.entries(TYPES).map(([k,v])=>[k,ru()?v[0]:v[1]])],f.t,tr('Type','Тип'),'data-sy-f="t"')+'</div>';
  h+=list.length?'<ul class="sy-list">'+list.map(x=>examRow(x)).join('')+'</ul>':empty(tr('No exams match','Ничего не найдено'),tr('Change the filters.','Измените фильтры.'));return h};
 const examRow=(x,mine)=>{const subs=mine&&offList(x)?mySubs(x).map(id=>offName(offSubj(x,id))).filter(Boolean):[];return '<li><button class="sy-row" data-sy="exam" data-id="'+x.id+'"><span><b>'+E(exName(x))+'</b><small>'+(subs.length?E(cut(subs.join(', '),70)):E(region(x.c))+' · '+(ru()?TYPES[x.type][0]:TYPES[x.type][1]))+(mine&&D.prof.dates[x.id]?' · '+fd(D.prof.dates[x.id])+' ('+diff(D.prof.dates[x.id])+' '+tr('d','дн.')+')':'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>'};
 VIEWS.exam=()=>{const x=exam(V.d.id);if(!x){V.d=null;return VIEWS.exams()}if(!D.res[x.id]){examData(x.id).then(render);return busyBox(tr('Loading…','Загрузка…'))}
@@ -3782,40 +3919,41 @@ VIEWS.exam=()=>{const x=exam(V.d.id);if(!x){V.d=null;return VIEWS.exams()}if(!D.
 // subject chips for an exam view; returns [html, current subject] (official list for ЕГЭ/ОГЭ, sections for SAT/IELTS)
 function subjChips(x,key){const L=offList(x);if(!L)return['',null];const my=mySubs(x),list=my.length?L.filter(s=>my.includes(s.id)):L,cur=list.find(s=>s.id===V.f[key])||list[0];
  return['<div class="sy-chips sy-scrollx" role="tablist">'+list.map(s=>'<button role="tab" class="sy-chip'+(s===cur?' on':'')+'" data-sy="fchip" data-k="'+key+'" data-v="'+E(s.id)+'" aria-selected="'+(s===cur)+'">'+E(offName(s))+'</button>').join('')+'</div>'+(my.length||!x.fipi?'':'<p class="sy-muted">'+tr('Mark your subjects in Overview to see only them.','Отметьте свои предметы в «Обзоре», чтобы видеть только их.')+'</p>'),cur]}
-function prepView(x){let h='<section class="sy-card"><h3>'+tr('Official materials','Официальные материалы')+'</h3><ul class="sy-links"><li>'+OFFICIAL(x.url)+'</li>'+(x.demo?'<li><span>'+tr('Demo versions, specifications','Демоверсии и спецификации')+'</span>'+OFFICIAL(x.demo)+'</li>':'')+'</ul>'+
- (x.extra?'<p class="sy-muted">'+tr('Third-party: ','Сторонние ресурсы: ')+x.extra.map(([n,u])=>E(n)+' '+OFFICIAL(u)).join(' · ')+'</p>':'')+'</section>';
+function prepView(x){let h='<section class="sy-card"><h3>'+tr('Official materials','Официальные материалы')+'</h3><div class="sy-obtns">'+OFFICIAL(x.url,tr('Official site','Официальный сайт'))+(x.demo?OFFICIAL(x.demo,tr('Demo versions and specifications','Демоверсии и спецификации')):'')+'</div>'+
+ (x.extra?'<p class="sy-muted">'+tr('Third-party resources','Сторонние ресурсы')+'</p><div class="sy-obtns">'+x.extra.map(([n,u])=>OFFICIAL(u,n)).join('')+'</div>':'')+'</section>';
  if(!x.fipi)return h+'<section class="sy-card"><h3>'+tr('Practice','Тренировка')+'</h3>'+inp('syPrT',tr('Section or topic','Раздел или тема'),'','text','maxlength="80" placeholder="'+E(x.sections?x.sections[0][0]:'')+'"')+'<button class="p" data-sy="practice" data-id="'+x.id+'">'+tr('Generate practice','Создать задания')+'</button>'+genNote()+'<div id="syPrAi">'+(V.ai.pr?.html||'')+'</div></section>';
  if(waitFipi())return h+fipiWait();
  const [chips,S]=subjChips(x,'esub');if(!S)return h;V.ctx={ex:x.id,sid:S.id};
  return h+chips+subjCard(x,S)+'<div id="syStudyAi">'+(V.ai.st?.html||'')+'</div><div id="syFipi">'+fipiPanel()+'</div>'}
 function subjCard(x,S){let h='<section class="sy-card"><div class="sy-ch"><h3>'+E(offName(S))+'</h3><span>'+[S.total&&S.total+' '+tr('tasks','заданий'),S.maxPrimary&&S.maxPrimary+' '+tr('primary pts','перв. баллов'),S.minutes&&hm(S.minutes)].filter(Boolean).join(' · ')+'</span></div>'+
- '<p class="sy-src">'+tr('FIPI 2027 specification ','Спецификация ФИПИ 2027 ')+OFFICIAL(S.spec)+' · '+tr('task bank ','банк заданий ')+OFFICIAL(bankOf(x,S))+'</p>';
+ '<div class="sy-obtns">'+OFFICIAL(S.spec,tr('FIPI 2027 specification','Спецификация ФИПИ 2027'))+(S.proj?OFFICIAL(bankOf(x,S),tr('FIPI task bank','Банк заданий ФИПИ')):'')+'</div>';
  if(S.tasks){h+='<div class="sy-tasks">'+S.tasks.map(t=>'<button class="sy-tn '+tstate(tstat(x.id,S.id,t[0]))+(t[1]!=='Б'?' p2':'')+(V.task===t[0]?' sel':'')+'" data-sy="task" data-v="'+t[0]+'" aria-label="'+tr('Task ','Задание ')+t[0]+': '+E(cut(t[3],60))+'">'+t[0]+'</button>').join('')+'</div><p class="sy-legend"><i class="ok"></i>'+tr('mastered','освоено')+' <i class="work"></i>'+tr('needs practice','нужно повторить')+' <i></i>'+tr('not started','не начато')+' <i class="p2"></i>'+tr('advanced or high level','повышенный или высокий уровень')+'</p>';
   const t=V.task&&S.tasks.find(r=>r[0]===V.task);if(t)h+=taskBox(x,S,t)}
  else h+='<p class="sy-muted">'+tr('The task-by-task plan of this subject could not be read reliably from the specification, so it is not shown. Open the specification above; practice by bank topics is below.','Поэтапный план заданий этого предмета не удалось надёжно прочитать из спецификации, поэтому он не показан. Откройте спецификацию по ссылке; ниже — практика по темам банка ФИПИ.')+'</p>';
- if(!(V.task&&S.tasks?.find(r=>r[0]===V.task)?.[5]?.length))h+=themePicker(S);
+ if(!S.tasks)h+=themePicker(S);
  return h+'</section>'}
-const bzUrl=id=>'https://bank-zadach.ru/tasks/'+encodeURIComponent(id)+'?bank=bank-fipi';
 // one official task: what it contains (bank-zadach subtopics of FIPI bank tasks, matched to the 2027 plan), then codifier topics for in-app practice
 function taskBox(x,S,t){const s=tstat(x.id,S.id,t[0]),lv=LEVEL[t[1]],B=t[6]?.s.length?t[6]:null;
- let h='<div class="sy-taskd"><h4>'+tr('Task ','Задание ')+t[0]+' · '+E(cut(t[3],90))+'</h4><p class="sy-muted">'+E(cut(t[4],320))+'</p><p class="sy-muted">'+tr('Level ','Уровень ')+(lv?(ru()?lv[1]:lv[0]):E(t[1]))+' · '+tr('max ','макс. ')+t[2]+' '+tr('pt','балл.')+' · '+tr('correct ','верно ')+s[0]+' · '+tr('wrong ','неверно ')+s[1]+'</p>';
- if(B)h+='<h4>'+tr('What task ','Что встречается в задании ')+t[0]+tr(' contains','')+'</h4><ul class="sy-subs">'+B.s.map((b,i)=>'<li><span>'+E(b[0])+' <small class="sy-n">'+b[2]+' '+tr('tasks','зад.')+'</small></span><span class="sy-subact"><button class="sy-btn2" data-sy="learnbz" data-n="'+t[0]+'" data-i="'+i+'">'+tr('Learn','Изучить')+'</button><button class="sy-btn2" data-sy="open" data-u="'+E(bzUrl(b[1]))+'">'+tr('Tasks','Задания')+' ↗</button></span></li>').join('')+'</ul>'+
-  '<p class="sy-src">'+tr('Subtopics: bank-zadach.ru catalogue of FIPI open bank tasks, matched to the FIPI 2027 plan','Подтемы — каталог bank-zadach.ru (задания открытого банка ФИПИ), сверены с планом ФИПИ 2027')+(B.n!==t[0]?'. '+tr('On bank-zadach.ru this is task No. ','На bank-zadach.ru это задание №')+B.n:'')+'</p>';
- const kes=t[5].length?'<ul class="sy-subs">'+t[5].map(c=>'<li><span><b>'+E(c)+'</b> '+E(cut(themeName(S,c),110))+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnsub" data-c="'+E(c)+'">'+tr('Learn','Изучить')+'</button><button class="sy-btn2" data-sy="fipi" data-c="'+E(c)+'">'+tr('FIPI tasks','Задания ФИПИ')+'</button></span></li>').join('')+'</ul>':'';
- if(kes&&B)h+='<details class="sy-det"'+(V.fp&&t[5].includes(V.fp.theme)?' open':'')+'><summary>'+tr('FIPI codifier topics · practice in the app','Темы кодификатора ФИПИ · практика в приложении')+'</summary><p class="sy-muted">'+tr('One codifier topic covers several task numbers, so prototypes of other tasks can appear here too.','Одна тема кодификатора охватывает несколько номеров, поэтому здесь могут попасться прототипы и других заданий.')+'</p>'+kes+'</details>';
- else if(kes)h+='<h4>'+tr('Subtopics (FIPI codifier)','Подтемы (кодификатор ФИПИ)')+'</h4>'+kes;
- else if(!B)h+='<p class="sy-muted">'+tr('Subtopics of this task are not linked in the specification; pick a bank topic below.','Подтемы этого задания в спецификации не привязаны — выберите тему банка ниже.')+'</p>';
- return h+'<div class="sy-acts sy-wrap"><button class="sy-btn2" data-sy="totutor" data-v="'+t[0]+'">'+tr('Open in tutor','Открыть в репетиторе')+'</button><button class="sy-btn2" data-sy="tmark" data-v="1">'+tr('Solved it','Решил(а)')+'</button><button class="sy-btn2" data-sy="tmark" data-v="0">'+tr('Made a mistake','Ошибся(лась)')+'</button></div></div>'}
+ let h='<div class="sy-taskd"><h4>'+tr('Task ','Задание ')+t[0]+' · '+E(cut(t[3],90))+'</h4><p class="sy-muted">'+E(cut(t[4],320))+'</p><p class="sy-muted">'+tr('Level ','Уровень ')+(lv?(ru()?lv[1]:lv[0]):E(t[1]))+(t[2]!=null?' · '+tr('max ','макс. ')+t[2]+' '+tr('pt','балл.'):'')+' · '+tr('correct ','верно ')+s[0]+' · '+tr('wrong ','неверно ')+s[1]+'</p>';
+ if(S.proj&&t[5].length)h+='<button class="p sy-wide" data-sy="ftask" data-n="'+t[0]+'">'+tr('FIPI bank tasks for task ','Задания банка ФИПИ к заданию ')+t[0]+'</button>';
+ if(B)h+='<h4>'+tr('What task ','Что встречается в задании ')+t[0]+tr(' contains','')+'</h4><ul class="sy-subs">'+B.s.map((b,i)=>'<li><span>'+E(b[0])+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnbz" data-n="'+t[0]+'" data-i="'+i+'">'+tr('Learn','Изучить')+'</button></span></li>').join('')+'</ul>'+
+  '<p class="sy-src">'+tr('Subtopics follow the bank-zadach.ru catalogue, matched to the FIPI 2027 plan','Подтемы — по каталогу bank-zadach.ru, сверены с планом ФИПИ 2027')+(B.n!==t[0]?'. '+tr('On bank-zadach.ru this is task No. ','На bank-zadach.ru это задание №')+B.n:'')+'</p>';
+ const kes=t[5].length?'<ul class="sy-subs">'+t[5].map(c=>'<li><span><b>'+E(c)+'</b> '+E(cut(themeName(S,c),110))+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnsub" data-c="'+E(c)+'">'+tr('Learn','Изучить')+'</button></span></li>').join('')+'</ul>':'';
+ if(kes&&B)h+='<details class="sy-det"><summary>'+tr('FIPI codifier topics of this task','Темы кодификатора ФИПИ в этом задании')+'</summary>'+kes+'</details>';
+ else if(kes)h+='<h4>'+tr('Topics (FIPI codifier)','Темы (кодификатор ФИПИ)')+'</h4>'+kes;
+ return h+'<div class="sy-acts sy-acts3">'+(V.tab==='tutor'?'':'<button class="sy-btn2" data-sy="totutor" data-v="'+t[0]+'">'+tr('Tutor','Репетитор')+'</button>')+'<button class="sy-btn2" data-sy="tmark" data-v="1">'+tr('Solved','Решил(а)')+'</button><button class="sy-btn2" data-sy="tmark" data-v="0">'+tr('Mistake','Ошибся(лась)')+'</button></div></div>'}
 function themePicker(S){if(!S.themes?.length)return'';return '<div class="sy-pick">'+sel('syTheme',[['',tr('All tasks of the bank','Все задания банка')],...S.themes.map(([c,n])=>[c,c+' '+cut(n,70)])],V.fp?.theme||'',tr('FIPI bank topic','Тема банка ФИПИ'))+'<div class="sy-acts"><button class="sy-btn2" data-sy="learnsub" data-c="">'+tr('Learn the topic','Изучить тему')+'</button><button class="p" data-sy="fipi" data-c="">'+tr('FIPI tasks','Задания ФИПИ')+'</button></div></div>'}
 // real prototypes from the FIPI open bank; answers are checked by the bank itself
-function fipiPanel(){const P=V.fp;if(!P)return'';let h='<section class="sy-card sy-fp"><div class="sy-ch"><h3>'+tr('FIPI prototypes','Прототипы ФИПИ')+'</h3><span>'+E(cut((P.theme?P.theme+' ':'')+P.name,60))+'</span></div>';
- if(P.err)return h+'<p class="sy-err" role="alert">'+E(P.err)+'</p><p class="sy-muted">'+tr('The FIPI bank is not reachable right now. Open it directly: ','Банк ФИПИ сейчас недоступен. Откройте его напрямую: ')+OFFICIAL(P.bank)+'</p></section>';
- if(!P.items.length)return h+(P.busy?busyBox(tr('Loading tasks from the FIPI bank…','Загружаю задания из банка ФИПИ…')):empty(tr('No tasks for this topic','По этой теме заданий нет'),tr('Pick another subtopic.','Выберите другую подтему.')))+'</section>';
- h+=P.items.map((q,i)=>'<article class="sy-fq"><div class="sy-fqh"><span>'+tr('FIPI bank · No. ','Банк ФИПИ · № ')+E(q.id)+'</span><span>'+E(cut(q.kes.join('; '),70))+'</span></div><div class="sy-fqt">'+q.html+'</div>'+
+function fipiPanel(){const P=V.fp;if(!P)return'';let h='<section class="sy-card sy-fp"><div class="sy-ch"><h3>'+tr('FIPI prototypes','Прототипы ФИПИ')+'</h3><span>'+E(cut((P.theme&&!P.only?P.theme+' ':'')+P.name,70))+'</span></div>';
+ if(P.err)return h+'<p class="sy-err" role="alert">'+E(P.err)+'</p><p class="sy-muted">'+tr('The FIPI bank is not reachable right now. Open it directly: ','Банк ФИПИ сейчас недоступен. Откройте его напрямую: ')+'</p><div class="sy-obtns">'+OFFICIAL(P.bank,tr('FIPI bank','Банк ФИПИ'))+'</div><p class="sy-muted">'+'</p></section>';
+ const vis=fpVis(P);if(P.only)h+='<p class="sy-muted">'+tr('Only bank tasks whose codifier topics all belong to task ','Только задания банка, все темы кодификатора которых относятся к заданию ')+P.task+tr(' of the FIPI 2027 plan.',' по плану ФИПИ 2027.')+'</p>';
+ if(!vis.length)return h+(P.busy?busyBox(tr('Loading tasks from the FIPI bank…','Загружаю задания из банка ФИПИ…')):empty(P.only?tr('No prototypes of this task found yet','Прототипов этого задания пока не нашлось'):tr('No tasks for this topic','По этой теме заданий нет'),P.only?tr('The bank does not mark task numbers, so tasks are matched by topics. Load more or try the tutor.','Банк не указывает номер задания, поэтому подбор идёт по темам. Загрузите ещё или спросите репетитора.'):tr('Pick another subtopic.','Выберите другую подтему.')))+(P.more&&!P.busy?'<button class="sy-btn2 sy-wide" data-sy="fmore">'+tr('Search further','Искать дальше')+'</button>':'')+'</section>';
+ let lt='';h+=vis.map(([q,i])=>{const tx=q.text?(q.text!==lt?(lt=q.text,'<details class="sy-ftext" open><summary>'+tr('Text for the task','Текст к заданию')+'</summary><div class="sy-fqt">'+q.text+'</div></details>'):'<p class="sy-muted">'+tr('Uses the text above.','Текст — тот же, что выше.')+'</p>'):'';
+  return '<article class="sy-fq"><div class="sy-fqh"><span>'+tr('FIPI bank · No. ','Банк ФИПИ · № ')+E(q.id)+'</span><span>'+E(cut(q.kes.join('; '),70))+'</span></div>'+tx+'<div class="sy-fqt">'+q.html+'</div>'+
   (q.short?'<div class="sy-acts"><input id="syFa'+i+'" value="'+E(q.ans||'')+'" inputmode="text" autocomplete="off" placeholder="'+tr('Answer','Ответ')+'" aria-label="'+tr('Answer to task ','Ответ на задание ')+E(q.id)+'"><button class="sy-btn2" data-sy="fcheck" data-i="'+i+'">'+tr('Check','Проверить')+'</button></div>':'<p class="sy-muted">'+tr('Extended answer: check your solution with the tutor.','Развёрнутый ответ: проверьте решение с репетитором.')+'</p>')+
   (q.res?'<p class="sy-verdict '+(q.res==='correct'?'ok':q.res==='wrong'?'bad':'mid')+'" role="status">'+(q.res==='correct'?tr('Correct','Верно'):q.res==='wrong'?tr('Incorrect','Неверно'):tr('Could not check','Не удалось проверить'))+'</p>':'')+
-  '<button class="sy-link" data-sy="fsolve" data-i="'+i+'">'+tr('Step-by-step solution with the tutor','Разобрать решение с репетитором')+'</button></article>').join('');
- return h+(P.busy?busyBox():P.more?'<button class="sy-btn2 sy-wide" data-sy="fmore">'+tr('More tasks','Ещё задания')+'</button>':'')+'<p class="sy-src">'+tr('Tasks from the FIPI open bank; answers are checked by the bank. ','Задания из открытого банка ФИПИ, ответы проверяет сам банк. ')+OFFICIAL(P.bank)+'</p></section>'}
+  '<button class="sy-link" data-sy="fsolve" data-i="'+i+'">'+tr('Step-by-step solution with the tutor','Разобрать решение с репетитором')+'</button></article>'}).join('');
+ return h+(P.busy?busyBox():P.more?'<button class="sy-btn2 sy-wide" data-sy="fmore">'+tr('More tasks','Ещё задания')+'</button>':'')+'<p class="sy-src">'+tr('Tasks from the FIPI open bank; answers are checked by the bank.','Задания из открытого банка ФИПИ, ответы проверяет сам банк.')+'</p><div class="sy-obtns">'+OFFICIAL(P.bank,tr('FIPI bank','Банк ФИПИ'))+'</div></section>'}
 function resultsView(x){const rs=D.res[x.id];if(x.fipi&&waitFipi())return fipiWait();
  const [chips,S]=x.fipi?subjChips(x,'rsub'):['',null],sc=x.id==='ege'?(V.f.rsc||'p'):'p',max=x.fipi&&S?(sc==='t'?100:S.maxPrimary):null,tk=x.id+':'+(S?S.id:'_')+':'+sc,mine=rs.filter(r=>(r.sub||'')===(S?S.id:'')&&(r.sc||'p')===sc),orphan=x.fipi&&S?rs.filter(r=>!r.sub).length:0;V.rctx={sub:S?S.id:'',sc,max};
  let h=chips+'<section class="sy-card"><h3>'+tr('Add a result','Добавить результат')+'</h3><p class="sy-muted">'+tr('Your own mock tests, practice and official results.','Ваши пробники, тренировки и официальные результаты.')+'</p>'+
@@ -3878,9 +4016,9 @@ function protoView(){if(waitFipi())return fipiWait();const f=V.f,ex=f.pex||'ege'
  if(f.pfound&&f.pbad)h+='<p class="sy-err" role="alert">'+E(f.pbad)+'</p>';
  if(f.pfound&&!t){const where=taskSearch(S,f.pq||''),found=themeSearch(S,f.pq||'');
   if(where.length)h+='<section class="sy-card"><h3>'+tr('Where it appears in ','Где это встречается: ')+E(exName(x))+', '+E(offName(S))+'</h3><ul class="sy-subs">'+where.map(w=>'<li><span><b>№'+w.t[0]+'</b> '+E(w.t[3])+(w.subs.length?'<small class="sy-sub2">'+E(cut(w.subs.map(s=>s[0]).join(', '),140))+'</small>':'')+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="pnpick" data-v="'+w.t[0]+'">'+tr('Open','Открыть')+'</button></span></li>').join('')+'</ul></section>';
-  if(found.length)h+='<section class="sy-card"><h3>'+tr('Matching codifier topics','Подходящие темы кодификатора')+'</h3><ul class="sy-subs">'+found.map(([c,n])=>'<li><span><b>'+E(c)+'</b> '+E(cut(n,110))+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnsub" data-c="'+E(c)+'">'+tr('Learn','Изучить')+'</button><button class="sy-btn2" data-sy="fipi" data-c="'+E(c)+'">'+tr('FIPI tasks','Задания ФИПИ')+'</button></span></li>').join('')+'</ul></section>';
+  if(found.length)h+='<section class="sy-card"><h3>'+tr('Matching codifier topics','Подходящие темы кодификатора')+'</h3><ul class="sy-subs">'+found.map(([c,n])=>'<li><span><b>'+E(c)+'</b> '+E(cut(n,110))+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnsub" data-c="'+E(c)+'">'+tr('Learn','Изучить')+'</button></span></li>').join('')+'</ul></section>';
   if(!where.length&&!found.length&&!f.pbad)h+='<p class="sy-muted">'+tr('Nothing matched. Pick the task number or a bank topic.','Ничего не нашлось. Выберите номер задания или тему банка.')+'</p>'}
- h+=t?'<section class="sy-card">'+taskBox(x,S,t)+(t[5].length||t[6]?.s.length?'':themePicker(S))+'</section>':(S.tasks?'':'<section class="sy-card"><p class="sy-muted">'+tr('This subject has no reliable task-by-task map in the specification; practise by bank topics.','Для этого предмета в спецификации нет надёжной карты заданий — тренируйтесь по темам банка.')+'</p>'+themePicker(S)+'</section>');
+ h+=t?'<section class="sy-card">'+taskBox(x,S,t)+'</section>':(S.tasks?'':'<section class="sy-card"><p class="sy-muted">'+tr('This subject has no reliable task-by-task map in the specification; practise by bank topics.','Для этого предмета в спецификации нет надёжной карты заданий — тренируйтесь по темам банка.')+'</p>'+themePicker(S)+'</section>');
  return h+'<div id="syStudyAi">'+(V.ai.st?.html||'')+'</div><div id="syFipi">'+fipiPanel()+'</div>'}
 VIEWS.tutor=()=>{const T=V.tutor;if(!T.mode)T.mode=D.prof.exams.some(id=>exam(id)?.fipi)||(!D.prof.exams.length&&ru())?'proto':'explain';const m=T.mode,ph={explain:tr('What topic should I explain from scratch?','Какую тему объяснить с нуля?'),solve:tr('Paste the task or attach a photo','Вставьте условие задачи или приложите фото'),check:tr('Paste the task','Вставьте условие задачи'),exercises:tr('Topic for exercises','Тема для упражнений'),summary:tr('Paste the text or attach a photo','Вставьте текст или приложите фото'),cards:tr('Topic or text for cards','Тема или текст для карточек'),quiz:tr('Topic or text for the test','Тема или текст для теста')}[m];
  let h='<header class="sy-head"><h2>'+tr('AI Tutor','ИИ-репетитор')+'</h2><p>'+tr('Explains from scratch, step by step, in your language and exam format.','Объясняет с нуля, по шагам, на вашем языке и в формате вашего экзамена.')+'</p></header>';
@@ -3901,7 +4039,7 @@ VIEWS.tutor=()=>{const T=V.tutor;if(!T.mode)T.mode=D.prof.exams.some(id=>exam(id
  if(!T.res&&D.tutor.length)h+='<section class="sy-card"><h3>'+tr('Recent','Недавние')+'</h3><ul class="sy-list">'+D.tutor.slice(0,6).map((y,i)=>'<li><button class="sy-row" data-sy="thist" data-i="'+i+'"><span><b>'+E(y.q||'—')+'</b><small>'+E((MODES.find(z=>z[0]===y.m)||[,'',''])[ru()?1:2])+' · '+fd(y.d)+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul></section>';
  return h};
 function renderAI(mode,o,ctx){ctx=ctx||{};const S=s=>E(s||'').replace(/\n/g,'<br>');
- if(mode==='explain')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3>'+(o.sections||[]).map(s=>'<h4>'+E(s.h)+'</h4><p>'+S(s.body)+'</p>').join('')+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.check?.length?'<h4>'+tr('Check yourself','Проверь себя')+'</h4>'+o.check.map(c=>'<details class="sy-det"><summary>'+E(c.q)+'</summary><p>'+S(c.a)+'</p></details>').join(''):'')+(ctx.code?'<div class="sy-acts"><button class="p" data-sy="fipi" data-c="'+E(ctx.code)+'">'+tr('Practise on FIPI tasks','Практика на заданиях ФИПИ')+'</button></div>':'')+(ctx.bz?'<div class="sy-acts"><button class="p" data-sy="open" data-u="'+E(ctx.bz)+'">'+tr('Practise: FIPI bank tasks of this subtopic','Практика: задания банка ФИПИ по этой подтеме')+' ↗</button></div>':'')+'</section>';
+ if(mode==='explain')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3>'+(o.sections||[]).map(s=>'<h4>'+E(s.h)+'</h4><p>'+S(s.body)+'</p>').join('')+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.check?.length?'<h4>'+tr('Check yourself','Проверь себя')+'</h4>'+o.check.map(c=>'<details class="sy-det"><summary>'+E(c.q)+'</summary><p>'+S(c.a)+'</p></details>').join(''):'')+(ctx.n?'<div class="sy-acts"><button class="p" data-sy="ftask" data-n="'+ctx.n+'">'+tr('FIPI tasks for task ','Задания ФИПИ к заданию ')+ctx.n+'</button></div>':ctx.code?'<div class="sy-acts"><button class="p" data-sy="fipi" data-c="'+E(ctx.code)+'">'+tr('Practise on FIPI tasks','Практика на заданиях ФИПИ')+'</button></div>':'')+'</section>';
  if(mode==='solve'){const Sb=ctx.ex&&offSubj(exam(ctx.ex),ctx.sid),tn=Sb?.tasks?.find(r=>r[0]===+o.task_no),kes=(Array.isArray(o.kes)?o.kes:[]).map(String).filter(c=>Sb?.themes?.some(t=>t[0]===c)).slice(0,4),
   // the tutor's task number must agree with the subtopics it named; otherwise say so instead of trusting it
   cand=tn&&kes.length?Sb.tasks.filter(r=>r[5].some(c=>kes.some(k=>k===c||k.startsWith(c+'.')||c.startsWith(k+'.')))).map(r=>r[0]):[],warn=cand.length&&!cand.includes(tn[0])?'<p class="sy-err" role="status">'+tr('Check the task number: in the official plan the subtopics the tutor named belong to tasks No. ','Проверьте номер: по официальному плану названные подтемы относятся к заданиям №')+cand.slice(0,6).join(', ')+'</p>':'';
@@ -3990,7 +4128,7 @@ VIEWS.stats=()=>{const n=nowN(),R=V.range||7,from=n-R+1,t=today(),fromK=kN(from)
     s+='<div class="sy-exs"><h4>'+E(offName(S))+'</h4>';
     if(S.tasks){const p=pct(r.mast,r.tasks.length);s+='<div class="sy-prog"><span>'+tr('Mastered','Освоено')+'</span>'+bar(p,p+'%')+'<b>'+r.mast+'/'+r.tasks.length+'</b></div>'+
      '<div class="sy-tasks sy-mini">'+r.tasks.map((t,i)=>'<span class="sy-tn '+tstate(r.st[i])+(t[1]!=='Б'?' p2':'')+'" data-tip="'+E(tr('Task ','Задание ')+t[0]+': '+cut(t[3],40)+' · '+r.st[i][0]+' / '+r.st[i][1])+'" tabindex="0">'+t[0]+'</span>').join('')+'</div>'+
-     (S.maxPrimary?'<p class="sy-muted">'+tr('Points from mastered tasks: ','Баллов за освоенные задания: ')+r.pts+' / '+S.maxPrimary+' '+tr('primary','первичных')+'</p>':'')}
+     (S.maxPrimary&&!S.noPts?'<p class="sy-muted">'+tr('Points from mastered tasks: ','Баллов за освоенные задания: ')+r.pts+' / '+S.maxPrimary+' '+tr('primary','первичных')+(S.extraPts?tr(' (',' (')+S.extraPts+tr(' of them for literacy across the whole work)',' из них — за грамотность по всей работе)'):'')+'</p>':'')}
     s+='<p class="sy-muted">'+(r.ok+r.bad?tr('Answers: ','Ответы: ')+r.ok+' '+tr('correct','верно')+', '+r.bad+' '+tr('wrong','неверно')+' ('+pct(r.ok,r.ok+r.bad)+'%)':tr('No practice yet: open tasks in Prepare or the FIPI prototypes in the tutor.','Тренировок пока нет: откройте задания в «Подготовке» или прототипы ФИПИ в репетиторе.'))+'</p>';
     if(last)s+='<p class="sy-muted">'+tr('Last result: ','Последний результат: ')+'<b>'+E(last.s)+' / '+E(last.m||S.maxPrimary||'—')+'</b> · '+fd(last.d)+(tgt?' · '+tr('target ','цель ')+tgt+(last.s>=tgt?' ✓':' ('+tr('need ','ещё ')+'+'+(Math.round((tgt-last.s)*10)/10)+')'):'')+'</p>'+(pr.length>1?lineChart(pr.map(q=>[q.d,q.m?q.s/q.m*100:q.s,q]),pr.every(q=>q.m)?'%':''):'');
     const weak=r.tasks.map((t,i)=>[t,r.st[i]]).filter(([,q])=>q[1]>q[0]*.34&&q[1]).sort((a,b)=>b[1][1]-a[1][1]).slice(0,3);
@@ -4042,7 +4180,7 @@ const A={
  learnbz(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid),t=S?.tasks?.find(r=>r[0]===+b.dataset.n),sb=t?.[6]?.s[+b.dataset.i];if(!sb)return;
   aiInto('st','syStudyAi',async()=>renderAI('explain',await ai('explain',{exam:exName(x),subject:offName(S),structure:'FIPI '+FIPI.year,
    task_info:{n:t[0],title:t[3],level:t[1],max:t[2],skill:cut(t[4],300),subtopic:sb[0],all_subtopics:t[6].s.map(y=>y[0])},
-   question:tr('How to solve task ','Как решать задание ')+t[0]+' ('+t[3]+tr('), subtopic ','), подтема ')+'«'+sb[0]+'»'}),{bz:bzUrl(sb[1])}))},
+   question:tr('How to solve task ','Как решать задание ')+t[0]+' ('+t[3]+tr('), subtopic ','), подтема ')+'«'+sb[0]+'»'}),{n:t[0]}))},
  pnpick(b){V.f.pn=String(b.dataset.v);V.f.pfound=0;V.f.pbad='';V.fp=null;V.ai.st=null;render();scrollTo(0,0)},
  lvl(b){D.prof.level=D.prof.level===b.dataset.v?'':b.dataset.v;render()},
  pickexam(b){const id=b.dataset.v,L=D.prof.exams;D.prof.exams=L.includes(id)?L.filter(x=>x!==id):[...L,id];render()},
@@ -4064,14 +4202,14 @@ const A={
   if(want){try{if(x.rem)await unremind(x);x.rem=await remind(x)}catch(err){note(friendlyError(err));x.rem=x.rem||null}}else await unremind(x);
   if(!e)D.plan.push(x);if(await savePlan()){V.pe=null;ok();render()}},
  async pdel(){const x=D.plan.find(p=>p.id===V.pe);if(!x||!await ask(tr('Delete this item?','Удалить запись?')))return;await unremind(x);D.plan=D.plan.filter(p=>p!==x);V.pe=null;await savePlan();render()},
- subj(b){V.d={k:'subj',id:b.dataset.id};V.sub='topics';render();scrollTo(0,0)},
+ subj(b){V.d={k:'subj',id:b.dataset.id};V.sub='topics';render();scrollTo(0,0);const s=D.subj.find(z=>z.id===b.dataset.id);if(s)fillTopics(s).then(ch=>{if(ch&&V.d?.id===s.id)render()})},
  async delsubj(){const sid=V.d.id;if(!await ask(tr('Delete this subject with its topics, materials and cards?','Удалить предмет вместе с темами, материалами и карточками?')))return;await subjData(sid);
-  for(const m of D.mats[sid]||[])await st.del('sy_x_'+m.id);const head=await jget('sy_c_'+sid,[]);for(let i=0;i<(+head?.pages||0);i++)await st.del('sy_c_'+sid+'.'+i);
+  for(const m of D.mats[sid]||[])await st.del('sy_x_'+m.id);for(const b of ['sy_c_','sy_t_']){const head=await jget(b+sid,[]);for(let i=0;i<(+head?.pages||0);i++)await st.del(b+sid+'.'+i)}
   for(const k of ['sy_t_','sy_m_','sy_c_'])await st.del(k+sid);D.subj=D.subj.filter(x=>x.id!==sid);delete D.topics[sid];delete D.mats[sid];delete D.cards[sid];delete D.quiz[sid];delete D.quiz['rev:'+sid];
   await safePut(KEYS.subj,D.subj);await st.set(KEYS.quiz,JSON.stringify(D.quiz));V.d=null;render()},
- async addtopic(){const sid=V.d.id,n=val('syTopN');if(!n)return $('syTopN').focus();D.topics[sid].push({id:uid(),n,p:val('syTopP')||null,m:0});if(await safePut('sy_t_'+sid,D.topics[sid]))render()},
- async mast(b){const sid=V.d.id,t=D.topics[sid].find(x=>x.id===b.dataset.id);t.m=((t.m||0)+1)%5;await safePut('sy_t_'+sid,D.topics[sid]);render()},
- async deltopic(b){const sid=V.d.id;if(!await ask(tr('Delete this topic and its subtopics?','Удалить тему и её подтемы?')))return;D.topics[sid]=D.topics[sid].filter(x=>x.id!==b.dataset.id&&x.p!==b.dataset.id);await safePut('sy_t_'+sid,D.topics[sid]);render()},
+ async addtopic(){const sid=V.d.id,n=val('syTopN');if(!n)return $('syTopN').focus();D.topics[sid].push({id:uid(),n,p:val('syTopP')||null,m:0});if(await putTopics(sid))render()},
+ async mast(b){const sid=V.d.id,t=D.topics[sid].find(x=>x.id===b.dataset.id);t.m=((t.m||0)+1)%5;await putTopics(sid);render()},
+ async deltopic(b){const sid=V.d.id;if(!await ask(tr('Delete this topic and its subtopics?','Удалить тему и её подтемы?')))return;D.topics[sid]=D.topics[sid].filter(x=>x.id!==b.dataset.id&&x.p!==b.dataset.id);await putTopics(sid);render()},
  async addmat(){const sid=V.d.id,t=val('syMatT')||tr('Note','Конспект'),x=val('syMatX');if(!x)return $('syMatX').focus();if(D.mats[sid].length>=40)return note(tr('Up to 40 materials per subject. Delete old ones first.','До 40 материалов на предмет. Удалите старые.'));const id=uid();
   try{await put('sy_x_'+id,x.slice(0,3500))}catch(e){return note(e.message)}D.mats[sid].push({id,t,at:Date.now(),src:V.matSrc||''});V.matSrc='';if(await safePut('sy_m_'+sid,D.mats[sid])){ok();render()}},
  async mat(b){V.mat=b.dataset.id;const m=D.mats[V.d.id].find(x=>x.id===V.mat);if(m&&m.x==null)m.x=(await st.get('sy_x_'+m.id))||'';V.ai.mat=null;render()},
@@ -4127,7 +4265,7 @@ const A={
  async addsubj(){const exId=val('sySubE'),x=exam(exId);let n,ref='';
   if($('sySubP')){ref=val('sySubP');if(!ref)return $('sySubP').focus();n=offName(offSubj(x,ref))}else{n=val('sySubN');if(!n)return $('sySubN').focus()}
   const s={id:uid(),n,ex:exId};if(ref)s.ref=ref;D.subj.push(s);if(!await safePut(KEYS.subj,D.subj)){D.subj.pop();return}
-  const S=x?.fipi&&offSubj(x,ref),tp=S?codifierTopics(S):[];D.topics[s.id]=tp;D.mats[s.id]=[];D.cards[s.id]=[];if(tp.length)await safePut('sy_t_'+s.id,tp);
+  const S=x?.fipi&&offSubj(x,ref),tp=S?codifierTopics(S):[];D.topics[s.id]=tp;D.mats[s.id]=[];D.cards[s.id]=[];if(tp.length)await putTopics(s.id);s.tf=1;
   if(ref){D.prof.subj={...D.prof.subj,[exId]:[...new Set([...mySubs(x),ref])]};if(!D.prof.exams.includes(exId))D.prof.exams.push(exId);await safePut(KEYS.prof,D.prof)}
   V.f.newEx='';ok(tp.length?tr('Topics added from the FIPI codifier: ','Темы из кодификатора ФИПИ: ')+tp.length:undefined);render()},
  async esubpick(b){const x=exam(V.d.id),id=b.dataset.v,L=mySubs(x);D.prof.subj={...D.prof.subj,[x.id]:L.includes(id)?L.filter(s=>s!==id):[...L,id]};await safePut(KEYS.prof,D.prof);render()},
@@ -4139,17 +4277,21 @@ const A={
  async fipi(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid);if(!S)return;if(!S.proj)return note(tr('This subject has no FIPI bank.','У этого предмета нет банка ФИПИ.'));
   const code=b.dataset.c||($('syTheme')?val('syTheme'):'');V.fp={ex:c.ex,sid:S.id,proj:S.proj,theme:code,name:code?themeName(S,code):tr('all tasks','все задания'),page:0,items:[],busy:true,err:'',more:false,bank:bankOf(x,S),task:V.task||(V.tab==='tutor'?+V.f.pn||null:null)};
   drawFipi(true);await loadFp()},
- async fmore(){const P=V.fp;if(!P||P.busy)return;keepFa();P.page++;P.busy=true;drawFipi();await loadFp()},
+ async fmore(){const P=V.fp;if(!P||P.busy)return;keepFa();fpNext(P);P.auto=0;P.busy=true;drawFipi();await loadFp()},
+ async ftask(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid),n=+b.dataset.n,t=S?.tasks?.find(r=>r[0]===n);if(!t)return;if(!S.proj||!t[5].length)return note(tr('This task has no FIPI bank topics.','У этого задания нет тем банка ФИПИ.'));
+  const roots=[...new Set(t[5].map(k=>k.split('.')[0]))],themes=t[5].length>3&&roots.length===1?roots:t[5].slice(0,6);
+  V.fp={ex:c.ex,sid:S.id,proj:S.proj,theme:themes[0],themes,ti:0,name:tr('task ','задание ')+n+' · '+t[3],page:0,items:[],seen:{},busy:true,err:'',more:false,bank:bankOf(x,S),task:n,only:{codes:t[5],one:t[2]===1}};
+  drawFipi(true);await loadFp()},
  async fcheck(b){const P=V.fp,i=+b.dataset.i,q=P?.items[i];if(!q)return;keepFa();if(!q.ans)return $('syFa'+i)?.focus();b.disabled=true;
   try{const j=await api('/fipi',{action:'check',exam:P.ex,proj:P.proj,guid:q.guid,answer:q.ans});q.res=j.result||'unknown'}catch(e){q.res='unknown';note(friendlyError(e))}
   if(q.res==='correct'||q.res==='wrong'){const S=offSubj(exam(P.ex),P.sid),codes=q.kes.map(k=>(String(k).match(/^\d+(?:\.\d+)*/)||[''])[0]).filter(c=>S.themes.some(t=>t[0]===c)),tk=P.task&&S.tasks?.find(t=>t[0]===P.task),cand=(S.tasks||[]).filter(t=>codes.some(c=>t[5].includes(c)));
    // count the answer for a task number only when the prototype's topics belong to it
    const n=tk&&codes.some(c=>tk[5].includes(c))?tk[0]:cand.length===1?cand[0][0]:null;await bump(tkey(P.ex,P.sid),n,q.res==='correct',codes)}
   render()},
- fsolve(b){const P=V.fp,q=P?.items[+b.dataset.i];if(!q)return;V.tab='tutor';V.d=null;V.tutor={...V.tutor,mode:'solve',exam:P.ex,sid:P.sid,q:(tr('FIPI bank task No. ','Задание банка ФИПИ № ')+q.id+'\n'+mmlText(q.html)).slice(0,3000),res:null,err:''};render();scrollTo(0,0);$('syTQ')?.focus()},
+ fsolve(b){const P=V.fp,q=P?.items[+b.dataset.i];if(!q)return;V.tab='tutor';V.d=null;V.tutor={...V.tutor,mode:'solve',exam:P.ex,sid:P.sid,q:(tr('FIPI bank task No. ','Задание банка ФИПИ № ')+q.id+'\n'+(q.text?tr('Text: ','Текст: ')+mmlText(q.text).slice(0,1600)+'\n\n':'')+mmlText(q.html)).slice(0,3000),res:null,err:''};render();scrollTo(0,0);$('syTQ')?.focus()},
  learnsub(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid);if(!S)return;const code=b.dataset.c||($('syTheme')?val('syTheme'):''),tn=+V.task||(V.tab==='tutor'?+V.f.pn:0),t=tn&&S.tasks?.find(r=>r[0]===tn);
   const topic=code?code+' '+themeName(S,code):offName(S);
-  aiInto('st','syStudyAi',async()=>renderAI('explain',await ai('explain',{exam:exName(x),subject:offName(S),question:tr('Explain the FIPI codifier topic ','Объясни тему кодификатора ФИПИ ')+'«'+topic+'»'+(t?tr(' as needed for task ',' в объёме, нужном для задания ')+t[0]+' ('+t[3]+')':'')+tr('. Finish with how this topic appears in exam tasks.','. В конце — как эта тема встречается в заданиях экзамена.')}),{code}))},
+  aiInto('st','syStudyAi',async()=>renderAI('explain',await ai('explain',{exam:exName(x),subject:offName(S),question:tr('Explain the FIPI codifier topic ','Объясни тему кодификатора ФИПИ ')+'«'+topic+'»'+(t?tr(' as needed for task ',' в объёме, нужном для задания ')+t[0]+' ('+t[3]+')':'')+tr('. Finish with how this topic appears in exam tasks.','. В конце — как эта тема встречается в заданиях экзамена.')}),{code,n:t&&t[5].includes(code)?t[0]:0}))},
  totutor(b){const c=V.ctx;if(!c)return;V.tab='tutor';V.d=null;V.tutor.mode='proto';V.tutor.res=null;Object.assign(V.f,{pex:c.ex,psid:c.sid,pn:String(b.dataset.v),pfound:0});V.fp=null;V.ai.st=null;render();scrollTo(0,0)},
  toproto(b){A.totutor(b)},
  pfind(){const q=val('syPq');V.f.pq=q;if(!FIPI||!q)return $('syPq')?.focus();const p=parseTask(q);V.f.pex=p.ex;if(p.sid)V.f.psid=p.sid;else if(!offSubj(exam(p.ex),V.f.psid))V.f.psid='';
@@ -4172,7 +4314,7 @@ const A={
   T.busy=true;T.err='';T.res=null;render();const exId=T.exam||'',x=exam(exId),S=x?.fipi&&offSubj(x,T.sid),body={exam:x?.fipi||exName(x),subject:S?offName(S):T.subject,count:T.count||5};
   if(T.mode==='explain')body.question=q;else if(T.mode==='solve')body.task=q;else if(T.mode==='check'){body.task=q;body.user_answer=T.a;body.user_solution=T.w}else if(['summary','cards','quiz'].includes(T.mode)&&q.length>120)body.text=q;else body.topic=q;
   // the official task map lets the tutor name the task number and the codifier topics it needs
-  if(S&&['solve','check','explain'].includes(T.mode)){if(S.tasks)body.task_map=S.tasks.map(t=>t[0]+' ('+t[1]+', '+t[2]+'): '+t[3]+(t[6]?.s.length?' ['+t[6].s.map(x=>x[0]).join('; ')+']':' — '+cut(t[4],90))).join('\n');body.structure='FIPI '+FIPI.year;body.themes=S.themes.map(t=>t[0]+' '+cut(t[1],60)).join('\n')}
+  if(S&&['solve','check','explain'].includes(T.mode)){if(S.tasks)body.task_map=S.tasks.map(t=>t[0]+' ('+t[1]+', '+(t[2]??'—')+'): '+t[3]+(t[6]?.s.length?' ['+t[6].s.map(x=>x[0]).join('; ')+']':' — '+cut(t[4],90))).join('\n');body.structure='FIPI '+FIPI.year;body.themes=S.themes.map(t=>t[0]+' '+cut(t[1],60)).join('\n')}
   if(T.img&&['solve','summary'].includes(T.mode))body.image=T.img;
   try{const o=await ai(T.mode,body),ctx={exam:exId};if(S){ctx.ex=exId;ctx.sid=S.id}T.res={mode:T.mode,out:o,ctx};D.tutor.unshift({m:T.mode,q:(q||tr('Photo','Фото')).slice(0,80),d:today(),o,ex:exId,c:ctx});D.tutor=D.tutor.slice(0,8);
    while(JSON.stringify(D.tutor).length>3800&&D.tutor.length>1)D.tutor.pop();await st.set(KEYS.tutor,JSON.stringify(D.tutor));T.img=null}catch(e){T.err=friendlyError(e)}T.busy=false;render()},
