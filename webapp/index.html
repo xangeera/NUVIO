@@ -1220,9 +1220,231 @@ html[data-theme=dark] #pl{--hol:#ff6f73;--hol-soft:rgb(255 111 115/.16);--obs:#f
 #pl .pl-del{color:#ff453a!important}
 @media(max-width:360px){#pl .pl-day b{width:32px;height:32px;font-size:16px}#mo .mo-face{width:38px;height:38px}#mo .mo-pick small{font-size:11px}}
 </style>
+<style id="nuvio-study">
+/* NUVIO Study. Content surfaces stay calm and opaque; glass only on the floating section bar and the toast (class .lg). */
+#study{--sy-a:#2f6bf0;--sy-a2:#0f9e8c;--sy-ok:#12895f;--sy-mid:#b0700a;--sy-bad:#c8402f;--sy-chart:#2f6bf0;--sy-card:linear-gradient(180deg,var(--nv-panel),color-mix(in srgb,var(--nv-panel) 92%,#dfe7ff));animation:fade .3s ease;color:var(--nv-text)}
+html[data-theme=dark] #study{--sy-a:#5b8cff;--sy-a2:#2fb39f;--sy-ok:#5fd0a0;--sy-mid:#f0b450;--sy-bad:#ff8a78;--sy-chart:#4f83f5;--sy-card:linear-gradient(180deg,color-mix(in srgb,var(--nv-panel) 94%,#5b8cff),var(--nv-panel))}
+#study .sy-nav{position:sticky;top:8px;z-index:5;display:flex;gap:2px;margin:6px -4px 4px;padding:5px!important;border-radius:22px!important;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+#study .sy-nav::-webkit-scrollbar{display:none}
+#study .sy-nav button{flex:none;min-height:38px;padding:0 14px!important;border:0!important;border-radius:17px!important;background:none!important;box-shadow:none!important;color:var(--nv-secondary)!important;font-size:14.5px;font-weight:620;white-space:nowrap;scroll-snap-align:center;transition:background-color .2s,color .2s}
+#study .sy-nav button.on{background:var(--lg-sel,rgba(0,0,0,.07))!important;color:var(--nv-text)!important}
+#study .sy-head{margin:18px 2px 12px}
+#study .sy-head h2{margin:0;font-size:30px;line-height:1.08;font-weight:760;letter-spacing:-.035em;text-wrap:balance}
+#study .sy-head p{margin:6px 0 0;font-size:14.5px;line-height:1.45;color:var(--nv-secondary);text-wrap:pretty}
+#study .sy-card{margin-top:12px;padding:18px;border:1px solid var(--nv-line);border-radius:24px;background:var(--sy-card);box-shadow:var(--nv-shadow)}
+#study .sy-card h3{margin:0 0 12px;font-size:18px;line-height:1.25;font-weight:720;letter-spacing:-.02em}
+#study .sy-card h4{margin:16px 0 6px;font-size:15.5px;font-weight:700}
+#study .sy-ch{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+#study .sy-ch h3{margin:0}
+#study .sy-ch>span{flex:none;font-size:13.5px;color:var(--nv-secondary);font-variant-numeric:tabular-nums}
+#study .sy-muted{margin:8px 0 0;font-size:14px;line-height:1.45;color:var(--nv-secondary)}
+#study .sy-err{margin:10px 0;color:var(--sy-bad);font-size:14.5px;font-weight:600}
+#study .sy-src{margin:12px 0 0;font-size:13px;line-height:1.45;color:var(--nv-secondary)}
+#study .sy-ailabel{margin:10px 0 0;padding:8px 12px;border-radius:12px;background:color-mix(in srgb,var(--sy-mid) 12%,transparent);color:var(--nv-text);font-size:12.5px;line-height:1.4}
+#study .sy-big{margin:6px 0 12px;font-size:40px;font-weight:760;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+/* controls */
+#study .sy-f{display:block;margin-top:12px}
+#study .sy-f>span{display:block;margin:0 0 6px;font-size:13px;font-weight:620;color:var(--nv-secondary)}
+#study :is(input,select,textarea){width:100%;min-height:46px;padding:11px 14px!important;border:1px solid var(--nv-line)!important;border-radius:14px!important;background:var(--nv-panel-2)!important;color:var(--nv-text)!important;font:inherit;font-size:16px!important;box-shadow:none!important}
+#study textarea{line-height:1.45;resize:vertical}
+#study select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)!important;background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%!important;background-size:5px 5px!important;background-repeat:no-repeat!important;padding-right:34px!important}
+#study :is(input,select,textarea):focus{border-color:var(--sy-a)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--sy-a) 22%,transparent)!important;outline:none}
+#study .sy-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px}
+#study button.p{min-height:46px;padding:0 20px!important;border:0!important;border-radius:16px!important;background:var(--sy-a)!important;color:#fff!important;font-weight:680;box-shadow:0 6px 16px color-mix(in srgb,var(--sy-a) 26%,transparent)!important}
+#study button.p:disabled{opacity:.45;box-shadow:none!important}
+#study .sy-btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 16px!important;border:1px solid var(--nv-line)!important;border-radius:15px!important;background:var(--nv-panel-2)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:14.5px;font-weight:620;cursor:pointer}
+#study .sy-link{min-height:36px;padding:0 2px!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--sy-a)!important;font-size:14.5px;font-weight:650;text-align:left;overflow-wrap:anywhere}
+#study .sy-del{color:var(--sy-bad)!important}
+#study .sy-wide{width:100%}
+#study .sy-acts{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+#study .sy-acts.sy-wrap{flex-wrap:wrap;justify-content:flex-start}
+#study .sy-acts>input{flex:1;min-width:0}
+#study .sy-file{position:relative;overflow:hidden}
+#study .sy-file input{position:absolute;inset:0;opacity:0;cursor:pointer;min-height:0!important}
+#study .sy-check{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:14.5px}
+#study .sy-check input{width:22px;min-height:22px!important;height:22px;padding:0!important;accent-color:var(--sy-a)}
+#study .sy-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px}
+#study .sy-chip{min-height:38px;padding:0 14px!important;border:1px solid var(--nv-line)!important;border-radius:19px!important;background:var(--nv-panel)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:14px;font-weight:600}
+#study .sy-chip.on{border-color:transparent!important;background:var(--sy-a)!important;color:#fff!important}
+#study .sy-seg{display:flex;gap:2px;margin:4px 0 2px;padding:4px;border-radius:16px;background:var(--nv-panel-2);border:1px solid var(--nv-line);overflow-x:auto;scrollbar-width:none}
+#study .sy-seg button{flex:1 0 auto;min-height:36px;padding:0 12px!important;border:0!important;border-radius:12px!important;background:none!important;box-shadow:none!important;color:var(--nv-secondary)!important;font-size:14px;font-weight:620;white-space:nowrap}
+#study .sy-seg button.on{background:var(--nv-panel)!important;color:var(--nv-text)!important;box-shadow:0 1px 3px rgba(0,0,0,.1)!important}
+#study .sy-back{display:inline-flex;align-items:center;gap:2px;min-height:40px;margin:10px 0 0 -8px;padding:0 12px 0 4px!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--sy-a)!important;font-size:16px;font-weight:650}
+#study .sy-back svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+/* lists */
+#study .sy-list{display:grid;gap:0;margin:0;padding:0;list-style:none}
+#study .sy-list>li+li{border-top:1px solid var(--nv-line)}
+#study .sy-card>.sy-list{margin:0 -4px}
+#study .sy-row{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;padding:10px 4px!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:var(--nv-text)!important;text-align:left}
+#study .sy-body>.sy-list{margin-top:12px;padding:2px 14px;border:1px solid var(--nv-line);border-radius:22px;background:var(--nv-panel)}
+#study :is(.sy-row,.sy-res,.sy-task)>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#study :is(.sy-row,.sy-res,.sy-task) b{font-size:15.5px;font-weight:650;overflow-wrap:anywhere}
+#study :is(.sy-row,.sy-res,.sy-task) small{font-size:13px;color:var(--nv-secondary);line-height:1.35}
+#study .sy-task small em{font-style:normal;color:var(--sy-bad)}
+#study .sy-res,#study .sy-task{display:flex;align-items:center;gap:12px;padding:10px 4px}
+#study .sy-chev{flex:none;width:9px;height:9px;border-right:2px solid var(--nv-secondary);border-bottom:2px solid var(--nv-secondary);transform:rotate(-45deg);opacity:.7}
+#study .sy-pct{flex:none;font-size:15px;color:var(--sy-a);font-variant-numeric:tabular-nums}
+#study .sy-pill{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:var(--sy-a);color:#fff;font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
+#study .sy-x{flex:none;display:grid;place-items:center;width:36px;height:36px;padding:0!important;border:0!important;border-radius:12px!important;background:none!important;box-shadow:none!important;color:var(--nv-secondary)!important;font-size:18px;font-weight:600}
+#study .sy-ck{flex:none;display:grid;place-items:center;width:26px;height:26px;padding:0!important;border:2px solid var(--nv-secondary)!important;border-radius:9px!important;background:none!important;box-shadow:none!important;color:transparent!important}
+#study .sy-ck svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+#study .sy-task.done .sy-ck{border-color:var(--sy-a)!important;background:var(--sy-a)!important;color:#fff!important}
+#study .sy-task.done b{color:var(--nv-secondary);text-decoration:line-through}
+#study .sy-empty{margin-top:12px;padding:26px 18px;border:1px dashed var(--nv-line);border-radius:22px;text-align:center}
+#study .sy-empty b{display:block;font-size:16.5px;font-weight:700}
+#study .sy-empty p{margin:6px auto 0;max-width:34ch;font-size:14px;line-height:1.45;color:var(--nv-secondary)}
+#study .sy-empty button{margin-top:14px}
+/* dashboard */
+#study .sy-timer{display:flex;align-items:center;gap:10px;padding:10px;border-radius:18px;background:var(--nv-panel-2);border:1px solid var(--nv-line)}
+#study .sy-timer select{flex:1;min-width:0;background:var(--nv-panel)!important}
+#study .sy-timer.on{background:color-mix(in srgb,var(--sy-a) 12%,var(--nv-panel-2))}
+#study .sy-timer.on>span{flex:1;display:flex;flex-direction:column;padding-left:6px}
+#study .sy-timer.on b{font-size:22px;font-weight:740;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+#study .sy-timer.on small{font-size:13px;color:var(--nv-secondary)}
+#study .sy-timer.on b:before{content:"";display:inline-block;width:8px;height:8px;margin:0 8px 3px 0;border-radius:50%;background:var(--sy-bad);vertical-align:middle}
+#study .sy-card>.sy-list,#study .sy-card>.sy-row{margin-top:8px}
+#study .sy-up{display:flex;align-items:center;gap:12px;padding:10px 4px}
+#study .sy-up>span:last-child{display:flex;flex-direction:column;gap:2px;min-width:0}
+#study .sy-up b{font-size:15.5px;font-weight:650}
+#study .sy-up small{font-size:13px;color:var(--nv-secondary)}
+#study .sy-cd{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;width:52px;height:52px;border-radius:16px;background:linear-gradient(160deg,color-mix(in srgb,var(--sy-a) 22%,var(--nv-panel)),color-mix(in srgb,var(--sy-a2) 14%,var(--nv-panel)));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 4px 10px color-mix(in srgb,var(--sy-a) 18%,transparent)}
+#study .sy-cd b{font-size:19px;line-height:1;font-weight:760;font-variant-numeric:tabular-nums}
+#study .sy-cd small{font-size:11px;color:var(--nv-secondary)}
+#study .sy-prog{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) 42px;align-items:center;gap:10px;padding:6px 0;font-size:14.5px}
+#study .sy-prog>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#study .sy-prog>b{text-align:right;font-variant-numeric:tabular-nums}
+#study .sy-bar{display:block;height:8px;border-radius:4px;background:color-mix(in srgb,var(--nv-text) 9%,transparent);overflow:hidden}
+#study .sy-bar i{display:block;height:100%;border-radius:4px;background:var(--sy-chart)}
+#study .sy-well{display:flex;flex-direction:column;gap:4px;margin:0 0 12px;font-size:14px;color:var(--nv-secondary)}
+#study .sy-well b{color:var(--nv-text);font-weight:600}
+#study .sy-tips{margin:0 0 12px;padding-left:18px;font-size:15px;line-height:1.5}
+#study .sy-tips li+li{margin-top:6px}
+#study .sy-steps ul{display:grid;gap:4px;margin:12px 0 4px;padding:0;list-style:none}
+#study .sy-steps li button{display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:0 2px!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:15px;font-weight:560;text-align:left}
+#study .sy-steps li i{flex:none;width:20px;height:20px;border:2px solid var(--nv-line);border-radius:50%}
+#study .sy-steps li.done button{color:var(--nv-secondary)!important;text-decoration:line-through}
+#study .sy-steps li.done i{border-color:var(--sy-ok);background:var(--sy-ok);box-shadow:inset 0 0 0 3px var(--nv-panel)}
+#study .sy-steps .sy-bar i{background:var(--sy-ok)}
+#study .sy-setup{background:linear-gradient(160deg,color-mix(in srgb,var(--sy-a) 10%,var(--nv-panel)),var(--nv-panel))}
+/* learning */
+#study .sy-topics{display:grid;margin:12px 0 0;padding:4px 14px;list-style:none;border:1px solid var(--nv-line);border-radius:22px;background:var(--nv-panel)}
+#study .sy-topic{display:flex;align-items:center;gap:8px;min-height:52px;border-bottom:1px solid var(--nv-line)}
+#study .sy-topic:last-child{border-bottom:0}
+#study .sy-topic>span{flex:1;min-width:0;font-size:15px;font-weight:600;overflow-wrap:anywhere}
+#study .sy-topic.sub>span{padding-left:16px;font-weight:500;color:var(--nv-secondary)}
+#study .sy-topic.sub>span:before{content:"";display:inline-block;width:8px;height:1.5px;margin:0 8px 4px 0;background:var(--nv-line)}
+#study .sy-m{flex:none;min-height:32px;padding:0 11px!important;border:0!important;border-radius:16px!important;box-shadow:none!important;font-size:12.5px;font-weight:700;background:color-mix(in srgb,var(--nv-text) 8%,transparent)!important;color:var(--nv-secondary)!important}
+#study .sy-m.m1{background:color-mix(in srgb,var(--sy-bad) 14%,transparent)!important;color:var(--sy-bad)!important}
+#study .sy-m.m2{background:color-mix(in srgb,var(--sy-mid) 16%,transparent)!important;color:var(--sy-mid)!important}
+#study .sy-m.m3{background:color-mix(in srgb,var(--sy-a) 14%,transparent)!important;color:var(--sy-a)!important}
+#study .sy-m.m4{background:color-mix(in srgb,var(--sy-ok) 16%,transparent)!important;color:var(--sy-ok)!important}
+#study .sy-text{max-height:320px;overflow:auto;font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+#study .sy-cards li{display:flex;align-items:center;gap:10px;padding:10px 4px}
+#study .sy-cards li>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#study .sy-cards b{font-size:15px;font-weight:650}
+#study .sy-cards small{font-size:13.5px;color:var(--nv-secondary)}
+#study .sy-due{flex:none;font-size:12.5px;color:var(--nv-secondary)}
+#study .sy-flash{display:grid;place-items:center;gap:12px;min-height:190px;margin:4px 0 14px;padding:24px 18px;border-radius:22px;text-align:center;font-size:19px;font-weight:650;line-height:1.35;
+  background:linear-gradient(155deg,color-mix(in srgb,var(--sy-a) 16%,var(--nv-panel-2)),var(--nv-panel-2) 60%,color-mix(in srgb,var(--sy-a2) 12%,var(--nv-panel-2)));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 26px color-mix(in srgb,var(--sy-a) 14%,transparent);transform:perspective(900px) rotateX(2deg);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+#study .sy-flash p{margin:0}
+#study .sy-flash .b{padding-top:12px;border-top:1px solid var(--nv-line);font-weight:500;color:var(--nv-secondary)}
+#study .sy-flash.flip{transform:perspective(900px) rotateX(0)}
+#study .sy-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#study .sy-grade button{min-height:48px;padding:0 4px!important;border:1px solid var(--nv-line)!important;border-radius:14px!important;background:var(--nv-panel-2)!important;box-shadow:none!important;color:var(--nv-text)!important;font-weight:650}
+#study .sy-grade button:first-child{color:var(--sy-bad)!important}
+#study .sy-grade button:last-child{color:var(--sy-ok)!important}
+#study .sy-qq{font-size:17px;font-weight:650;line-height:1.4}
+#study .sy-opts{display:grid;gap:8px;margin-top:12px}
+#study .sy-opts button{min-height:50px;padding:10px 14px!important;border:1px solid var(--nv-line)!important;border-radius:15px!important;background:var(--nv-panel-2)!important;box-shadow:none!important;color:var(--nv-text)!important;text-align:left;font-size:15px;line-height:1.35}
+#study .sy-opts .right{border-color:var(--sy-ok)!important;background:color-mix(in srgb,var(--sy-ok) 14%,var(--nv-panel-2))!important}
+#study .sy-opts .wrong{border-color:var(--sy-bad)!important;background:color-mix(in srgb,var(--sy-bad) 12%,var(--nv-panel-2))!important}
+#study .sy-why{margin:12px 0;font-size:14.5px;line-height:1.45;color:var(--nv-secondary)}
+/* exams */
+#study .sy-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:4px}
+#study .sy-filters .sy-f>span{font-size:12px}
+#study .sy-filters select{min-height:42px;font-size:14px!important}
+#study .sy-facts{margin:0;padding-left:18px;font-size:15px;line-height:1.5}
+#study .sy-facts li+li{margin-top:6px}
+#study .sy-tbl{width:100%;margin-top:14px;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+#study .sy-tbl :is(th,td){padding:9px 6px;border-bottom:1px solid var(--nv-line);text-align:left;vertical-align:top}
+#study .sy-tbl thead th{font-size:12.5px;font-weight:650;color:var(--nv-secondary)}
+#study .sy-scroll{margin-top:12px;overflow-x:auto;border:1px solid var(--nv-line);border-radius:18px;background:var(--nv-panel)}
+#study .sy-cmp{margin:0;min-width:480px}
+#study .sy-cmp tbody th{font-size:13px;color:var(--nv-secondary);font-weight:600;white-space:nowrap}
+#study .sy-links{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+#study .sy-links li{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font-size:14px}
+#study .sy-links li>span{color:var(--nv-secondary)}
+#study .sy-tasks{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;margin-top:12px}
+#study .sy-tn{display:grid;place-items:center;aspect-ratio:1;min-width:0;min-height:44px;padding:0!important;border:1.5px solid var(--nv-line)!important;border-radius:14px!important;background:var(--nv-panel-2)!important;box-shadow:none!important;color:var(--nv-text)!important;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+#study .sy-tn.p2{border-style:dashed!important}
+#study .sy-tn.ok{border-color:transparent!important;background:color-mix(in srgb,var(--sy-ok) 22%,var(--nv-panel-2))!important;color:var(--sy-ok)!important}
+#study .sy-tn.work{border-color:color-mix(in srgb,var(--sy-mid) 60%,transparent)!important;background:color-mix(in srgb,var(--sy-mid) 12%,var(--nv-panel-2))!important}
+#study .sy-tn.sel{box-shadow:0 0 0 2px var(--nv-text)!important}
+#study .sy-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:10px 0 0;font-size:12.5px;color:var(--nv-secondary)}
+#study .sy-legend i{display:inline-block;width:12px;height:12px;margin-right:4px;border-radius:4px;border:1.5px solid var(--nv-line);vertical-align:-2px}
+#study .sy-legend i.ok{border-color:transparent;background:color-mix(in srgb,var(--sy-ok) 40%,transparent)}
+#study .sy-legend i.work{border-color:var(--sy-mid);background:color-mix(in srgb,var(--sy-mid) 15%,transparent)}
+#study .sy-taskd{margin-top:14px;padding-top:14px;border-top:1px solid var(--nv-line)}
+#study .sy-taskd h4{margin:0}
+/* tutor output */
+#study .sy-ai p{margin:6px 0;font-size:15px;line-height:1.6;overflow-wrap:anywhere}
+#study .sy-tag{display:inline-block;margin:0 0 6px!important;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--sy-a) 14%,transparent);color:var(--sy-a);font-size:13px!important;font-weight:700}
+#study .sy-steps2{margin:4px 0 0;padding-left:22px}
+#study .sy-steps2 li{margin:0 0 12px;padding-left:4px;font-size:15px}
+#study .sy-steps2 li::marker{font-weight:760;color:var(--sy-a)}
+#study .sy-steps2 b{display:block;font-weight:700}
+#study .sy-key{margin:14px 0;padding:12px 14px;border-radius:16px;background:var(--nv-panel-2);border:1px solid var(--nv-line);font-size:14.5px}
+#study .sy-key ul{margin:6px 0 0;padding-left:18px;line-height:1.5}
+#study .sy-answer{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin:16px 0;padding:14px 16px;border-radius:18px;background:linear-gradient(150deg,color-mix(in srgb,var(--sy-ok) 18%,var(--nv-panel)),color-mix(in srgb,var(--sy-a2) 10%,var(--nv-panel)));border:1px solid color-mix(in srgb,var(--sy-ok) 35%,transparent)}
+#study .sy-answer span{font-size:13px;font-weight:650;color:var(--nv-secondary);text-transform:none}
+#study .sy-answer b{font-size:22px;font-weight:760;letter-spacing:-.01em;overflow-wrap:anywhere}
+#study .sy-det{margin-top:8px;padding:10px 14px;border:1px solid var(--nv-line);border-radius:14px;background:var(--nv-panel-2)}
+#study .sy-det summary{cursor:pointer;font-size:15px;font-weight:600;line-height:1.45}
+#study .sy-det ol{margin:8px 0;padding-left:22px}
+#study .sy-det li.right{color:var(--sy-ok);font-weight:650}
+#study .sy-verdict{display:inline-block;margin:0 0 8px!important;padding:6px 14px;border-radius:999px;font-weight:750}
+#study .sy-verdict.ok{background:color-mix(in srgb,var(--sy-ok) 16%,transparent);color:var(--sy-ok)}
+#study .sy-verdict.mid{background:color-mix(in srgb,var(--sy-mid) 16%,transparent);color:var(--sy-mid)}
+#study .sy-verdict.bad{background:color-mix(in srgb,var(--sy-bad) 14%,transparent);color:var(--sy-bad)}
+#study .sy-terms{margin:12px 0 0;font-size:14.5px}
+#study .sy-terms dt{font-weight:700}
+#study .sy-terms dd{margin:2px 0 10px;color:var(--nv-secondary)}
+#study .sy-save{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--nv-line)}
+#study .sy-save .sy-f{margin:0}
+#study .sy-busy{display:grid;gap:8px;margin:14px 0;color:var(--nv-secondary);font-size:14px}
+#study .sy-busy b{display:block;height:14px;border-radius:7px;background:linear-gradient(100deg,var(--nv-panel-2) 30%,color-mix(in srgb,var(--sy-a) 14%,var(--nv-panel-2)) 50%,var(--nv-panel-2) 70%);background-size:300% 100%;animation:syShim 1.4s linear infinite}
+#study .sy-busy b+b{width:70%}
+@keyframes syShim{from{background-position:100% 0}to{background-position:0 0}}
+#study .sy-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#study .sy-two ul{margin:0;padding-left:16px;font-size:14px;line-height:1.5}
+#study .sy-two h4{margin-top:0}
+#study .sy-stat2{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#study .sy-stat2 div{display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:16px;background:var(--nv-panel-2)}
+#study .sy-stat2 b{font-size:22px;font-weight:760;font-variant-numeric:tabular-nums}
+#study .sy-stat2 span{font-size:12.5px;color:var(--nv-secondary)}
+/* charts: one series, one hue (validated with the dataviz checks), recessive axes */
+#study .sy-chart{display:block;width:100%;height:auto;margin-top:6px;overflow:visible}
+#study .sy-chart .b{fill:var(--sy-chart)}
+#study .sy-chart .ln{fill:none;stroke:var(--sy-chart);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+#study .sy-chart .pt{fill:var(--sy-chart);stroke:var(--nv-panel);stroke-width:2}
+#study .sy-chart .ax{stroke:var(--nv-line);stroke-width:1}
+#study .sy-chart .gr{stroke:var(--nv-line);stroke-width:1;stroke-dasharray:2 4}
+#study .sy-chart .hit{fill:transparent}
+#study .sy-chart .hit:focus{outline:none;fill:color-mix(in srgb,var(--nv-text) 6%,transparent)}
+#study .sy-chart .tx{fill:var(--nv-secondary);font-size:10.5px;text-anchor:middle;font-variant-numeric:tabular-nums}
+#study .sy-chart .tx.r{text-anchor:end}#study .sy-chart .tx.l{text-anchor:start}
+#study .sy-chart .tx.v{fill:var(--nv-text);font-weight:700;font-size:12px}
+.sy-tip{position:fixed;z-index:60;max-width:240px;padding:6px 10px;border-radius:10px;background:var(--nv-text);color:var(--nv-bg);font-size:12.5px;font-weight:600;pointer-events:none;font-variant-numeric:tabular-nums}
+.sy-toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));z-index:55;max-width:calc(100% - 40px);padding:12px 18px!important;border-radius:20px!important;color:var(--nv-text);font-size:14.5px;font-weight:620;opacity:0;transform:translate(-50%,10px);pointer-events:none;transition:opacity .25s ease,transform .35s cubic-bezier(.16,1,.3,1)}
+.sy-toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:370px){#study .sy-grid2,#study .sy-filters{grid-template-columns:1fr}#study .sy-card{padding:16px}#study .sy-grade{grid-template-columns:repeat(2,1fr)}#study .sy-prog{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 38px}}
+@media(prefers-reduced-motion:reduce){#study,#study .sy-flash,.sy-toast{animation:none;transition:none}#study .sy-busy b{animation:none}}
+html:not(#_) .tabs button[data-t=study]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.8 9.2L12 5l9.2 4.2L12 13.4z'/%3E%3Cpath d='M6.5 11.2v4.3c1.6 1.6 3.4 2.3 5.5 2.3s3.9-.7 5.5-2.3v-4.3M21.2 9.2v5.2'/%3E%3C/svg%3E")}
+</style>
 </head><body>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
-<header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button></nav>
+<header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button><button data-t="study" data-i="tsy"></button></nav>
 <section id="w">
   <div id="dayGreeting" class="day-greeting" aria-live="polite"><div class="day-greeting-title"></div><div class="day-greeting-date"></div></div>
     <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS">📍</button></form>
@@ -1232,7 +1454,7 @@ html[data-theme=dark] #pl{--hol:#ff6f73;--hol-soft:rgb(255 111 115/.16);--obs:#f
 <section id="g" hidden></section>
 <section id="ft" hidden></section>
 <section id="nx" hidden></section>
-<section id="hl" hidden></section><section id="pl" hidden></section>
+<section id="hl" hidden></section><section id="pl" hidden></section><section id="study" hidden></section>
 <section id="p" hidden></section>
 <script>
 const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();
@@ -1319,9 +1541,9 @@ function showTab(key){
   if(key==='g')gEnter();
   if(key==='nx')renderNx();
   if(key==='hl')renderHl();
-  if(key==='pl')renderPlanner();
+  if(key==='pl')renderPlanner();if(key==='study')renderStudy();
   if(key==='p'){renderProfile();if(isAdmin())adminLoad(AD.show)}
-  ['w','g','ft','nx','hl','pl','p'].forEach(k=>$(k).hidden=key!==k);
+  ['w','g','ft','nx','hl','pl','study','p'].forEach(k=>$(k).hidden=key!==k);
   const title=$('nvTitle'),button=$('profileOpen');
   if(title)title.textContent=key==='p'?t('tp'):'nuvio';
   if(button){
@@ -2705,7 +2927,7 @@ async function init(){
   const ids=await jget('gi',[]);goals=(await Promise.all(ids.map(i=>jget('g_'+i,null)))).filter(Boolean).map(migrate);renderGoals();loadCtx(true).then(()=>{if(!adding)renderGoals()});renderProfile();loadFit();loadNx();loadHl();api('/hello',{}).catch(()=>{});
   const p=await jget('place',null);p?load(p.lat,p.lon,p.name):locate();
 }
-function setLang(l){lang=l;st.set('lang',l);renderDayGreeting();applyStatic();const nt=$('nvTitle'),pb=$('profileOpen');if(nt)nt.textContent=activeTab==='p'?t('tp'):'nuvio';if(pb)pb.setAttribute('aria-label',activeTab==='p'?(lang==='en'?'Back':'Назад'):t('tp'));renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();renderHl();renderMood();if(lastWeather)render(lastWeather.d,lastWeather.name)}
+function setLang(l){lang=l;st.set('lang',l);renderDayGreeting();applyStatic();const nt=$('nvTitle'),pb=$('profileOpen');if(nt)nt.textContent=activeTab==='p'?t('tp'):'nuvio';if(pb)pb.setAttribute('aria-label',activeTab==='p'?(lang==='en'?'Back':'Назад'):t('tp'));renderWardrobe();renderGoals();renderProfile();renderFit();renderNx();renderHl();renderMood();if(activeTab==='study')renderStudy();if(lastWeather)render(lastWeather.d,lastWeather.name)}
 (async()=>{
   $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${(.42+i*.055).toFixed(3)}s">${c}</span>`).join('');
   const q0=new URLSearchParams(location.search).get('lang'),qp=(q0==='ru'||q0==='en')?q0:null,sv=await st.get('lang'),seen=await st.get('blang'),th=await st.get('theme'),pal=await st.get('palette'),lg=await st.get('liquid_glass');
@@ -3081,5 +3303,496 @@ scan(false);
 })();
 </script>
 
+<script>
+/* NUVIO_STUDY_V1 — Study tab: dashboard, learning (subjects, topics, materials, spaced repetition), international exam catalog,
+   AI tutor (server /study), admissions tracker (server /unis), study planner, analytics. All data is the user's own; no invented scores or requirements. */
+(function(){
+'use strict';
+const ru=()=>lang!=='en',tr=(en,r)=>ru()?r:en,E=s=>esc(String(s??'')),pad=n=>String(n).padStart(2,'0');
+const dk=t=>{const d=new Date(t);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())},today=()=>dk(Date.now());
+const pd=k=>{const[y,m,d]=String(k).split('-').map(Number);return new Date(y,(m||1)-1,d||1)},dayN=k=>Math.round(pd(k)/864e5),nowN=()=>dayN(today());
+const kN=n=>{const d=new Date(n*864e5);return d.getUTCFullYear()+'-'+pad(d.getUTCMonth()+1)+'-'+pad(d.getUTCDate())};
+const diff=k=>dayN(k)-nowN(),fd=k=>pd(k).toLocaleDateString(loc(),{day:'numeric',month:'short'}),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const hm=m=>{m=Math.round(m||0);return m<60?m+' '+tr('min','мин'):Math.floor(m/60)+' '+tr('h','ч')+(m%60?' '+m%60+' '+tr('min','мин'):'')};
+const region=c=>{if(c==='INT')return tr('International','Международные');try{return new Intl.DisplayNames([ru()?'ru':'en'],{type:'region'}).of(c)}catch{return c}};
+const langName=c=>{try{return new Intl.DisplayNames([ru()?'ru':'en'],{type:'language'}).of(c)}catch{return c}};
+const open=u=>{if(!/^https?:\/\//i.test(String(u)))return;try{tg?.openLink?tg.openLink(u):window.open(u,'_blank','noopener')}catch{window.open(u,'_blank','noopener')}};
+const ok=m=>{try{tg?.HapticFeedback?.notificationOccurred?.('success')}catch{}if(m)toast(m)};
+let toastT=0;function toast(m){let el=$('syToast');if(!el){el=document.createElement('div');el.id='syToast';el.className='sy-toast lg';el.setAttribute('role','status');document.body.appendChild(el)}el.textContent=m;el.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('on'),2600)}
+
+/* ---------- registries: add a country, system or exam by adding one entry ---------- */
+const COUNTRIES=['RU','US','GB','DE','FR','ES','IT','NL','CH','AT','SE','FI','PL','CZ','CA','AU','NZ','IE','JP','KR','CN','HK','SG','IN','AE','TR','IL','KZ','UZ','BY','AM','GE','AZ','BR','MX','AR'];
+const UNI_C={RU:'Russian Federation',CZ:'Czech Republic',KR:'Korea, Republic of',HK:'Hong Kong'};
+const LANGS=['ru','en','de','fr','es','it','zh','ja','ko','ar','tr','kk','uz','pt'];
+const SYSTEMS=[{id:'ru-school',c:'RU',ru:'Российская школа',en:'Russian school'},{id:'us-hs',c:'US',ru:'Американская школа (High School)',en:'US high school'},{id:'uk',c:'GB',ru:'Британская (GCSE, A level)',en:'UK (GCSE, A level)'},
+ {id:'ib',c:'INT',ru:'International Baccalaureate',en:'International Baccalaureate'},{id:'cambridge',c:'INT',ru:'Cambridge International',en:'Cambridge International'},
+ {id:'higher',ru:'Высшее образование',en:'Higher education'},{id:'self',ru:'Самообразование',en:'Self-study'},{id:'other',ru:'Другая',en:'Other'}];
+const LEVELS=[['school','Школа','School'],['college','Колледж','College'],['university','Университет','University'],['self','Самостоятельно','Self-study']];
+const TYPES={admission:['Вступительный','Admission'],language:['Языковой','Language'],school:['Выпускной / программа','School-leaving / programme'],subject:['Предметный','Subject']};
+// Facts are only what the official site showed when checked (date in `checked`). Exams without verified facts show a link instead of guesses.
+const CHECKED='2026-11-22';
+const EGE_MATH={name:['Математика (профильный уровень)','Mathematics (profile level)'],spec:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',year:2027,total:32,minutes:235,
+ // [number, part, level Б/П/В, max points, ru, en] — from the FIPI 2027 specification (generalised plan of the variant)
+ tasks:[[1,1,'Б',1,'Планиметрия','Plane geometry'],[2,1,'Б',1,'Векторы','Vectors'],[3,1,'Б',1,'Стереометрия','Solid geometry'],[4,1,'Б',1,'Вероятность','Probability'],
+  [5,1,'П',1,'Вероятность: сложение, умножение, полная вероятность','Probability: rules, total probability'],[6,1,'Б',1,'Уравнения','Equations'],[7,1,'Б',1,'Вычисления и преобразования','Calculations and transformations'],
+  [8,1,'Б',1,'Функции, производная, первообразная','Functions, derivative, antiderivative'],[9,1,'П',1,'Моделирование реальных ситуаций','Modelling real situations'],[10,1,'П',1,'Текстовые задачи','Word problems'],
+  [11,1,'П',1,'Функции и графики','Functions and graphs'],[12,1,'П',1,'Наибольшее и наименьшее значение функции','Maximum and minimum of a function'],
+  [13,2,'П',2,'Уравнения, неравенства, системы','Equations, inequalities, systems'],[14,2,'П',3,'Стереометрическая задача','Solid geometry problem'],[15,2,'П',2,'Уравнения, неравенства, системы','Equations, inequalities, systems'],
+  [16,2,'П',2,'Моделирование, финансовая математика','Modelling, financial maths'],[17,2,'П',3,'Планиметрическая задача','Plane geometry problem'],[18,2,'В',4,'Задача с параметром','Problem with a parameter'],[19,2,'В',4,'Числа и их свойства','Numbers and their properties']]};
+const EXAMS=[
+ {id:'sat',name:'SAT',org:'College Board',c:'US',sys:'us-hs',type:'admission',url:'https://satsuite.collegeboard.org/sat',
+  sections:[['Reading and Writing',54,64],['Math',44,70]],facts:{ru:['Общее время 2 ч 14 мин, 98 вопросов, перерыв 10 минут между разделами','Цифровой формат с адаптивными модулями, приложение Bluebook'],en:['2 h 14 min, 98 questions, 10-minute break between sections','Digital and adaptive by module, taken in the Bluebook app']}},
+ {id:'psat',name:'PSAT/NMSQT',org:'College Board',c:'US',sys:'us-hs',type:'admission',url:'https://satsuite.collegeboard.org/psat-nmsqt',
+  sections:[['Reading and Writing',54,64],['Math',44,70]],facts:{ru:['Общее время 2 ч 14 мин, 98 вопросов'],en:['2 h 14 min, 98 questions']}},
+ {id:'ap',name:'AP Exams',org:'College Board',c:'US',sys:'us-hs',type:'subject',url:'https://apstudents.collegeboard.org',facts:{ru:['Оценка по шкале от 1 до 5','Отдельный экзамен по каждому курсу AP'],en:['Scored on a scale of 1 to 5','A separate exam for each AP course']}},
+ {id:'act',name:'ACT',org:'ACT',c:'US',sys:'us-hs',type:'admission',url:'https://www.act.org',facts:{ru:['Цифровой или бумажный формат','Естественные науки и эссе — по выбору'],en:['Digital or paper','Science and writing are optional']}},
+ {id:'toefl',name:'TOEFL iBT',org:'ETS',c:'US',type:'language',url:'https://www.ets.org/toefl'},
+ {id:'det',name:'Duolingo English Test',org:'Duolingo',c:'US',type:'language',url:'https://englishtest.duolingo.com'},
+ {id:'ib',name:'IB Diploma Programme',org:'International Baccalaureate',c:'INT',sys:'ib',type:'school',url:'https://www.ibo.org/programmes/diploma-programme/'},
+ {id:'cie',name:'Cambridge International',org:'Cambridge University Press & Assessment',c:'INT',sys:'cambridge',type:'school',url:'https://www.cambridgeinternational.org',
+  facts:{ru:['Квалификации: Cambridge IGCSE, O Level, International AS & A Level, AICE Diploma, Cambridge IPQ'],en:['Qualifications: Cambridge IGCSE, O Level, International AS & A Level, AICE Diploma, Cambridge IPQ']}},
+ {id:'ielts',name:'IELTS Academic',org:'British Council, IDP IELTS, Cambridge University Press & Assessment',c:'INT',type:'language',url:'https://ielts.org/take-a-test/test-types/ielts-academic-test',
+  sections:[['Listening',null,30],['Reading',null,60],['Writing',null,60],['Speaking',null,'11–14']],facts:{ru:['Общее время 2 ч 45 мин','Сдаётся в тестовом центре или онлайн','Для учёбы за рубежом и профессиональной регистрации'],en:['2 h 45 min in total','Taken at a test centre or online','For study abroad and professional registration']}},
+ {id:'pte',name:'PTE Academic',org:'Pearson',c:'INT',type:'language',url:'https://www.pearsonpte.com'},
+ {id:'ege',name:'ЕГЭ',en:'Unified State Exam (EGE)',org:'Рособрнадзор, ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/ege',
+  facts:{ru:['Форма государственной итоговой аттестации по программам среднего общего образования','Русский язык и математика обязательны, остальные предметы — по выбору','Экзамен письменный на русском языке, иностранные языки — с устной частью'],en:['State final attestation for secondary general education in Russia','Russian and mathematics are compulsory, other subjects are optional','Written, in Russian; foreign languages also have an oral part']},
+  subjects:['Русский язык','Математика','Физика','Химия','История','Обществознание','Информатика','Биология','География','Английский язык','Немецкий язык','Французский язык','Испанский язык','Китайский язык','Литература'],
+  bank:'https://ege.fipi.ru/bank/index.php?proj=AC437B34557F88EA4115D2F374B0A07B',demo:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',math:EGE_MATH,extra:[['Банк задач (Профиматика)','https://bank-zadach.ru/tasks']]},
+ {id:'oge',name:'ОГЭ',en:'Basic State Exam (OGE)',org:'ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/oge',
+  facts:{ru:['Форма государственной итоговой аттестации по программам основного общего образования','4 экзамена: русский язык и математика обязательны, ещё два — по выбору'],en:['State final attestation for basic general education in Russia','4 exams: Russian and mathematics are compulsory, two more are chosen']}}
+];
+window.NUVIO_STUDY_EXAMS=EXAMS; // other scripts can push new exams with the same shape
+const exam=id=>EXAMS.find(x=>x.id===id);
+const exName=x=>x?(ru()||!x.en?x.name:x.en):'';
+
+/* ---------- storage ---------- */
+const KEYS={prof:'sy_prof',subj:'sy_subj',plan:'sy_plan',adm:'sy_adm',sess:'sy_s',quiz:'sy_q',ege:'sy_ege',timer:'sy_timer',tutor:'sy_tutor'};
+const D={prof:{},subj:[],plan:[],adm:[],sess:[],quiz:{},ege:{},timer:null,tutor:[],topics:{},mats:{},cards:{},res:{},err:{},loaded:false};
+async function load(){if(D.loaded)return;const g=(k,d)=>jget(k,d).then(v=>v??d);
+ [D.prof,D.subj,D.plan,D.adm,D.sess,D.quiz,D.ege,D.timer,D.tutor]=await Promise.all([g(KEYS.prof,{}),g(KEYS.subj,[]),loadPlan(),g(KEYS.adm,[]),g(KEYS.sess,[]),g(KEYS.quiz,{}),g(KEYS.ege,{}),g(KEYS.timer,null),g(KEYS.tutor,[])]);
+ D.prof.exams=D.prof.exams||[];D.prof.dates=D.prof.dates||{};D.prof.target=D.prof.target||{};D.prof.goals=D.prof.goals||[];D.loaded=true}
+// One CloudStorage value holds 4096 chars: lists that must not lose data refuse to grow and tell the user.
+async function put(k,v){const s=JSON.stringify(v);if(s.length>4000)throw new Error(tr('This list is full (Telegram storage limit). Remove older items first.','Список заполнен (лимит хранилища Telegram). Удалите старые записи.'));await st.set(k,s)}
+const safePut=async(k,v)=>{try{await put(k,v);return true}catch(e){note(e.message);return false}};
+async function subjData(sid){if(D.topics[sid])return;const g=(k,d)=>jget(k,d).then(v=>v??d);[D.topics[sid],D.mats[sid],D.cards[sid]]=await Promise.all([g('sy_t_'+sid,[]),g('sy_m_'+sid,[]),loadPages('sy_c_'+sid)])}
+// Long lists (card decks) are split into pages; the base key keeps the page count (or, in old data, the list itself).
+async function loadPages(base){const head=await jget(base,[]);if(Array.isArray(head))return head;const n=+head.pages||0,parts=await Promise.all(Array.from({length:n},(_,i)=>jget(base+'.'+i,[])));return parts.flat().filter(Boolean)}
+async function savePages(base,list){const pages=[];let cur=[],len=2;for(const x of list){const l=JSON.stringify(x).length+1;if(len+l>3900&&cur.length){pages.push(cur);cur=[];len=2}cur.push(x);len+=l}if(cur.length)pages.push(cur);
+ if(pages.length>40)throw new Error(tr('This deck is full. Split it into another subject.','Колода переполнена. Разделите её на другой предмет.'));
+ const prev=await jget(base,[]),old=Array.isArray(prev)?0:+prev.pages||0;for(let i=0;i<pages.length;i++)await st.set(base+'.'+i,JSON.stringify(pages[i]));for(let i=pages.length;i<old;i++)await st.del(base+'.'+i);await st.set(base,JSON.stringify({pages:pages.length}))}
+const saveCards=async sid=>{try{await savePages('sy_c_'+sid,D.cards[sid]);return true}catch(e){note(e.message);return false}};
+async function examData(id){if(D.res[id])return;const g=(k,d)=>jget(k,d).then(v=>v??d);[D.res[id],D.err[id]]=await Promise.all([g('sy_r_'+id,[]),g('sy_e_'+id,[])])}
+// study log: [dayNumber, minutes, subjectId] — shortcut: keeps ~180 days in one value; older days drop first.
+async function logMinutes(min,sid){min=Math.round(min);if(min<1)return;const n=nowN(),row=D.sess.find(r=>r[0]===n&&r[2]===(sid||''));if(row)row[1]+=min;else D.sess.push([n,min,sid||'']);
+ D.sess=D.sess.filter(r=>r[0]>n-180);await st.set(KEYS.sess,JSON.stringify(fitCloud(D.sess,r=>String(r[0]).padStart(8,'0'))))}
+const minutesOn=(from,to)=>D.sess.filter(r=>r[0]>=from&&r[0]<=to).reduce((a,r)=>a+r[1],0);
+
+/* ---------- AI (server-side keys only) ---------- */
+const profBrief=()=>{const p=D.prof;return{country:p.country||null,system:p.system||null,level:p.level||null,lang:p.lang||null,exams:p.exams.map(id=>exName(exam(id)))}};
+const ai=(mode,body)=>api('/study',{mode,today:today(),profile:profBrief(),...body});
+const busyBox=t=>'<div class="sy-busy" role="status"><b aria-hidden="true"></b><b aria-hidden="true"></b><span>'+E(t||tr('AI is working…','ИИ работает…'))+'</span></div>';
+const genNote=()=>'<p class="sy-ailabel">'+tr('Generated by AI for practice. Not official exam tasks.','Сгенерировано ИИ для тренировки. Это не официальные задания экзамена.')+'</p>';
+
+/* ---------- wellbeing (Health) and goals (Goals) ---------- */
+async function wellbeing(){const out={};try{const s=(HL?.d?.sleep||[]).slice().sort((a,b)=>String(b[0]).localeCompare(String(a[0])))[0];if(s&&diff(s[0])>=-1)out.sleep=s[1]}catch{}
+ try{const m=(await jget('nuvio_mood_entries',[])).find(e=>e.date===today());if(m)out.mood=m.value}catch{}return out}
+async function linkGoal(x){const d=D.prof.dates[x.id];if(!d){note(tr('Set the exam date first.','Сначала укажите дату экзамена.'));return}
+ if(D.prof.goalOf?.[x.id]&&goals.some(g=>g.id===D.prof.goalOf[x.id])){showTab('g');return}
+ const res=(D.res[x.id]||[]).filter(r=>r.k!=='official'),last=res[res.length-1],tgt=Number(D.prof.target[x.id]);const num=last&&tgt&&last.s!==tgt;
+ const ng={id:Date.now().toString(36),title:tr('Prepare for ','Подготовка к ')+exName(x),unit:num?tr('points','баллов'):'',from:num?last.s:null,to:num?tgt:null,deadline:d,created:+pd(today()),made:Date.now(),log:[],steps:[],sd:[],nd:0};
+ goals.push(ng);await saveGoal(ng);D.prof.goalOf={...(D.prof.goalOf||{}),[x.id]:ng.id};await put(KEYS.prof,D.prof);ok(tr('Goal created in Goals','Цель создана в «Целях»'));render()}
+
+/* ---------- state ---------- */
+const V={tab:'home',d:null,sub:'',f:{c:'',s:'',t:''},tutor:{mode:'explain',exam:'',img:null,busy:false,res:null,err:''},quiz:null,review:null,setup:0,ai:{},unis:{items:null,busy:false,err:''},cmp:[]};
+const TABS=[['home','Обзор','Overview'],['learn','Предметы','Learning'],['exams','Экзамены','Exams'],['tutor','Репетитор','AI Tutor'],['adm','Поступление','Admissions'],['plan','План','Planner'],['stats','Аналитика','Analytics']];
+const MASTERY=[['Не начато','Not started'],['Знакомо','Familiar'],['Понимаю','Understand'],['Уверенно','Confident'],['Освоено','Mastered']];
+const ST_ADM=[['research','Изучаю','Researching'],['docs','Готовлю документы','Preparing documents'],['sent','Подано','Submitted'],['interview','Интервью','Interview'],['offer','Принят','Offer'],['wait','Лист ожидания','Waitlist'],['reject','Отказ','Rejected']];
+const PLAN_T={study:['Занятие','Study'],hw:['Домашнее задание','Homework'],test:['Контрольная','Test'],exam:['Экзамен','Exam'],dl:['Дедлайн','Deadline']};
+
+/* ---------- view helpers ---------- */
+const sel=(id,opts,val,label,attrs='')=>'<label class="sy-f"><span>'+label+'</span><select id="'+id+'" '+attrs+'>'+opts.map(([v,t])=>'<option value="'+E(v)+'"'+(String(v)===String(val??'')?' selected':'')+'>'+E(t)+'</option>').join('')+'</select></label>';
+const inp=(id,label,val,type='text',attrs='')=>'<label class="sy-f"><span>'+label+'</span><input id="'+id+'" type="'+type+'" value="'+E(val??'')+'" '+attrs+'></label>';
+const back=(lab)=>'<button class="sy-back" data-sy="back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg>'+E(lab||tr('Back','Назад'))+'</button>';
+const empty=(t,b,btn)=>'<div class="sy-empty"><b>'+t+'</b>'+(b?'<p>'+b+'</p>':'')+(btn||'')+'</div>';
+const val=id=>($(id)?.value??'').trim();
+const bar=(p,lab)=>'<span class="sy-bar" role="img" aria-label="'+E(lab||p+'%')+'"><i style="width:'+Math.max(2,Math.min(100,p))+'%"></i></span>';
+const subjName=sid=>D.subj.find(s=>s.id===sid)?.n||'';
+const mastery=sid=>{const t=D.topics[sid]||[];return t.length?Math.round(t.reduce((a,x)=>a+(x.m||0),0)/(t.length*4)*100):null};
+const dueCards=sid=>(D.cards[sid]||[]).filter(c=>(c.d??0)<=nowN()).length;
+const OFFICIAL=u=>'<button class="sy-link" data-sy="open" data-u="'+E(u)+'">'+E(u.replace(/^https?:\/\//,'').replace(/\/$/,''))+' ↗</button>';
+
+/* ---------- render ---------- */
+async function renderStudy(){await load();render()}
+function render(){const root=$('study');if(!root)return;
+ const nav='<nav class="sy-nav lg" aria-label="'+tr('Study sections','Разделы учёбы')+'">'+TABS.map(([k,r,e])=>'<button data-sy="tab" data-v="'+k+'"'+(V.tab===k?' class="on" aria-current="page"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</nav>';
+ let body='';try{body=(VIEWS[V.tab]||VIEWS.home)()}catch(e){console.error(e);body=empty(tr('Something went wrong','Что-то пошло не так'),E(e.message))}
+ root.innerHTML=nav+'<div class="sy-body">'+body+'</div>';
+ const on=root.querySelector('.sy-nav .on');if(on){const n=on.parentElement;n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2}}
+const VIEWS={};
+
+/* Dashboard */
+VIEWS.home=()=>{const p=D.prof,t=today(),n=nowN(),wk=minutesOn(n-6,n),td=minutesOn(n,n);
+ let h='<header class="sy-head"><h2>'+tr('Study','Учёба')+'</h2><p>Learn without borders</p></header>';
+ if(!p.setup)h+=setupCard();
+ // today
+ const items=D.plan.filter(x=>!x.done&&x.d&&x.d<=t).sort((a,b)=>(a.d+(a.tm||'')).localeCompare(b.d+(b.tm||''))),due=D.subj.reduce((a,s)=>a+dueCards(s.id),0);
+ h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Today','Сегодня')+'</h3><span>'+tr('today ','сегодня ')+hm(td)+' · '+tr('week ','неделя ')+hm(wk)+'</span></div>'+timerBox();
+ if(items.length)h+='<ul class="sy-list">'+items.slice(0,6).map(planRow).join('')+'</ul>';
+ if(due)h+='<button class="sy-row" data-sy="tab" data-v="learn"><b>'+tr('Cards to review','Карточки к повторению')+'</b><span class="sy-pill">'+due+'</span></button>';
+ if(!items.length&&!due)h+='<p class="sy-muted">'+tr('Nothing due today. Add homework or a study session in the planner.','На сегодня ничего нет. Добавьте задание или занятие в план.')+'</p>';
+ h+='</section>';
+ // upcoming exams + deadlines (next 60 days)
+ const up=[...p.exams.filter(id=>p.dates[id]).map(id=>({d:p.dates[id],t:exName(exam(id)),k:'exam',id})),...D.plan.filter(x=>!x.done&&['exam','test','dl'].includes(x.ty)&&x.d>t).map(x=>({d:x.d,t:x.t,k:x.ty})),...D.adm.filter(u=>u.dl&&u.dl>=t).map(u=>({d:u.dl,t:u.n,k:'adm'}))]
+  .filter(x=>diff(x.d)>=0&&diff(x.d)<=(x.k==='exam'?366:120)).sort((a,b)=>a.d.localeCompare(b.d)).slice(0,5);
+ if(up.length)h+='<section class="sy-card"><h3>'+tr('Coming up','Ближайшее')+'</h3><ul class="sy-list">'+up.map(x=>'<li class="sy-up"><span class="sy-cd"><b>'+diff(x.d)+'</b><small>'+tr('days','дн.')+'</small></span><span><b>'+E(x.t)+'</b><small>'+fd(x.d)+' · '+({exam:tr('exam','экзамен'),test:tr('test','контрольная'),dl:tr('deadline','дедлайн'),adm:tr('application deadline','дедлайн подачи')}[x.k])+'</small></span></li>').join('')+'</ul></section>';
+ // progress
+ const ms=D.subj.map(s=>[s,mastery(s.id)]).filter(x=>x[1]!=null);
+ if(ms.length)h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Progress','Прогресс')+'</h3><button class="sy-link" data-sy="tab" data-v="stats">'+tr('Analytics','Аналитика')+'</button></div>'+ms.slice(0,4).map(([s,m])=>'<div class="sy-prog"><span>'+E(s.n)+'</span>'+bar(m,s.n+': '+m+'%')+'<b>'+m+'%</b></div>').join('')+'</section>';
+ // wellbeing + AI recommendations
+ h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('For you','Рекомендации')+'</h3></div><div id="syWell"></div>';
+ const r=V.ai.rec;h+=r?.busy?busyBox():r?.err?'<p class="sy-err">'+E(r.err)+'</p>':r?.tips?'<ul class="sy-tips">'+r.tips.map(x=>'<li>'+E(x)+'</li>').join('')+'</ul>':'';
+ h+='<button class="sy-btn2" data-sy="rec">'+(r?.tips?tr('Refresh','Обновить'):tr('Get AI recommendations','Получить рекомендации ИИ'))+'</button></section>';
+ h+=firstSteps();
+ setTimeout(fillWell,0);return h};
+async function fillWell(){const el=$('syWell');if(!el)return;const w=await wellbeing(),bits=[];
+ if(w.sleep)bits.push(tr('Sleep ','Сон ')+hm(w.sleep));if(w.mood)bits.push(tr('mood ','настроение ')+w.mood+'/5');
+ let hint='';if(w.sleep&&w.sleep<360)hint=tr('Short sleep: today favour review and practice over new theory.','Мало сна: сегодня лучше повторение и практика, чем новая теория.');else if(w.mood&&w.mood<=2)hint=tr('Low mood: plan shorter sessions with breaks.','Настроение на нуле: занимайтесь короткими блоками с перерывами.');
+ el.innerHTML=bits.length?'<p class="sy-well"><span>'+E(bits.join(' · '))+'</span>'+(hint?'<b>'+E(hint)+'</b>':'')+'</p>':''}
+function firstSteps(){if(D.prof.hideSteps)return'';const s=[[D.prof.exams.length>0,tr('Choose your exams','Выберите экзамены'),'exams'],[D.subj.length>0,tr('Add a subject','Добавьте предмет'),'learn'],[D.sess.length>0,tr('Run a study session','Проведите занятие с таймером'),'home'],[D.tutor.length>0,tr('Ask the AI tutor','Спросите репетитора'),'tutor'],[D.plan.length>0,tr('Plan a task','Запланируйте задачу'),'plan']];
+ const done=s.filter(x=>x[0]).length;if(done===s.length)return'';
+ return '<section class="sy-card sy-steps"><div class="sy-ch"><h3>'+tr('First steps','Первые шаги')+'</h3><span>'+done+'/'+s.length+'</span></div>'+bar(done/s.length*100)+'<ul>'+s.map(([d,t,tab])=>'<li class="'+(d?'done':'')+'"><button data-sy="tab" data-v="'+tab+'"'+(d?' disabled':'')+'><i aria-hidden="true"></i>'+t+'</button></li>').join('')+'</ul><button class="sy-link" data-sy="hidesteps">'+tr('Hide','Скрыть')+'</button></section>'}
+function timerBox(){const t=D.timer;if(t){const m=Math.max(0,Math.round((Date.now()-t.at)/60000));return '<div class="sy-timer on"><span><b data-sy-tick>'+hm(m)+'</b><small>'+E(subjName(t.sid)||tr('Study session','Занятие'))+'</small></span><button class="p" data-sy="stop">'+tr('Finish','Завершить')+'</button></div>'}
+ return '<div class="sy-timer"><select id="syTSub" aria-label="'+tr('Subject','Предмет')+'"><option value="">'+tr('No subject','Без предмета')+'</option>'+D.subj.map(s=>'<option value="'+s.id+'">'+E(s.n)+'</option>').join('')+'</select><button class="p" data-sy="start">'+tr('Start','Начать')+'</button></div>'}
+function setupCard(){const p=D.prof,s=V.setup;
+ const step=s===0?'<p class="sy-muted">'+tr('Optional. Helps the tutor and planner fit your system. Everything works without it.','Необязательно. Поможет репетитору и плану учесть вашу систему. Всё работает и без этого.')+'</p>'+
+  '<div class="sy-chips" role="group" aria-label="'+tr('Level','Уровень')+'">'+LEVELS.map(([v,r,e])=>'<button class="sy-chip'+(p.level===v?' on':'')+'" data-sy="lvl" data-v="'+v+'" aria-pressed="'+(p.level===v)+'">'+(ru()?r:e)+'</button>').join('')+'</div>'+
+  '<div class="sy-grid2">'+sel('syCountry',[['',tr('Country','Страна')],...COUNTRIES.map(c=>[c,region(c)])],p.country,tr('Country of study','Страна обучения'))+sel('syLang',[['',tr('Language','Язык')],...LANGS.map(c=>[c,langName(c)])],p.lang,tr('Language of study','Язык обучения'))+'</div>'+
+  sel('sySys',[['',tr('Choose','Выберите')],...SYSTEMS.map(x=>[x.id,ru()?x.ru:x.en])],p.system,tr('Education system','Образовательная система'))
+ :s===1?'<p class="sy-muted">'+tr('Pick any exams, from any countries.','Выберите любые экзамены, из разных стран.')+'</p><div class="sy-chips">'+EXAMS.map(x=>'<button class="sy-chip'+(p.exams.includes(x.id)?' on':'')+'" data-sy="pickexam" data-v="'+x.id+'" aria-pressed="'+p.exams.includes(x.id)+'">'+E(exName(x))+'</button>').join('')+'</div>'
+ :'<label class="sy-f"><span>'+tr('Your goals (optional)','Ваши цели (необязательно)')+'</span><textarea id="syGoals" rows="3" maxlength="300" placeholder="'+tr('E.g. enter a university abroad, IELTS 7','Например: поступить в вуз за рубежом, IELTS 7')+'">'+E((p.goals||[]).join('\n'))+'</textarea></label>';
+ return '<section class="sy-card sy-setup"><div class="sy-ch"><h3>'+tr('Set up Study','Настройка учёбы')+'</h3><span>'+(s+1)+'/3</span></div>'+step+'<div class="sy-acts"><button class="sy-link" data-sy="skip">'+tr('Skip','Пропустить')+'</button><button class="p" data-sy="next">'+(s<2?tr('Next','Далее'):tr('Done','Готово'))+'</button></div></section>'}
+function planRow(x){const late=x.d<today();return '<li class="sy-task'+(x.done?' done':'')+'"><button class="sy-ck" data-sy="pdone" data-id="'+x.id+'" role="checkbox" aria-checked="'+!!x.done+'" aria-label="'+E(x.t)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5l4 4 9-9"/></svg></button><span><b>'+E(x.t)+'</b><small>'+(ru()?PLAN_T[x.ty]?.[0]:PLAN_T[x.ty]?.[1])+(x.mn?' · '+hm(x.mn):'')+(x.sid?' · '+E(subjName(x.sid)):'')+' · '+(late?'<em>'+tr('overdue ','просрочено ')+fd(x.d)+'</em>':(x.d===today()?tr('today','сегодня'):fd(x.d)))+(x.tm?' '+x.tm:'')+(x.rem?' · '+tr('reminder','напоминание'):'')+'</small></span><button class="sy-x" data-sy="pedit" data-id="'+x.id+'" aria-label="'+tr('Edit','Изменить')+'">···</button></li>'}
+
+/* Learning */
+VIEWS.learn=()=>{if(V.d?.k==='subj')return VIEWS.subject();
+ let h='<header class="sy-head"><h2>'+tr('Learning','Предметы')+'</h2></header>';
+ h+=D.subj.length?'<ul class="sy-list">'+D.subj.map(s=>{const m=mastery(s.id),dc=dueCards(s.id);return '<li><button class="sy-row" data-sy="subj" data-id="'+s.id+'"><span><b>'+E(s.n)+'</b><small>'+(s.ex?E(exName(exam(s.ex)))+' · ':'')+(D.topics[s.id]?(D.topics[s.id].length+' '+tr('topics','тем')):tr('open','открыть'))+(dc?' · '+dc+' '+tr('cards due','к повторению'):'')+'</small></span>'+(m!=null?'<b class="sy-pct">'+m+'%</b>':'')+'<i class="sy-chev" aria-hidden="true"></i></button></li>'}).join('')+'</ul>'
+  :empty(tr('No subjects yet','Предметов пока нет'),tr('Add a subject to track topics, keep notes, make flashcards and tests.','Добавьте предмет, чтобы отмечать темы, вести конспекты, делать карточки и тесты.'));
+ h+='<section class="sy-card"><h3>'+tr('New subject','Новый предмет')+'</h3><div class="sy-grid2">'+inp('sySubN',tr('Name','Название'),'','text','maxlength="40" placeholder="'+tr('e.g. Algebra','например, Алгебра')+'"')+sel('sySubE',[['',tr('No exam','Без экзамена')],...EXAMS.map(x=>[x.id,exName(x)])],'',tr('For exam','Для экзамена'))+'</div><button class="p" data-sy="addsubj">'+tr('Add subject','Добавить предмет')+'</button></section>';
+ D.subj.forEach(s=>{if(!D.topics[s.id])subjData(s.id).then(()=>{if(V.tab==='learn'&&!V.d)render()})});return h};
+VIEWS.subject=()=>{const sid=V.d.id,s=D.subj.find(x=>x.id===sid);if(!s){V.d=null;return VIEWS.learn()}if(!D.topics[sid]){subjData(sid).then(render);return busyBox(tr('Loading…','Загрузка…'))}
+ const sub=V.sub||'topics',T=[['topics','Темы','Topics'],['mats','Материалы','Materials'],['cards','Карточки','Cards'],['quiz','Тест','Test']];
+ let h=back(tr('Subjects','Предметы'))+'<header class="sy-head"><h2>'+E(s.n)+'</h2><p>'+(mastery(sid)??0)+'% '+tr('mastered','освоено')+(s.ex?' · '+E(exName(exam(s.ex))):'')+' · <button class="sy-link sy-del" data-sy="delsubj">'+tr('Delete subject','Удалить предмет')+'</button></p></header>';
+ h+='<div class="sy-seg" role="tablist">'+T.map(([k,r,e])=>'<button role="tab" aria-selected="'+(sub===k)+'" data-sy="sub" data-v="'+k+'"'+(sub===k?' class="on"':'')+'>'+(ru()?r:e)+(k==='cards'&&dueCards(sid)?' <span class="sy-pill">'+dueCards(sid)+'</span>':'')+'</button>').join('')+'</div>';
+ if(sub==='topics'){const tp=D.topics[sid],roots=tp.filter(t=>!t.p);
+  const row=(t,lvl)=>'<li class="sy-topic'+(lvl?' sub':'')+'"><span>'+E(t.n)+'</span><button class="sy-m m'+(t.m||0)+'" data-sy="mast" data-id="'+t.id+'" aria-label="'+E(t.n)+': '+(ru()?MASTERY[t.m||0][0]:MASTERY[t.m||0][1])+'">'+(ru()?MASTERY[t.m||0][0]:MASTERY[t.m||0][1])+'</button><button class="sy-x" data-sy="deltopic" data-id="'+t.id+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>';
+  h+=tp.length?'<ul class="sy-topics">'+roots.map(t=>row(t,0)+tp.filter(c=>c.p===t.id).map(c=>row(c,1)).join('')).join('')+'</ul><p class="sy-muted">'+tr('Tap the status to change how well you know a topic.','Нажмите на статус, чтобы отметить, как вы знаете тему.')+'</p>'
+   :empty(tr('No topics yet','Тем пока нет'),tr('Break the subject into topics and subtopics.','Разбейте предмет на темы и подтемы.'));
+  h+='<section class="sy-card"><div class="sy-grid2">'+inp('syTopN',tr('Topic','Тема'),'','text','maxlength="60"')+sel('syTopP',[['',tr('Top level','Основная тема')],...roots.map(t=>[t.id,t.n])],'',tr('Inside','Внутри темы'))+'</div><button class="p" data-sy="addtopic">'+tr('Add topic','Добавить тему')+'</button></section>'}
+ else if(sub==='mats'){const ms=D.mats[sid];
+  h+=ms.length?'<ul class="sy-list">'+ms.map(m=>'<li><button class="sy-row" data-sy="mat" data-id="'+m.id+'"><span><b>'+E(m.t)+'</b><small>'+fd(dk(m.at))+(m.src?' · '+E(m.src):'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul>':empty(tr('No materials yet','Материалов пока нет'),tr('Write a note or upload a PDF, photo or text file. NUVIO keeps the extracted text, not the file.','Напишите конспект или загрузите PDF, фото или текстовый файл. NUVIO сохраняет извлечённый текст, а не сам файл.'));
+  if(V.mat){const m=ms.find(x=>x.id===V.mat);h+=m?matView(m,sid):''}
+  h+='<section class="sy-card"><h3>'+tr('Add material','Добавить материал')+'</h3>'+inp('syMatT',tr('Title','Название'),'','text','maxlength="60"')+'<label class="sy-f"><span>'+tr('Text','Текст')+'</span><textarea id="syMatX" rows="5" maxlength="3500"></textarea></label><div class="sy-acts"><label class="sy-btn2 sy-file">'+tr('Upload file','Загрузить файл')+'<input type="file" id="syMatF" accept=".pdf,.txt,.md,image/*" data-sy-file="mat"></label><button class="p" data-sy="addmat">'+tr('Save','Сохранить')+'</button></div><div id="syMatS"></div></section>'}
+ else if(sub==='cards'){const cs=D.cards[sid],dc=dueCards(sid);
+  if(V.review&&V.review.sid===sid)return h+reviewBox();
+  h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Spaced repetition','Интервальное повторение')+'</h3><span>'+cs.length+' '+tr('cards','карточек')+'</span></div>'+(dc?'<button class="p sy-wide" data-sy="review">'+tr('Review ','Повторить ')+dc+'</button>':'<p class="sy-muted">'+(cs.length?tr('All caught up. Cards come back when they are due.','Всё повторено. Карточки вернутся, когда подойдёт срок.'):tr('Add cards by hand or let the tutor make them from a topic.','Добавьте карточки вручную или попросите репетитора сделать их по теме.'))+'</p>')+'</section>';
+  h+='<section class="sy-card"><h3>'+tr('New card','Новая карточка')+'</h3>'+inp('syCF',tr('Front (question)','Вопрос'),'','text','maxlength="160"')+inp('syCB',tr('Back (answer)','Ответ'),'','text','maxlength="300"')+'<div class="sy-acts"><button class="sy-btn2" data-sy="aicards">'+tr('Make with AI','Сделать с ИИ')+'</button><button class="p" data-sy="addcard">'+tr('Add card','Добавить')+'</button></div><div id="syCardS"></div></section>';
+  if(cs.length)h+='<ul class="sy-list sy-cards">'+cs.slice().reverse().slice(0,30).map(c=>'<li><span><b>'+E(c.f)+'</b><small>'+E(c.b)+'</small></span><small class="sy-due">'+((c.d??0)<=nowN()?tr('due','сейчас'):fd(kN(c.d)))+'</small><button class="sy-x" data-sy="delcard" data-id="'+c.i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul>'}
+ else{h+=quizBox(sid)}
+ return h};
+function matView(m,sid){return '<section class="sy-card sy-mat"><div class="sy-ch"><h3>'+E(m.t)+'</h3><button class="sy-x" data-sy="closemat" aria-label="'+tr('Close','Закрыть')+'">×</button></div><div class="sy-text">'+E(m.x||'').replace(/\n/g,'<br>')+'</div><div class="sy-acts sy-wrap"><button class="sy-btn2" data-sy="matai" data-m="summary">'+tr('Summary','Конспект ИИ')+'</button><button class="sy-btn2" data-sy="matai" data-m="cards">'+tr('Flashcards','Карточки ИИ')+'</button><button class="sy-btn2" data-sy="matai" data-m="quiz">'+tr('Test','Тест ИИ')+'</button><button class="sy-link sy-del" data-sy="delmat">'+tr('Delete','Удалить')+'</button></div><div id="syMatAi">'+(V.ai.mat?.html||'')+'</div></section>'}
+function reviewBox(){const r=V.review,c=r.q[0];if(!c){V.review=null;return empty(tr('Session complete','Повторение завершено'),tr('Reviewed ','Повторено ')+r.done+'.','<button class="p" data-sy="sub" data-v="cards">'+tr('Back to cards','К карточкам')+'</button>')}
+ return '<section class="sy-card sy-review"><div class="sy-ch"><h3>'+tr('Review','Повторение')+'</h3><span>'+r.q.length+' '+tr('left','осталось')+'</span></div><div class="sy-flash'+(r.show?' flip':'')+'"><p>'+E(c.f)+'</p>'+(r.show?'<p class="b">'+E(c.b)+'</p>':'')+'</div>'+
+ (r.show?'<div class="sy-grade">'+[['0','Снова','Again'],['1','Трудно','Hard'],['2','Хорошо','Good'],['3','Легко','Easy']].map(([g,a,b])=>'<button data-sy="grade" data-v="'+g+'">'+(ru()?a:b)+'</button>').join('')+'</div>':'<button class="p sy-wide" data-sy="show">'+tr('Show answer','Показать ответ')+'</button>')+'</section>'}
+// SM-2 lite: interval grows with ease; "again" brings the card back in this session.
+function grade(c,g){c.e=c.e||250;c.v=c.v||0;c.n=c.n||0;if(g===0){c.n=0;c.v=0;c.e=Math.max(130,c.e-20)}else if(g===1){c.v=Math.max(1,Math.round(c.v*1.2));c.e=Math.max(130,c.e-15)}
+ else{c.v=c.n===0?1:c.n===1?3:Math.round(c.v*c.e/100);if(g===3){c.v=Math.round(c.v*1.3)+1;c.e+=15}c.n++}c.d=nowN()+c.v;return c}
+function quizBox(sid){const q=V.quiz;let h='';
+ if(q&&q.sid===sid&&q.items){const i=q.i,it=q.items[i];if(!it){const okN=q.ok;return '<section class="sy-card"><h3>'+tr('Result','Результат')+'</h3><p class="sy-big">'+okN+' / '+q.items.length+'</p>'+genNote()+'<button class="p" data-sy="newquiz">'+tr('New test','Новый тест')+'</button></section>'}
+  h='<section class="sy-card sy-q"><div class="sy-ch"><h3>'+tr('Question ','Вопрос ')+(i+1)+'/'+q.items.length+'</h3></div><p class="sy-qq">'+E(it.q)+'</p><div class="sy-opts">'+it.options.map((o,j)=>'<button data-sy="ans" data-v="'+j+'" class="'+(q.pick!=null?(j===it.correct?'right':j===q.pick?'wrong':''):'')+'"'+(q.pick!=null?' disabled':'')+'>'+E(o)+'</button>').join('')+'</div>'+(q.pick!=null?'<p class="sy-why">'+E(it.why||'')+'</p><button class="p" data-sy="nextq">'+tr('Next','Дальше')+'</button>':'')+genNote()+'</section>';return h}
+ const tp=D.topics[sid]||[];h='<section class="sy-card"><h3>'+tr('Test yourself','Проверь себя')+'</h3>'+sel('syQT',[['',tr('Whole subject','Весь предмет')],...tp.map(t=>[t.id,t.n])],'',tr('Topic','Тема'))+sel('syQN',[[5,'5'],[8,'8'],[10,'10']],5,tr('Questions','Вопросов'))+(q?.busy?busyBox():q?.err?'<p class="sy-err">'+E(q.err)+'</p>':'')+'<button class="p" data-sy="mkquiz">'+tr('Generate test','Создать тест')+'</button>'+genNote()+'</section>';
+ const qs=D.quiz[sid];if(qs)h+='<p class="sy-muted">'+tr('All tests: ','Все тесты: ')+qs[0]+' '+tr('correct','верно')+' · '+qs[1]+' '+tr('wrong','неверно')+'</p>';return h}
+
+/* Exams */
+VIEWS.exams=()=>{if(V.d?.k==='exam')return VIEWS.exam();const f=V.f,list=EXAMS.filter(x=>(!f.c||x.c===f.c)&&(!f.s||x.sys===f.s)&&(!f.t||x.type===f.t)),mine=D.prof.exams.map(exam).filter(Boolean);
+ let h='<header class="sy-head"><h2>'+tr('Exams','Экзамены')+'</h2><p>'+tr('International catalog. Facts come from official sites; follow the links for full details.','Международный каталог. Сведения — с официальных сайтов, подробности по ссылкам.')+'</p></header>';
+ if(mine.length)h+='<section class="sy-card"><h3>'+tr('My exams','Мои экзамены')+'</h3><ul class="sy-list">'+mine.map(x=>examRow(x,true)).join('')+'</ul></section>';
+ const cs=[...new Set(EXAMS.map(x=>x.c))],ss=[...new Set(EXAMS.map(x=>x.sys).filter(Boolean))];
+ h+='<div class="sy-filters">'+sel('syFC',[['',tr('All countries','Все страны')],...cs.map(c=>[c,region(c)])],f.c,tr('Country','Страна'),'data-sy-f="c"')+sel('syFS',[['',tr('All systems','Все системы')],...ss.map(s=>[s,(x=>ru()?x.ru:x.en)(SYSTEMS.find(y=>y.id===s)||{ru:s,en:s})])],f.s,tr('System','Система'),'data-sy-f="s"')+sel('syFT',[['',tr('All types','Все типы')],...Object.entries(TYPES).map(([k,v])=>[k,ru()?v[0]:v[1]])],f.t,tr('Type','Тип'),'data-sy-f="t"')+'</div>';
+ h+=list.length?'<ul class="sy-list">'+list.map(x=>examRow(x)).join('')+'</ul>':empty(tr('No exams match','Ничего не найдено'),tr('Change the filters.','Измените фильтры.'));return h};
+const examRow=(x,mine)=>'<li><button class="sy-row" data-sy="exam" data-id="'+x.id+'"><span><b>'+E(exName(x))+'</b><small>'+E(region(x.c))+' · '+(ru()?TYPES[x.type][0]:TYPES[x.type][1])+(mine&&D.prof.dates[x.id]?' · '+fd(D.prof.dates[x.id])+' ('+diff(D.prof.dates[x.id])+' '+tr('d','дн.')+')':'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>';
+VIEWS.exam=()=>{const x=exam(V.d.id);if(!x){V.d=null;return VIEWS.exams()}if(!D.res[x.id]){examData(x.id).then(render);return busyBox(tr('Loading…','Загрузка…'))}
+ const sub=V.sub||'about',T=[['about','Обзор','Overview'],['prep','Подготовка','Prepare'],['res','Результаты','Results'],['err','Ошибки','Mistakes'],['plan','План','Plan']],mine=D.prof.exams.includes(x.id);
+ let h=back(tr('Exams','Экзамены'))+'<header class="sy-head"><h2>'+E(exName(x))+'</h2><p>'+E(x.org)+' · '+E(region(x.c))+'</p></header><div class="sy-seg" role="tablist">'+T.map(([k,r,e])=>'<button role="tab" aria-selected="'+(sub===k)+'" data-sy="sub" data-v="'+k+'"'+(sub===k?' class="on"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</div>';
+ if(sub==='about'){const fa=x.facts?.[ru()?'ru':'en'];
+  h+='<section class="sy-card">'+(fa?'<ul class="sy-facts">'+fa.map(f=>'<li>'+E(f)+'</li>').join('')+'</ul>':empty(tr('Format details are on the official site','Подробности формата — на официальном сайте'),tr('We only show facts checked on the official site. This one could not be verified yet.','Мы показываем только сведения, проверенные на официальном сайте. Для этого экзамена их пока не удалось проверить.')));
+  if(x.sections)h+='<table class="sy-tbl"><thead><tr><th>'+tr('Section','Раздел')+'</th><th>'+tr('Questions','Вопросов')+'</th><th>'+tr('Time','Время')+'</th></tr></thead><tbody>'+x.sections.map(([n,q,m])=>'<tr><td>'+E(n)+'</td><td>'+(q??'—')+'</td><td>'+E(m)+' '+tr('min','мин')+'</td></tr>').join('')+'</tbody></table>';
+  if(x.subjects)h+='<p class="sy-muted"><b>'+tr('Subjects: ','Предметы: ')+'</b>'+x.subjects.map(E).join(', ')+'</p>';
+  h+='<p class="sy-src">'+tr('Source: ','Источник: ')+OFFICIAL(x.url)+(x.facts?' · '+tr('checked ','проверено ')+fd(CHECKED):'')+'</p></section>';
+  h+='<section class="sy-card"><h3>'+tr('My preparation','Моя подготовка')+'</h3><button class="'+(mine?'sy-btn2':'p')+' sy-wide" data-sy="togexam" data-id="'+x.id+'">'+(mine?tr('Remove from my exams','Убрать из моих экзаменов'):tr('I am preparing for this exam','Я готовлюсь к этому экзамену'))+'</button>'+
+   (mine?'<div class="sy-grid2">'+inp('syExD',tr('Exam date','Дата экзамена'),D.prof.dates[x.id]||'','date')+inp('syExT',tr('Target score','Целевой балл'),D.prof.target[x.id]||'','text','inputmode="decimal" maxlength="8"')+'</div><div class="sy-acts"><button class="sy-btn2" data-sy="goal" data-id="'+x.id+'">'+(D.prof.goalOf?.[x.id]?tr('Open goal','Открыть цель'):tr('Create goal in Goals','Создать цель в «Целях»'))+'</button><button class="p" data-sy="saveex" data-id="'+x.id+'">'+tr('Save','Сохранить')+'</button></div>':'')+'</section>'}
+ else if(sub==='prep')h+=prepView(x);
+ else if(sub==='res')h+=resultsView(x);
+ else if(sub==='err')h+=errorsView(x);
+ else h+=examPlanView(x);
+ return h};
+function prepView(x){let h='<section class="sy-card"><h3>'+tr('Official materials','Официальные материалы')+'</h3><ul class="sy-links"><li>'+OFFICIAL(x.url)+'</li>'+(x.demo?'<li><span>'+tr('Demo versions, specifications','Демоверсии и спецификации')+'</span>'+OFFICIAL(x.demo)+'</li>':'')+(x.bank?'<li><span>'+tr('FIPI open task bank','Открытый банк заданий ФИПИ')+'</span>'+OFFICIAL(x.bank)+'</li>':'')+'</ul>'+
+ (x.extra?'<p class="sy-muted">'+tr('Third-party: ','Сторонние ресурсы: ')+x.extra.map(([n,u])=>E(n)+' '+OFFICIAL(u)).join(' · ')+'</p>':'')+'</section>';
+ if(x.math){const M=x.math,ms=D.ege;h+='<section class="sy-card"><div class="sy-ch"><h3>'+E(ru()?M.name[0]:M.name[1])+'</h3><span>'+M.tasks.length+' '+tr('tasks','заданий')+' · '+M.total+' '+tr('primary points','перв. баллов')+' · '+hm(M.minutes)+'</span></div>'+
+  '<p class="sy-muted">'+tr('Task numbers and skills follow the FIPI ','Номера и проверяемые умения — по спецификации ФИПИ ')+M.year+tr(' specification. Tap a number to practise.',' г. Нажмите на номер, чтобы тренироваться.')+'</p><div class="sy-tasks">'+M.tasks.map(([n,part])=>{const s=ms[n]||[0,0],stt=!s[0]&&!s[1]?'':s[0]>=3&&s[0]/(s[0]+s[1])>=.75?'ok':'work';return '<button class="sy-tn p'+part+' '+stt+(V.task===n?' sel':'')+'" data-sy="task" data-v="'+n+'" aria-label="'+tr('Task ','Задание ')+n+'">'+n+'</button>'}).join('')+'</div>'+
+  '<p class="sy-legend"><i class="ok"></i>'+tr('mastered','освоено')+' <i class="work"></i>'+tr('needs practice','нужно повторить')+' <i></i>'+tr('not started','не начато')+'</p>';
+  if(V.task){const t=M.tasks.find(r=>r[0]===V.task),s=ms[V.task]||[0,0];h+='<div class="sy-taskd"><h4>'+tr('Task ','Задание ')+t[0]+' · '+E(ru()?t[4]:t[5])+'</h4><p class="sy-muted">'+tr('Part ','Часть ')+t[1]+' · '+tr('level ','уровень ')+t[2]+' · '+tr('max ','макс. ')+t[3]+' '+tr('pt','балл.')+' · '+tr('solved ','решено ')+s[0]+' · '+tr('mistakes ','ошибок ')+s[1]+'</p>'+
+   '<div class="sy-acts sy-wrap"><button class="sy-btn2" data-sy="open" data-u="'+E(x.bank)+'">'+tr('FIPI bank','Банк ФИПИ')+' ↗</button><button class="sy-btn2" data-sy="totutor" data-v="'+t[0]+'">'+tr('Solve with tutor','Разобрать с репетитором')+'</button><button class="sy-btn2" data-sy="similar" data-v="'+t[0]+'">'+tr('Practice tasks (AI)','Тренировочные задания (ИИ)')+'</button></div>'+
+   '<div class="sy-acts"><button class="sy-btn2" data-sy="egemark" data-v="1">'+tr('Solved it','Решил(а)')+'</button><button class="sy-btn2" data-sy="egemark" data-v="0">'+tr('Made a mistake','Ошибся(лась)')+'</button></div><div id="syEgeAi">'+(V.ai.ege?.html||'')+'</div></div>'}
+  h+='</section>'}
+ else h+='<section class="sy-card"><h3>'+tr('Practice','Тренировка')+'</h3>'+inp('syPrT',tr('Section or topic','Раздел или тема'),'','text','maxlength="80" placeholder="'+E(x.sections?x.sections[0][0]:'')+'"')+'<button class="p" data-sy="practice" data-id="'+x.id+'">'+tr('Generate practice','Создать задания')+'</button>'+genNote()+'<div id="syPrAi">'+(V.ai.pr?.html||'')+'</div></section>';
+ return h}
+function resultsView(x){const rs=D.res[x.id];let h='<section class="sy-card"><h3>'+tr('Add a result','Добавить результат')+'</h3><p class="sy-muted">'+tr('Your own mock tests, practice and official results.','Ваши пробники, тренировки и официальные результаты.')+'</p><div class="sy-grid2">'+inp('syRD',tr('Date','Дата'),today(),'date')+sel('syRK',[['mock',tr('Mock test','Пробник')],['practice',tr('Practice','Тренировка')],['official',tr('Official','Официальный')]],'mock',tr('Type','Тип'))+inp('syRS',tr('Score','Балл'),'','text','inputmode="decimal" maxlength="8"')+inp('syRM',tr('Out of','Из'),'','text','inputmode="decimal" maxlength="8"')+'</div>'+inp('syRN',tr('Section / note','Раздел / заметка'),'','text','maxlength="80"')+'<button class="p" data-sy="addres" data-id="'+x.id+'">'+tr('Save result','Сохранить')+'</button></section>';
+ if(!rs.length)return h+empty(tr('No results yet','Результатов пока нет'),tr('Log a mock test to see your progress here.','Запишите пробник, чтобы увидеть динамику.'));
+ return h+'<section class="sy-card"><h3>'+tr('Trend','Динамика')+'</h3>'+lineChart(rs.map(r=>[r.d,r.m?r.s/r.m*100:r.s,r]),rs.every(r=>r.m)?'%':'')+'<ul class="sy-list">'+rs.slice().reverse().map((r,i)=>'<li class="sy-res"><span><b>'+E(r.s)+(r.m?' / '+E(r.m):'')+'</b><small>'+fd(r.d)+' · '+({mock:tr('mock','пробник'),practice:tr('practice','тренировка'),official:tr('official','официальный')}[r.k])+(r.n?' · '+E(r.n):'')+'</small></span><button class="sy-x" data-sy="delres" data-id="'+x.id+'" data-i="'+(rs.length-1-i)+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul></section>'}
+function errorsView(x){const es=D.err[x.id];let h='<section class="sy-card"><h3>'+tr('Log a mistake','Записать ошибку')+'</h3>'+inp('syEt',x.math?tr('Task number or topic','Номер задания или тема'):tr('Topic or section','Тема или раздел'),'','text','maxlength="60"')+'<label class="sy-f"><span>'+tr('What went wrong','Что пошло не так')+'</span><textarea id="syEw" rows="2" maxlength="300"></textarea></label><button class="p" data-sy="adderr" data-id="'+x.id+'">'+tr('Save','Сохранить')+'</button></section>';
+ if(!es.length)return h+empty(tr('No mistakes logged','Ошибок пока нет'),tr('Logged mistakes show which topics need review.','Записанные ошибки покажут, какие темы повторить.'));
+ const by={};es.forEach(e=>by[e.t]=(by[e.t]||0)+1);const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ h+='<section class="sy-card"><h3>'+tr('Most frequent','Чаще всего')+'</h3>'+top.map(([t,n])=>'<div class="sy-prog"><span>'+E(t)+'</span>'+bar(n/top[0][1]*100,t+': '+n)+'<b>'+n+'</b></div>').join('')+'<button class="sy-btn2" data-sy="errai" data-id="'+x.id+'">'+tr('AI mistake analysis','Разбор ошибок с ИИ')+'</button><div id="syErrAi">'+(V.ai.err?.html||'')+'</div></section>';
+ return h+'<ul class="sy-list">'+es.slice().reverse().slice(0,30).map((e,i)=>'<li class="sy-res"><span><b>'+E(e.t)+'</b><small>'+fd(e.d)+' · '+E(e.w)+'</small></span><button class="sy-x" data-sy="delerr" data-id="'+x.id+'" data-i="'+(es.length-1-i)+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul>'}
+function examPlanView(x){const d=D.prof.dates[x.id],mine=D.plan.filter(p=>p.ex===x.id&&!p.done);
+ let h='<section class="sy-card"><h3>'+tr('Personal preparation plan','Персональный план подготовки')+'</h3>'+(d?'<p class="sy-muted">'+tr('Exam on ','Экзамен ')+fd(d)+' · '+diff(d)+' '+tr('days left','дн. осталось')+'</p>':'<p class="sy-err">'+tr('Set the exam date in Overview to plan until it.','Укажите дату экзамена во вкладке «Обзор», чтобы план доходил до неё.')+'</p>')+
+ '<div class="sy-grid2">'+sel('syPm',[[20,'20 '+tr('min','мин')],[30,'30 '+tr('min','мин')],[45,'45 '+tr('min','мин')],[60,'60 '+tr('min','мин')],[90,'90 '+tr('min','мин')]],45,tr('Per session','Занятие'))+inp('syPt',tr('Time','Время'),'18:00','time')+'</div><div class="sy-chips" role="group" aria-label="'+tr('Study days','Дни занятий')+'">'+(ru()?['Пн','Вт','Ср','Чт','Пт','Сб','Вс']:['Mon','Tue','Wed','Thu','Fri','Sat','Sun']).map((w,i)=>'<button class="sy-chip'+(i<5?' on':'')+'" data-sy="wday" data-v="'+i+'" aria-pressed="'+(i<5)+'">'+w+'</button>').join('')+'</div>'+
+ '<div class="sy-acts sy-wrap"><button class="p" data-sy="autoplan" data-id="'+x.id+'"'+(d?'':' disabled')+'>'+tr('Build plan','Составить план')+'</button><button class="sy-btn2" data-sy="aiplan" data-id="'+x.id+'">'+tr('7-day plan from AI','План ИИ на 7 дней')+'</button></div><div id="syPlAi">'+(V.ai.plan?.html||'')+'</div></section>';
+ if(mine.length)h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Planned','Запланировано')+'</h3><button class="sy-link sy-del" data-sy="clrplan" data-id="'+x.id+'">'+tr('Clear generated','Удалить сгенерированное')+'</button></div><ul class="sy-list">'+mine.sort((a,b)=>a.d.localeCompare(b.d)).slice(0,12).map(planRow).join('')+'</ul></section>';return h}
+// Topics to practise first: weakest EGE task numbers, low-mastery topics of linked subjects, then exam sections.
+function weakTopics(x){const out=[];if(x.math){const ms=D.ege;x.math.tasks.map(t=>[t,ms[t[0]]||[0,0]]).sort((a,b)=>(a[1][0]-a[1][1]*2)-(b[1][0]-b[1][1]*2)).forEach(([t])=>out.push(tr('Task ','Задание ')+t[0]+' · '+(ru()?t[4]:t[5])))}
+ D.subj.filter(s=>s.ex===x.id).forEach(s=>(D.topics[s.id]||[]).filter(t=>(t.m||0)<3).sort((a,b)=>(a.m||0)-(b.m||0)).forEach(t=>out.push(s.n+': '+t.n)));
+ (D.err[x.id]||[]).forEach(e=>out.unshift(e.t));if(x.sections)x.sections.forEach(s=>out.push(s[0]));return [...new Set(out)]}
+
+/* AI Tutor */
+const MODES=[['explain','Объяснить','Explain'],['solve','Решить','Solve'],['check','Проверить','Check'],['exercises','Упражнения','Exercises'],['summary','Конспект','Summary'],['cards','Карточки','Flashcards'],['quiz','Тест','Test']];
+VIEWS.tutor=()=>{const T=V.tutor,m=T.mode,ph={explain:tr('What topic should I explain from scratch?','Какую тему объяснить с нуля?'),solve:tr('Paste the task or attach a photo','Вставьте условие задачи или приложите фото'),check:tr('Paste the task','Вставьте условие задачи'),exercises:tr('Topic for exercises','Тема для упражнений'),summary:tr('Paste the text or attach a photo','Вставьте текст или приложите фото'),cards:tr('Topic or text for cards','Тема или текст для карточек'),quiz:tr('Topic or text for the test','Тема или текст для теста')}[m];
+ let h='<header class="sy-head"><h2>'+tr('AI Tutor','ИИ-репетитор')+'</h2><p>'+tr('Explains from scratch, step by step, in your language and exam format.','Объясняет с нуля, по шагам, на вашем языке и в формате вашего экзамена.')+'</p></header>';
+ h+='<div class="sy-chips" role="tablist">'+MODES.map(([k,r,e])=>'<button role="tab" aria-selected="'+(m===k)+'" class="sy-chip'+(m===k?' on':'')+'" data-sy="tmode" data-v="'+k+'">'+(ru()?r:e)+'</button>').join('')+'</div>';
+ h+='<section class="sy-card"><div class="sy-grid2">'+sel('syTE',[['',tr('Any exam','Любой экзамен')],...EXAMS.map(x=>[x.id,exName(x)])],T.exam||D.prof.exams[0]||'',tr('Exam','Экзамен'))+inp('syTS',tr('Subject','Предмет'),T.subject||'','text','maxlength="60"')+'</div>'+
+  '<label class="sy-f"><span>'+(m==='check'?tr('Task','Задание'):tr('Request','Запрос'))+'</span><textarea id="syTQ" rows="4" maxlength="3000" placeholder="'+E(ph)+'">'+E(T.q||'')+'</textarea></label>'+
+  (m==='check'?inp('syTA',tr('Your answer','Ваш ответ'),T.a||'','text','maxlength="300"')+'<label class="sy-f"><span>'+tr('Your solution (optional)','Ваше решение (необязательно)')+'</span><textarea id="syTW" rows="3" maxlength="2500">'+E(T.w||'')+'</textarea></label>':'')+
+  (['exercises','cards','quiz'].includes(m)?sel('syTC',[[3,'3'],[5,'5'],[8,'8']],5,tr('How many','Сколько')):'')+
+  '<div class="sy-acts">'+(['solve','summary'].includes(m)?'<label class="sy-btn2 sy-file">'+(T.img?tr('Photo attached ✓','Фото прикреплено ✓'):tr('Attach photo','Прикрепить фото'))+'<input type="file" accept="image/*" data-sy-file="photo"></label>':'<span></span>')+'<button class="p" data-sy="ask"'+(T.busy?' disabled':'')+'>'+tr('Ask','Спросить')+'</button></div></section>';
+ h+=T.busy?busyBox():T.err?'<p class="sy-err" role="alert">'+E(T.err)+'</p>':T.res?'<div id="syTRes">'+renderAI(T.res.mode,T.res.out,T.res.ctx)+'</div>':'';
+ if(!T.res&&D.tutor.length)h+='<section class="sy-card"><h3>'+tr('Recent','Недавние')+'</h3><ul class="sy-list">'+D.tutor.slice(0,6).map((x,i)=>'<li><button class="sy-row" data-sy="thist" data-i="'+i+'"><span><b>'+E(x.q||'—')+'</b><small>'+E((MODES.find(y=>y[0]===x.m)||[,'',''])[ru()?1:2])+' · '+fd(x.d)+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul></section>';
+ return h};
+function renderAI(mode,o,ctx){ctx=ctx||{};const S=s=>E(s||'').replace(/\n/g,'<br>');
+ if(mode==='explain')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3>'+(o.sections||[]).map(s=>'<h4>'+E(s.h)+'</h4><p>'+S(s.body)+'</p>').join('')+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.check?.length?'<h4>'+tr('Check yourself','Проверь себя')+'</h4>'+o.check.map(c=>'<details class="sy-det"><summary>'+E(c.q)+'</summary><p>'+S(c.a)+'</p></details>').join(''):'')+'</section>';
+ if(mode==='solve'){const ege=ctx.exam==='ege'&&o.task_no;return '<section class="sy-card sy-ai sy-sol">'+(o.task_no||o.task_type?'<p class="sy-tag">'+(o.task_no?tr('Task ','Задание ')+'№'+E(o.task_no)+' · ':'')+E(o.task_type||'')+'</p>':'')+(o.prototype?'<p class="sy-muted"><b>'+tr('Prototype: ','Прототип: ')+'</b>'+E(o.prototype)+'</p>':'')+
+  '<h4>'+tr('Problem','Условие')+'</h4><p>'+S(o.condition)+'</p><h4>'+tr('Find','Что найти')+'</h4><p>'+S(o.find)+'</p><h4>'+tr('Solution','Решение')+'</h4><ol class="sy-steps2">'+(o.steps||[]).map(s=>'<li><b>'+E(s.title)+'</b><p>'+S(s.body)+'</p></li>').join('')+'</ol>'+
+  (o.methods?.length?'<div class="sy-key"><b>'+tr('Formulas and methods','Формулы и методы')+'</b><ul>'+o.methods.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+'<div class="sy-answer"><span>'+tr('Answer','Ответ')+'</span><b>'+E(o.answer)+'</b></div>'+(o.check?'<h4>'+tr('Check','Проверка')+'</h4><p>'+S(o.check)+'</p>':'')+(o.alt?'<h4>'+tr('Another way','Другой способ')+'</h4><p>'+S(o.alt)+'</p>':'')+
+  (o.similar?.length?'<h4>'+tr('Similar tasks to practise','Аналогичные задания для практики')+'</h4>'+o.similar.map((s,i)=>'<details class="sy-det"><summary>'+(i+1)+'. '+S(s.text)+'</summary><p><b>'+tr('Answer: ','Ответ: ')+'</b>'+E(s.answer)+'</p></details>').join('')+genNote():'')+
+  (ege?'<div class="sy-acts"><button class="sy-btn2" data-sy="egeres" data-v="1" data-n="'+E(o.task_no)+'">'+tr('I understood it','Понял(а)')+'</button><button class="sy-btn2" data-sy="egeres" data-v="0" data-n="'+E(o.task_no)+'">'+tr('Need more practice','Нужно повторить')+'</button></div>':'')+saveBar(mode)+'</section>'}
+ if(mode==='check'){const v={correct:[tr('Correct','Верно'),'ok'],partial:[tr('Partly correct','Частично верно'),'mid'],incorrect:[tr('Incorrect','Неверно'),'bad']}[o.verdict]||['—',''];return '<section class="sy-card sy-ai"><p class="sy-verdict '+v[1]+'">'+v[0]+'</p>'+(o.where?'<h4>'+tr('Where the mistake is','Где ошибка')+'</h4><p>'+S(o.where)+'</p>':'')+'<p>'+S(o.explanation)+'</p><div class="sy-answer"><span>'+tr('Correct answer','Правильный ответ')+'</span><b>'+E(o.correct_answer)+'</b></div>'+(o.next?'<p class="sy-muted">'+S(o.next)+'</p>':'')+'</section>'}
+ if(mode==='exercises')return '<section class="sy-card sy-ai">'+(o.items||[]).map((it,i)=>'<details class="sy-det"><summary>'+(i+1)+'. '+S(it.q)+'</summary>'+(it.hint?'<p class="sy-muted">'+tr('Hint: ','Подсказка: ')+S(it.hint)+'</p>':'')+'<p><b>'+tr('Answer: ','Ответ: ')+'</b>'+S(it.answer)+'</p></details>').join('')+genNote()+'</section>';
+ if(mode==='summary')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3><p>'+S(o.summary)+'</p>'+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.terms?.length?'<dl class="sy-terms">'+o.terms.map(t=>'<dt>'+E(t.term)+'</dt><dd>'+E(t.def)+'</dd>').join('')+'</dl>':'')+saveBar(mode)+'</section>';
+ if(mode==='cards')return '<section class="sy-card sy-ai"><ul class="sy-list sy-cards">'+(o.cards||[]).map(c=>'<li><span><b>'+E(c.f)+'</b><small>'+E(c.b)+'</small></span></li>').join('')+'</ul>'+saveBar(mode)+'</section>';
+ if(mode==='quiz')return '<section class="sy-card sy-ai">'+(o.questions||[]).map((q,i)=>'<details class="sy-det"><summary>'+(i+1)+'. '+E(q.q)+'</summary><ol type="A">'+(q.options||[]).map((op,j)=>'<li'+(j===q.correct?' class="right"':'')+'>'+E(op)+'</li>').join('')+'</ol><p class="sy-muted">'+E(q.why||'')+'</p></details>').join('')+genNote()+saveBar(mode)+'</section>';
+ if(mode==='plan')return '<div class="sy-ai">'+(o.days||[]).map(d=>'<p><b>'+fd(d.date)+'</b> — '+(d.items||[]).map(it=>E(it.title)+' ('+E(it.minutes)+' '+tr('min','мин')+')').join('; ')+'</p>').join('')+(o.note?'<p class="sy-muted">'+E(o.note)+'</p>':'')+genNote()+'<button class="p" data-sy="useplan">'+tr('Add to planner','Добавить в план')+'</button></div>';
+ return ''}
+const saveBar=mode=>D.subj.length?'<div class="sy-save">'+sel('sySaveS',D.subj.map(s=>[s.id,s.n]),D.subj[0].id,tr('Save to subject','Сохранить в предмет'))+'<button class="sy-btn2" data-sy="savetutor" data-m="'+mode+'">'+(mode==='cards'?tr('Add cards','Добавить карточки'):mode==='quiz'?tr('Add as cards','Добавить как карточки'):tr('Save as material','Сохранить в материалы'))+'</button></div>':'<p class="sy-muted">'+tr('Add a subject in Learning to save results.','Добавьте предмет в разделе «Предметы», чтобы сохранять результаты.')+'</p>';
+
+/* Admissions */
+VIEWS.adm=()=>{if(V.d?.k==='uni')return VIEWS.uni();const sub=V.sub||'mine',T=[['mine','Мои вузы','My list'],['search','Поиск','Search'],['cmp','Сравнение','Compare']];
+ let h='<header class="sy-head"><h2>'+tr('Admissions','Поступление')+'</h2><p>'+tr('Requirements, costs and deadlines change every year. Keep each fact with a link to the official page.','Требования, стоимость и сроки меняются каждый год. Храните каждый факт со ссылкой на официальную страницу.')+'</p></header><div class="sy-seg" role="tablist">'+T.map(([k,r,e])=>'<button role="tab" aria-selected="'+(sub===k)+'" data-sy="sub" data-v="'+k+'"'+(sub===k?' class="on"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</div>';
+ if(sub==='search'){const U=V.unis;h+='<section class="sy-card"><div class="sy-grid2">'+inp('syUN',tr('University name','Название вуза'),U.q||'','search','maxlength="80"')+sel('syUC',[['',tr('Any country','Любая страна')],...COUNTRIES.map(c=>[c,region(c)])],U.c||'',tr('Country','Страна'))+'</div><button class="p" data-sy="usearch">'+tr('Search','Найти')+'</button></section>';
+  h+=U.busy?busyBox(tr('Searching…','Ищу…')):U.err?empty(tr('Search is unavailable','Поиск недоступен'),E(U.err)+'<br>'+tr('You can still add a university by hand below.','Вуз можно добавить вручную ниже.')):U.items?(U.items.length?'<ul class="sy-list">'+U.items.map((u,i)=>'<li class="sy-res"><span><b>'+E(u.name)+'</b><small>'+E(u.country)+(u.web?' · '+OFFICIAL(u.web):'')+'</small></span><button class="sy-btn2" data-sy="uadd" data-i="'+i+'">'+tr('Add','Добавить')+'</button></li>').join('')+'</ul><p class="sy-src">'+tr('Names and websites: open catalog universities.hipolabs.com. Requirements are not included; check each official site.','Названия и сайты: открытый каталог universities.hipolabs.com. Требований там нет — смотрите официальные сайты.')+'</p>':empty(tr('Nothing found','Ничего не найдено'),tr('Try the name in English.','Попробуйте название на английском.'))):'';
+  h+='<section class="sy-card"><h3>'+tr('Add by hand','Добавить вручную')+'</h3><div class="sy-grid2">'+inp('syUmN',tr('Name','Название'),'','text','maxlength="120"')+inp('syUmW',tr('Official website','Официальный сайт'),'','url','placeholder="https://"')+'</div><button class="sy-btn2" data-sy="uaddm">'+tr('Add','Добавить')+'</button></section>';return h}
+ if(sub==='cmp'){const L=D.adm;if(L.length<2)return h+empty(tr('Add at least two universities','Добавьте хотя бы два вуза'),tr('Then compare them side by side.','Потом их можно сравнить.'));
+  const pick=V.cmp.length?V.cmp:L.slice(0,3).map(u=>u.id),us=pick.map(id=>L.find(u=>u.id===id)).filter(Boolean);
+  h+='<div class="sy-chips">'+L.map(u=>'<button class="sy-chip'+(pick.includes(u.id)?' on':'')+'" data-sy="cmppick" data-id="'+u.id+'" aria-pressed="'+pick.includes(u.id)+'">'+E(u.n)+'</button>').join('')+'</div>';
+  const rows=[['c',tr('Country','Страна')],['prog',tr('Programme','Программа')],['dl',tr('Deadline','Дедлайн')],['st',tr('Status','Статус')],['req',tr('Requirements','Требования')],['exams',tr('Exams','Экзамены')],['lang',tr('Language','Язык')],['cost',tr('Tuition','Стоимость')],['sch',tr('Scholarships','Стипендии')]];
+  return h+'<div class="sy-scroll"><table class="sy-tbl sy-cmp"><thead><tr><th></th>'+us.map(u=>'<th>'+E(u.n)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(([k,l])=>'<tr><th>'+l+'</th>'+us.map(u=>'<td>'+(k==='st'?E((ST_ADM.find(s=>s[0]===u.st)||ST_ADM[0])[ru()?1:2]):k==='dl'&&u.dl?fd(u.dl):E(u[k]||'—'))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><p class="sy-src">'+tr('Data you entered. Verify on official sites.','Данные, которые вы ввели. Сверяйте с официальными сайтами.')+'</p>'}
+ return h+(D.adm.length?'<ul class="sy-list">'+D.adm.map(u=>'<li><button class="sy-row" data-sy="uni" data-id="'+u.id+'"><span><b>'+E(u.n)+'</b><small>'+E((ST_ADM.find(s=>s[0]===u.st)||ST_ADM[0])[ru()?1:2])+(u.dl?' · '+tr('deadline ','дедлайн ')+fd(u.dl):'')+(u.docs?.length?' · '+u.docs.filter(d=>d[1]).length+'/'+u.docs.length+' '+tr('docs','док.'):'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul>':empty(tr('No universities yet','Вузов пока нет'),tr('Find universities by name and country, then track requirements, documents and deadlines.','Найдите вузы по названию и стране и отслеживайте требования, документы и сроки.'),'<button class="p" data-sy="sub" data-v="search">'+tr('Find universities','Найти вузы')+'</button>'))};
+VIEWS.uni=()=>{const u=D.adm.find(x=>x.id===V.d.id);if(!u){V.d=null;return VIEWS.adm()}
+ const F=[['prog',tr('Programme / major','Программа / специальность')],['req',tr('Admission requirements','Требования к поступлению')],['exams',tr('Required exams','Необходимые экзамены')],['lang',tr('Language requirements','Требования к языку')],['cost',tr('Tuition','Стоимость обучения')],['sch',tr('Scholarships and aid','Стипендии и помощь')],['note',tr('Notes','Заметки')]];
+ let h=back(tr('Admissions','Поступление'))+'<header class="sy-head"><h2>'+E(u.n)+'</h2><p>'+E(u.c||'')+(u.web?' · '+OFFICIAL(u.web):'')+'</p></header><section class="sy-card"><div class="sy-grid2">'+sel('syUst',ST_ADM.map(s=>[s[0],ru()?s[1]:s[2]]),u.st||'research',tr('Application status','Статус заявки'))+inp('syUdl',tr('Application deadline','Дедлайн подачи'),u.dl||'','date')+'</div>'+
+  F.map(([k,l])=>'<label class="sy-f"><span>'+l+'</span><textarea id="syU_'+k+'" rows="2" maxlength="300">'+E(u[k]||'')+'</textarea></label>').join('')+'<p class="sy-muted">'+tr('Fill in from the university website and add the source link below.','Заполняйте по сайту университета и добавьте ссылку на источник ниже.')+'</p>'+
+  '<h3>'+tr('Official sources','Официальные источники')+'</h3><ul class="sy-links">'+(u.src||[]).map((s,i)=>'<li>'+OFFICIAL(s)+'<button class="sy-x" data-sy="usrcdel" data-i="'+i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul><div class="sy-acts">'+'<input id="syUsrc" type="url" placeholder="https://" aria-label="'+tr('Source link','Ссылка на источник')+'"><button class="sy-btn2" data-sy="usrc">'+tr('Add link','Добавить')+'</button></div>'+
+  '<h3>'+tr('Documents','Документы')+'</h3><ul class="sy-list">'+(u.docs||[]).map((d,i)=>'<li class="sy-task'+(d[1]?' done':'')+'"><button class="sy-ck" data-sy="udoc" data-i="'+i+'" role="checkbox" aria-checked="'+!!d[1]+'" aria-label="'+E(d[0])+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5l4 4 9-9"/></svg></button><span><b>'+E(d[0])+'</b></span><button class="sy-x" data-sy="udocdel" data-i="'+i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul><div class="sy-acts"><input id="syUdoc" maxlength="60" placeholder="'+tr('e.g. Transcript, motivation letter','например, аттестат, мотивационное письмо')+'" aria-label="'+tr('Document','Документ')+'"><button class="sy-btn2" data-sy="uadddoc">'+tr('Add','Добавить')+'</button></div>'+
+  '<div class="sy-acts"><button class="sy-link sy-del" data-sy="udel">'+tr('Remove university','Удалить вуз')+'</button><button class="p" data-sy="usave">'+tr('Save','Сохранить')+'</button></div></section>';return h};
+
+/* Planner */
+VIEWS.plan=()=>{const t=today(),L=D.plan.slice().sort((a,b)=>((a.d||'9')+(a.tm||'')).localeCompare((b.d||'9')+(b.tm||''))),f=V.pf||'';const fl=L.filter(x=>!f||x.ty===f);
+ const g=[[tr('Overdue','Просрочено'),fl.filter(x=>!x.done&&x.d<t)],[tr('Today','Сегодня'),fl.filter(x=>x.d===t)],[tr('Upcoming','Дальше'),fl.filter(x=>x.d>t)],[tr('Done','Выполнено'),fl.filter(x=>x.done&&x.d<t).slice(-10)]];
+ let h='<header class="sy-head"><h2>'+tr('Study planner','Учебный план')+'</h2></header><div class="sy-chips">'+[['',tr('All','Все')],...Object.entries(PLAN_T).map(([k,v])=>[k,ru()?v[0]:v[1]])].map(([k,l])=>'<button class="sy-chip'+(f===k?' on':'')+'" data-sy="pf" data-v="'+k+'" aria-pressed="'+(f===k)+'">'+l+'</button>').join('')+'</div>';
+ h+=planForm();
+ const any=g.some(x=>x[1].length);h+=any?g.filter(x=>x[1].length).map(([n,l])=>'<section class="sy-card"><h3>'+n+'</h3><ul class="sy-list">'+l.map(planRow).join('')+'</ul></section>').join(''):empty(tr('Your planner is empty','План пока пуст'),tr('Add homework, tests and deadlines, or build a preparation plan from an exam page.','Добавьте задания, контрольные и дедлайны или составьте план подготовки на странице экзамена.'));
+ return h};
+function planForm(){const e=V.pe?D.plan.find(x=>x.id===V.pe)||{}:{};return '<section class="sy-card"><h3>'+(V.pe?tr('Edit','Изменить'):tr('Add to plan','Добавить в план'))+'</h3><div class="sy-grid2">'+sel('syPty',Object.entries(PLAN_T).map(([k,v])=>[k,ru()?v[0]:v[1]]),e.ty||'hw',tr('Type','Тип'))+sel('syPs',[['',tr('No subject','Без предмета')],...D.subj.map(s=>[s.id,s.n])],e.sid||'',tr('Subject','Предмет'))+'</div>'+inp('syPtt',tr('Title','Название'),e.t||'','text','maxlength="90"')+'<div class="sy-grid2">'+inp('syPd',tr('Date','Дата'),e.d||today(),'date')+inp('syPtm',tr('Time','Время'),e.tm||'','time')+'</div>'+
+ '<label class="sy-check"><input type="checkbox" id="syPrem"'+(e.rem?' checked':'')+'> '+tr('Telegram reminder at this time','Напоминание в Telegram в это время')+'</label><div class="sy-acts">'+(V.pe?'<button class="sy-link sy-del" data-sy="pdel">'+tr('Delete','Удалить')+'</button><button class="sy-link" data-sy="pcancel">'+tr('Cancel','Отмена')+'</button>':'<span></span>')+'<button class="p" data-sy="psave">'+tr('Save','Сохранить')+'</button></div></section>'}
+
+/* Analytics */
+VIEWS.stats=()=>{const n=nowN(),R=V.range||7;let h='<header class="sy-head"><h2>'+tr('Analytics','Аналитика')+'</h2></header><div class="sy-seg">'+[7,30].map(r=>'<button data-sy="range" data-v="'+r+'"'+(R===r?' class="on"':'')+'>'+r+' '+tr('days','дней')+'</button>').join('')+'</div>';
+ const days=Array.from({length:R},(_,i)=>n-R+1+i),mins=days.map(d=>minutesOn(d,d)),tot=mins.reduce((a,b)=>a+b,0);
+ h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Study time','Время занятий')+'</h3><span>'+hm(tot)+'</span></div>'+(tot?barChart(days.map((d,i)=>[fd(kN(d)),mins[i]]),hm):'<p class="sy-muted">'+tr('Use the session timer on Overview to log study time.','Запускайте таймер занятий на «Обзоре», чтобы учитывать время.')+'</p>')+'</section>';
+ const ms=D.subj.map(s=>[s,mastery(s.id)]).filter(x=>x[1]!=null);
+ h+='<section class="sy-card"><h3>'+tr('Progress by subject','Прогресс по предметам')+'</h3>'+(ms.length?ms.map(([s,m])=>'<div class="sy-prog"><span>'+E(s.n)+'</span>'+bar(m,s.n+': '+m+'%')+'<b>'+m+'%</b></div>').join(''):'<p class="sy-muted">'+tr('Add topics to subjects and mark how well you know them.','Добавьте темы в предметы и отмечайте, как вы их знаете.')+'</p>')+'</section>';
+ // strong and weak topics
+ const tops=D.subj.flatMap(s=>(D.topics[s.id]||[]).map(t=>[s.n+' · '+t.n,t.m||0]));
+ if(tops.length){const strong=tops.filter(t=>t[1]>=3),weak=tops.filter(t=>t[1]<=1);h+='<section class="sy-card"><h3>'+tr('Strong and weak topics','Сильные и слабые темы')+'</h3><div class="sy-two"><div><h4>'+tr('Strong','Сильные')+'</h4>'+(strong.length?'<ul>'+strong.slice(0,6).map(t=>'<li>'+E(t[0])+'</li>').join('')+'</ul>':'<p class="sy-muted">—</p>')+'</div><div><h4>'+tr('Needs work','Подтянуть')+'</h4>'+(weak.length?'<ul>'+weak.slice(0,6).map(t=>'<li>'+E(t[0])+'</li>').join('')+'</ul>':'<p class="sy-muted">—</p>')+'</div></div></section>'}
+ const qa=Object.values(D.quiz).reduce((a,v)=>[a[0]+v[0],a[1]+v[1]],[0,0]);
+ h+='<section class="sy-card"><h3>'+tr('Answers in tests','Ответы в тестах')+'</h3>'+(qa[0]+qa[1]?'<div class="sy-stat2"><div><b>'+qa[0]+'</b><span>'+tr('correct','верно')+'</span></div><div><b>'+qa[1]+'</b><span>'+tr('wrong','неверно')+'</span></div><div><b>'+Math.round(qa[0]/(qa[0]+qa[1])*100)+'%</b><span>'+tr('accuracy','точность')+'</span></div></div>':'<p class="sy-muted">'+tr('Take a test in a subject to see your accuracy.','Пройдите тест в предмете, чтобы увидеть точность.')+'</p>')+'</section>';
+ const ex=D.prof.exams.map(exam).filter(Boolean);ex.forEach(x=>{if(!D.res[x.id])examData(x.id).then(()=>V.tab==='stats'&&render())});
+ const withRes=ex.filter(x=>D.res[x.id]?.length);h+='<section class="sy-card"><h3>'+tr('Exam results','Результаты экзаменов')+'</h3>'+(withRes.length?withRes.map(x=>{const rs=D.res[x.id];return '<h4>'+E(exName(x))+'</h4>'+lineChart(rs.map(r=>[r.d,r.m?r.s/r.m*100:r.s,r]),rs.every(r=>r.m)?'%':'')}).join(''):'<p class="sy-muted">'+tr('Log mock tests on an exam page to see the trend.','Записывайте пробники на странице экзамена, чтобы видеть динамику.')+'</p>')+'</section>';
+ if(D.prof.exams.includes('ege')&&Object.keys(D.ege).length){h+='<section class="sy-card"><h3>'+tr('EGE tasks','Задания ЕГЭ')+'</h3><div class="sy-tasks">'+EGE_MATH.tasks.map(([k,p])=>{const s=D.ege[k]||[0,0],c=!s[0]&&!s[1]?'':s[0]>=3&&s[0]/(s[0]+s[1])>=.75?'ok':'work';return '<span class="sy-tn p'+p+' '+c+'" data-tip="'+tr('Task ','Задание ')+k+': '+s[0]+' / '+s[1]+'">'+k+'</span>'}).join('')+'</div><p class="sy-legend"><i class="ok"></i>'+tr('mastered','освоено')+' <i class="work"></i>'+tr('needs practice','нужно повторить')+'</p></section>'}
+ const hist=D.sess.slice().sort((a,b)=>b[0]-a[0]).slice(0,10);if(hist.length)h+='<section class="sy-card"><h3>'+tr('History','История занятий')+'</h3><ul class="sy-list">'+hist.map(r=>'<li class="sy-res"><span><b>'+hm(r[1])+'</b><small>'+fd(kN(r[0]))+(r[2]?' · '+E(subjName(r[2])):'')+'</small></span></li>').join('')+'</ul></section>';
+ D.subj.forEach(s=>{if(!D.topics[s.id])subjData(s.id).then(()=>V.tab==='stats'&&render())});return h};
+// single-series bars (one hue, no legend), recessive axis, hover/focus tooltip via data-tip
+function barChart(rows,fmt){const W=320,H=120,max=Math.max(...rows.map(r=>r[1]),1),bw=(W-8)/rows.length,lab=rows.length<=7;
+ return '<svg class="sy-chart" viewBox="0 0 '+W+' '+(H+18)+'" role="img" aria-label="'+tr('Study minutes by day','Минуты занятий по дням')+'"><line x1="0" x2="'+W+'" y1="'+H+'" y2="'+H+'" class="ax"/>'+rows.map(([l,v],i)=>{const h=v?Math.max(3,v/max*(H-14)):0,x=4+i*bw+bw*.18;return (h?'<rect x="'+x.toFixed(1)+'" y="'+(H-h).toFixed(1)+'" width="'+(bw*.64).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="3" class="b"/>':'')+'<rect x="'+(4+i*bw).toFixed(1)+'" y="0" width="'+bw.toFixed(1)+'" height="'+H+'" class="hit" tabindex="0" data-tip="'+E(l+': '+fmt(v))+'"/>'+(lab||i%5===0?'<text x="'+(4+i*bw+bw/2).toFixed(1)+'" y="'+(H+14)+'" class="tx">'+E(l)+'</text>':'')}).join('')+'</svg>'}
+function lineChart(pts,unit){pts=pts.slice().sort((a,b)=>a[0].localeCompare(b[0]));const W=320,H=130,L=30,ys=pts.map(p=>p[1]),max=unit==='%'?100:Math.max(...ys)*1.1||1,min=0,x0=dayN(pts[0][0]),x1=Math.max(dayN(pts[pts.length-1][0]),x0+1);
+ const X=d=>L+(dayN(d)-x0)/(x1-x0)*(W-L-12),Y=v=>8+(1-(v-min)/(max-min))*(H-16),path=pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join(''),last=pts[pts.length-1];
+ return '<svg class="sy-chart" viewBox="0 0 '+W+' '+(H+18)+'" role="img" aria-label="'+tr('Score trend','Динамика результатов')+'">'+[0,.5,1].map(f=>'<line x1="'+L+'" x2="'+W+'" y1="'+Y(min+f*(max-min)).toFixed(1)+'" y2="'+Y(min+f*(max-min)).toFixed(1)+'" class="gr"/><text x="'+(L-6)+'" y="'+(Y(min+f*(max-min))+4).toFixed(1)+'" class="tx r">'+Math.round(min+f*(max-min))+'</text>').join('')+
+  (pts.length>1?'<path d="'+path+'" class="ln"/>':'')+pts.map(p=>'<circle cx="'+X(p[0]).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="4.5" class="pt" tabindex="0" data-tip="'+E(fd(p[0])+': '+(p[2]?p[2].s+(p[2].m?' / '+p[2].m:''):Math.round(p[1])))+'"/>').join('')+
+  '<text x="'+X(last[0]).toFixed(1)+'" y="'+(Y(last[1])-9).toFixed(1)+'" class="tx v">'+Math.round(last[1])+(unit||'')+'</text><text x="'+L+'" y="'+(H+14)+'" class="tx l">'+fd(pts[0][0])+'</text><text x="'+W+'" y="'+(H+14)+'" class="tx r">'+fd(last[0])+'</text></svg>'}
+
+/* ---------- actions ---------- */
+async function aiInto(slot,elId,fn){V.ai[slot]={html:busyBox()};const el=$(elId);if(el)el.innerHTML=V.ai[slot].html;try{V.ai[slot]={html:await fn()}}catch(e){V.ai[slot]={html:'<p class="sy-err" role="alert">'+E(friendlyError(e))+'</p>'}}const el2=$(elId);if(el2)el2.innerHTML=V.ai[slot].html;else render()}
+// The plan lives in one key per month (sy_p_YYYY-MM) listed in sy_pm. shortcut: done items older than 60 days are dropped to keep months small.
+async function loadPlan(){const ms=await jget('sy_pm',[])||[],parts=await Promise.all(ms.map(m=>jget('sy_p_'+m,[]))),plan=parts.flat().filter(Boolean),legacy=await jget(KEYS.plan,null);
+ if(Array.isArray(legacy)&&legacy.length){D.plan=plan.concat(legacy);if(await savePlan())await st.del(KEYS.plan);return D.plan}return plan}
+async function savePlan(){const old=dk(Date.now()-60*864e5);D.plan=D.plan.filter(x=>!(x.done&&x.d<old));const by={};D.plan.forEach(x=>{const m=(x.d||today()).slice(0,7);(by[m]=by[m]||[]).push(x)});
+ const full=Object.entries(by).find(([,a])=>JSON.stringify(a).length>4000);if(full){note(tr('Too many items in ','Слишком много записей в ')+pd(full[0]+'-01').toLocaleDateString(loc(),{month:'long',year:'numeric'})+tr('. Remove some first.','. Удалите часть.'));return false}
+ const prev=await jget('sy_pm',[])||[];for(const m of prev)if(!by[m])await st.del('sy_p_'+m);for(const [m,a] of Object.entries(by))await st.set('sy_p_'+m,JSON.stringify(a));await st.set('sy_pm',JSON.stringify(Object.keys(by).sort()));return true}
+async function remind(x){if(!x.tm||!x.d)throw new Error(tr('Set a date and time for the reminder.','Для напоминания укажите дату и время.'));
+ const j=await api('/reminders',{action:'create',title:'📚 '+x.t.slice(0,70),note:(ru()?PLAN_T[x.ty][0]:PLAN_T[x.ty][1])+(x.sid?' · '+subjName(x.sid):''),date:x.d,time:x.tm,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC',repeat:'none'});return j.id}
+async function unremind(x){if(!x.rem)return;try{await api('/reminders',{action:'delete',id:x.rem})}catch{}x.rem=null}
+async function fileText(f){if(/\.pdf$/i.test(f.name)||f.type==='application/pdf'){const lib=await pdfjs(),doc=await lib.getDocument({data:await f.arrayBuffer()}).promise;let out='';for(let i=1;i<=Math.min(doc.numPages,20)&&out.length<12000;i++){const c=await(await doc.getPage(i)).getTextContent();out+=c.items.map(x=>x.str).join(' ')+'\n'}return out.trim()}
+ if(f.type.startsWith('text/')||/\.(md|txt)$/i.test(f.name))return(await f.text()).trim();return null}
+let pdfLib=null;function pdfjs(){if(pdfLib)return pdfLib;pdfLib=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=()=>{const L=window.pdfjsLib;L.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';res(L)};s.onerror=()=>{pdfLib=null;rej(new Error(tr('Could not load the PDF reader. Check your connection.','Не удалось загрузить чтение PDF. Проверьте соединение.')))};document.head.appendChild(s)});return pdfLib}
+// photos go to the AI as a JPEG no larger than 1600 px (keeps the request small)
+function photo(f){return new Promise((res,rej)=>{const img=new Image(),u=URL.createObjectURL(f);img.onload=()=>{const k=Math.min(1,1600/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.82))};img.onerror=()=>{URL.revokeObjectURL(u);rej(new Error(tr('Could not read the image.','Не удалось прочитать изображение.')))};img.src=u})}
+const tick=setInterval(()=>{const b=document.querySelector('#study [data-sy-tick]');if(b&&D.timer)b.textContent=hm((Date.now()-D.timer.at)/60000)},30000);
+
+const A={
+ tab(b){V.tab=b.dataset.v;V.d=null;V.sub='';V.mat=null;V.task=null;V.pe=null;render();scrollTo(0,0)},
+ back(){V.d=null;V.sub='';V.mat=null;V.task=null;render();scrollTo(0,0)},
+ sub(b){V.sub=b.dataset.v;V.mat=null;V.review=null;render()},
+ open(b){open(b.dataset.u)},
+ lvl(b){D.prof.level=D.prof.level===b.dataset.v?'':b.dataset.v;render()},
+ pickexam(b){const id=b.dataset.v,L=D.prof.exams;D.prof.exams=L.includes(id)?L.filter(x=>x!==id):[...L,id];render()},
+ async next(){const p=D.prof;if(V.setup===0){p.country=val('syCountry');p.lang=val('syLang');p.system=val('sySys')}if(V.setup===2){p.goals=val('syGoals').split('\n').map(s=>s.trim()).filter(Boolean).slice(0,5);p.setup='done'}V.setup++;await safePut(KEYS.prof,p);render()},
+ async skip(){D.prof.setup='skip';await safePut(KEYS.prof,D.prof);render()},
+ async hidesteps(){D.prof.hideSteps=1;await safePut(KEYS.prof,D.prof);render()},
+ async start(){D.timer={at:Date.now(),sid:val('syTSub')};await st.set(KEYS.timer,JSON.stringify(D.timer));render()},
+ async stop(){const t=D.timer;D.timer=null;await st.del(KEYS.timer);const m=(Date.now()-t.at)/60000;if(m>=1){await logMinutes(Math.min(m,600),t.sid);ok(tr('Logged ','Записано ')+hm(m))}else toast(tr('Less than a minute — not logged','Меньше минуты — не записано'));render()},
+ async rec(){V.ai.rec={busy:true};render();const n=nowN(),w=await wellbeing(),ctx={minutes_today:minutesOn(n,n),minutes_week:minutesOn(n-6,n),exams:D.prof.exams.map(id=>({exam:exName(exam(id)),date:D.prof.dates[id]||null})),
+   due_tasks:D.plan.filter(x=>!x.done&&x.d<=dk(Date.now()+3*864e5)).map(x=>x.t).slice(0,8),weak:D.prof.exams.map(exam).filter(Boolean).flatMap(x=>weakTopics(x).slice(0,3)).slice(0,8),sleep_minutes:w.sleep||null,mood_1_5:w.mood||null,goals:D.prof.goals};
+  try{V.ai.rec=await ai('recommend',{context:ctx});if(!Array.isArray(V.ai.rec.tips))throw new Error(t('e4'))}catch(e){V.ai.rec={err:friendlyError(e)}}render()},
+ async pdone(b){const x=D.plan.find(p=>p.id===b.dataset.id);if(!x)return;x.done=!x.done;if(x.done)ok();await savePlan();render()},
+ pedit(b){V.tab='plan';V.pe=b.dataset.id;V.d=null;render();scrollTo(0,0)},
+ pcancel(){V.pe=null;render()},
+ pf(b){V.pf=b.dataset.v;render()},
+ async psave(){const t=val('syPtt');if(!t)return $('syPtt').focus();const e=V.pe?D.plan.find(x=>x.id===V.pe):null,x=e||{id:uid()};
+  Object.assign(x,{t,ty:val('syPty'),sid:val('syPs'),d:val('syPd')||today(),tm:val('syPtm')});const want=$('syPrem').checked;
+  if(want){try{if(x.rem)await unremind(x);x.rem=await remind(x)}catch(err){note(friendlyError(err));x.rem=x.rem||null}}else await unremind(x);
+  if(!e)D.plan.push(x);if(await savePlan()){V.pe=null;ok();render()}},
+ async pdel(){const x=D.plan.find(p=>p.id===V.pe);if(!x||!await ask(tr('Delete this item?','Удалить запись?')))return;await unremind(x);D.plan=D.plan.filter(p=>p!==x);V.pe=null;await savePlan();render()},
+ async addsubj(){const n=val('sySubN');if(!n)return $('sySubN').focus();D.subj.push({id:uid(),n,ex:val('sySubE')});if(await safePut(KEYS.subj,D.subj)){D.topics[D.subj.at(-1).id]=[];D.mats[D.subj.at(-1).id]=[];D.cards[D.subj.at(-1).id]=[];ok();render()}},
+ subj(b){V.d={k:'subj',id:b.dataset.id};V.sub='topics';render();scrollTo(0,0)},
+ async delsubj(){const sid=V.d.id;if(!await ask(tr('Delete this subject with its topics, materials and cards?','Удалить предмет вместе с темами, материалами и карточками?')))return;await subjData(sid);
+  for(const m of D.mats[sid]||[])await st.del('sy_x_'+m.id);const head=await jget('sy_c_'+sid,[]);for(let i=0;i<(+head?.pages||0);i++)await st.del('sy_c_'+sid+'.'+i);
+  for(const k of ['sy_t_','sy_m_','sy_c_'])await st.del(k+sid);D.subj=D.subj.filter(x=>x.id!==sid);delete D.topics[sid];delete D.mats[sid];delete D.cards[sid];delete D.quiz[sid];
+  await safePut(KEYS.subj,D.subj);await st.set(KEYS.quiz,JSON.stringify(D.quiz));V.d=null;render()},
+ async addtopic(){const sid=V.d.id,n=val('syTopN');if(!n)return $('syTopN').focus();D.topics[sid].push({id:uid(),n,p:val('syTopP')||null,m:0});if(await safePut('sy_t_'+sid,D.topics[sid]))render()},
+ async mast(b){const sid=V.d.id,t=D.topics[sid].find(x=>x.id===b.dataset.id);t.m=((t.m||0)+1)%5;await safePut('sy_t_'+sid,D.topics[sid]);render()},
+ async deltopic(b){const sid=V.d.id;if(!await ask(tr('Delete this topic and its subtopics?','Удалить тему и её подтемы?')))return;D.topics[sid]=D.topics[sid].filter(x=>x.id!==b.dataset.id&&x.p!==b.dataset.id);await safePut('sy_t_'+sid,D.topics[sid]);render()},
+ async addmat(){const sid=V.d.id,t=val('syMatT')||tr('Note','Конспект'),x=val('syMatX');if(!x)return $('syMatX').focus();if(D.mats[sid].length>=40)return note(tr('Up to 40 materials per subject. Delete old ones first.','До 40 материалов на предмет. Удалите старые.'));const id=uid();
+  try{await put('sy_x_'+id,x.slice(0,3500))}catch(e){return note(e.message)}D.mats[sid].push({id,t,at:Date.now(),src:V.matSrc||''});V.matSrc='';if(await safePut('sy_m_'+sid,D.mats[sid])){ok();render()}},
+ async mat(b){V.mat=b.dataset.id;const m=D.mats[V.d.id].find(x=>x.id===V.mat);if(m&&m.x==null)m.x=(await st.get('sy_x_'+m.id))||'';V.ai.mat=null;render()},
+ closemat(){V.mat=null;render()},
+ async delmat(){const sid=V.d.id;if(!await ask(tr('Delete this material?','Удалить материал?')))return;await st.del('sy_x_'+V.mat);D.mats[sid]=D.mats[sid].filter(x=>x.id!==V.mat);V.mat=null;await safePut('sy_m_'+sid,D.mats[sid]);render()},
+ matai(b){const sid=V.d.id,m=D.mats[sid].find(x=>x.id===V.mat),mode=b.dataset.m;aiInto('mat','syMatAi',async()=>{const o=await ai(mode,{text:m.x,subject:subjName(sid),count:mode==='quiz'?5:10});V.tutor.res={mode,out:o,ctx:{}};return renderAI(mode,o,{})})},
+ async addcard(){const sid=V.d.id,f=val('syCF'),bk=val('syCB');if(!f||!bk)return(f?$('syCB'):$('syCF')).focus();D.cards[sid].push({i:uid(),f,b:bk,d:nowN()});if(await saveCards(sid)){ok();render()}else D.cards[sid].pop()},
+ async aicards(){const sid=V.d.id,topic=val('syCF')||subjName(sid);aiInto('cards','syCardS',async()=>{const o=await ai('cards',{topic,subject:subjName(sid),count:8}),add=(o.cards||[]).map(c=>({i:uid(),f:String(c.f).slice(0,160),b:String(c.b).slice(0,300),d:nowN()}));
+  const before=D.cards[sid].length;D.cards[sid].push(...add);if(!await saveCards(sid)){D.cards[sid].length=before;return ''}setTimeout(render,50);return '<p class="sy-muted">'+tr('Added ','Добавлено ')+add.length+'</p>'})},
+ async delcard(b){const sid=V.d.id;D.cards[sid]=D.cards[sid].filter(c=>c.i!==b.dataset.id);await saveCards(sid);render()},
+ review(){const sid=V.d.id;V.review={sid,q:D.cards[sid].filter(c=>(c.d??0)<=nowN()).slice(0,40),show:false,done:0};render()},
+ show(){V.review.show=true;render()},
+ async grade(b){const r=V.review,c=r.q.shift(),g=+b.dataset.v;grade(c,g);r.show=false;r.done++;if(g===0)r.q.push(c);await saveCards(r.sid);render()},
+ async mkquiz(){const sid=V.d.id,tid=val('syQT'),tp=(D.topics[sid]||[]).find(t=>t.id===tid);V.quiz={sid,busy:true};render();
+  try{const o=await ai('quiz',{topic:tp?tp.n:subjName(sid),subject:subjName(sid),count:+val('syQN')||5}),items=(o.questions||[]).filter(q=>Array.isArray(q.options)&&q.options.length>1&&Number.isInteger(q.correct));if(!items.length)throw new Error(t('e4'));V.quiz={sid,items,i:0,ok:0,pick:null}}catch(e){V.quiz={sid,err:friendlyError(e)}}render()},
+ async ans(b){const q=V.quiz,it=q.items[q.i];q.pick=+b.dataset.v;const right=q.pick===it.correct;if(right)q.ok++;const s=D.quiz[q.sid]||[0,0];s[right?0:1]++;D.quiz[q.sid]=s;await st.set(KEYS.quiz,JSON.stringify(D.quiz));render()},
+ nextq(){V.quiz.i++;V.quiz.pick=null;render()},
+ newquiz(){V.quiz=null;render()},
+ exam(b){V.d={k:'exam',id:b.dataset.id};V.sub='about';V.task=null;V.ai.ege=V.ai.pr=V.ai.err=V.ai.plan=null;render();scrollTo(0,0)},
+ async togexam(b){const id=b.dataset.id,L=D.prof.exams;D.prof.exams=L.includes(id)?L.filter(x=>x!==id):[...L,id];await safePut(KEYS.prof,D.prof);render()},
+ async saveex(b){const id=b.dataset.id;D.prof.dates[id]=val('syExD');D.prof.target[id]=val('syExT');if(await safePut(KEYS.prof,D.prof)){ok(tr('Saved','Сохранено'));render()}},
+ goal(b){const x=exam(b.dataset.id);if(D.prof.goalOf?.[x.id]&&goals.some(g=>g.id===D.prof.goalOf[x.id])){cur=D.prof.goalOf[x.id];gview='detail';showTab('g');return}linkGoal(x)},
+ task(b){V.task=+b.dataset.v;V.ai.ege=null;render()},
+ async egemark(b){const n=V.task,s=D.ege[n]||[0,0];s[b.dataset.v==='1'?0:1]++;s[2]=Date.now();D.ege[n]=s;await st.set(KEYS.ege,JSON.stringify(D.ege));ok();render()},
+ async egeres(b){const n=+b.dataset.n;if(!(n>=1&&n<=19))return;const s=D.ege[n]||[0,0];s[b.dataset.v==='1'?0:1]++;s[2]=Date.now();D.ege[n]=s;await st.set(KEYS.ege,JSON.stringify(D.ege));ok(tr('Saved to your EGE progress','Учтено в прогрессе ЕГЭ'))},
+ totutor(b){const t=EGE_MATH.tasks.find(r=>r[0]===+b.dataset.v);V.tab='tutor';V.d=null;V.tutor={...V.tutor,mode:'solve',exam:'ege',subject:ru()?EGE_MATH.name[0]:EGE_MATH.name[1],q:tr('EGE task ','Задание ЕГЭ №')+t[0]+' ('+(ru()?t[4]:t[5])+'). '+tr('Condition: ','Условие: '),res:null,err:''};render();scrollTo(0,0);$('syTQ')?.focus()},
+ similar(b){const t=EGE_MATH.tasks.find(r=>r[0]===+b.dataset.v);aiInto('ege','syEgeAi',async()=>{const o=await ai('exercises',{exam:'ege',subject:ru()?EGE_MATH.name[0]:EGE_MATH.name[1],topic:tr('EGE task ','Задание ЕГЭ №')+t[0]+': '+(ru()?t[4]:t[5])+tr(' (part ',' (часть ')+t[1]+', '+tr('level ','уровень ')+t[2]+')',count:3});return renderAI('exercises',o)})},
+ practice(b){const x=exam(b.dataset.id),topic=val('syPrT')||(x.sections?x.sections[0][0]:exName(x));aiInto('pr','syPrAi',async()=>renderAI('exercises',await ai('exercises',{exam:exName(x),topic,count:5})))},
+ async addres(b){const id=b.dataset.id,s=num(val('syRS')),m=num(val('syRM'));if(s==null)return $('syRS').focus();const r={d:val('syRD')||today(),k:val('syRK'),s,m:m||null,n:val('syRN')};D.res[id].push(r);D.res[id].sort((a,b)=>a.d.localeCompare(b.d));
+  if(!await safePut('sy_r_'+id,D.res[id])){D.res[id]=D.res[id].filter(x=>x!==r);return}
+  const gid=D.prof.goalOf?.[id],g=gid&&goals.find(x=>x.id===gid);if(g&&g.to!=null){g.log.push([Date.now(),s,tr('Study: ','Учёба: ')+exName(exam(id))]);await saveGoal(g);toast(tr('Also logged in Goals','Записано и в «Цели»'))}else ok();render()},
+ async delres(b){const id=b.dataset.id;D.res[id].splice(+b.dataset.i,1);await safePut('sy_r_'+id,D.res[id]);render()},
+ async adderr(b){const id=b.dataset.id,t=val('syEt'),w=val('syEw');if(!t)return $('syEt').focus();D.err[id].push({d:today(),t,w});if(!await safePut('sy_e_'+id,D.err[id])){D.err[id].pop();return}ok();render()},
+ async delerr(b){const id=b.dataset.id;D.err[id].splice(+b.dataset.i,1);await safePut('sy_e_'+id,D.err[id]);render()},
+ errai(b){const x=exam(b.dataset.id);aiInto('err','syErrAi',async()=>{const o=await ai('recommend',{exam:exName(x),context:{mistakes:D.err[x.id].slice(-20).map(e=>e.t+': '+e.w),task:tr('Analyse the pattern in these mistakes and say what to practise.','Найди закономерность в ошибках и скажи, что тренировать.')}});return '<ul class="sy-tips">'+(o.tips||[]).map(x=>'<li>'+E(x)+'</li>').join('')+'</ul>'})},
+ wday(b){const on=b.classList.toggle('on');b.setAttribute('aria-pressed',on)},
+ // deterministic plan: sessions on chosen weekdays until the exam, weakest topics first, last 3 days = mock + review
+ async autoplan(b){const x=exam(b.dataset.id),d=D.prof.dates[x.id];if(!d)return;const wd=[...document.querySelectorAll('#study [data-sy="wday"]')].map((e,i)=>e.classList.contains('on')?i:-1).filter(i=>i>=0);if(!wd.length)return note(tr('Pick at least one day.','Выберите хотя бы один день.'));
+  const min=+val('syPm')||45,tm=val('syPt'),topics=weakTopics(x),out=[];let k=0;for(let n=nowN()+1;n<dayN(d)&&out.length<40;n++){const kd=kN(n),w=(pd(kd).getDay()+6)%7;if(!wd.includes(w))continue;
+   const left=dayN(d)-n,title=left<=3?tr('Mock test and review','Пробник и повторение'):(topics[k++%Math.max(topics.length,1)]||tr('Practice','Практика'));out.push({id:uid(),t:String(title).slice(0,60),mn:min,ty:'study',d:kd,tm,ex:x.id,gen:1})}
+  if(!out.length)return note(tr('No study days before the exam date.','До даты экзамена нет подходящих дней.'));const more=dayN(d)-nowN()>out.length*7/Math.max(wd.length,1)+7;D.plan=D.plan.filter(p=>!(p.ex===x.id&&p.gen&&!p.done)).concat(out);if(await savePlan()){ok(tr('Plan created: ','План составлен: ')+out.length+(more?tr(' sessions ahead. Build again later to extend.',' занятий вперёд. Составьте снова позже, чтобы продлить.'):''));render()}},
+ aiplan(b){const x=exam(b.dataset.id);aiInto('plan','syPlAi',async()=>{const w=await wellbeing(),o=await ai('plan',{exams:[{name:exName(x),date:D.prof.dates[x.id]||null}],weak:weakTopics(x).slice(0,10),minutes:val('syPm')||45,days:7,wellbeing:w});V.planDraft={ex:x.id,days:o.days||[]};return renderAI('plan',o)})},
+ async useplan(){const p=V.planDraft;if(!p)return;const tm=val('syPt');p.days.forEach(d=>(d.items||[]).forEach(it=>D.plan.push({id:uid(),t:String(it.title).slice(0,60),mn:+it.minutes||30,ty:'study',d:String(d.date).slice(0,10),tm,ex:p.ex,gen:1})));V.planDraft=null;if(await savePlan()){ok(tr('Added to planner','Добавлено в план'));render()}},
+ async clrplan(b){if(!await ask(tr('Remove generated sessions that are not done?','Удалить невыполненные сгенерированные занятия?')))return;D.plan=D.plan.filter(p=>!(p.ex===b.dataset.id&&p.gen&&!p.done));await savePlan();render()},
+ tmode(b){V.tutor.mode=b.dataset.v;V.tutor.res=null;V.tutor.err='';keepTutor();render()},
+ async ask(){keepTutor();const T=V.tutor,q=T.q;if(!q&&!T.img)return $('syTQ').focus();if(T.mode==='check'&&!T.a)return $('syTA').focus();
+  T.busy=true;T.err='';T.res=null;render();const exId=T.exam,x=exam(exId),body={exam:exId==='ege'?'ege':exName(x),subject:T.subject,count:T.count||5};
+  if(T.mode==='explain')body.question=q;else if(T.mode==='solve')body.task=q;else if(T.mode==='check'){body.task=q;body.user_answer=T.a;body.user_solution=T.w}else if(['summary','cards','quiz'].includes(T.mode)&&q.length>120)body.text=q;else body.topic=q;
+  if(T.img&&['solve','summary'].includes(T.mode))body.image=T.img;
+  try{const o=await ai(T.mode,body);T.res={mode:T.mode,out:o,ctx:{exam:exId}};D.tutor.unshift({m:T.mode,q:(q||tr('Photo','Фото')).slice(0,80),d:today(),o,ex:exId});D.tutor=D.tutor.slice(0,8);
+   while(JSON.stringify(D.tutor).length>3800&&D.tutor.length>1)D.tutor.pop();await st.set(KEYS.tutor,JSON.stringify(D.tutor));T.img=null}catch(e){T.err=friendlyError(e)}T.busy=false;render()},
+ thist(b){const x=D.tutor[+b.dataset.i];V.tutor={...V.tutor,mode:x.m,res:{mode:x.m,out:x.o,ctx:{exam:x.ex}}};render()},
+ async savetutor(b){const T=V.tutor,mode=b.dataset.m,o=T.res?.out||V.tutor.res?.out,sid=val('sySaveS');if(!o||!sid)return;await subjData(sid);
+  if(mode==='cards'||mode==='quiz'){const add=mode==='cards'?(o.cards||[]).map(c=>({i:uid(),f:String(c.f).slice(0,160),b:String(c.b).slice(0,300),d:nowN()})):(o.questions||[]).map(q=>({i:uid(),f:String(q.q).slice(0,160),b:String(q.options?.[q.correct]??'').slice(0,300),d:nowN()}));
+   const n=D.cards[sid].length;D.cards[sid].push(...add);if(!await saveCards(sid)){D.cards[sid].length=n;return}return ok(tr('Cards added: ','Карточек добавлено: ')+add.length)}
+  const text=mode==='summary'?[o.title,o.summary,...(o.key_points||[]).map(k=>'• '+k),...(o.terms||[]).map(t=>t.term+' — '+t.def)].join('\n'):[o.task_no?tr('Task ','Задание №')+o.task_no:'',o.condition,tr('Solution:','Решение:'),...(o.steps||[]).map((s,i)=>(i+1)+'. '+s.title+': '+s.body),tr('Answer: ','Ответ: ')+o.answer].filter(Boolean).join('\n');
+  if(D.mats[sid].length>=40)return note(tr('Up to 40 materials per subject. Delete old ones first.','До 40 материалов на предмет. Удалите старые.'));const id=uid();try{await put('sy_x_'+id,text.slice(0,3500))}catch(e){return note(e.message)}D.mats[sid].push({id,t:(o.title||o.task_type||tr('Solution','Решение')).slice(0,60),at:Date.now(),src:tr('AI tutor','ИИ-репетитор')});if(await safePut('sy_m_'+sid,D.mats[sid]))ok(tr('Saved to materials','Сохранено в материалы'))},
+ async usearch(){const U=V.unis;U.q=val('syUN');U.c=val('syUC');if(U.q.length<2&&!U.c)return $('syUN').focus();U.busy=true;U.err='';render();
+  try{const j=await api('/unis',{name:U.q,country:U.c?(UNI_C[U.c]||new Intl.DisplayNames(['en'],{type:'region'}).of(U.c)):''});U.items=j.items||[]}catch(e){U.err=friendlyError(e);U.items=null}U.busy=false;render()},
+ async uadd(b){const u=V.unis.items[+b.dataset.i];if(D.adm.some(x=>x.n===u.name))return toast(tr('Already in your list','Уже в списке'));D.adm.push({id:uid(),n:u.name,c:u.country,web:u.web,st:'research',src:u.web?[u.web]:[],docs:[]});if(await safePut(KEYS.adm,D.adm))ok(tr('Added to My list','Добавлено в «Мои вузы»'))},
+ async uaddm(){const n=val('syUmN'),w=val('syUmW');if(!n)return $('syUmN').focus();if(w&&!/^https?:\/\//.test(w))return note(tr('The link must start with https://','Ссылка должна начинаться с https://'));D.adm.push({id:uid(),n,web:w,st:'research',src:w?[w]:[],docs:[]});if(await safePut(KEYS.adm,D.adm)){V.sub='mine';ok();render()}},
+ uni(b){V.d={k:'uni',id:b.dataset.id};render();scrollTo(0,0)},
+ async usave(){const u=D.adm.find(x=>x.id===V.d.id);u.st=val('syUst');u.dl=val('syUdl');['prog','req','exams','lang','cost','sch','note'].forEach(k=>u[k]=val('syU_'+k));if(await safePut(KEYS.adm,D.adm)){ok(tr('Saved','Сохранено'));render()}},
+ async usrc(){const u=D.adm.find(x=>x.id===V.d.id),s=val('syUsrc');if(!/^https?:\/\/\S+\.\S+/.test(s))return note(tr('Enter a full link starting with https://','Введите полную ссылку, начиная с https://'));A.usaveSilent();u.src=[...(u.src||[]),s];if(await safePut(KEYS.adm,D.adm))render()},
+ usaveSilent(){const u=D.adm.find(x=>x.id===V.d.id);if(!$('syUst'))return;u.st=val('syUst');u.dl=val('syUdl');['prog','req','exams','lang','cost','sch','note'].forEach(k=>u[k]=val('syU_'+k))},
+ async usrcdel(b){const u=D.adm.find(x=>x.id===V.d.id);A.usaveSilent();u.src.splice(+b.dataset.i,1);await safePut(KEYS.adm,D.adm);render()},
+ async uadddoc(){const u=D.adm.find(x=>x.id===V.d.id),n=val('syUdoc');if(!n)return $('syUdoc').focus();A.usaveSilent();u.docs=[...(u.docs||[]),[n,0]];if(await safePut(KEYS.adm,D.adm))render()},
+ async udoc(b){const u=D.adm.find(x=>x.id===V.d.id),d=u.docs[+b.dataset.i];A.usaveSilent();d[1]=d[1]?0:1;await safePut(KEYS.adm,D.adm);render()},
+ async udocdel(b){const u=D.adm.find(x=>x.id===V.d.id);A.usaveSilent();u.docs.splice(+b.dataset.i,1);await safePut(KEYS.adm,D.adm);render()},
+ async udel(){if(!await ask(tr('Remove this university?','Удалить этот вуз?')))return;D.adm=D.adm.filter(x=>x.id!==V.d.id);V.d=null;await safePut(KEYS.adm,D.adm);render()},
+ cmppick(b){const id=b.dataset.id,cur=V.cmp.length?V.cmp:D.adm.slice(0,3).map(u=>u.id);V.cmp=cur.includes(id)?cur.filter(x=>x!==id):[...cur,id].slice(-3);render()},
+ range(b){V.range=+b.dataset.v;render()}
+};
+function keepTutor(){const T=V.tutor;if(!$('syTQ'))return;T.q=val('syTQ');T.exam=val('syTE');T.subject=val('syTS');T.a=val('syTA');T.w=val('syTW');T.count=+val('syTC')||5}
+document.addEventListener('click',ev=>{const b=ev.target.closest('#study [data-sy]');if(!b||b.disabled)return;const f=A[b.dataset.sy];if(f){ev.preventDefault();Promise.resolve(f(b)).catch(e=>{console.error(e);note(friendlyError(e))})}});
+document.addEventListener('change',async ev=>{const e=ev.target;if(!e.closest('#study'))return;
+ if(e.dataset.syF){V.f[e.dataset.syF]=e.value;render();return}
+ const kind=e.dataset.syFile;if(!kind||!e.files?.[0])return;const f=e.files[0];
+ try{if(kind==='photo'){V.tutor.img=await photo(f);keepTutor();render();return}
+  const s=$('syMatS');if(s)s.innerHTML=busyBox(tr('Reading the file…','Читаю файл…'));let text=await fileText(f);
+  if(text==null&&f.type.startsWith('image/')){if(s)s.innerHTML=busyBox(tr('AI is reading the photo…','ИИ читает фото…'));const o=await ai('summary',{subject:subjName(V.d.id),image:await photo(f)});text=[o.title,o.summary,...(o.key_points||[]).map(k=>'• '+k)].filter(Boolean).join('\n')}
+  if(text==null)throw new Error(tr('This file type is not supported. Use PDF, an image or a text file.','Этот тип файла не поддерживается. Загрузите PDF, изображение или текстовый файл.'));
+  if(!text)throw new Error(tr('No text found in the file.','В файле не найден текст.'));
+  $('syMatX').value=text.slice(0,3500);if(!val('syMatT'))$('syMatT').value=f.name.replace(/\.[^.]+$/,'').slice(0,60);V.matSrc=f.name.slice(0,60);
+  if(s)s.innerHTML='<p class="sy-muted">'+(text.length>3500?tr('Long file: the first 3500 characters are kept. Ask the tutor for a summary to keep the essentials.','Файл длинный: сохранены первые 3500 символов. Попросите репетитора сделать конспект, чтобы сохранить главное.'):tr('Text extracted. Check it and press Save.','Текст извлечён. Проверьте и нажмите «Сохранить».'))+'</p>'}
+ catch(err){const s=$('syMatS');const m=friendlyError(err);if(s)s.innerHTML='<p class="sy-err" role="alert">'+E(m)+'</p>';else note(m)}finally{e.value=''}});
+// chart tooltips (hover and keyboard focus)
+let tip=null;const showTip=e=>{const t=e.target.closest?.('#study [data-tip]');if(!t){tip&&(tip.hidden=true);return}tip=tip||Object.assign(document.body.appendChild(document.createElement('div')),{className:'sy-tip',role:'tooltip'});tip.textContent=t.dataset.tip;tip.hidden=false;const r=t.getBoundingClientRect();tip.style.left=Math.min(innerWidth-tip.offsetWidth-8,Math.max(8,r.left+r.width/2-tip.offsetWidth/2))+'px';tip.style.top=Math.max(8,r.top-tip.offsetHeight-8)+'px'};
+['pointerover','focusin'].forEach(n=>document.addEventListener(n,showTip));['pointerout','focusout'].forEach(n=>document.addEventListener(n,e=>{if(tip&&e.target.closest?.('[data-tip]'))tip.hidden=true}));
+
+Object.assign(L.ru,{tsy:'Учёба'});Object.assign(L.en,{tsy:'Study'});{const tb=document.querySelector('.tabs button[data-t="study"]');if(tb)tb.textContent=t('tsy')}
+window.renderStudy=renderStudy;
+})();
+</script>
 </body></html>
 
