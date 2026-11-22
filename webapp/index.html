@@ -1438,9 +1438,73 @@ html[data-theme=dark] #study{--sy-a:#5b8cff;--sy-a2:#2fb39f;--sy-ok:#5fd0a0;--sy
 .sy-tip{position:fixed;z-index:60;max-width:240px;padding:6px 10px;border-radius:10px;background:var(--nv-text);color:var(--nv-bg);font-size:12.5px;font-weight:600;pointer-events:none;font-variant-numeric:tabular-nums}
 .sy-toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));z-index:55;max-width:calc(100% - 40px);padding:12px 18px!important;border-radius:20px!important;color:var(--nv-text);font-size:14.5px;font-weight:620;opacity:0;transform:translate(-50%,10px);pointer-events:none;transition:opacity .25s ease,transform .35s cubic-bezier(.16,1,.3,1)}
 .sy-toast.on{opacity:1;transform:translate(-50%,0)}
+/* v2: section bar below Telegram's own header, horizontal subject chips, our own checkbox (the generic input rule painted it as a dark square on iOS) */
+#study .sy-nav{top:calc(8px + var(--tg-content-safe-area-inset-top,0px) + var(--tg-safe-area-inset-top,0px))}
+#study .sy-scrollx{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px;scroll-snap-type:x proximity}
+#study .sy-scrollx::-webkit-scrollbar{display:none}
+#study .sy-scrollx>.sy-chip{flex:none;scroll-snap-align:start}
+#study .sy-check input[type=checkbox]{-webkit-appearance:none!important;appearance:none!important;flex:none;width:24px!important;height:24px!important;min-height:24px!important;margin:0;padding:0!important;border:1.5px solid color-mix(in srgb,var(--nv-text) 35%,transparent)!important;border-radius:8px!important;background:var(--nv-panel)!important;box-shadow:none!important;cursor:pointer;transition:background-color .15s ease,border-color .15s ease}
+#study .sy-check input[type=checkbox]:checked{border-color:var(--sy-a)!important;background:var(--sy-a) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 12.5l4 4 9-9'/%3E%3C/svg%3E") center/17px no-repeat!important}
+#study .sy-check input[type=checkbox]:focus-visible{box-shadow:0 0 0 3px color-mix(in srgb,var(--sy-a) 30%,transparent)!important}
+/* official task map: subtopics, FIPI prototypes, results scale */
+#study .sy-subs{display:grid;margin:8px 0 0;padding:0;list-style:none}
+#study .sy-subs li{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;padding:10px 0;border-top:1px solid var(--nv-line)}
+#study .sy-subs li>span:first-child{flex:1 1 190px;min-width:0;font-size:14.5px;line-height:1.4}
+#study .sy-subs b{margin-right:4px;color:var(--sy-a);font-variant-numeric:tabular-nums}
+#study .sy-subact{display:flex;gap:8px;flex:none}
+#study .sy-subact .sy-btn2{min-height:40px;padding:0 12px!important;font-size:13.5px}
+#study .sy-pick{margin-top:14px;padding-top:2px}
+#study .sy-legend i.p2{border-style:dashed}
+#study .sy-fq{margin-top:14px;padding-top:14px;border-top:1px solid var(--nv-line)}
+#study .sy-fqh{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--nv-secondary);font-variant-numeric:tabular-nums}
+#study .sy-fqh span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+#study .sy-fqt{margin-top:8px;font-size:15.5px;line-height:1.55;overflow-x:auto;overflow-wrap:anywhere}
+#study .sy-fqt p{margin:0 0 6px}
+#study .sy-fqt math{font-size:1.08em}
+#study .sy-fqt img{display:block;max-width:100%;height:auto;margin:8px auto;padding:4px;border-radius:10px;background:#fff}
+#study .sy-fqt table{max-width:100%;border-collapse:collapse}
+#study .sy-fqt :is(td,th){padding:4px 6px;border:1px solid var(--nv-line);vertical-align:top}
+#study .sy-fq .sy-acts{margin-top:10px}
+#study .sy-fq .sy-verdict{margin:10px 0 0!important}
+#study .sy-fq>.sy-link{display:block;margin-top:6px}
+#study .sy-max{display:flex;flex-direction:column;margin-top:12px}
+#study .sy-max>span{margin:0 0 6px;font-size:13px;font-weight:620;color:var(--nv-secondary)}
+#study .sy-max>b{display:flex;align-items:center;min-height:46px;padding:0 14px;border:1px dashed var(--nv-line);border-radius:14px;font-size:17px;font-variant-numeric:tabular-nums}
+#study .sy-max>small{margin-top:4px;font-size:12px;color:var(--nv-secondary)}
+#study .sy-tgt{display:flex;align-items:flex-end;gap:10px;margin-top:16px;padding-top:4px}
+#study .sy-tgt .sy-f{flex:1;min-width:0;margin:0}
+/* admissions */
+#study .sy-uni>span small .sy-link{min-height:0;font-size:13px}
+#study .sy-fit{margin-top:14px;padding-top:14px;border-top:1px solid var(--nv-line)}
+#study .sy-fit h4{margin:0;min-width:0}
+#study .sy-fit .sy-verdict{flex:none;margin:0!important;padding:4px 10px;font-size:12.5px}
+#study .sy-fit>b{display:block;margin-top:8px;font-size:13px;color:var(--nv-secondary)}
+#study .sy-fit ul{margin:4px 0 0;padding-left:18px;font-size:14.5px;line-height:1.45}
+/* analytics */
+#study .sy-stat2.sy-stat4{grid-template-columns:repeat(2,minmax(0,1fr))}
+#study .sy-stat2 small{font-size:12px;line-height:1.3;color:var(--nv-secondary)}
+#study .sy-stat2 small .sy-link{min-height:0;font-size:12.5px}
+#study .sy-exs{margin-top:14px;padding-top:14px;border-top:1px solid var(--nv-line)}
+#study .sy-exs h4{margin:0 0 8px}
+#study .sy-tasks.sy-mini{grid-template-columns:repeat(auto-fill,minmax(30px,1fr));gap:5px;margin-top:10px}
+#study .sy-mini .sy-tn{min-height:30px;border-radius:9px!important;font-size:12px}
+#study .sy-weak{margin:8px 0 0;font-size:14px;line-height:1.6}
+#study .sy-weak .sy-link{display:inline;min-height:0;font-size:14px}
+#study .sy-under{margin:-2px 0 8px}
+#study .sy-fqh span:first-child{flex:none;white-space:nowrap}
+#study .sy-taskd h4:not(:first-child){margin-top:16px}
+#study .sy-sum{margin:14px 0 0;font-size:15px;line-height:1.5}
 @media(max-width:370px){#study .sy-grid2,#study .sy-filters{grid-template-columns:1fr}#study .sy-card{padding:16px}#study .sy-grade{grid-template-columns:repeat(2,1fr)}#study .sy-prog{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 38px}}
 @media(prefers-reduced-motion:reduce){#study,#study .sy-flash,.sy-toast{animation:none;transition:none}#study .sy-busy b{animation:none}}
 html:not(#_) .tabs button[data-t=study]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.8 9.2L12 5l9.2 4.2L12 13.4z'/%3E%3Cpath d='M6.5 11.2v4.3c1.6 1.6 3.4 2.3 5.5 2.3s3.9-.7 5.5-2.3v-4.3M21.2 9.2v5.2'/%3E%3C/svg%3E")}
+</style>
+<style id="nuvio-datetime-fix">
+/* iOS Safari draws native date and time fields with their own minimum width (they spill out of a two-column row), centres the value
+   and collapses an empty field. One rule for every section: the field fits its column, the value starts on the left, an empty field keeps its height. */
+html:not(#_) input:is([type=date],[type=time],[type=datetime-local],[type=month]){-webkit-appearance:none!important;appearance:none!important;min-width:0!important;max-width:100%!important;box-sizing:border-box!important;text-align:left!important}
+html:not(#_) input:is([type=date],[type=time],[type=datetime-local],[type=month])::-webkit-date-and-time-value{min-height:1.4em;margin:0;text-align:left}
+html:not(#_) input:is([type=date],[type=time],[type=datetime-local],[type=month])::-webkit-datetime-edit{padding:0}
+:is(.row,.row3)>*{min-width:0}
 </style>
 </head><body>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
@@ -3012,18 +3076,19 @@ function csv(text){
  for(var i=0;i<text.length;i++){var c=text[i];if(c==='"'&&qv&&text[i+1]==='"'){v+='"';i++}else if(c==='"')qv=!qv;else if(c===','&&!qv){row.push(v);v=''}else if((c==='\n'||c==='\r')&&!qv){if(c==='\r'&&text[i+1]==='\n')i++;row.push(v);if(row.some(function(x){return x.trim()}))rows.push(row);row=[];v=''}else v+=c}
  row.push(v);if(row.some(function(x){return x.trim()}))rows.push(row);return rows;
 }
-function dkey(v){var m=String(v).match(/^(\d{4}-\d{2}-\d{2})/);if(m)return m[1];var d=new Date(v);if(!isNaN(d.getTime()))return day(d);m=String(v).match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);return m?m[1]+'-'+pad(m[2])+'-'+pad(m[3]):null}
+function adate(v){var m=String(v||'').match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}(?::\d{2})?)(?:\s*([+-]\d{2}):?(\d{2}))?/);return new Date(m?m[1]+'T'+m[2]+(m[3]?m[3]+':'+m[4]:''):v||'')}
+ function dkey(v){var m=String(v).match(/^(\d{4}-\d{2}-\d{2})/);if(m)return m[1];var d=new Date(v);if(!isNaN(d.getTime()))return day(d);m=String(v).match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);return m?m[1]+'-'+pad(m[2])+'-'+pad(m[3]):null}
 function emptyData(){return {steps:{},mins:{},pulses:{},sleep:{},weights:{}}}
 function apple(xml){
  var doc=new DOMParser().parseFromString(xml,'application/xml');if(doc.querySelector('parsererror'))throw Error(tr('The Apple Health export file is invalid.','Файл экспорта Apple Health повреждён или имеет неверный формат.'));
  var o=emptyData();
  doc.querySelectorAll('Record').forEach(function(r){
-  var type=r.getAttribute('type')||'',v=val(r.getAttribute('value')),s=new Date(r.getAttribute('startDate')||''),e=new Date(r.getAttribute('endDate')||'');if(isNaN(s.getTime()))return;var d=day(s);
+  var type=r.getAttribute('type')||'',v=val(r.getAttribute('value')),s=adate(r.getAttribute('startDate')),e=adate(r.getAttribute('endDate'));if(isNaN(s.getTime()))return;var d=day(s);
   if(type.indexOf('StepCount')>=0)o.steps[d]=(o.steps[d]||0)+v;
   else if(type.indexOf('HeartRate')>=0)(o.pulses[d]||(o.pulses[d]=[])).push(v);
   else if(type.indexOf('SleepAnalysis')>=0&&/Asleep|Core|Deep|REM/.test(r.getAttribute('value')||'')){var m=(e-s)/60000;if(m>0&&m<1440)o.sleep[d]=(o.sleep[d]||0)+m}
  });
- doc.querySelectorAll('Workout').forEach(function(w){var s=new Date(w.getAttribute('startDate')||''),e=new Date(w.getAttribute('endDate')||'');if(!isNaN(s.getTime())&&!isNaN(e.getTime())){var d=day(s);o.mins[d]=(o.mins[d]||0)+Math.max(0,(e-s)/60000)}});
+ doc.querySelectorAll('Workout').forEach(function(w){var s=adate(w.getAttribute('startDate')),e=adate(w.getAttribute('endDate'));if(!isNaN(s.getTime())&&!isNaN(e.getTime())){var d=day(s);o.mins[d]=(o.mins[d]||0)+Math.max(0,(e-s)/60000)}});
  return o;
 }
 function googleCsv(path,text,o){
@@ -3322,7 +3387,6 @@ let toastT=0;function toast(m){let el=$('syToast');if(!el){el=document.createEle
 
 /* ---------- registries: add a country, system or exam by adding one entry ---------- */
 const COUNTRIES=['RU','US','GB','DE','FR','ES','IT','NL','CH','AT','SE','FI','PL','CZ','CA','AU','NZ','IE','JP','KR','CN','HK','SG','IN','AE','TR','IL','KZ','UZ','BY','AM','GE','AZ','BR','MX','AR'];
-const UNI_C={RU:'Russian Federation',CZ:'Czech Republic',KR:'Korea, Republic of',HK:'Hong Kong'};
 const LANGS=['ru','en','de','fr','es','it','zh','ja','ko','ar','tr','kk','uz','pt'];
 const SYSTEMS=[{id:'ru-school',c:'RU',ru:'Российская школа',en:'Russian school'},{id:'us-hs',c:'US',ru:'Американская школа (High School)',en:'US high school'},{id:'uk',c:'GB',ru:'Британская (GCSE, A level)',en:'UK (GCSE, A level)'},
  {id:'ib',c:'INT',ru:'International Baccalaureate',en:'International Baccalaureate'},{id:'cambridge',c:'INT',ru:'Cambridge International',en:'Cambridge International'},
@@ -3331,14 +3395,42 @@ const LEVELS=[['school','Школа','School'],['college','Колледж','Coll
 const TYPES={admission:['Вступительный','Admission'],language:['Языковой','Language'],school:['Выпускной / программа','School-leaving / programme'],subject:['Предметный','Subject']};
 // Facts are only what the official site showed when checked (date in `checked`). Exams without verified facts show a link instead of guesses.
 const CHECKED='2026-11-22';
-const EGE_MATH={name:['Математика (профильный уровень)','Mathematics (profile level)'],spec:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',year:2027,total:32,minutes:235,
- // [number, part, level Б/П/В, max points, ru, en] — from the FIPI 2027 specification (generalised plan of the variant)
- tasks:[[1,1,'Б',1,'Планиметрия','Plane geometry'],[2,1,'Б',1,'Векторы','Vectors'],[3,1,'Б',1,'Стереометрия','Solid geometry'],[4,1,'Б',1,'Вероятность','Probability'],
-  [5,1,'П',1,'Вероятность: сложение, умножение, полная вероятность','Probability: rules, total probability'],[6,1,'Б',1,'Уравнения','Equations'],[7,1,'Б',1,'Вычисления и преобразования','Calculations and transformations'],
-  [8,1,'Б',1,'Функции, производная, первообразная','Functions, derivative, antiderivative'],[9,1,'П',1,'Моделирование реальных ситуаций','Modelling real situations'],[10,1,'П',1,'Текстовые задачи','Word problems'],
-  [11,1,'П',1,'Функции и графики','Functions and graphs'],[12,1,'П',1,'Наибольшее и наименьшее значение функции','Maximum and minimum of a function'],
-  [13,2,'П',2,'Уравнения, неравенства, системы','Equations, inequalities, systems'],[14,2,'П',3,'Стереометрическая задача','Solid geometry problem'],[15,2,'П',2,'Уравнения, неравенства, системы','Equations, inequalities, systems'],
-  [16,2,'П',2,'Моделирование, финансовая математика','Modelling, financial maths'],[17,2,'П',3,'Планиметрическая задача','Plane geometry problem'],[18,2,'В',4,'Задача с параметром','Problem with a parameter'],[19,2,'В',4,'Числа и их свойства','Numbers and their properties']]};
+/* ---------- official ЕГЭ/ОГЭ data: data/fipi-2027.json, built from the FIPI 2027 specifications and the FIPI open task bank ---------- */
+// Subject: {id, ru, en, proj, spec, minutes, total, maxPrimary, themes:[[code,name]], tasks:[[n, level Б/П/В, maxPoints, label, skill, [subtopic codes]]]}
+let FIPI=null,fipiP=null;
+function loadFipi(){if(FIPI)return Promise.resolve(FIPI);return fipiP||(fipiP=fetch('data/fipi-2027.json').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(j=>{V.fipiErr='';return FIPI=j}).catch(e=>{fipiP=null;V.fipiErr=String(e.message||e);throw e}))}
+// true while the data is loading; the caller shows a placeholder and the view re-renders when it arrives
+const waitFipi=()=>{if(FIPI)return false;if(!V.fipiErr)loadFipi().then(render,render);return true};
+const fipiWait=()=>V.fipiErr?'<div class="sy-empty"><b>'+tr('Official exam data did not load','Официальные данные экзамена не загрузились')+'</b><p>'+E(V.fipiErr)+'</p><button class="sy-btn2" data-sy="fipiretry">'+tr('Try again','Повторить')+'</button></div>':busyBox(tr('Loading the official FIPI structure…','Загружаю официальную структуру ФИПИ…'));
+const offList=x=>x?.fipi?(FIPI?FIPI[x.fipi]:null):x?.sections?x.sections.map(s=>({id:s[0],ru:s[0],en:s[0]})):null;
+const offSubj=(x,id)=>(offList(x)||[]).find(s=>s.id===id)||null;
+const offName=s=>s?(ru()?s.ru:s.en):'';
+const bankOf=(x,s)=>x?.fipi&&s?.proj&&FIPI?FIPI.sources.bank[x.fipi]+s.proj:x?.bank||x?.url;
+const mySubs=x=>(x&&D.prof.subj?.[x.id])||[];
+const tkey=(exId,sid)=>exId+':'+sid;
+// task stats per exam subject, one CloudStorage value each: {taskNo:[correct,wrong], k:{codifierCode:[correct,wrong]}}
+const gkey=k=>'sy_g_'+k.replace(/[^A-Za-z0-9_-]/g,'_'),statLoading=new Set();
+function needStat(k){if(D.ege[k]||statLoading.has(k))return;statLoading.add(k);jget(gkey(k),{}).then(v=>{if(!D.ege[k])D.ege[k]=v&&typeof v==='object'?v:{};statLoading.delete(k);render()})}
+async function bump(k,n,right,codes){if(!D.ege[k])D.ege[k]=(await jget(gkey(k),{}))||{};const g=D.ege[k],inc=(o,key)=>{const s=o[key]||[0,0];s[right?0:1]++;o[key]=s};
+ inc(g,'n');if(n)inc(g,n);if(codes?.length){g.k=g.k||{};codes.forEach(c=>inc(g.k,c))}await st.set(gkey(k),JSON.stringify(g))}
+const tstat=(exId,sid,n)=>{const k=tkey(exId,sid);needStat(k);return (D.ege[k]||{})[n]||[0,0]};
+const tstate=s=>!s[0]&&!s[1]?'':s[0]>=3&&s[0]/(s[0]+s[1])>=.75?'ok':'work';
+const cut=(s,n)=>{s=String(s??'');return s.length>n?s.slice(0,n-1)+'…':s};
+const themeName=(S,code)=>(S?.themes?.find(t=>t[0]===code)||[,''])[1];
+const LEVEL={'Б':['basic','базовый'],'П':['advanced','повышенный'],'В':['high','высокий']};
+// FIPI task HTML (MathML) as plain text for the tutor: fractions, powers and roots keep their structure
+function mmlText(html){const d=document.createElement('div');d.innerHTML=html;const w=n=>{if(n.nodeType===3)return n.nodeValue;const t=(n.localName||'').toLowerCase(),c=[...n.childNodes].map(w);
+ if(t==='mfrac')return '('+c[0]+')/('+c[1]+')';if(t==='msup')return c[0]+'^('+c[1]+')';if(t==='msub')return c[0]+'_'+c[1];if(t==='msubsup')return c[0]+'_'+c[1]+'^('+c[2]+')';
+ if(t==='msqrt')return '√('+c.join('')+')';if(t==='mroot')return '('+c[0]+')^(1/'+c[1]+')';if(t==='img')return ' ['+tr('figure','рисунок')+'] ';if(t==='p'||t==='br'||t==='tr')return c.join('')+'\n';return c.join('')};
+ return w(d).replace(/[ \t]+/g,' ').replace(/\n\s*\n+/g,'\n').trim()}
+// Learning topics prefilled from the FIPI codifier: sections and their topics, or sections only when everything does not fit one storage value
+function codifierTopics(S){const mk=(c,n,p)=>({id:uid(),n:cut(c+' '+n,60),p,m:0}),roots=S.themes.filter(t=>!t[0].includes('.')).map(r=>[r,mk(r[0],r[1],null)]);
+ const all=roots.flatMap(([r,R])=>[R,...S.themes.filter(t=>t[0].split('.').length===2&&t[0].startsWith(r[0]+'.')).map(c=>mk(c[0],c[1],R.id))]);
+ return JSON.stringify(all).length<=3800?all:roots.map(x=>x[1])}
+// FIPI panel: redraw in place (keeps the page and typed answers), load the next page of the bank
+const keepFa=()=>V.fp?.items.forEach((q,i)=>{const el=$('syFa'+i);if(el)q.ans=el.value.trim()});
+function drawFipi(scroll){const el=$('syFipi');if(!el)return render();el.innerHTML=fipiPanel();if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'})}
+async function loadFp(){const P=V.fp;try{const j=await api('/fipi',{exam:P.ex,proj:P.proj,theme:P.theme,page:P.page});if(V.fp!==P)return;P.items.push(...(j.items||[]));P.more=!!j.more&&(j.items||[]).length>0;if(j.source)P.bank=j.source}catch(e){P.err=friendlyError(e)}P.busy=false;if(V.fp===P)drawFipi()}
 const EXAMS=[
  {id:'sat',name:'SAT',org:'College Board',c:'US',sys:'us-hs',type:'admission',url:'https://satsuite.collegeboard.org/sat',
   sections:[['Reading and Writing',54,64],['Math',44,70]],facts:{ru:['Общее время 2 ч 14 мин, 98 вопросов, перерыв 10 минут между разделами','Цифровой формат с адаптивными модулями, приложение Bluebook'],en:['2 h 14 min, 98 questions, 10-minute break between sections','Digital and adaptive by module, taken in the Bluebook app']}},
@@ -3356,9 +3448,8 @@ const EXAMS=[
  {id:'pte',name:'PTE Academic',org:'Pearson',c:'INT',type:'language',url:'https://www.pearsonpte.com'},
  {id:'ege',name:'ЕГЭ',en:'Unified State Exam (EGE)',org:'Рособрнадзор, ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/ege',
   facts:{ru:['Форма государственной итоговой аттестации по программам среднего общего образования','Русский язык и математика обязательны, остальные предметы — по выбору','Экзамен письменный на русском языке, иностранные языки — с устной частью'],en:['State final attestation for secondary general education in Russia','Russian and mathematics are compulsory, other subjects are optional','Written, in Russian; foreign languages also have an oral part']},
-  subjects:['Русский язык','Математика','Физика','Химия','История','Обществознание','Информатика','Биология','География','Английский язык','Немецкий язык','Французский язык','Испанский язык','Китайский язык','Литература'],
-  bank:'https://ege.fipi.ru/bank/index.php?proj=AC437B34557F88EA4115D2F374B0A07B',demo:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',math:EGE_MATH,extra:[['Банк задач (Профиматика)','https://bank-zadach.ru/tasks']]},
- {id:'oge',name:'ОГЭ',en:'Basic State Exam (OGE)',org:'ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/oge',
+  bank:'https://ege.fipi.ru/bank/index.php?proj=AC437B34557F88EA4115D2F374B0A07B',demo:'https://fipi.ru/ege/demoversii-specifikacii-kodifikatory',fipi:'ege',extra:[['Банк задач (Профиматика)','https://bank-zadach.ru/tasks']]},
+ {id:'oge',name:'ОГЭ',en:'Basic State Exam (OGE)',org:'ФИПИ',c:'RU',sys:'ru-school',type:'school',url:'https://fipi.ru/oge',fipi:'oge',demo:'https://fipi.ru/oge/demoversii-specifikacii-kodifikatory',
   facts:{ru:['Форма государственной итоговой аттестации по программам основного общего образования','4 экзамена: русский язык и математика обязательны, ещё два — по выбору'],en:['State final attestation for basic general education in Russia','4 exams: Russian and mathematics are compulsory, two more are chosen']}}
 ];
 window.NUVIO_STUDY_EXAMS=EXAMS; // other scripts can push new exams with the same shape
@@ -3370,7 +3461,11 @@ const KEYS={prof:'sy_prof',subj:'sy_subj',plan:'sy_plan',adm:'sy_adm',sess:'sy_s
 const D={prof:{},subj:[],plan:[],adm:[],sess:[],quiz:{},ege:{},timer:null,tutor:[],topics:{},mats:{},cards:{},res:{},err:{},loaded:false};
 async function load(){if(D.loaded)return;const g=(k,d)=>jget(k,d).then(v=>v??d);
  [D.prof,D.subj,D.plan,D.adm,D.sess,D.quiz,D.ege,D.timer,D.tutor]=await Promise.all([g(KEYS.prof,{}),g(KEYS.subj,[]),loadPlan(),g(KEYS.adm,[]),g(KEYS.sess,[]),g(KEYS.quiz,{}),g(KEYS.ege,{}),g(KEYS.timer,null),g(KEYS.tutor,[])]);
- D.prof.exams=D.prof.exams||[];D.prof.dates=D.prof.dates||{};D.prof.target=D.prof.target||{};D.prof.goals=D.prof.goals||[];D.loaded=true}
+ D.prof.exams=D.prof.exams||[];D.prof.dates=D.prof.dates||{};D.prof.target=D.prof.target||{};D.prof.goals=D.prof.goals||[];D.prof.subj=D.prof.subj||{};
+ // v1 kept one map {taskNo:[ok,wrong,time]} for profile maths only: move it to the per-subject key
+ const old=D.ege||{};D.ege={};if(Object.keys(old).some(k=>/^\d+$/.test(k))){const m={};for(const[k,v] of Object.entries(old))if(/^\d+$/.test(k)&&Array.isArray(v))m[k]=[+v[0]||0,+v[1]||0];
+  D.ege['ege:math_prof']=m;await st.set(gkey('ege:math_prof'),JSON.stringify(m));await st.del(KEYS.ege);if(D.prof.exams.includes('ege')&&!mySubs(exam('ege')).length){D.prof.subj.ege=['math_prof'];await st.set(KEYS.prof,JSON.stringify(D.prof))}}
+ D.loaded=true}
 // One CloudStorage value holds 4096 chars: lists that must not lose data refuse to grow and tell the user.
 async function put(k,v){const s=JSON.stringify(v);if(s.length>4000)throw new Error(tr('This list is full (Telegram storage limit). Remove older items first.','Список заполнен (лимит хранилища Telegram). Удалите старые записи.'));await st.set(k,s)}
 const safePut=async(k,v)=>{try{await put(k,v);return true}catch(e){note(e.message);return false}};
@@ -3398,12 +3493,14 @@ async function wellbeing(){const out={};try{const s=(HL?.d?.sleep||[]).slice().s
  try{const m=(await jget('nuvio_mood_entries',[])).find(e=>e.date===today());if(m)out.mood=m.value}catch{}return out}
 async function linkGoal(x){const d=D.prof.dates[x.id];if(!d){note(tr('Set the exam date first.','Сначала укажите дату экзамена.'));return}
  if(D.prof.goalOf?.[x.id]&&goals.some(g=>g.id===D.prof.goalOf[x.id])){showTab('g');return}
- const res=(D.res[x.id]||[]).filter(r=>r.k!=='official'),last=res[res.length-1],tgt=Number(D.prof.target[x.id]);const num=last&&tgt&&last.s!==tgt;
- const ng={id:Date.now().toString(36),title:tr('Prepare for ','Подготовка к ')+exName(x),unit:num?tr('points','баллов'):'',from:num?last.s:null,to:num?tgt:null,deadline:d,created:+pd(today()),made:Date.now(),log:[],steps:[],sd:[],nd:0};
- goals.push(ng);await saveGoal(ng);D.prof.goalOf={...(D.prof.goalOf||{}),[x.id]:ng.id};await put(KEYS.prof,D.prof);ok(tr('Goal created in Goals','Цель создана в «Целях»'));render()}
+ // targets are kept per subject and scale ("ege:math_prof:p"); the first one with a number gives the goal its start and finish
+ const tk=Object.keys(D.prof.target).find(k=>k.startsWith(x.id+':')&&num(D.prof.target[k])!=null),[,sub='',sc='p']=tk?tk.split(':'):[],sid=sub==='_'?'':sub,tgt=num(tk?D.prof.target[tk]:D.prof.target[x.id]);
+ const res=(D.res[x.id]||[]).filter(r=>r.k!=='official'&&(!tk||((r.sub||'')===sid&&(r.sc||'p')===sc))),last=res[res.length-1],has=last&&tgt!=null&&last.s!==tgt,S=sid&&offSubj(x,sid);
+ const ng={id:Date.now().toString(36),title:tr('Prepare for ','Подготовка к ')+exName(x)+(S?' · '+offName(S):''),unit:has?tr('points','баллов'):'',from:has?last.s:null,to:has?tgt:null,deadline:d,created:+pd(today()),made:Date.now(),log:[],steps:[],sd:[],nd:0};
+ if(has&&sid)ng.sub=sid;goals.push(ng);await saveGoal(ng);D.prof.goalOf={...(D.prof.goalOf||{}),[x.id]:ng.id};await put(KEYS.prof,D.prof);ok(tr('Goal created in Goals','Цель создана в «Целях»'));render()}
 
 /* ---------- state ---------- */
-const V={tab:'home',d:null,sub:'',f:{c:'',s:'',t:''},tutor:{mode:'explain',exam:'',img:null,busy:false,res:null,err:''},quiz:null,review:null,setup:0,ai:{},unis:{items:null,busy:false,err:''},cmp:[]};
+const V={tab:'home',d:null,sub:'',f:{c:'',s:'',t:''},tutor:{mode:'',exam:null,img:null,busy:false,res:null,err:''},quiz:null,review:null,setup:0,ai:{},unis:{items:null,busy:false,err:''},cmp:[]};
 const TABS=[['home','Обзор','Overview'],['learn','Предметы','Learning'],['exams','Экзамены','Exams'],['tutor','Репетитор','AI Tutor'],['adm','Поступление','Admissions'],['plan','План','Planner'],['stats','Аналитика','Analytics']];
 const MASTERY=[['Не начато','Not started'],['Знакомо','Familiar'],['Понимаю','Understand'],['Уверенно','Confident'],['Освоено','Mastered']];
 const ST_ADM=[['research','Изучаю','Researching'],['docs','Готовлю документы','Preparing documents'],['sent','Подано','Submitted'],['interview','Интервью','Interview'],['offer','Принят','Offer'],['wait','Лист ожидания','Waitlist'],['reject','Отказ','Rejected']];
@@ -3477,8 +3574,14 @@ function planRow(x){const late=x.d<today();return '<li class="sy-task'+(x.done?'
 VIEWS.learn=()=>{if(V.d?.k==='subj')return VIEWS.subject();
  let h='<header class="sy-head"><h2>'+tr('Learning','Предметы')+'</h2></header>';
  h+=D.subj.length?'<ul class="sy-list">'+D.subj.map(s=>{const m=mastery(s.id),dc=dueCards(s.id);return '<li><button class="sy-row" data-sy="subj" data-id="'+s.id+'"><span><b>'+E(s.n)+'</b><small>'+(s.ex?E(exName(exam(s.ex)))+' · ':'')+(D.topics[s.id]?(D.topics[s.id].length+' '+tr('topics','тем')):tr('open','открыть'))+(dc?' · '+dc+' '+tr('cards due','к повторению'):'')+'</small></span>'+(m!=null?'<b class="sy-pct">'+m+'%</b>':'')+'<i class="sy-chev" aria-hidden="true"></i></button></li>'}).join('')+'</ul>'
-  :empty(tr('No subjects yet','Предметов пока нет'),tr('Add a subject to track topics, keep notes, make flashcards and tests.','Добавьте предмет, чтобы отмечать темы, вести конспекты, делать карточки и тесты.'));
- h+='<section class="sy-card"><h3>'+tr('New subject','Новый предмет')+'</h3><div class="sy-grid2">'+inp('sySubN',tr('Name','Название'),'','text','maxlength="40" placeholder="'+tr('e.g. Algebra','например, Алгебра')+'"')+sel('sySubE',[['',tr('No exam','Без экзамена')],...EXAMS.map(x=>[x.id,exName(x)])],'',tr('For exam','Для экзамена'))+'</div><button class="p" data-sy="addsubj">'+tr('Add subject','Добавить предмет')+'</button></section>';
+  :empty(tr('No subjects yet','Предметов пока нет'),tr('Pick an exam and its subject, or add your own subject.','Выберите экзамен и его предмет или добавьте свой предмет.'));
+ // new subject: the exam first, then its official subject list (ЕГЭ/ОГЭ from FIPI, sections for SAT/IELTS) or a free name
+ const exId=V.f.newEx||'',x=exam(exId),list=offList(x);
+ h+='<section class="sy-card"><h3>'+tr('New subject','Новый предмет')+'</h3>'+sel('sySubE',[['',tr('No exam','Без экзамена')],...EXAMS.map(e=>[e.id,exName(e)])],exId,tr('Exam','Экзамен'),'data-sy-f="newEx"');
+ if(x?.fipi&&!FIPI){waitFipi();h+=fipiWait()}
+ else if(list)h+=sel('sySubP',[['',tr('Choose a subject','Выберите предмет')],...list.filter(s=>!D.subj.some(d=>d.ex===exId&&d.ref===s.id)).map(s=>[s.id,offName(s)])],'',tr('Subject','Предмет'));
+ else h+=inp('sySubN',tr('Name','Название'),'','text','maxlength="40" placeholder="'+(exId==='ap'?tr('e.g. AP Calculus AB','например, AP Calculus AB'):tr('e.g. Algebra','например, Алгебра'))+'"');
+ h+='<button class="p" data-sy="addsubj">'+tr('Add subject','Добавить предмет')+'</button></section>';
  D.subj.forEach(s=>{if(!D.topics[s.id])subjData(s.id).then(()=>{if(V.tab==='learn'&&!V.d)render()})});return h};
 VIEWS.subject=()=>{const sid=V.d.id,s=D.subj.find(x=>x.id===sid);if(!s){V.d=null;return VIEWS.learn()}if(!D.topics[sid]){subjData(sid).then(render);return busyBox(tr('Loading…','Загрузка…'))}
  const sub=V.sub||'topics',T=[['topics','Темы','Topics'],['mats','Материалы','Materials'],['cards','Карточки','Cards'],['quiz','Тест','Test']];
@@ -3518,73 +3621,137 @@ VIEWS.exams=()=>{if(V.d?.k==='exam')return VIEWS.exam();const f=V.f,list=EXAMS.f
  let h='<header class="sy-head"><h2>'+tr('Exams','Экзамены')+'</h2><p>'+tr('International catalog. Facts come from official sites; follow the links for full details.','Международный каталог. Сведения — с официальных сайтов, подробности по ссылкам.')+'</p></header>';
  if(mine.length)h+='<section class="sy-card"><h3>'+tr('My exams','Мои экзамены')+'</h3><ul class="sy-list">'+mine.map(x=>examRow(x,true)).join('')+'</ul></section>';
  const cs=[...new Set(EXAMS.map(x=>x.c))],ss=[...new Set(EXAMS.map(x=>x.sys).filter(Boolean))];
- h+='<div class="sy-filters">'+sel('syFC',[['',tr('All countries','Все страны')],...cs.map(c=>[c,region(c)])],f.c,tr('Country','Страна'),'data-sy-f="c"')+sel('syFS',[['',tr('All systems','Все системы')],...ss.map(s=>[s,(x=>ru()?x.ru:x.en)(SYSTEMS.find(y=>y.id===s)||{ru:s,en:s})])],f.s,tr('System','Система'),'data-sy-f="s"')+sel('syFT',[['',tr('All types','Все типы')],...Object.entries(TYPES).map(([k,v])=>[k,ru()?v[0]:v[1]])],f.t,tr('Type','Тип'),'data-sy-f="t"')+'</div>';
+ h+='<div class="sy-filters">'+sel('syFC',[['',tr('All countries','Все страны')],...cs.map(c=>[c,region(c)])],f.c,tr('Country','Страна'),'data-sy-f="c"')+sel('syFS',[['',tr('All systems','Все системы')],...ss.map(s=>[s,(y=>ru()?y.ru:y.en)(SYSTEMS.find(z=>z.id===s)||{ru:s,en:s})])],f.s,tr('System','Система'),'data-sy-f="s"')+sel('syFT',[['',tr('All types','Все типы')],...Object.entries(TYPES).map(([k,v])=>[k,ru()?v[0]:v[1]])],f.t,tr('Type','Тип'),'data-sy-f="t"')+'</div>';
  h+=list.length?'<ul class="sy-list">'+list.map(x=>examRow(x)).join('')+'</ul>':empty(tr('No exams match','Ничего не найдено'),tr('Change the filters.','Измените фильтры.'));return h};
-const examRow=(x,mine)=>'<li><button class="sy-row" data-sy="exam" data-id="'+x.id+'"><span><b>'+E(exName(x))+'</b><small>'+E(region(x.c))+' · '+(ru()?TYPES[x.type][0]:TYPES[x.type][1])+(mine&&D.prof.dates[x.id]?' · '+fd(D.prof.dates[x.id])+' ('+diff(D.prof.dates[x.id])+' '+tr('d','дн.')+')':'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>';
+const examRow=(x,mine)=>{const subs=mine&&offList(x)?mySubs(x).map(id=>offName(offSubj(x,id))).filter(Boolean):[];return '<li><button class="sy-row" data-sy="exam" data-id="'+x.id+'"><span><b>'+E(exName(x))+'</b><small>'+(subs.length?E(cut(subs.join(', '),70)):E(region(x.c))+' · '+(ru()?TYPES[x.type][0]:TYPES[x.type][1]))+(mine&&D.prof.dates[x.id]?' · '+fd(D.prof.dates[x.id])+' ('+diff(D.prof.dates[x.id])+' '+tr('d','дн.')+')':'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>'};
 VIEWS.exam=()=>{const x=exam(V.d.id);if(!x){V.d=null;return VIEWS.exams()}if(!D.res[x.id]){examData(x.id).then(render);return busyBox(tr('Loading…','Загрузка…'))}
  const sub=V.sub||'about',T=[['about','Обзор','Overview'],['prep','Подготовка','Prepare'],['res','Результаты','Results'],['err','Ошибки','Mistakes'],['plan','План','Plan']],mine=D.prof.exams.includes(x.id);
  let h=back(tr('Exams','Экзамены'))+'<header class="sy-head"><h2>'+E(exName(x))+'</h2><p>'+E(x.org)+' · '+E(region(x.c))+'</p></header><div class="sy-seg" role="tablist">'+T.map(([k,r,e])=>'<button role="tab" aria-selected="'+(sub===k)+'" data-sy="sub" data-v="'+k+'"'+(sub===k?' class="on"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</div>';
  if(sub==='about'){const fa=x.facts?.[ru()?'ru':'en'];
-  h+='<section class="sy-card">'+(fa?'<ul class="sy-facts">'+fa.map(f=>'<li>'+E(f)+'</li>').join('')+'</ul>':empty(tr('Format details are on the official site','Подробности формата — на официальном сайте'),tr('We only show facts checked on the official site. This one could not be verified yet.','Мы показываем только сведения, проверенные на официальном сайте. Для этого экзамена их пока не удалось проверить.')));
+  h+='<section class="sy-card">'+(fa?'<ul class="sy-facts">'+fa.map(t=>'<li>'+E(t)+'</li>').join('')+'</ul>':empty(tr('Format details are on the official site','Подробности формата — на официальном сайте'),tr('We only show facts checked on the official site. This one could not be verified yet.','Мы показываем только сведения, проверенные на официальном сайте. Для этого экзамена их пока не удалось проверить.')));
   if(x.sections)h+='<table class="sy-tbl"><thead><tr><th>'+tr('Section','Раздел')+'</th><th>'+tr('Questions','Вопросов')+'</th><th>'+tr('Time','Время')+'</th></tr></thead><tbody>'+x.sections.map(([n,q,m])=>'<tr><td>'+E(n)+'</td><td>'+(q??'—')+'</td><td>'+E(m)+' '+tr('min','мин')+'</td></tr>').join('')+'</tbody></table>';
-  if(x.subjects)h+='<p class="sy-muted"><b>'+tr('Subjects: ','Предметы: ')+'</b>'+x.subjects.map(E).join(', ')+'</p>';
   h+='<p class="sy-src">'+tr('Source: ','Источник: ')+OFFICIAL(x.url)+(x.facts?' · '+tr('checked ','проверено ')+fd(CHECKED):'')+'</p></section>';
-  h+='<section class="sy-card"><h3>'+tr('My preparation','Моя подготовка')+'</h3><button class="'+(mine?'sy-btn2':'p')+' sy-wide" data-sy="togexam" data-id="'+x.id+'">'+(mine?tr('Remove from my exams','Убрать из моих экзаменов'):tr('I am preparing for this exam','Я готовлюсь к этому экзамену'))+'</button>'+
-   (mine?'<div class="sy-grid2">'+inp('syExD',tr('Exam date','Дата экзамена'),D.prof.dates[x.id]||'','date')+inp('syExT',tr('Target score','Целевой балл'),D.prof.target[x.id]||'','text','inputmode="decimal" maxlength="8"')+'</div><div class="sy-acts"><button class="sy-btn2" data-sy="goal" data-id="'+x.id+'">'+(D.prof.goalOf?.[x.id]?tr('Open goal','Открыть цель'):tr('Create goal in Goals','Создать цель в «Целях»'))+'</button><button class="p" data-sy="saveex" data-id="'+x.id+'">'+tr('Save','Сохранить')+'</button></div>':'')+'</section>'}
+  h+='<section class="sy-card"><h3>'+tr('My preparation','Моя подготовка')+'</h3><button class="'+(mine?'sy-btn2':'p')+' sy-wide" data-sy="togexam" data-id="'+x.id+'">'+(mine?tr('Remove from my exams','Убрать из моих экзаменов'):tr('I am preparing for this exam','Я готовлюсь к этому экзамену'))+'</button>';
+  if(mine){const L=offList(x);
+   if(x.fipi&&!FIPI){waitFipi();h+=fipiWait()}
+   else if(L)h+='<h4>'+tr('My subjects','Мои предметы')+'</h4><div class="sy-chips" role="group" aria-label="'+tr('My subjects','Мои предметы')+'">'+L.map(s=>{const on=mySubs(x).includes(s.id);return '<button class="sy-chip'+(on?' on':'')+'" data-sy="esubpick" data-v="'+E(s.id)+'" aria-pressed="'+on+'">'+E(offName(s))+'</button>'}).join('')+'</div>';
+   h+='<div class="sy-grid2">'+inp('syExD',tr('Exam date','Дата экзамена'),D.prof.dates[x.id]||'','date')+'<span></span></div><div class="sy-acts"><button class="sy-btn2" data-sy="goal" data-id="'+x.id+'">'+(D.prof.goalOf?.[x.id]?tr('Open goal','Открыть цель'):tr('Create goal in Goals','Создать цель в «Целях»'))+'</button><button class="p" data-sy="saveex" data-id="'+x.id+'">'+tr('Save','Сохранить')+'</button></div>'}
+  h+='</section>'}
  else if(sub==='prep')h+=prepView(x);
  else if(sub==='res')h+=resultsView(x);
  else if(sub==='err')h+=errorsView(x);
  else h+=examPlanView(x);
  return h};
-function prepView(x){let h='<section class="sy-card"><h3>'+tr('Official materials','Официальные материалы')+'</h3><ul class="sy-links"><li>'+OFFICIAL(x.url)+'</li>'+(x.demo?'<li><span>'+tr('Demo versions, specifications','Демоверсии и спецификации')+'</span>'+OFFICIAL(x.demo)+'</li>':'')+(x.bank?'<li><span>'+tr('FIPI open task bank','Открытый банк заданий ФИПИ')+'</span>'+OFFICIAL(x.bank)+'</li>':'')+'</ul>'+
+// subject chips for an exam view; returns [html, current subject] (official list for ЕГЭ/ОГЭ, sections for SAT/IELTS)
+function subjChips(x,key){const L=offList(x);if(!L)return['',null];const my=mySubs(x),list=my.length?L.filter(s=>my.includes(s.id)):L,cur=list.find(s=>s.id===V.f[key])||list[0];
+ return['<div class="sy-chips sy-scrollx" role="tablist">'+list.map(s=>'<button role="tab" class="sy-chip'+(s===cur?' on':'')+'" data-sy="fchip" data-k="'+key+'" data-v="'+E(s.id)+'" aria-selected="'+(s===cur)+'">'+E(offName(s))+'</button>').join('')+'</div>'+(my.length||!x.fipi?'':'<p class="sy-muted">'+tr('Mark your subjects in Overview to see only them.','Отметьте свои предметы в «Обзоре», чтобы видеть только их.')+'</p>'),cur]}
+function prepView(x){let h='<section class="sy-card"><h3>'+tr('Official materials','Официальные материалы')+'</h3><ul class="sy-links"><li>'+OFFICIAL(x.url)+'</li>'+(x.demo?'<li><span>'+tr('Demo versions, specifications','Демоверсии и спецификации')+'</span>'+OFFICIAL(x.demo)+'</li>':'')+'</ul>'+
  (x.extra?'<p class="sy-muted">'+tr('Third-party: ','Сторонние ресурсы: ')+x.extra.map(([n,u])=>E(n)+' '+OFFICIAL(u)).join(' · ')+'</p>':'')+'</section>';
- if(x.math){const M=x.math,ms=D.ege;h+='<section class="sy-card"><div class="sy-ch"><h3>'+E(ru()?M.name[0]:M.name[1])+'</h3><span>'+M.tasks.length+' '+tr('tasks','заданий')+' · '+M.total+' '+tr('primary points','перв. баллов')+' · '+hm(M.minutes)+'</span></div>'+
-  '<p class="sy-muted">'+tr('Task numbers and skills follow the FIPI ','Номера и проверяемые умения — по спецификации ФИПИ ')+M.year+tr(' specification. Tap a number to practise.',' г. Нажмите на номер, чтобы тренироваться.')+'</p><div class="sy-tasks">'+M.tasks.map(([n,part])=>{const s=ms[n]||[0,0],stt=!s[0]&&!s[1]?'':s[0]>=3&&s[0]/(s[0]+s[1])>=.75?'ok':'work';return '<button class="sy-tn p'+part+' '+stt+(V.task===n?' sel':'')+'" data-sy="task" data-v="'+n+'" aria-label="'+tr('Task ','Задание ')+n+'">'+n+'</button>'}).join('')+'</div>'+
-  '<p class="sy-legend"><i class="ok"></i>'+tr('mastered','освоено')+' <i class="work"></i>'+tr('needs practice','нужно повторить')+' <i></i>'+tr('not started','не начато')+'</p>';
-  if(V.task){const t=M.tasks.find(r=>r[0]===V.task),s=ms[V.task]||[0,0];h+='<div class="sy-taskd"><h4>'+tr('Task ','Задание ')+t[0]+' · '+E(ru()?t[4]:t[5])+'</h4><p class="sy-muted">'+tr('Part ','Часть ')+t[1]+' · '+tr('level ','уровень ')+t[2]+' · '+tr('max ','макс. ')+t[3]+' '+tr('pt','балл.')+' · '+tr('solved ','решено ')+s[0]+' · '+tr('mistakes ','ошибок ')+s[1]+'</p>'+
-   '<div class="sy-acts sy-wrap"><button class="sy-btn2" data-sy="open" data-u="'+E(x.bank)+'">'+tr('FIPI bank','Банк ФИПИ')+' ↗</button><button class="sy-btn2" data-sy="totutor" data-v="'+t[0]+'">'+tr('Solve with tutor','Разобрать с репетитором')+'</button><button class="sy-btn2" data-sy="similar" data-v="'+t[0]+'">'+tr('Practice tasks (AI)','Тренировочные задания (ИИ)')+'</button></div>'+
-   '<div class="sy-acts"><button class="sy-btn2" data-sy="egemark" data-v="1">'+tr('Solved it','Решил(а)')+'</button><button class="sy-btn2" data-sy="egemark" data-v="0">'+tr('Made a mistake','Ошибся(лась)')+'</button></div><div id="syEgeAi">'+(V.ai.ege?.html||'')+'</div></div>'}
-  h+='</section>'}
- else h+='<section class="sy-card"><h3>'+tr('Practice','Тренировка')+'</h3>'+inp('syPrT',tr('Section or topic','Раздел или тема'),'','text','maxlength="80" placeholder="'+E(x.sections?x.sections[0][0]:'')+'"')+'<button class="p" data-sy="practice" data-id="'+x.id+'">'+tr('Generate practice','Создать задания')+'</button>'+genNote()+'<div id="syPrAi">'+(V.ai.pr?.html||'')+'</div></section>';
- return h}
-function resultsView(x){const rs=D.res[x.id];let h='<section class="sy-card"><h3>'+tr('Add a result','Добавить результат')+'</h3><p class="sy-muted">'+tr('Your own mock tests, practice and official results.','Ваши пробники, тренировки и официальные результаты.')+'</p><div class="sy-grid2">'+inp('syRD',tr('Date','Дата'),today(),'date')+sel('syRK',[['mock',tr('Mock test','Пробник')],['practice',tr('Practice','Тренировка')],['official',tr('Official','Официальный')]],'mock',tr('Type','Тип'))+inp('syRS',tr('Score','Балл'),'','text','inputmode="decimal" maxlength="8"')+inp('syRM',tr('Out of','Из'),'','text','inputmode="decimal" maxlength="8"')+'</div>'+inp('syRN',tr('Section / note','Раздел / заметка'),'','text','maxlength="80"')+'<button class="p" data-sy="addres" data-id="'+x.id+'">'+tr('Save result','Сохранить')+'</button></section>';
- if(!rs.length)return h+empty(tr('No results yet','Результатов пока нет'),tr('Log a mock test to see your progress here.','Запишите пробник, чтобы увидеть динамику.'));
- return h+'<section class="sy-card"><h3>'+tr('Trend','Динамика')+'</h3>'+lineChart(rs.map(r=>[r.d,r.m?r.s/r.m*100:r.s,r]),rs.every(r=>r.m)?'%':'')+'<ul class="sy-list">'+rs.slice().reverse().map((r,i)=>'<li class="sy-res"><span><b>'+E(r.s)+(r.m?' / '+E(r.m):'')+'</b><small>'+fd(r.d)+' · '+({mock:tr('mock','пробник'),practice:tr('practice','тренировка'),official:tr('official','официальный')}[r.k])+(r.n?' · '+E(r.n):'')+'</small></span><button class="sy-x" data-sy="delres" data-id="'+x.id+'" data-i="'+(rs.length-1-i)+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul></section>'}
-function errorsView(x){const es=D.err[x.id];let h='<section class="sy-card"><h3>'+tr('Log a mistake','Записать ошибку')+'</h3>'+inp('syEt',x.math?tr('Task number or topic','Номер задания или тема'):tr('Topic or section','Тема или раздел'),'','text','maxlength="60"')+'<label class="sy-f"><span>'+tr('What went wrong','Что пошло не так')+'</span><textarea id="syEw" rows="2" maxlength="300"></textarea></label><button class="p" data-sy="adderr" data-id="'+x.id+'">'+tr('Save','Сохранить')+'</button></section>';
- if(!es.length)return h+empty(tr('No mistakes logged','Ошибок пока нет'),tr('Logged mistakes show which topics need review.','Записанные ошибки покажут, какие темы повторить.'));
- const by={};es.forEach(e=>by[e.t]=(by[e.t]||0)+1);const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ if(!x.fipi)return h+'<section class="sy-card"><h3>'+tr('Practice','Тренировка')+'</h3>'+inp('syPrT',tr('Section or topic','Раздел или тема'),'','text','maxlength="80" placeholder="'+E(x.sections?x.sections[0][0]:'')+'"')+'<button class="p" data-sy="practice" data-id="'+x.id+'">'+tr('Generate practice','Создать задания')+'</button>'+genNote()+'<div id="syPrAi">'+(V.ai.pr?.html||'')+'</div></section>';
+ if(waitFipi())return h+fipiWait();
+ const [chips,S]=subjChips(x,'esub');if(!S)return h;V.ctx={ex:x.id,sid:S.id};
+ return h+chips+subjCard(x,S)+'<div id="syStudyAi">'+(V.ai.st?.html||'')+'</div><div id="syFipi">'+fipiPanel()+'</div>'}
+function subjCard(x,S){let h='<section class="sy-card"><div class="sy-ch"><h3>'+E(offName(S))+'</h3><span>'+[S.total&&S.total+' '+tr('tasks','заданий'),S.maxPrimary&&S.maxPrimary+' '+tr('primary pts','перв. баллов'),S.minutes&&hm(S.minutes)].filter(Boolean).join(' · ')+'</span></div>'+
+ '<p class="sy-src">'+tr('FIPI 2027 specification ','Спецификация ФИПИ 2027 ')+OFFICIAL(S.spec)+' · '+tr('task bank ','банк заданий ')+OFFICIAL(bankOf(x,S))+'</p>';
+ if(S.tasks){h+='<div class="sy-tasks">'+S.tasks.map(t=>'<button class="sy-tn '+tstate(tstat(x.id,S.id,t[0]))+(t[1]!=='Б'?' p2':'')+(V.task===t[0]?' sel':'')+'" data-sy="task" data-v="'+t[0]+'" aria-label="'+tr('Task ','Задание ')+t[0]+': '+E(cut(t[3],60))+'">'+t[0]+'</button>').join('')+'</div><p class="sy-legend"><i class="ok"></i>'+tr('mastered','освоено')+' <i class="work"></i>'+tr('needs practice','нужно повторить')+' <i></i>'+tr('not started','не начато')+' <i class="p2"></i>'+tr('advanced or high level','повышенный или высокий уровень')+'</p>';
+  const t=V.task&&S.tasks.find(r=>r[0]===V.task);if(t)h+=taskBox(x,S,t)}
+ else h+='<p class="sy-muted">'+tr('The task-by-task plan of this subject could not be read reliably from the specification, so it is not shown. Open the specification above; practice by bank topics is below.','Поэтапный план заданий этого предмета не удалось надёжно прочитать из спецификации, поэтому он не показан. Откройте спецификацию по ссылке; ниже — практика по темам банка ФИПИ.')+'</p>';
+ if(!(V.task&&S.tasks?.find(r=>r[0]===V.task)?.[5]?.length))h+=themePicker(S);
+ return h+'</section>'}
+function taskBox(x,S,t){const s=tstat(x.id,S.id,t[0]),lv=LEVEL[t[1]];
+ return '<div class="sy-taskd"><h4>'+tr('Task ','Задание ')+t[0]+' · '+E(cut(t[3],90))+'</h4><p class="sy-muted">'+E(cut(t[4],320))+'</p><p class="sy-muted">'+tr('Level ','Уровень ')+(lv?(ru()?lv[1]:lv[0]):E(t[1]))+' · '+tr('max ','макс. ')+t[2]+' '+tr('pt','балл.')+' · '+tr('correct ','верно ')+s[0]+' · '+tr('wrong ','неверно ')+s[1]+'</p>'+
+ (t[5].length?'<h4>'+tr('Subtopics (FIPI codifier)','Подтемы (кодификатор ФИПИ)')+'</h4><ul class="sy-subs">'+t[5].map(c=>'<li><span><b>'+E(c)+'</b> '+E(cut(themeName(S,c),110))+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnsub" data-c="'+E(c)+'">'+tr('Learn','Изучить')+'</button><button class="sy-btn2" data-sy="fipi" data-c="'+E(c)+'">'+tr('FIPI tasks','Задания ФИПИ')+'</button></span></li>').join('')+'</ul>'
+  :'<p class="sy-muted">'+tr('Subtopics of this task are not linked in the specification; pick a bank topic below.','Подтемы этого задания в спецификации не привязаны — выберите тему банка ниже.')+'</p>')+
+ '<div class="sy-acts sy-wrap"><button class="sy-btn2" data-sy="totutor" data-v="'+t[0]+'">'+tr('Open in tutor','Открыть в репетиторе')+'</button><button class="sy-btn2" data-sy="tmark" data-v="1">'+tr('Solved it','Решил(а)')+'</button><button class="sy-btn2" data-sy="tmark" data-v="0">'+tr('Made a mistake','Ошибся(лась)')+'</button></div></div>'}
+function themePicker(S){if(!S.themes?.length)return'';return '<div class="sy-pick">'+sel('syTheme',[['',tr('All tasks of the bank','Все задания банка')],...S.themes.map(([c,n])=>[c,c+' '+cut(n,70)])],V.fp?.theme||'',tr('FIPI bank topic','Тема банка ФИПИ'))+'<div class="sy-acts"><button class="sy-btn2" data-sy="learnsub" data-c="">'+tr('Learn the topic','Изучить тему')+'</button><button class="p" data-sy="fipi" data-c="">'+tr('FIPI tasks','Задания ФИПИ')+'</button></div></div>'}
+// real prototypes from the FIPI open bank; answers are checked by the bank itself
+function fipiPanel(){const P=V.fp;if(!P)return'';let h='<section class="sy-card sy-fp"><div class="sy-ch"><h3>'+tr('FIPI prototypes','Прототипы ФИПИ')+'</h3><span>'+E(cut((P.theme?P.theme+' ':'')+P.name,60))+'</span></div>';
+ if(P.err)return h+'<p class="sy-err" role="alert">'+E(P.err)+'</p><p class="sy-muted">'+tr('The FIPI bank is not reachable right now. Open it directly: ','Банк ФИПИ сейчас недоступен. Откройте его напрямую: ')+OFFICIAL(P.bank)+'</p></section>';
+ if(!P.items.length)return h+(P.busy?busyBox(tr('Loading tasks from the FIPI bank…','Загружаю задания из банка ФИПИ…')):empty(tr('No tasks for this topic','По этой теме заданий нет'),tr('Pick another subtopic.','Выберите другую подтему.')))+'</section>';
+ h+=P.items.map((q,i)=>'<article class="sy-fq"><div class="sy-fqh"><span>'+tr('FIPI bank · No. ','Банк ФИПИ · № ')+E(q.id)+'</span><span>'+E(cut(q.kes.join('; '),70))+'</span></div><div class="sy-fqt">'+q.html+'</div>'+
+  (q.short?'<div class="sy-acts"><input id="syFa'+i+'" value="'+E(q.ans||'')+'" inputmode="text" autocomplete="off" placeholder="'+tr('Answer','Ответ')+'" aria-label="'+tr('Answer to task ','Ответ на задание ')+E(q.id)+'"><button class="sy-btn2" data-sy="fcheck" data-i="'+i+'">'+tr('Check','Проверить')+'</button></div>':'<p class="sy-muted">'+tr('Extended answer: check your solution with the tutor.','Развёрнутый ответ: проверьте решение с репетитором.')+'</p>')+
+  (q.res?'<p class="sy-verdict '+(q.res==='correct'?'ok':q.res==='wrong'?'bad':'mid')+'" role="status">'+(q.res==='correct'?tr('Correct','Верно'):q.res==='wrong'?tr('Incorrect','Неверно'):tr('Could not check','Не удалось проверить'))+'</p>':'')+
+  '<button class="sy-link" data-sy="fsolve" data-i="'+i+'">'+tr('Step-by-step solution with the tutor','Разобрать решение с репетитором')+'</button></article>').join('');
+ return h+(P.busy?busyBox():P.more?'<button class="sy-btn2 sy-wide" data-sy="fmore">'+tr('More tasks','Ещё задания')+'</button>':'')+'<p class="sy-src">'+tr('Tasks from the FIPI open bank; answers are checked by the bank. ','Задания из открытого банка ФИПИ, ответы проверяет сам банк. ')+OFFICIAL(P.bank)+'</p></section>'}
+function resultsView(x){const rs=D.res[x.id];if(x.fipi&&waitFipi())return fipiWait();
+ const [chips,S]=x.fipi?subjChips(x,'rsub'):['',null],sc=x.id==='ege'?(V.f.rsc||'p'):'p',max=x.fipi&&S?(sc==='t'?100:S.maxPrimary):null,tk=x.id+':'+(S?S.id:'_')+':'+sc,mine=rs.filter(r=>(r.sub||'')===(S?S.id:'')&&(r.sc||'p')===sc),orphan=x.fipi&&S?rs.filter(r=>!r.sub).length:0;V.rctx={sub:S?S.id:'',sc,max};
+ let h=chips+'<section class="sy-card"><h3>'+tr('Add a result','Добавить результат')+'</h3><p class="sy-muted">'+tr('Your own mock tests, practice and official results.','Ваши пробники, тренировки и официальные результаты.')+'</p>'+
+ (x.id==='ege'?sel('syRsc',[['p',tr('Primary points','Первичные баллы')],['t',tr('Test points (100-point scale)','Тестовые баллы (100-балльная шкала)')]],sc,tr('Scale','Шкала'),'data-sy-f="rsc"'):'')+
+ '<div class="sy-grid2">'+inp('syRD',tr('Date','Дата'),today(),'date')+sel('syRK',[['mock',tr('Mock test','Пробник')],['practice',tr('Practice','Тренировка')],['official',tr('Official','Официальный')]],'mock',tr('Type','Тип'))+inp('syRS',tr('Score','Балл'),'','text','inputmode="decimal" maxlength="8"')+(max?'<div class="sy-max"><span>'+tr('Out of','Из')+'</span><b>'+max+'</b><small>'+(sc==='t'?tr('test scale','тестовая шкала'):tr('FIPI specification','по спецификации ФИПИ'))+'</small></div>':inp('syRM',tr('Out of','Из'),'','text','inputmode="decimal" maxlength="8"'))+'</div>'+
+ inp('syRN',tr('Note','Заметка'),'','text','maxlength="80"')+'<button class="p" data-sy="addres" data-id="'+x.id+'">'+tr('Save result','Сохранить')+'</button>'+
+ '<div class="sy-tgt">'+inp('syRT',tr('My target','Моя цель'),D.prof.target?.[tk]||'','text','inputmode="decimal" maxlength="8"')+'<button class="sy-btn2" data-sy="savetgt" data-k="'+E(tk)+'">'+tr('Save target','Сохранить цель')+'</button></div></section>';
+ if(orphan)h+='<section class="sy-card"><p class="sy-muted">'+tr('Results saved without a subject: ','Результаты, записанные без предмета: ')+orphan+'</p><button class="sy-btn2" data-sy="rassign" data-id="'+x.id+'">'+tr('Assign them to ','Отнести к предмету ')+E(offName(S))+'</button></section>';
+ if(!mine.length)return h+empty(tr('No results yet','Результатов пока нет'),tr('Log a mock test to see your progress here.','Запишите пробник, чтобы увидеть динамику.'));
+ const best=Math.max(...mine.map(r=>r.s)),last=mine[mine.length-1],tgt=num(D.prof.target?.[tk]);
+ return h+'<section class="sy-card"><div class="sy-ch"><h3>'+tr('Trend','Динамика')+'</h3><span>'+tr('best ','лучший ')+E(best)+(last.m?' / '+E(last.m):'')+(tgt?' · '+tr('target ','цель ')+E(tgt):'')+'</span></div>'+(mine.length>1?lineChart(mine.map(r=>[r.d,r.m?r.s/r.m*100:r.s,r]),mine.every(r=>r.m)?'%':''):'')+
+  '<ul class="sy-list">'+rs.map((r,i)=>[r,i]).filter(([r])=>mine.includes(r)).reverse().map(([r,i])=>'<li class="sy-res"><span><b>'+E(r.s)+(r.m?' / '+E(r.m):'')+'</b><small>'+fd(r.d)+' · '+({mock:tr('mock','пробник'),practice:tr('practice','тренировка'),official:tr('official','официальный')}[r.k])+(r.n?' · '+E(r.n):'')+'</small></span><button class="sy-x" data-sy="delres" data-id="'+x.id+'" data-i="'+i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul></section>'}
+function errorsView(x){const es=D.err[x.id];if(x.fipi&&waitFipi())return fipiWait();const [chips,S]=subjChips(x,'esub2'),mine=es.map((e,i)=>[e,i]).filter(([e])=>!S||!x.fipi||(e.sub||'')===S.id);V.ectx=x.fipi&&S?S.id:'';
+ let h=chips+'<section class="sy-card"><h3>'+tr('Log a mistake','Записать ошибку')+'</h3>'+(S?.tasks?sel('syEn',[['',tr('Task number (optional)','Номер задания (необязательно)')],...S.tasks.map(t=>[t[0],t[0]+' · '+cut(t[3],50)])],'',tr('Task','Задание')):'')+inp('syEt',tr('Topic','Тема'),'','text','maxlength="60"')+'<label class="sy-f"><span>'+tr('What went wrong','Что пошло не так')+'</span><textarea id="syEw" rows="2" maxlength="300"></textarea></label><button class="p" data-sy="adderr" data-id="'+x.id+'">'+tr('Save','Сохранить')+'</button></section>';
+ if(!mine.length)return h+empty(tr('No mistakes logged','Ошибок пока нет'),tr('Logged mistakes show which tasks and topics need review.','Записанные ошибки покажут, какие задания и темы повторить.'));
+ const by={};mine.forEach(([e])=>{const k=e.n?tr('Task ','Задание ')+e.n:e.t;by[k]=(by[k]||0)+1});const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,5);
  h+='<section class="sy-card"><h3>'+tr('Most frequent','Чаще всего')+'</h3>'+top.map(([t,n])=>'<div class="sy-prog"><span>'+E(t)+'</span>'+bar(n/top[0][1]*100,t+': '+n)+'<b>'+n+'</b></div>').join('')+'<button class="sy-btn2" data-sy="errai" data-id="'+x.id+'">'+tr('AI mistake analysis','Разбор ошибок с ИИ')+'</button><div id="syErrAi">'+(V.ai.err?.html||'')+'</div></section>';
- return h+'<ul class="sy-list">'+es.slice().reverse().slice(0,30).map((e,i)=>'<li class="sy-res"><span><b>'+E(e.t)+'</b><small>'+fd(e.d)+' · '+E(e.w)+'</small></span><button class="sy-x" data-sy="delerr" data-id="'+x.id+'" data-i="'+(es.length-1-i)+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul>'}
-function examPlanView(x){const d=D.prof.dates[x.id],mine=D.plan.filter(p=>p.ex===x.id&&!p.done);
+ return h+'<ul class="sy-list">'+mine.slice().reverse().slice(0,30).map(([e,i])=>'<li class="sy-res"><span><b>'+(e.n?tr('Task ','Задание ')+e.n+(e.t?' · ':''):'')+E(e.t||'')+'</b><small>'+fd(e.d)+' · '+E(e.w)+'</small></span><button class="sy-x" data-sy="delerr" data-id="'+x.id+'" data-i="'+i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul>'}
+function examPlanView(x){const d=D.prof.dates[x.id],mine=D.plan.filter(p=>p.ex===x.id&&!p.done);if(x.fipi&&!FIPI)waitFipi();
  let h='<section class="sy-card"><h3>'+tr('Personal preparation plan','Персональный план подготовки')+'</h3>'+(d?'<p class="sy-muted">'+tr('Exam on ','Экзамен ')+fd(d)+' · '+diff(d)+' '+tr('days left','дн. осталось')+'</p>':'<p class="sy-err">'+tr('Set the exam date in Overview to plan until it.','Укажите дату экзамена во вкладке «Обзор», чтобы план доходил до неё.')+'</p>')+
+ '<p class="sy-muted">'+tr('Sessions go to your weakest tasks and topics first: mistakes, then tasks you have not practised.','Занятия начинаются со слабых мест: сначала задания с ошибками, потом ещё не пройденные.')+'</p>'+
  '<div class="sy-grid2">'+sel('syPm',[[20,'20 '+tr('min','мин')],[30,'30 '+tr('min','мин')],[45,'45 '+tr('min','мин')],[60,'60 '+tr('min','мин')],[90,'90 '+tr('min','мин')]],45,tr('Per session','Занятие'))+inp('syPt',tr('Time','Время'),'18:00','time')+'</div><div class="sy-chips" role="group" aria-label="'+tr('Study days','Дни занятий')+'">'+(ru()?['Пн','Вт','Ср','Чт','Пт','Сб','Вс']:['Mon','Tue','Wed','Thu','Fri','Sat','Sun']).map((w,i)=>'<button class="sy-chip'+(i<5?' on':'')+'" data-sy="wday" data-v="'+i+'" aria-pressed="'+(i<5)+'">'+w+'</button>').join('')+'</div>'+
  '<div class="sy-acts sy-wrap"><button class="p" data-sy="autoplan" data-id="'+x.id+'"'+(d?'':' disabled')+'>'+tr('Build plan','Составить план')+'</button><button class="sy-btn2" data-sy="aiplan" data-id="'+x.id+'">'+tr('7-day plan from AI','План ИИ на 7 дней')+'</button></div><div id="syPlAi">'+(V.ai.plan?.html||'')+'</div></section>';
  if(mine.length)h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Planned','Запланировано')+'</h3><button class="sy-link sy-del" data-sy="clrplan" data-id="'+x.id+'">'+tr('Clear generated','Удалить сгенерированное')+'</button></div><ul class="sy-list">'+mine.sort((a,b)=>a.d.localeCompare(b.d)).slice(0,12).map(planRow).join('')+'</ul></section>';return h}
-// Topics to practise first: weakest EGE task numbers, low-mastery topics of linked subjects, then exam sections.
-function weakTopics(x){const out=[];if(x.math){const ms=D.ege;x.math.tasks.map(t=>[t,ms[t[0]]||[0,0]]).sort((a,b)=>(a[1][0]-a[1][1]*2)-(b[1][0]-b[1][1]*2)).forEach(([t])=>out.push(tr('Task ','Задание ')+t[0]+' · '+(ru()?t[4]:t[5])))}
+// Topics to practise first: per subject, tasks with mistakes, then untouched tasks, mastered last; then weak Learning topics and logged mistakes.
+function weakTopics(x){const out=[];
+ if(x.fipi&&FIPI)for(const id of mySubs(x)){const S=offSubj(x,id);if(!S?.tasks)continue;const score=t=>{const s=tstat(x.id,S.id,t[0]);return s[1]*2-s[0]+(s[0]+s[1]?0:.5)};
+  S.tasks.slice().sort((a,b)=>score(b)-score(a)).forEach(t=>out.push(offName(S)+': '+tr('task ','задание ')+t[0]+' · '+cut(t[3],50)))}
  D.subj.filter(s=>s.ex===x.id).forEach(s=>(D.topics[s.id]||[]).filter(t=>(t.m||0)<3).sort((a,b)=>(a.m||0)-(b.m||0)).forEach(t=>out.push(s.n+': '+t.n)));
- (D.err[x.id]||[]).forEach(e=>out.unshift(e.t));if(x.sections)x.sections.forEach(s=>out.push(s[0]));return [...new Set(out)]}
-
+ (D.err[x.id]||[]).forEach(e=>out.unshift((e.sub&&offSubj(x,e.sub)?offName(offSubj(x,e.sub))+': ':'')+(e.n?tr('task ','задание ')+e.n+' ':'')+(e.t||'')));
+ if(x.sections)x.sections.forEach(s=>out.push(s[0]));return [...new Set(out.map(s=>s.trim()))].filter(Boolean)}
 /* AI Tutor */
-const MODES=[['explain','Объяснить','Explain'],['solve','Решить','Solve'],['check','Проверить','Check'],['exercises','Упражнения','Exercises'],['summary','Конспект','Summary'],['cards','Карточки','Flashcards'],['quiz','Тест','Test']];
-VIEWS.tutor=()=>{const T=V.tutor,m=T.mode,ph={explain:tr('What topic should I explain from scratch?','Какую тему объяснить с нуля?'),solve:tr('Paste the task or attach a photo','Вставьте условие задачи или приложите фото'),check:tr('Paste the task','Вставьте условие задачи'),exercises:tr('Topic for exercises','Тема для упражнений'),summary:tr('Paste the text or attach a photo','Вставьте текст или приложите фото'),cards:tr('Topic or text for cards','Тема или текст для карточек'),quiz:tr('Topic or text for the test','Тема или текст для теста')}[m];
+const MODES=[['proto','Прототипы ФИПИ','FIPI prototypes'],['explain','Объяснить','Explain'],['solve','Решить','Solve'],['check','Проверить','Check'],['exercises','Упражнения','Exercises'],['summary','Конспект','Summary'],['cards','Карточки','Flashcards'],['quiz','Тест','Test']];
+// "задание 6 егэ профиль" -> {ex:'ege', sid:'math_prof', n:6}; subject words are matched by stem
+const SUBJ_WORDS=[['math_prof',/проф|profile/i],['math_base',/базов|basic/i],['math',/матем|math|алгебр|геометр/i],['ru',/русск|russian/i],['phys',/физик|physic/i],['chem',/хими|chem/i],['bio',/биолог|biolog/i],['inf',/информ|computer|inform/i],['hist',/истор|histor/i],['soc',/общест|social/i],['geo',/географ|geograph/i],['lit',/литер|literat/i],['en',/англ|english/i],['de',/немец|german/i],['fr',/франц|french/i],['es',/испан|spanish/i],['zh',/китай|chinese/i]];
+function parseTask(q){const ex=/огэ|\boge\b/i.test(q)?'oge':'ege',L=FIPI?.[ex]||[],n=+(q.match(/(?:№|номер|задани[еяю]|task|#)\s*(\d{1,2})\b/i)||q.match(/\b(\d{1,2})\b/)||[])[1]||null;
+ let sid=null;for(const [id,re] of SUBJ_WORDS)if(re.test(q)&&L.some(s=>s.id===id)){sid=id;break}
+ if(sid==='math'&&ex==='ege')sid=/баз|basic/i.test(q)?'math_base':'math_prof';
+ return{ex,sid,n}}
+// topics of the FIPI codifier whose name shares word stems with the request
+function themeSearch(S,q){const st=w=>w.toLowerCase().replace(/[^a-zа-яё0-9]/gi,'').slice(0,6),ws=q.split(/\s+/).map(st).filter(w=>w.length>=4);if(!ws.length)return[];
+ return S.themes.map(t=>[t,ws.filter(w=>t[1].toLowerCase().split(/[\s,.;()–-]+/).some(x=>st(x)===w)).length]).filter(x=>x[1]).sort((a,b)=>b[1]-a[1]).slice(0,8).map(x=>x[0])}
+function protoView(){if(waitFipi())return fipiWait();const f=V.f,ex=f.pex||'ege',L=FIPI[ex],S=L.find(s=>s.id===f.psid)||L.find(s=>s.id===mySubs(exam(ex))[0])||L.find(s=>s.id===(ex==='ege'?'math_prof':'math'))||L[0],x=exam(ex),t=S.tasks?.find(r=>r[0]===+f.pn);
+ V.ctx={ex,sid:S.id};let h='<section class="sy-card"><p class="sy-muted">'+tr('Name a task, e.g. “task 6 EGE profile math”, or pick it below. You get the subtopics of this task from the FIPI codifier, an explanation of each and real prototypes from the FIPI open bank.','Напишите задание, например «задание 6 ЕГЭ профиль», или выберите ниже. Вы получите подтемы этого задания по кодификатору ФИПИ, объяснение каждой и настоящие прототипы из открытого банка ФИПИ.')+'</p>'+
+  '<div class="sy-acts"><input id="syPq" maxlength="120" value="'+E(f.pq||'')+'" placeholder="'+tr('task 6 EGE profile math','задание 6 ЕГЭ профиль')+'" aria-label="'+tr('Task or topic','Задание или тема')+'" enterkeyhint="search"><button class="p" data-sy="pfind">'+tr('Find','Найти')+'</button></div>'+
+  '<div class="sy-grid2">'+sel('syPex',[['ege',tr('EGE','ЕГЭ')],['oge',tr('OGE','ОГЭ')]],ex,tr('Exam','Экзамен'),'data-sy-f="pex"')+sel('syPsid',L.map(s=>[s.id,offName(s)]),S.id,tr('Subject','Предмет'),'data-sy-f="psid"')+'</div>'+
+  (S.tasks?sel('syPn',[['',tr('Choose a task','Выберите задание')],...S.tasks.map(r=>[r[0],r[0]+' · '+cut(r[3],60)])],t?t[0]:'',tr('Task number','Номер задания'),'data-sy-f="pn"'):'')+'</section>';
+ if(f.pfound&&!t){const found=themeSearch(S,f.pq||'');h+=found.length?'<section class="sy-card"><h3>'+tr('Matching codifier topics','Подходящие темы кодификатора')+'</h3><ul class="sy-subs">'+found.map(([c,n])=>'<li><span><b>'+E(c)+'</b> '+E(cut(n,110))+'</span><span class="sy-subact"><button class="sy-btn2" data-sy="learnsub" data-c="'+E(c)+'">'+tr('Learn','Изучить')+'</button><button class="sy-btn2" data-sy="fipi" data-c="'+E(c)+'">'+tr('FIPI tasks','Задания ФИПИ')+'</button></span></li>').join('')+'</ul></section>'
+  :'<p class="sy-muted">'+tr('Nothing matched. Pick the task number or a bank topic.','Ничего не нашлось. Выберите номер задания или тему банка.')+'</p>'}
+ h+=t?'<section class="sy-card">'+taskBox(x,S,t)+(t[5].length?'':themePicker(S))+'</section>':(S.tasks?'':'<section class="sy-card"><p class="sy-muted">'+tr('This subject has no reliable task-by-task map in the specification; practise by bank topics.','Для этого предмета в спецификации нет надёжной карты заданий — тренируйтесь по темам банка.')+'</p>'+themePicker(S)+'</section>');
+ return h+'<div id="syStudyAi">'+(V.ai.st?.html||'')+'</div><div id="syFipi">'+fipiPanel()+'</div>'}
+VIEWS.tutor=()=>{const T=V.tutor;if(!T.mode)T.mode=D.prof.exams.some(id=>exam(id)?.fipi)||(!D.prof.exams.length&&ru())?'proto':'explain';const m=T.mode,ph={explain:tr('What topic should I explain from scratch?','Какую тему объяснить с нуля?'),solve:tr('Paste the task or attach a photo','Вставьте условие задачи или приложите фото'),check:tr('Paste the task','Вставьте условие задачи'),exercises:tr('Topic for exercises','Тема для упражнений'),summary:tr('Paste the text or attach a photo','Вставьте текст или приложите фото'),cards:tr('Topic or text for cards','Тема или текст для карточек'),quiz:tr('Topic or text for the test','Тема или текст для теста')}[m];
  let h='<header class="sy-head"><h2>'+tr('AI Tutor','ИИ-репетитор')+'</h2><p>'+tr('Explains from scratch, step by step, in your language and exam format.','Объясняет с нуля, по шагам, на вашем языке и в формате вашего экзамена.')+'</p></header>';
- h+='<div class="sy-chips" role="tablist">'+MODES.map(([k,r,e])=>'<button role="tab" aria-selected="'+(m===k)+'" class="sy-chip'+(m===k?' on':'')+'" data-sy="tmode" data-v="'+k+'">'+(ru()?r:e)+'</button>').join('')+'</div>';
- h+='<section class="sy-card"><div class="sy-grid2">'+sel('syTE',[['',tr('Any exam','Любой экзамен')],...EXAMS.map(x=>[x.id,exName(x)])],T.exam||D.prof.exams[0]||'',tr('Exam','Экзамен'))+inp('syTS',tr('Subject','Предмет'),T.subject||'','text','maxlength="60"')+'</div>'+
+ h+='<div class="sy-chips sy-scrollx" role="tablist">'+MODES.map(([k,r,e])=>'<button role="tab" aria-selected="'+(m===k)+'" class="sy-chip'+(m===k?' on':'')+'" data-sy="tmode" data-v="'+k+'">'+(ru()?r:e)+'</button>').join('')+'</div>';
+ if(m==='proto')return h+protoView();
+ const exId=T.exam??(D.prof.exams[0]||''),x=exam(exId),L=offList(x);if(x?.fipi&&!FIPI)waitFipi();
+ // ЕГЭ/ОГЭ subjects come from the official list; other exams keep a free subject name
+ const subj=x?.fipi&&FIPI?sel('syTS',[['',tr('Choose a subject','Выберите предмет')],...L.map(s=>[s.id,offName(s)])],T.sid||mySubs(x)[0]||'',tr('Subject','Предмет')):inp('syTS',tr('Subject','Предмет'),T.subject||'','text','maxlength="60"');
+ h+='<section class="sy-card"><div class="sy-grid2">'+sel('syTE',[['',tr('Any exam','Любой экзамен')],...EXAMS.map(e=>[e.id,exName(e)])],exId,tr('Exam','Экзамен'),'data-sy-f="tex"')+subj+'</div>'+
   '<label class="sy-f"><span>'+(m==='check'?tr('Task','Задание'):tr('Request','Запрос'))+'</span><textarea id="syTQ" rows="4" maxlength="3000" placeholder="'+E(ph)+'">'+E(T.q||'')+'</textarea></label>'+
   (m==='check'?inp('syTA',tr('Your answer','Ваш ответ'),T.a||'','text','maxlength="300"')+'<label class="sy-f"><span>'+tr('Your solution (optional)','Ваше решение (необязательно)')+'</span><textarea id="syTW" rows="3" maxlength="2500">'+E(T.w||'')+'</textarea></label>':'')+
-  (['exercises','cards','quiz'].includes(m)?sel('syTC',[[3,'3'],[5,'5'],[8,'8']],5,tr('How many','Сколько')):'')+
+  (['exercises','cards','quiz'].includes(m)?sel('syTC',[[3,'3'],[5,'5'],[8,'8']],T.count||5,tr('How many','Сколько')):'')+
+  (m==='exercises'&&x?.fipi?'<p class="sy-muted">'+tr('For EGE and OGE, practise on real prototypes: ','Для ЕГЭ и ОГЭ тренируйтесь на настоящих прототипах: ')+'<button class="sy-link" data-sy="tmode" data-v="proto">'+tr('FIPI prototypes','Прототипы ФИПИ')+'</button></p>':'')+
   '<div class="sy-acts">'+(['solve','summary'].includes(m)?'<label class="sy-btn2 sy-file">'+(T.img?tr('Photo attached ✓','Фото прикреплено ✓'):tr('Attach photo','Прикрепить фото'))+'<input type="file" accept="image/*" data-sy-file="photo"></label>':'<span></span>')+'<button class="p" data-sy="ask"'+(T.busy?' disabled':'')+'>'+tr('Ask','Спросить')+'</button></div></section>';
+ if(T.res?.ctx?.ex)V.ctx={ex:T.res.ctx.ex,sid:T.res.ctx.sid};
  h+=T.busy?busyBox():T.err?'<p class="sy-err" role="alert">'+E(T.err)+'</p>':T.res?'<div id="syTRes">'+renderAI(T.res.mode,T.res.out,T.res.ctx)+'</div>':'';
- if(!T.res&&D.tutor.length)h+='<section class="sy-card"><h3>'+tr('Recent','Недавние')+'</h3><ul class="sy-list">'+D.tutor.slice(0,6).map((x,i)=>'<li><button class="sy-row" data-sy="thist" data-i="'+i+'"><span><b>'+E(x.q||'—')+'</b><small>'+E((MODES.find(y=>y[0]===x.m)||[,'',''])[ru()?1:2])+' · '+fd(x.d)+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul></section>';
+ if(T.res?.ctx?.ex)h+='<div id="syFipi">'+fipiPanel()+'</div>';
+ if(!T.res&&D.tutor.length)h+='<section class="sy-card"><h3>'+tr('Recent','Недавние')+'</h3><ul class="sy-list">'+D.tutor.slice(0,6).map((y,i)=>'<li><button class="sy-row" data-sy="thist" data-i="'+i+'"><span><b>'+E(y.q||'—')+'</b><small>'+E((MODES.find(z=>z[0]===y.m)||[,'',''])[ru()?1:2])+' · '+fd(y.d)+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul></section>';
  return h};
 function renderAI(mode,o,ctx){ctx=ctx||{};const S=s=>E(s||'').replace(/\n/g,'<br>');
- if(mode==='explain')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3>'+(o.sections||[]).map(s=>'<h4>'+E(s.h)+'</h4><p>'+S(s.body)+'</p>').join('')+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.check?.length?'<h4>'+tr('Check yourself','Проверь себя')+'</h4>'+o.check.map(c=>'<details class="sy-det"><summary>'+E(c.q)+'</summary><p>'+S(c.a)+'</p></details>').join(''):'')+'</section>';
- if(mode==='solve'){const ege=ctx.exam==='ege'&&o.task_no;return '<section class="sy-card sy-ai sy-sol">'+(o.task_no||o.task_type?'<p class="sy-tag">'+(o.task_no?tr('Task ','Задание ')+'№'+E(o.task_no)+' · ':'')+E(o.task_type||'')+'</p>':'')+(o.prototype?'<p class="sy-muted"><b>'+tr('Prototype: ','Прототип: ')+'</b>'+E(o.prototype)+'</p>':'')+
+ if(mode==='explain')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3>'+(o.sections||[]).map(s=>'<h4>'+E(s.h)+'</h4><p>'+S(s.body)+'</p>').join('')+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.check?.length?'<h4>'+tr('Check yourself','Проверь себя')+'</h4>'+o.check.map(c=>'<details class="sy-det"><summary>'+E(c.q)+'</summary><p>'+S(c.a)+'</p></details>').join(''):'')+(ctx.code?'<div class="sy-acts"><button class="p" data-sy="fipi" data-c="'+E(ctx.code)+'">'+tr('Practise on FIPI tasks','Практика на заданиях ФИПИ')+'</button></div>':'')+'</section>';
+ if(mode==='solve'){const Sb=ctx.ex&&offSubj(exam(ctx.ex),ctx.sid),tn=Sb?.tasks?.find(r=>r[0]===+o.task_no),kes=(Array.isArray(o.kes)?o.kes:[]).map(String).filter(c=>Sb?.themes?.some(t=>t[0]===c)).slice(0,4);
+  return '<section class="sy-card sy-ai sy-sol">'+(o.task_no||o.task_type?'<p class="sy-tag">'+(o.task_no?tr('Task ','Задание ')+'№'+E(o.task_no)+' · ':'')+E(o.task_type||'')+'</p>':'')+(o.prototype?'<p class="sy-muted"><b>'+tr('Prototype: ','Прототип: ')+'</b>'+E(o.prototype)+'</p>':'')+
   '<h4>'+tr('Problem','Условие')+'</h4><p>'+S(o.condition)+'</p><h4>'+tr('Find','Что найти')+'</h4><p>'+S(o.find)+'</p><h4>'+tr('Solution','Решение')+'</h4><ol class="sy-steps2">'+(o.steps||[]).map(s=>'<li><b>'+E(s.title)+'</b><p>'+S(s.body)+'</p></li>').join('')+'</ol>'+
   (o.methods?.length?'<div class="sy-key"><b>'+tr('Formulas and methods','Формулы и методы')+'</b><ul>'+o.methods.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+'<div class="sy-answer"><span>'+tr('Answer','Ответ')+'</span><b>'+E(o.answer)+'</b></div>'+(o.check?'<h4>'+tr('Check','Проверка')+'</h4><p>'+S(o.check)+'</p>':'')+(o.alt?'<h4>'+tr('Another way','Другой способ')+'</h4><p>'+S(o.alt)+'</p>':'')+
-  (o.similar?.length?'<h4>'+tr('Similar tasks to practise','Аналогичные задания для практики')+'</h4>'+o.similar.map((s,i)=>'<details class="sy-det"><summary>'+(i+1)+'. '+S(s.text)+'</summary><p><b>'+tr('Answer: ','Ответ: ')+'</b>'+E(s.answer)+'</p></details>').join('')+genNote():'')+
-  (ege?'<div class="sy-acts"><button class="sy-btn2" data-sy="egeres" data-v="1" data-n="'+E(o.task_no)+'">'+tr('I understood it','Понял(а)')+'</button><button class="sy-btn2" data-sy="egeres" data-v="0" data-n="'+E(o.task_no)+'">'+tr('Need more practice','Нужно повторить')+'</button></div>':'')+saveBar(mode)+'</section>'}
+  // ЕГЭ/ОГЭ: practice only from the FIPI bank (subtopics the tutor named), never AI-made "similar" tasks
+  (Sb?((kes.length||tn)?'<h4>'+tr('Practise on FIPI prototypes','Практика на прототипах ФИПИ')+'</h4><div class="sy-acts sy-wrap">'+kes.map(c=>'<button class="sy-btn2" data-sy="fipi" data-c="'+E(c)+'">'+E(c)+' '+E(cut(themeName(Sb,c),40))+'</button>').join('')+(tn?'<button class="sy-btn2" data-sy="toproto" data-v="'+tn[0]+'">'+tr('All subtopics of task ','Все подтемы задания ')+tn[0]+'</button>':'')+'</div>':'')
+   :(o.similar?.length?'<h4>'+tr('Similar tasks to practise','Аналогичные задания для практики')+'</h4>'+o.similar.map((s,i)=>'<details class="sy-det"><summary>'+(i+1)+'. '+S(s.text)+'</summary><p><b>'+tr('Answer: ','Ответ: ')+'</b>'+E(s.answer)+'</p></details>').join('')+genNote():''))+
+  (tn?'<div class="sy-acts"><button class="sy-btn2" data-sy="tmark" data-v="1" data-n="'+tn[0]+'">'+tr('I understood it','Понял(а)')+'</button><button class="sy-btn2" data-sy="tmark" data-v="0" data-n="'+tn[0]+'">'+tr('Need more practice','Нужно повторить')+'</button></div>':'')+saveBar(mode)+'</section>'}
  if(mode==='check'){const v={correct:[tr('Correct','Верно'),'ok'],partial:[tr('Partly correct','Частично верно'),'mid'],incorrect:[tr('Incorrect','Неверно'),'bad']}[o.verdict]||['—',''];return '<section class="sy-card sy-ai"><p class="sy-verdict '+v[1]+'">'+v[0]+'</p>'+(o.where?'<h4>'+tr('Where the mistake is','Где ошибка')+'</h4><p>'+S(o.where)+'</p>':'')+'<p>'+S(o.explanation)+'</p><div class="sy-answer"><span>'+tr('Correct answer','Правильный ответ')+'</span><b>'+E(o.correct_answer)+'</b></div>'+(o.next?'<p class="sy-muted">'+S(o.next)+'</p>':'')+'</section>'}
  if(mode==='exercises')return '<section class="sy-card sy-ai">'+(o.items||[]).map((it,i)=>'<details class="sy-det"><summary>'+(i+1)+'. '+S(it.q)+'</summary>'+(it.hint?'<p class="sy-muted">'+tr('Hint: ','Подсказка: ')+S(it.hint)+'</p>':'')+'<p><b>'+tr('Answer: ','Ответ: ')+'</b>'+S(it.answer)+'</p></details>').join('')+genNote()+'</section>';
  if(mode==='summary')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3><p>'+S(o.summary)+'</p>'+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.terms?.length?'<dl class="sy-terms">'+o.terms.map(t=>'<dt>'+E(t.term)+'</dt><dd>'+E(t.def)+'</dd>').join('')+'</dl>':'')+saveBar(mode)+'</section>';
@@ -3595,20 +3762,27 @@ function renderAI(mode,o,ctx){ctx=ctx||{};const S=s=>E(s||'').replace(/\n/g,'<br
 const saveBar=mode=>D.subj.length?'<div class="sy-save">'+sel('sySaveS',D.subj.map(s=>[s.id,s.n]),D.subj[0].id,tr('Save to subject','Сохранить в предмет'))+'<button class="sy-btn2" data-sy="savetutor" data-m="'+mode+'">'+(mode==='cards'?tr('Add cards','Добавить карточки'):mode==='quiz'?tr('Add as cards','Добавить как карточки'):tr('Save as material','Сохранить в материалы'))+'</button></div>':'<p class="sy-muted">'+tr('Add a subject in Learning to save results.','Добавьте предмет в разделе «Предметы», чтобы сохранять результаты.')+'</p>';
 
 /* Admissions */
+const WD=id=>'https://www.wikidata.org/wiki/'+id;
+const FIT={high:['good fit','подходит хорошо','ok'],medium:['partial fit','подходит частично','mid'],low:['weak fit','подходит слабо','bad'],unknown:['not enough data','мало данных','']};
+const uniMeta=u=>[u.c,u.fd&&tr('founded ','основан ')+u.fd,u.stu&&Number(u.stu).toLocaleString(ru()?'ru':'en')+' '+tr('students','студентов')].filter(Boolean).join(' · ');
 VIEWS.adm=()=>{if(V.d?.k==='uni')return VIEWS.uni();const sub=V.sub||'mine',T=[['mine','Мои вузы','My list'],['search','Поиск','Search'],['cmp','Сравнение','Compare']];
  let h='<header class="sy-head"><h2>'+tr('Admissions','Поступление')+'</h2><p>'+tr('Requirements, costs and deadlines change every year. Keep each fact with a link to the official page.','Требования, стоимость и сроки меняются каждый год. Храните каждый факт со ссылкой на официальную страницу.')+'</p></header><div class="sy-seg" role="tablist">'+T.map(([k,r,e])=>'<button role="tab" aria-selected="'+(sub===k)+'" data-sy="sub" data-v="'+k+'"'+(sub===k?' class="on"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</div>';
- if(sub==='search'){const U=V.unis;h+='<section class="sy-card"><div class="sy-grid2">'+inp('syUN',tr('University name','Название вуза'),U.q||'','search','maxlength="80"')+sel('syUC',[['',tr('Any country','Любая страна')],...COUNTRIES.map(c=>[c,region(c)])],U.c||'',tr('Country','Страна'))+'</div><button class="p" data-sy="usearch">'+tr('Search','Найти')+'</button></section>';
-  h+=U.busy?busyBox(tr('Searching…','Ищу…')):U.err?empty(tr('Search is unavailable','Поиск недоступен'),E(U.err)+'<br>'+tr('You can still add a university by hand below.','Вуз можно добавить вручную ниже.')):U.items?(U.items.length?'<ul class="sy-list">'+U.items.map((u,i)=>'<li class="sy-res"><span><b>'+E(u.name)+'</b><small>'+E(u.country)+(u.web?' · '+OFFICIAL(u.web):'')+'</small></span><button class="sy-btn2" data-sy="uadd" data-i="'+i+'">'+tr('Add','Добавить')+'</button></li>').join('')+'</ul><p class="sy-src">'+tr('Names and websites: open catalog universities.hipolabs.com. Requirements are not included; check each official site.','Названия и сайты: открытый каталог universities.hipolabs.com. Требований там нет — смотрите официальные сайты.')+'</p>':empty(tr('Nothing found','Ничего не найдено'),tr('Try the name in English.','Попробуйте название на английском.'))):'';
+ if(sub==='search'){const U=V.unis;h+='<section class="sy-card"><p class="sy-muted">'+tr('Any university in the world, by full name or abbreviation: MSU, HSE, MIT, ETH.','Любой вуз мира — по полному названию или сокращению: МГУ, ВШЭ, MIT, ETH.')+'</p><div class="sy-grid2">'+inp('syUN',tr('University','Вуз'),U.q||'','search','maxlength="80" enterkeyhint="search" placeholder="'+tr('e.g. MIT','например, МГУ')+'"')+sel('syUC',[['',tr('Any country','Любая страна')],...COUNTRIES.map(c=>[c,region(c)])],U.c||'',tr('Country','Страна'))+'</div><button class="p" data-sy="usearch">'+tr('Search','Найти')+'</button></section>';
+  h+=U.busy?busyBox(tr('Searching…','Ищу…')):U.err?empty(tr('Search is unavailable','Поиск недоступен'),E(U.err)+'<br>'+tr('You can still add a university by hand below.','Вуз можно добавить вручную ниже.')):U.items?(U.items.length?'<ul class="sy-list">'+U.items.map((u,i)=>{const have=D.adm.some(x=>(u.wd&&x.wd===u.wd)||x.n===u.name);return '<li class="sy-res sy-uni"><span><b>'+E(u.name)+'</b><small>'+E(uniMeta({c:u.country,fd:u.founded,stu:u.students}))+'</small>'+(u.desc?'<small>'+E(cut(u.desc,120))+'</small>':'')+(u.web?'<small>'+OFFICIAL(u.web)+'</small>':'')+'</span>'+(have?'<span class="sy-pill">'+tr('added','в списке')+'</span>':'<button class="sy-btn2" data-sy="uadd" data-i="'+i+'">'+tr('Add','Добавить')+'</button>')+'</li>'}).join('')+'</ul><p class="sy-src">'+tr('Names, websites, founding year and student numbers: Wikidata (open data). Requirements and costs are not included; check each official site.','Названия, сайты, год основания и число студентов — Wikidata (открытые данные). Требований и стоимости там нет — смотрите официальные сайты.')+' '+OFFICIAL('https://www.wikidata.org')+'</p>':empty(tr('Nothing found','Ничего не найдено'),tr('Try another spelling, the full name or a different country.','Попробуйте другое написание, полное название или другую страну.'))):'';
   h+='<section class="sy-card"><h3>'+tr('Add by hand','Добавить вручную')+'</h3><div class="sy-grid2">'+inp('syUmN',tr('Name','Название'),'','text','maxlength="120"')+inp('syUmW',tr('Official website','Официальный сайт'),'','url','placeholder="https://"')+'</div><button class="sy-btn2" data-sy="uaddm">'+tr('Add','Добавить')+'</button></section>';return h}
- if(sub==='cmp'){const L=D.adm;if(L.length<2)return h+empty(tr('Add at least two universities','Добавьте хотя бы два вуза'),tr('Then compare them side by side.','Потом их можно сравнить.'));
-  const pick=V.cmp.length?V.cmp:L.slice(0,3).map(u=>u.id),us=pick.map(id=>L.find(u=>u.id===id)).filter(Boolean);
-  h+='<div class="sy-chips">'+L.map(u=>'<button class="sy-chip'+(pick.includes(u.id)?' on':'')+'" data-sy="cmppick" data-id="'+u.id+'" aria-pressed="'+pick.includes(u.id)+'">'+E(u.n)+'</button>').join('')+'</div>';
-  const rows=[['c',tr('Country','Страна')],['prog',tr('Programme','Программа')],['dl',tr('Deadline','Дедлайн')],['st',tr('Status','Статус')],['req',tr('Requirements','Требования')],['exams',tr('Exams','Экзамены')],['lang',tr('Language','Язык')],['cost',tr('Tuition','Стоимость')],['sch',tr('Scholarships','Стипендии')]];
-  return h+'<div class="sy-scroll"><table class="sy-tbl sy-cmp"><thead><tr><th></th>'+us.map(u=>'<th>'+E(u.n)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(([k,l])=>'<tr><th>'+l+'</th>'+us.map(u=>'<td>'+(k==='st'?E((ST_ADM.find(s=>s[0]===u.st)||ST_ADM[0])[ru()?1:2]):k==='dl'&&u.dl?fd(u.dl):E(u[k]||'—'))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><p class="sy-src">'+tr('Data you entered. Verify on official sites.','Данные, которые вы ввели. Сверяйте с официальными сайтами.')+'</p>'}
- return h+(D.adm.length?'<ul class="sy-list">'+D.adm.map(u=>'<li><button class="sy-row" data-sy="uni" data-id="'+u.id+'"><span><b>'+E(u.n)+'</b><small>'+E((ST_ADM.find(s=>s[0]===u.st)||ST_ADM[0])[ru()?1:2])+(u.dl?' · '+tr('deadline ','дедлайн ')+fd(u.dl):'')+(u.docs?.length?' · '+u.docs.filter(d=>d[1]).length+'/'+u.docs.length+' '+tr('docs','док.'):'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul>':empty(tr('No universities yet','Вузов пока нет'),tr('Find universities by name and country, then track requirements, documents and deadlines.','Найдите вузы по названию и стране и отслеживайте требования, документы и сроки.'),'<button class="p" data-sy="sub" data-v="search">'+tr('Find universities','Найти вузы')+'</button>'))};
+ if(sub==='cmp'){const L=D.adm;if(L.length<2)return h+empty(tr('Add at least two universities','Добавьте хотя бы два вуза'),tr('Then compare them side by side and ask the AI which fits your major.','Потом их можно сравнить и спросить ИИ, какой лучше подходит под вашу специальность.'),'<button class="p" data-sy="sub" data-v="search">'+tr('Find universities','Найти вузы')+'</button>');
+  const pick=V.cmp.length?V.cmp:L.slice(0,3).map(u=>u.id),us=pick.map(id=>L.find(u=>u.id===id)).filter(Boolean),C=V.ai.cmp;
+  h+='<p class="sy-muted">'+tr('Pick up to 4 universities.','Выберите до 4 вузов.')+'</p><div class="sy-chips">'+L.map(u=>'<button class="sy-chip'+(pick.includes(u.id)?' on':'')+'" data-sy="cmppick" data-id="'+u.id+'" aria-pressed="'+pick.includes(u.id)+'">'+E(u.n)+'</button>').join('')+'</div>';
+  h+='<section class="sy-card"><h3>'+tr('Which one fits my major?','Где лучше по моей специальности?')+'</h3><div class="sy-acts">'+'<input id="sySpec" maxlength="120" value="'+E(D.prof.spec||'')+'" placeholder="'+tr('e.g. Computer science, applied maths','например, прикладная информатика')+'" aria-label="'+tr('Major or programme','Специальность или программа')+'"><button class="p" data-sy="compare"'+(C?.busy||us.length<2?' disabled':'')+'>'+tr('Compare','Сравнить')+'</button></div>'+
+   (C?.busy?busyBox():C?.err?'<p class="sy-err" role="alert">'+E(C.err)+'</p>':C?.out?cmpAi(C.out):'<p class="sy-muted">'+tr('The AI uses what you saved for each university, Wikidata facts and your exams and profile. It does not invent costs, scores or rankings.','ИИ опирается на то, что вы сохранили о каждом вузе, на данные Wikidata, ваши экзамены и профиль. Стоимость, баллы и рейтинги он не выдумывает.')+'</p>')+'</section>';
+  const rows=[['c',tr('Country','Страна')],['fd',tr('Founded','Основан')],['stu',tr('Students','Студентов')],['prog',tr('Programme','Программа')],['dl',tr('Deadline','Дедлайн')],['st',tr('Status','Статус')],['req',tr('Requirements','Требования')],['exams',tr('Exams','Экзамены')],['lang',tr('Language','Язык')],['cost',tr('Tuition','Стоимость')],['sch',tr('Scholarships','Стипендии')]];
+  return h+'<div class="sy-scroll"><table class="sy-tbl sy-cmp"><thead><tr><th></th>'+us.map(u=>'<th>'+E(u.n)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(([k,l])=>'<tr><th>'+l+'</th>'+us.map(u=>'<td>'+(k==='st'?E((ST_ADM.find(s=>s[0]===u.st)||ST_ADM[0])[ru()?1:2]):k==='dl'&&u.dl?fd(u.dl):k==='stu'&&u.stu?Number(u.stu).toLocaleString(ru()?'ru':'en'):E(u[k]||'—'))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><p class="sy-src">'+tr('Founded and students: Wikidata. Other rows: what you entered. Verify on official sites.','Год основания и студенты — Wikidata, остальное — то, что вы ввели. Сверяйте с официальными сайтами.')+'</p>'}
+ return h+(D.adm.length?'<ul class="sy-list">'+D.adm.map(u=>'<li><button class="sy-row" data-sy="uni" data-id="'+u.id+'"><span><b>'+E(u.n)+'</b><small>'+E((ST_ADM.find(s=>s[0]===u.st)||ST_ADM[0])[ru()?1:2])+(u.dl?' · '+tr('deadline ','дедлайн ')+fd(u.dl):'')+(u.docs?.length?' · '+u.docs.filter(d=>d[1]).length+'/'+u.docs.length+' '+tr('docs','док.'):'')+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul>':empty(tr('No universities yet','Вузов пока нет'),tr('Find any university by name or abbreviation, then track requirements, documents and deadlines.','Найдите любой вуз по названию или сокращению и отслеживайте требования, документы и сроки.'),'<button class="p" data-sy="sub" data-v="search">'+tr('Find universities','Найти вузы')+'</button>'))};
+function cmpAi(o){return (o.summary?'<p class="sy-sum">'+E(o.summary)+'</p>':'')+(o.items||[]).map(it=>{const f=FIT[it.fit]||FIT.unknown,li=a=>(Array.isArray(a)?a:[]).map(x=>'<li>'+E(x)+'</li>').join('');
+ return '<article class="sy-fit"><div class="sy-ch"><h4>'+E(it.name)+'</h4><span class="sy-verdict '+f[2]+'">'+(ru()?f[1]:f[0])+'</span></div>'+(it.strengths?.length?'<b>'+tr('Strengths','Сильные стороны')+'</b><ul>'+li(it.strengths)+'</ul>':'')+(it.concerns?.length?'<b>'+tr('Concerns','Слабые места')+'</b><ul>'+li(it.concerns)+'</ul>':'')+(it.check?.length?'<b>'+tr('Check on the official site','Проверить на официальном сайте')+'</b><ul>'+li(it.check)+'</ul>':'')+'</article>'}).join('')+(o.advice?'<div class="sy-key"><b>'+tr('Advice','Совет')+'</b><p>'+E(o.advice)+'</p></div>':'')+'<p class="sy-ailabel">'+tr('AI analysis of the data above. Verify facts on official sites before you decide.','Анализ ИИ по данным выше. Перед решением проверьте факты на официальных сайтах.')+'</p>'}
 VIEWS.uni=()=>{const u=D.adm.find(x=>x.id===V.d.id);if(!u){V.d=null;return VIEWS.adm()}
  const F=[['prog',tr('Programme / major','Программа / специальность')],['req',tr('Admission requirements','Требования к поступлению')],['exams',tr('Required exams','Необходимые экзамены')],['lang',tr('Language requirements','Требования к языку')],['cost',tr('Tuition','Стоимость обучения')],['sch',tr('Scholarships and aid','Стипендии и помощь')],['note',tr('Notes','Заметки')]];
- let h=back(tr('Admissions','Поступление'))+'<header class="sy-head"><h2>'+E(u.n)+'</h2><p>'+E(u.c||'')+(u.web?' · '+OFFICIAL(u.web):'')+'</p></header><section class="sy-card"><div class="sy-grid2">'+sel('syUst',ST_ADM.map(s=>[s[0],ru()?s[1]:s[2]]),u.st||'research',tr('Application status','Статус заявки'))+inp('syUdl',tr('Application deadline','Дедлайн подачи'),u.dl||'','date')+'</div>'+
+ let h=back(tr('Admissions','Поступление'))+'<header class="sy-head"><h2>'+E(u.n)+'</h2><p>'+E(uniMeta(u))+(u.web?' · '+OFFICIAL(u.web):'')+(u.wd?' · '+tr('data: ','данные: ')+OFFICIAL(WD(u.wd)):'')+'</p></header><section class="sy-card"><div class="sy-grid2">'+sel('syUst',ST_ADM.map(s=>[s[0],ru()?s[1]:s[2]]),u.st||'research',tr('Application status','Статус заявки'))+inp('syUdl',tr('Application deadline','Дедлайн подачи'),u.dl||'','date')+'</div>'+
   F.map(([k,l])=>'<label class="sy-f"><span>'+l+'</span><textarea id="syU_'+k+'" rows="2" maxlength="300">'+E(u[k]||'')+'</textarea></label>').join('')+'<p class="sy-muted">'+tr('Fill in from the university website and add the source link below.','Заполняйте по сайту университета и добавьте ссылку на источник ниже.')+'</p>'+
   '<h3>'+tr('Official sources','Официальные источники')+'</h3><ul class="sy-links">'+(u.src||[]).map((s,i)=>'<li>'+OFFICIAL(s)+'<button class="sy-x" data-sy="usrcdel" data-i="'+i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul><div class="sy-acts">'+'<input id="syUsrc" type="url" placeholder="https://" aria-label="'+tr('Source link','Ссылка на источник')+'"><button class="sy-btn2" data-sy="usrc">'+tr('Add link','Добавить')+'</button></div>'+
   '<h3>'+tr('Documents','Документы')+'</h3><ul class="sy-list">'+(u.docs||[]).map((d,i)=>'<li class="sy-task'+(d[1]?' done':'')+'"><button class="sy-ck" data-sy="udoc" data-i="'+i+'" role="checkbox" aria-checked="'+!!d[1]+'" aria-label="'+E(d[0])+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5l4 4 9-9"/></svg></button><span><b>'+E(d[0])+'</b></span><button class="sy-x" data-sy="udocdel" data-i="'+i+'" aria-label="'+tr('Delete','Удалить')+'">×</button></li>').join('')+'</ul><div class="sy-acts"><input id="syUdoc" maxlength="60" placeholder="'+tr('e.g. Transcript, motivation letter','например, аттестат, мотивационное письмо')+'" aria-label="'+tr('Document','Документ')+'"><button class="sy-btn2" data-sy="uadddoc">'+tr('Add','Добавить')+'</button></div>'+
@@ -3624,23 +3798,56 @@ VIEWS.plan=()=>{const t=today(),L=D.plan.slice().sort((a,b)=>((a.d||'9')+(a.tm||
 function planForm(){const e=V.pe?D.plan.find(x=>x.id===V.pe)||{}:{};return '<section class="sy-card"><h3>'+(V.pe?tr('Edit','Изменить'):tr('Add to plan','Добавить в план'))+'</h3><div class="sy-grid2">'+sel('syPty',Object.entries(PLAN_T).map(([k,v])=>[k,ru()?v[0]:v[1]]),e.ty||'hw',tr('Type','Тип'))+sel('syPs',[['',tr('No subject','Без предмета')],...D.subj.map(s=>[s.id,s.n])],e.sid||'',tr('Subject','Предмет'))+'</div>'+inp('syPtt',tr('Title','Название'),e.t||'','text','maxlength="90"')+'<div class="sy-grid2">'+inp('syPd',tr('Date','Дата'),e.d||today(),'date')+inp('syPtm',tr('Time','Время'),e.tm||'','time')+'</div>'+
  '<label class="sy-check"><input type="checkbox" id="syPrem"'+(e.rem?' checked':'')+'> '+tr('Telegram reminder at this time','Напоминание в Telegram в это время')+'</label><div class="sy-acts">'+(V.pe?'<button class="sy-link sy-del" data-sy="pdel">'+tr('Delete','Удалить')+'</button><button class="sy-link" data-sy="pcancel">'+tr('Cancel','Отмена')+'</button>':'<span></span>')+'<button class="p" data-sy="psave">'+tr('Save','Сохранить')+'</button></div></section>'}
 
-/* Analytics */
-VIEWS.stats=()=>{const n=nowN(),R=V.range||7;let h='<header class="sy-head"><h2>'+tr('Analytics','Аналитика')+'</h2></header><div class="sy-seg">'+[7,30].map(r=>'<button data-sy="range" data-v="'+r+'"'+(R===r?' class="on"':'')+'>'+r+' '+tr('days','дней')+'</button>').join('')+'</div>';
- const days=Array.from({length:R},(_,i)=>n-R+1+i),mins=days.map(d=>minutesOn(d,d)),tot=mins.reduce((a,b)=>a+b,0);
- h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Study time','Время занятий')+'</h3><span>'+hm(tot)+'</span></div>'+(tot?barChart(days.map((d,i)=>[fd(kN(d)),mins[i]]),hm):'<p class="sy-muted">'+tr('Use the session timer on Overview to log study time.','Запускайте таймер занятий на «Обзоре», чтобы учитывать время.')+'</p>')+'</section>';
- const ms=D.subj.map(s=>[s,mastery(s.id)]).filter(x=>x[1]!=null);
- h+='<section class="sy-card"><h3>'+tr('Progress by subject','Прогресс по предметам')+'</h3>'+(ms.length?ms.map(([s,m])=>'<div class="sy-prog"><span>'+E(s.n)+'</span>'+bar(m,s.n+': '+m+'%')+'<b>'+m+'%</b></div>').join(''):'<p class="sy-muted">'+tr('Add topics to subjects and mark how well you know them.','Добавьте темы в предметы и отмечайте, как вы их знаете.')+'</p>')+'</section>';
- // strong and weak topics
- const tops=D.subj.flatMap(s=>(D.topics[s.id]||[]).map(t=>[s.n+' · '+t.n,t.m||0]));
- if(tops.length){const strong=tops.filter(t=>t[1]>=3),weak=tops.filter(t=>t[1]<=1);h+='<section class="sy-card"><h3>'+tr('Strong and weak topics','Сильные и слабые темы')+'</h3><div class="sy-two"><div><h4>'+tr('Strong','Сильные')+'</h4>'+(strong.length?'<ul>'+strong.slice(0,6).map(t=>'<li>'+E(t[0])+'</li>').join('')+'</ul>':'<p class="sy-muted">—</p>')+'</div><div><h4>'+tr('Needs work','Подтянуть')+'</h4>'+(weak.length?'<ul>'+weak.slice(0,6).map(t=>'<li>'+E(t[0])+'</li>').join('')+'</ul>':'<p class="sy-muted">—</p>')+'</div></div></section>'}
- const qa=Object.values(D.quiz).reduce((a,v)=>[a[0]+v[0],a[1]+v[1]],[0,0]);
- h+='<section class="sy-card"><h3>'+tr('Answers in tests','Ответы в тестах')+'</h3>'+(qa[0]+qa[1]?'<div class="sy-stat2"><div><b>'+qa[0]+'</b><span>'+tr('correct','верно')+'</span></div><div><b>'+qa[1]+'</b><span>'+tr('wrong','неверно')+'</span></div><div><b>'+Math.round(qa[0]/(qa[0]+qa[1])*100)+'%</b><span>'+tr('accuracy','точность')+'</span></div></div>':'<p class="sy-muted">'+tr('Take a test in a subject to see your accuracy.','Пройдите тест в предмете, чтобы увидеть точность.')+'</p>')+'</section>';
- const ex=D.prof.exams.map(exam).filter(Boolean);ex.forEach(x=>{if(!D.res[x.id])examData(x.id).then(()=>V.tab==='stats'&&render())});
- const withRes=ex.filter(x=>D.res[x.id]?.length);h+='<section class="sy-card"><h3>'+tr('Exam results','Результаты экзаменов')+'</h3>'+(withRes.length?withRes.map(x=>{const rs=D.res[x.id];return '<h4>'+E(exName(x))+'</h4>'+lineChart(rs.map(r=>[r.d,r.m?r.s/r.m*100:r.s,r]),rs.every(r=>r.m)?'%':'')}).join(''):'<p class="sy-muted">'+tr('Log mock tests on an exam page to see the trend.','Записывайте пробники на странице экзамена, чтобы видеть динамику.')+'</p>')+'</section>';
- if(D.prof.exams.includes('ege')&&Object.keys(D.ege).length){h+='<section class="sy-card"><h3>'+tr('EGE tasks','Задания ЕГЭ')+'</h3><div class="sy-tasks">'+EGE_MATH.tasks.map(([k,p])=>{const s=D.ege[k]||[0,0],c=!s[0]&&!s[1]?'':s[0]>=3&&s[0]/(s[0]+s[1])>=.75?'ok':'work';return '<span class="sy-tn p'+p+' '+c+'" data-tip="'+tr('Task ','Задание ')+k+': '+s[0]+' / '+s[1]+'">'+k+'</span>'}).join('')+'</div><p class="sy-legend"><i class="ok"></i>'+tr('mastered','освоено')+' <i class="work"></i>'+tr('needs practice','нужно повторить')+'</p></section>'}
- const hist=D.sess.slice().sort((a,b)=>b[0]-a[0]).slice(0,10);if(hist.length)h+='<section class="sy-card"><h3>'+tr('History','История занятий')+'</h3><ul class="sy-list">'+hist.map(r=>'<li class="sy-res"><span><b>'+hm(r[1])+'</b><small>'+fd(kN(r[0]))+(r[2]?' · '+E(subjName(r[2])):'')+'</small></span></li>').join('')+'</ul></section>';
- D.subj.forEach(s=>{if(!D.topics[s.id])subjData(s.id).then(()=>V.tab==='stats'&&render())});return h};
-// single-series bars (one hue, no legend), recessive axis, hover/focus tooltip via data-tip
+/* Analytics: everything here is computed from the other sections (timer, planner, exam tasks, results, mistakes, subjects, cards, tests) */
+const pct=(a,b)=>b?Math.round(a/b*100):null;
+const tile=(v,l,sub)=>'<div><b>'+v+'</b><span>'+l+'</span>'+(sub?'<small>'+sub+'</small>':'')+'</div>';
+// readiness of one exam subject from the FIPI task map and the user's own answers
+function readiness(x,S){const tasks=S.tasks||[],st=tasks.map(t=>tstat(x.id,S.id,t[0])),tried=st.filter(s=>s[0]+s[1]).length,mast=st.filter(s=>tstate(s)==='ok').length,ok=st.reduce((a,s)=>a+s[0],0),bad=st.reduce((a,s)=>a+s[1],0);
+ // every checked or marked answer is counted once in "n"; older data only has the per-task counts
+ const pts=tasks.reduce((a,t,i)=>a+(tstate(st[i])==='ok'?t[2]:0),0),tot=(D.ege[tkey(x.id,S.id)]||{}).n||[ok,bad];
+ return{tasks,st,tried,mast,ok:tot[0],bad:tot[1],pts}}
+VIEWS.stats=()=>{const n=nowN(),R=V.range||7,from=n-R+1,t=today(),fromK=kN(from);
+ let h='<header class="sy-head"><h2>'+tr('Analytics','Аналитика')+'</h2><p>'+tr('Built from your timer, planner, exam practice, results, mistakes and subjects.','Считается по таймеру, плану, тренировкам, результатам, ошибкам и предметам.')+'</p></header><div class="sy-seg">'+[7,30].map(r=>'<button data-sy="range" data-v="'+r+'"'+(R===r?' class="on"':'')+'>'+r+' '+tr('days','дней')+'</button>').join('')+'</div>';
+ const ex=D.prof.exams.map(exam).filter(Boolean);ex.forEach(x=>{if(!D.res[x.id])examData(x.id).then(()=>V.tab==='stats'&&render())});if(ex.some(x=>x.fipi))waitFipi();
+ D.subj.forEach(s=>{if(!D.topics[s.id])subjData(s.id).then(()=>V.tab==='stats'&&render())});
+ // 1. period summary
+ const days=Array.from({length:R},(_,i)=>from+i),mins=days.map(d=>minutesOn(d,d)),tot=mins.reduce((a,b)=>a+b,0),active=mins.filter(Boolean).length;
+ const prev=minutesOn(from-R,from-1),inP=D.plan.filter(p=>p.d>=fromK&&p.d<=t),done=inP.filter(p=>p.done).length,late=D.plan.filter(p=>!p.done&&p.d&&p.d<t).length;
+ const errN=ex.reduce((a,x)=>a+(D.err[x.id]||[]).filter(e=>e.d>=fromK).length,0),resN=ex.reduce((a,x)=>a+(D.res[x.id]||[]).filter(r=>r.d>=fromK).length,0);
+ h+='<section class="sy-card"><div class="sy-stat2 sy-stat4">'+tile(hm(tot),tr('study time','время занятий'),prev||tot?(tot>=prev?'+':'−')+hm(Math.abs(tot-prev))+' '+tr('vs previous','к прошлому периоду'):'')+tile(active+'/'+R,tr('active days','дней с занятиями'))+tile(inP.length?pct(done,inP.length)+'%':'—',tr('plan done','план выполнен'),inP.length?done+' / '+inP.length:'')+tile(late,tr('overdue','просрочено'),late?'<button class="sy-link" data-sy="tab" data-v="plan">'+tr('open planner','открыть план')+'</button>':'')+'</div>'+
+  (resN||errN?'<p class="sy-muted">'+tr('In this period: results ','За период: результатов — ')+resN+' · '+tr('mistakes ','ошибок — ')+errN+'</p>':'')+'</section>';
+ // 2. study time by day and by subject
+ h+='<section class="sy-card"><div class="sy-ch"><h3>'+tr('Study time','Время занятий')+'</h3><span>'+hm(tot)+'</span></div>'+(tot?barChart(days.map((d,i)=>[fd(kN(d)),mins[i]]),hm):'<p class="sy-muted">'+tr('Use the session timer on Overview to log study time.','Запускайте таймер занятий на «Обзоре», чтобы учитывать время.')+'</p>');
+ const bySub={};D.sess.filter(r=>r[0]>=from).forEach(r=>{bySub[r[2]||'']=(bySub[r[2]||'']||0)+r[1]});const bs=Object.entries(bySub).sort((a,b)=>b[1]-a[1]);
+ if(bs.length>1||bs[0]?.[0])h+='<h4>'+tr('By subject','По предметам')+'</h4>'+bs.slice(0,6).map(([sid,m])=>{const nm=subjName(sid)||tr('No subject','Без предмета');return '<div class="sy-prog"><span>'+E(nm)+'</span>'+bar(m/bs[0][1]*100,nm+': '+hm(m))+'<b>'+hm(m)+'</b></div>'}).join('');
+ h+='</section>';
+ // 3. exams: readiness per subject, results against the maximum and the target
+ if(!ex.length)h+='<section class="sy-card"><h3>'+tr('Exams','Экзамены')+'</h3><p class="sy-muted">'+tr('Choose your exams to see readiness, results and weak tasks here.','Выберите экзамены — здесь появятся готовность, результаты и слабые задания.')+'</p><button class="sy-btn2" data-sy="tab" data-v="exams">'+tr('Choose exams','Выбрать экзамены')+'</button></section>';
+ ex.forEach(x=>{const rs=D.res[x.id]||[],d=D.prof.dates[x.id];let s='<section class="sy-card"><div class="sy-ch"><h3>'+E(exName(x))+'</h3><span>'+(d?(diff(d)>=0?diff(d)+' '+tr('days left','дн. до экзамена'):fd(d)):tr('no date','дата не указана'))+'</span></div>';
+  if(x.fipi&&FIPI){const subs=mySubs(x).map(id=>offSubj(x,id)).filter(Boolean);
+   if(!subs.length)s+='<p class="sy-muted">'+tr('Mark your subjects on the exam page to track readiness.','Отметьте предметы на странице экзамена, чтобы видеть готовность.')+'</p><button class="sy-btn2" data-sy="exam" data-id="'+x.id+'">'+tr('Open exam','Открыть экзамен')+'</button>';
+   subs.forEach(S=>{const r=readiness(x,S),mine=rs.filter(q=>q.sub===S.id),pr=mine.filter(q=>(q.sc||'p')==='p'),last=pr[pr.length-1],tgt=num(D.prof.target?.[x.id+':'+S.id+':p']);
+    s+='<div class="sy-exs"><h4>'+E(offName(S))+'</h4>';
+    if(S.tasks){const p=pct(r.mast,r.tasks.length);s+='<div class="sy-prog"><span>'+tr('Mastered','Освоено')+'</span>'+bar(p,p+'%')+'<b>'+r.mast+'/'+r.tasks.length+'</b></div>'+
+     '<div class="sy-tasks sy-mini">'+r.tasks.map((t,i)=>'<span class="sy-tn '+tstate(r.st[i])+(t[1]!=='Б'?' p2':'')+'" data-tip="'+E(tr('Task ','Задание ')+t[0]+': '+cut(t[3],40)+' · '+r.st[i][0]+' / '+r.st[i][1])+'" tabindex="0">'+t[0]+'</span>').join('')+'</div>'+
+     (S.maxPrimary?'<p class="sy-muted">'+tr('Points from mastered tasks: ','Баллов за освоенные задания: ')+r.pts+' / '+S.maxPrimary+' '+tr('primary','первичных')+'</p>':'')}
+    s+='<p class="sy-muted">'+(r.ok+r.bad?tr('Answers: ','Ответы: ')+r.ok+' '+tr('correct','верно')+', '+r.bad+' '+tr('wrong','неверно')+' ('+pct(r.ok,r.ok+r.bad)+'%)':tr('No practice yet: open tasks in Prepare or the FIPI prototypes in the tutor.','Тренировок пока нет: откройте задания в «Подготовке» или прототипы ФИПИ в репетиторе.'))+'</p>';
+    if(last)s+='<p class="sy-muted">'+tr('Last result: ','Последний результат: ')+'<b>'+E(last.s)+' / '+E(last.m||S.maxPrimary||'—')+'</b> · '+fd(last.d)+(tgt?' · '+tr('target ','цель ')+tgt+(last.s>=tgt?' ✓':' ('+tr('need ','ещё ')+'+'+(Math.round((tgt-last.s)*10)/10)+')'):'')+'</p>'+(pr.length>1?lineChart(pr.map(q=>[q.d,q.m?q.s/q.m*100:q.s,q]),pr.every(q=>q.m)?'%':''):'');
+    const weak=r.tasks.map((t,i)=>[t,r.st[i]]).filter(([,q])=>q[1]>q[0]*.34&&q[1]).sort((a,b)=>b[1][1]-a[1][1]).slice(0,3);
+    if(weak.length)s+='<p class="sy-weak"><b>'+tr('Practise first: ','Подтянуть в первую очередь: ')+'</b>'+weak.map(([t])=>'<button class="sy-link" data-sy="gotask" data-ex="'+x.id+'" data-sid="'+E(S.id)+'" data-v="'+t[0]+'">'+t[0]+' · '+E(cut(t[3],32))+'</button>').join(', ')+'</p>';
+    s+='</div>'})}
+  else{const L=rs.slice(-12);s+=L.length?(L.length>1?lineChart(L.map(q=>[q.d,q.m?q.s/q.m*100:q.s,q]),L.every(q=>q.m)?'%':''):'<p class="sy-muted">'+tr('One result so far: ','Пока один результат: ')+E(L[0].s)+(L[0].m?' / '+E(L[0].m):'')+'</p>'):'<p class="sy-muted">'+tr('Log mock tests on the exam page to see the trend.','Записывайте пробники на странице экзамена, чтобы видеть динамику.')+'</p>'}
+  const es=(D.err[x.id]||[]);if(es.length){const by={};es.forEach(e=>{const k=e.n?tr('task ','задание ')+e.n:e.t;by[k]=(by[k]||0)+1});const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,3);s+='<p class="sy-muted">'+tr('Frequent mistakes: ','Частые ошибки: ')+top.map(([k,c])=>E(k)+' ×'+c).join(', ')+'</p>'}
+  h+=s+'</section>'});
+ // 4. Learning subjects: topics, cards, tests
+ if(D.subj.length){h+='<section class="sy-card"><h3>'+tr('Subjects','Предметы')+'</h3>'+D.subj.map(s=>{const m=mastery(s.id),q=D.quiz[s.id]||[0,0],rv=D.quiz['rev:'+s.id]||[0,0],dc=dueCards(s.id),bits=[q[0]+q[1]?tr('tests ','тесты ')+pct(q[0],q[0]+q[1])+'%':'',rv[0]+rv[1]?tr('cards recalled ','карточки ')+pct(rv[0],rv[0]+rv[1])+'%':'',dc?dc+' '+tr('cards due','к повторению'):''].filter(Boolean);
+   return '<div class="sy-prog"><span>'+E(s.n)+'</span>'+(m!=null?bar(m,s.n+': '+m+'%')+'<b>'+m+'%</b>':'<em class="sy-muted">'+tr('no topics','нет тем')+'</em><b></b>')+'</div>'+(bits.length?'<p class="sy-muted sy-under">'+bits.join(' · ')+'</p>':'')}).join('')+'</section>';
+  const tops=D.subj.flatMap(s=>(D.topics[s.id]||[]).map(t=>[s.n+' · '+t.n,t.m||0]));if(tops.length){const strong=tops.filter(t=>t[1]>=3),weak=tops.filter(t=>t[1]<=1);
+   h+='<section class="sy-card"><h3>'+tr('Strong and weak topics','Сильные и слабые темы')+'</h3><div class="sy-two"><div><h4>'+tr('Strong','Сильные')+'</h4>'+(strong.length?'<ul>'+strong.slice(0,6).map(t=>'<li>'+E(t[0])+'</li>').join('')+'</ul>':'<p class="sy-muted">—</p>')+'</div><div><h4>'+tr('Needs work','Подтянуть')+'</h4>'+(weak.length?'<ul>'+weak.slice(0,6).map(t=>'<li>'+E(t[0])+'</li>').join('')+'</ul>':'<p class="sy-muted">—</p>')+'</div></div></section>'}}
+ else h+='<section class="sy-card"><h3>'+tr('Subjects','Предметы')+'</h3><p class="sy-muted">'+tr('Add subjects in Learning to track topics, cards and tests.','Добавьте предметы в «Предметах», чтобы видеть темы, карточки и тесты.')+'</p></section>';
+ // 5. recent sessions
+ const hist=D.sess.slice().sort((a,b)=>b[0]-a[0]).slice(0,8);if(hist.length)h+='<section class="sy-card"><h3>'+tr('Recent sessions','Последние занятия')+'</h3><ul class="sy-list">'+hist.map(r=>'<li class="sy-res"><span><b>'+hm(r[1])+'</b><small>'+fd(kN(r[0]))+(r[2]?' · '+E(subjName(r[2])):'')+'</small></span></li>').join('')+'</ul></section>';
+ return h};
 function barChart(rows,fmt){const W=320,H=120,max=Math.max(...rows.map(r=>r[1]),1),bw=(W-8)/rows.length,lab=rows.length<=7;
  return '<svg class="sy-chart" viewBox="0 0 '+W+' '+(H+18)+'" role="img" aria-label="'+tr('Study minutes by day','Минуты занятий по дням')+'"><line x1="0" x2="'+W+'" y1="'+H+'" y2="'+H+'" class="ax"/>'+rows.map(([l,v],i)=>{const h=v?Math.max(3,v/max*(H-14)):0,x=4+i*bw+bw*.18;return (h?'<rect x="'+x.toFixed(1)+'" y="'+(H-h).toFixed(1)+'" width="'+(bw*.64).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="3" class="b"/>':'')+'<rect x="'+(4+i*bw).toFixed(1)+'" y="0" width="'+bw.toFixed(1)+'" height="'+H+'" class="hit" tabindex="0" data-tip="'+E(l+': '+fmt(v))+'"/>'+(lab||i%5===0?'<text x="'+(4+i*bw+bw/2).toFixed(1)+'" y="'+(H+14)+'" class="tx">'+E(l)+'</text>':'')}).join('')+'</svg>'}
 function lineChart(pts,unit){pts=pts.slice().sort((a,b)=>a[0].localeCompare(b[0]));const W=320,H=130,L=30,ys=pts.map(p=>p[1]),max=unit==='%'?100:Math.max(...ys)*1.1||1,min=0,x0=dayN(pts[0][0]),x1=Math.max(dayN(pts[pts.length-1][0]),x0+1);
@@ -3668,7 +3875,6 @@ function photo(f){return new Promise((res,rej)=>{const img=new Image(),u=URL.cre
 const tick=setInterval(()=>{const b=document.querySelector('#study [data-sy-tick]');if(b&&D.timer)b.textContent=hm((Date.now()-D.timer.at)/60000)},30000);
 
 const A={
- tab(b){V.tab=b.dataset.v;V.d=null;V.sub='';V.mat=null;V.task=null;V.pe=null;render();scrollTo(0,0)},
  back(){V.d=null;V.sub='';V.mat=null;V.task=null;render();scrollTo(0,0)},
  sub(b){V.sub=b.dataset.v;V.mat=null;V.review=null;render()},
  open(b){open(b.dataset.u)},
@@ -3687,15 +3893,15 @@ const A={
  pcancel(){V.pe=null;render()},
  pf(b){V.pf=b.dataset.v;render()},
  async psave(){const t=val('syPtt');if(!t)return $('syPtt').focus();const e=V.pe?D.plan.find(x=>x.id===V.pe):null,x=e||{id:uid()};
-  Object.assign(x,{t,ty:val('syPty'),sid:val('syPs'),d:val('syPd')||today(),tm:val('syPtm')});const want=$('syPrem').checked;
+  const want=$('syPrem').checked;if(want&&!val('syPtm')){note(tr('Set the time for the reminder.','Укажите время напоминания.'));return $('syPtm').focus()}
+  Object.assign(x,{t,ty:val('syPty'),sid:val('syPs'),d:val('syPd')||today(),tm:val('syPtm')});
   if(want){try{if(x.rem)await unremind(x);x.rem=await remind(x)}catch(err){note(friendlyError(err));x.rem=x.rem||null}}else await unremind(x);
   if(!e)D.plan.push(x);if(await savePlan()){V.pe=null;ok();render()}},
  async pdel(){const x=D.plan.find(p=>p.id===V.pe);if(!x||!await ask(tr('Delete this item?','Удалить запись?')))return;await unremind(x);D.plan=D.plan.filter(p=>p!==x);V.pe=null;await savePlan();render()},
- async addsubj(){const n=val('sySubN');if(!n)return $('sySubN').focus();D.subj.push({id:uid(),n,ex:val('sySubE')});if(await safePut(KEYS.subj,D.subj)){D.topics[D.subj.at(-1).id]=[];D.mats[D.subj.at(-1).id]=[];D.cards[D.subj.at(-1).id]=[];ok();render()}},
  subj(b){V.d={k:'subj',id:b.dataset.id};V.sub='topics';render();scrollTo(0,0)},
  async delsubj(){const sid=V.d.id;if(!await ask(tr('Delete this subject with its topics, materials and cards?','Удалить предмет вместе с темами, материалами и карточками?')))return;await subjData(sid);
   for(const m of D.mats[sid]||[])await st.del('sy_x_'+m.id);const head=await jget('sy_c_'+sid,[]);for(let i=0;i<(+head?.pages||0);i++)await st.del('sy_c_'+sid+'.'+i);
-  for(const k of ['sy_t_','sy_m_','sy_c_'])await st.del(k+sid);D.subj=D.subj.filter(x=>x.id!==sid);delete D.topics[sid];delete D.mats[sid];delete D.cards[sid];delete D.quiz[sid];
+  for(const k of ['sy_t_','sy_m_','sy_c_'])await st.del(k+sid);D.subj=D.subj.filter(x=>x.id!==sid);delete D.topics[sid];delete D.mats[sid];delete D.cards[sid];delete D.quiz[sid];delete D.quiz['rev:'+sid];
   await safePut(KEYS.subj,D.subj);await st.set(KEYS.quiz,JSON.stringify(D.quiz));V.d=null;render()},
  async addtopic(){const sid=V.d.id,n=val('syTopN');if(!n)return $('syTopN').focus();D.topics[sid].push({id:uid(),n,p:val('syTopP')||null,m:0});if(await safePut('sy_t_'+sid,D.topics[sid]))render()},
  async mast(b){const sid=V.d.id,t=D.topics[sid].find(x=>x.id===b.dataset.id);t.m=((t.m||0)+1)%5;await safePut('sy_t_'+sid,D.topics[sid]);render()},
@@ -3712,31 +3918,19 @@ const A={
  async delcard(b){const sid=V.d.id;D.cards[sid]=D.cards[sid].filter(c=>c.i!==b.dataset.id);await saveCards(sid);render()},
  review(){const sid=V.d.id;V.review={sid,q:D.cards[sid].filter(c=>(c.d??0)<=nowN()).slice(0,40),show:false,done:0};render()},
  show(){V.review.show=true;render()},
- async grade(b){const r=V.review,c=r.q.shift(),g=+b.dataset.v;grade(c,g);r.show=false;r.done++;if(g===0)r.q.push(c);await saveCards(r.sid);render()},
  async mkquiz(){const sid=V.d.id,tid=val('syQT'),tp=(D.topics[sid]||[]).find(t=>t.id===tid);V.quiz={sid,busy:true};render();
   try{const o=await ai('quiz',{topic:tp?tp.n:subjName(sid),subject:subjName(sid),count:+val('syQN')||5}),items=(o.questions||[]).filter(q=>Array.isArray(q.options)&&q.options.length>1&&Number.isInteger(q.correct));if(!items.length)throw new Error(t('e4'));V.quiz={sid,items,i:0,ok:0,pick:null}}catch(e){V.quiz={sid,err:friendlyError(e)}}render()},
  async ans(b){const q=V.quiz,it=q.items[q.i];q.pick=+b.dataset.v;const right=q.pick===it.correct;if(right)q.ok++;const s=D.quiz[q.sid]||[0,0];s[right?0:1]++;D.quiz[q.sid]=s;await st.set(KEYS.quiz,JSON.stringify(D.quiz));render()},
  nextq(){V.quiz.i++;V.quiz.pick=null;render()},
  newquiz(){V.quiz=null;render()},
- exam(b){V.d={k:'exam',id:b.dataset.id};V.sub='about';V.task=null;V.ai.ege=V.ai.pr=V.ai.err=V.ai.plan=null;render();scrollTo(0,0)},
  async togexam(b){const id=b.dataset.id,L=D.prof.exams;D.prof.exams=L.includes(id)?L.filter(x=>x!==id):[...L,id];await safePut(KEYS.prof,D.prof);render()},
- async saveex(b){const id=b.dataset.id;D.prof.dates[id]=val('syExD');D.prof.target[id]=val('syExT');if(await safePut(KEYS.prof,D.prof)){ok(tr('Saved','Сохранено'));render()}},
  goal(b){const x=exam(b.dataset.id);if(D.prof.goalOf?.[x.id]&&goals.some(g=>g.id===D.prof.goalOf[x.id])){cur=D.prof.goalOf[x.id];gview='detail';showTab('g');return}linkGoal(x)},
- task(b){V.task=+b.dataset.v;V.ai.ege=null;render()},
- async egemark(b){const n=V.task,s=D.ege[n]||[0,0];s[b.dataset.v==='1'?0:1]++;s[2]=Date.now();D.ege[n]=s;await st.set(KEYS.ege,JSON.stringify(D.ege));ok();render()},
- async egeres(b){const n=+b.dataset.n;if(!(n>=1&&n<=19))return;const s=D.ege[n]||[0,0];s[b.dataset.v==='1'?0:1]++;s[2]=Date.now();D.ege[n]=s;await st.set(KEYS.ege,JSON.stringify(D.ege));ok(tr('Saved to your EGE progress','Учтено в прогрессе ЕГЭ'))},
- totutor(b){const t=EGE_MATH.tasks.find(r=>r[0]===+b.dataset.v);V.tab='tutor';V.d=null;V.tutor={...V.tutor,mode:'solve',exam:'ege',subject:ru()?EGE_MATH.name[0]:EGE_MATH.name[1],q:tr('EGE task ','Задание ЕГЭ №')+t[0]+' ('+(ru()?t[4]:t[5])+'). '+tr('Condition: ','Условие: '),res:null,err:''};render();scrollTo(0,0);$('syTQ')?.focus()},
- similar(b){const t=EGE_MATH.tasks.find(r=>r[0]===+b.dataset.v);aiInto('ege','syEgeAi',async()=>{const o=await ai('exercises',{exam:'ege',subject:ru()?EGE_MATH.name[0]:EGE_MATH.name[1],topic:tr('EGE task ','Задание ЕГЭ №')+t[0]+': '+(ru()?t[4]:t[5])+tr(' (part ',' (часть ')+t[1]+', '+tr('level ','уровень ')+t[2]+')',count:3});return renderAI('exercises',o)})},
  practice(b){const x=exam(b.dataset.id),topic=val('syPrT')||(x.sections?x.sections[0][0]:exName(x));aiInto('pr','syPrAi',async()=>renderAI('exercises',await ai('exercises',{exam:exName(x),topic,count:5})))},
- async addres(b){const id=b.dataset.id,s=num(val('syRS')),m=num(val('syRM'));if(s==null)return $('syRS').focus();const r={d:val('syRD')||today(),k:val('syRK'),s,m:m||null,n:val('syRN')};D.res[id].push(r);D.res[id].sort((a,b)=>a.d.localeCompare(b.d));
-  if(!await safePut('sy_r_'+id,D.res[id])){D.res[id]=D.res[id].filter(x=>x!==r);return}
-  const gid=D.prof.goalOf?.[id],g=gid&&goals.find(x=>x.id===gid);if(g&&g.to!=null){g.log.push([Date.now(),s,tr('Study: ','Учёба: ')+exName(exam(id))]);await saveGoal(g);toast(tr('Also logged in Goals','Записано и в «Цели»'))}else ok();render()},
  async delres(b){const id=b.dataset.id;D.res[id].splice(+b.dataset.i,1);await safePut('sy_r_'+id,D.res[id]);render()},
- async adderr(b){const id=b.dataset.id,t=val('syEt'),w=val('syEw');if(!t)return $('syEt').focus();D.err[id].push({d:today(),t,w});if(!await safePut('sy_e_'+id,D.err[id])){D.err[id].pop();return}ok();render()},
  async delerr(b){const id=b.dataset.id;D.err[id].splice(+b.dataset.i,1);await safePut('sy_e_'+id,D.err[id]);render()},
  errai(b){const x=exam(b.dataset.id);aiInto('err','syErrAi',async()=>{const o=await ai('recommend',{exam:exName(x),context:{mistakes:D.err[x.id].slice(-20).map(e=>e.t+': '+e.w),task:tr('Analyse the pattern in these mistakes and say what to practise.','Найди закономерность в ошибках и скажи, что тренировать.')}});return '<ul class="sy-tips">'+(o.tips||[]).map(x=>'<li>'+E(x)+'</li>').join('')+'</ul>'})},
  wday(b){const on=b.classList.toggle('on');b.setAttribute('aria-pressed',on)},
- // deterministic plan: sessions on chosen weekdays until the exam, weakest topics first, last 3 days = mock + review
+ // deterministic plan: sessions on chosen weekdays until the exam, weakest topics first, last 3 days = mock + review,
  async autoplan(b){const x=exam(b.dataset.id),d=D.prof.dates[x.id];if(!d)return;const wd=[...document.querySelectorAll('#study [data-sy="wday"]')].map((e,i)=>e.classList.contains('on')?i:-1).filter(i=>i>=0);if(!wd.length)return note(tr('Pick at least one day.','Выберите хотя бы один день.'));
   const min=+val('syPm')||45,tm=val('syPt'),topics=weakTopics(x),out=[];let k=0;for(let n=nowN()+1;n<dayN(d)&&out.length<40;n++){const kd=kN(n),w=(pd(kd).getDay()+6)%7;if(!wd.includes(w))continue;
    const left=dayN(d)-n,title=left<=3?tr('Mock test and review','Пробник и повторение'):(topics[k++%Math.max(topics.length,1)]||tr('Practice','Практика'));out.push({id:uid(),t:String(title).slice(0,60),mn:min,ty:'study',d:kd,tm,ex:x.id,gen:1})}
@@ -3744,22 +3938,11 @@ const A={
  aiplan(b){const x=exam(b.dataset.id);aiInto('plan','syPlAi',async()=>{const w=await wellbeing(),o=await ai('plan',{exams:[{name:exName(x),date:D.prof.dates[x.id]||null}],weak:weakTopics(x).slice(0,10),minutes:val('syPm')||45,days:7,wellbeing:w});V.planDraft={ex:x.id,days:o.days||[]};return renderAI('plan',o)})},
  async useplan(){const p=V.planDraft;if(!p)return;const tm=val('syPt');p.days.forEach(d=>(d.items||[]).forEach(it=>D.plan.push({id:uid(),t:String(it.title).slice(0,60),mn:+it.minutes||30,ty:'study',d:String(d.date).slice(0,10),tm,ex:p.ex,gen:1})));V.planDraft=null;if(await savePlan()){ok(tr('Added to planner','Добавлено в план'));render()}},
  async clrplan(b){if(!await ask(tr('Remove generated sessions that are not done?','Удалить невыполненные сгенерированные занятия?')))return;D.plan=D.plan.filter(p=>!(p.ex===b.dataset.id&&p.gen&&!p.done));await savePlan();render()},
- tmode(b){V.tutor.mode=b.dataset.v;V.tutor.res=null;V.tutor.err='';keepTutor();render()},
- async ask(){keepTutor();const T=V.tutor,q=T.q;if(!q&&!T.img)return $('syTQ').focus();if(T.mode==='check'&&!T.a)return $('syTA').focus();
-  T.busy=true;T.err='';T.res=null;render();const exId=T.exam,x=exam(exId),body={exam:exId==='ege'?'ege':exName(x),subject:T.subject,count:T.count||5};
-  if(T.mode==='explain')body.question=q;else if(T.mode==='solve')body.task=q;else if(T.mode==='check'){body.task=q;body.user_answer=T.a;body.user_solution=T.w}else if(['summary','cards','quiz'].includes(T.mode)&&q.length>120)body.text=q;else body.topic=q;
-  if(T.img&&['solve','summary'].includes(T.mode))body.image=T.img;
-  try{const o=await ai(T.mode,body);T.res={mode:T.mode,out:o,ctx:{exam:exId}};D.tutor.unshift({m:T.mode,q:(q||tr('Photo','Фото')).slice(0,80),d:today(),o,ex:exId});D.tutor=D.tutor.slice(0,8);
-   while(JSON.stringify(D.tutor).length>3800&&D.tutor.length>1)D.tutor.pop();await st.set(KEYS.tutor,JSON.stringify(D.tutor));T.img=null}catch(e){T.err=friendlyError(e)}T.busy=false;render()},
- thist(b){const x=D.tutor[+b.dataset.i];V.tutor={...V.tutor,mode:x.m,res:{mode:x.m,out:x.o,ctx:{exam:x.ex}}};render()},
  async savetutor(b){const T=V.tutor,mode=b.dataset.m,o=T.res?.out||V.tutor.res?.out,sid=val('sySaveS');if(!o||!sid)return;await subjData(sid);
   if(mode==='cards'||mode==='quiz'){const add=mode==='cards'?(o.cards||[]).map(c=>({i:uid(),f:String(c.f).slice(0,160),b:String(c.b).slice(0,300),d:nowN()})):(o.questions||[]).map(q=>({i:uid(),f:String(q.q).slice(0,160),b:String(q.options?.[q.correct]??'').slice(0,300),d:nowN()}));
    const n=D.cards[sid].length;D.cards[sid].push(...add);if(!await saveCards(sid)){D.cards[sid].length=n;return}return ok(tr('Cards added: ','Карточек добавлено: ')+add.length)}
   const text=mode==='summary'?[o.title,o.summary,...(o.key_points||[]).map(k=>'• '+k),...(o.terms||[]).map(t=>t.term+' — '+t.def)].join('\n'):[o.task_no?tr('Task ','Задание №')+o.task_no:'',o.condition,tr('Solution:','Решение:'),...(o.steps||[]).map((s,i)=>(i+1)+'. '+s.title+': '+s.body),tr('Answer: ','Ответ: ')+o.answer].filter(Boolean).join('\n');
   if(D.mats[sid].length>=40)return note(tr('Up to 40 materials per subject. Delete old ones first.','До 40 материалов на предмет. Удалите старые.'));const id=uid();try{await put('sy_x_'+id,text.slice(0,3500))}catch(e){return note(e.message)}D.mats[sid].push({id,t:(o.title||o.task_type||tr('Solution','Решение')).slice(0,60),at:Date.now(),src:tr('AI tutor','ИИ-репетитор')});if(await safePut('sy_m_'+sid,D.mats[sid]))ok(tr('Saved to materials','Сохранено в материалы'))},
- async usearch(){const U=V.unis;U.q=val('syUN');U.c=val('syUC');if(U.q.length<2&&!U.c)return $('syUN').focus();U.busy=true;U.err='';render();
-  try{const j=await api('/unis',{name:U.q,country:U.c?(UNI_C[U.c]||new Intl.DisplayNames(['en'],{type:'region'}).of(U.c)):''});U.items=j.items||[]}catch(e){U.err=friendlyError(e);U.items=null}U.busy=false;render()},
- async uadd(b){const u=V.unis.items[+b.dataset.i];if(D.adm.some(x=>x.n===u.name))return toast(tr('Already in your list','Уже в списке'));D.adm.push({id:uid(),n:u.name,c:u.country,web:u.web,st:'research',src:u.web?[u.web]:[],docs:[]});if(await safePut(KEYS.adm,D.adm))ok(tr('Added to My list','Добавлено в «Мои вузы»'))},
  async uaddm(){const n=val('syUmN'),w=val('syUmW');if(!n)return $('syUmN').focus();if(w&&!/^https?:\/\//.test(w))return note(tr('The link must start with https://','Ссылка должна начинаться с https://'));D.adm.push({id:uid(),n,web:w,st:'research',src:w?[w]:[],docs:[]});if(await safePut(KEYS.adm,D.adm)){V.sub='mine';ok();render()}},
  uni(b){V.d={k:'uni',id:b.dataset.id};render();scrollTo(0,0)},
  async usave(){const u=D.adm.find(x=>x.id===V.d.id);u.st=val('syUst');u.dl=val('syUdl');['prog','req','exams','lang','cost','sch','note'].forEach(k=>u[k]=val('syU_'+k));if(await safePut(KEYS.adm,D.adm)){ok(tr('Saved','Сохранено'));render()}},
@@ -3770,13 +3953,81 @@ const A={
  async udoc(b){const u=D.adm.find(x=>x.id===V.d.id),d=u.docs[+b.dataset.i];A.usaveSilent();d[1]=d[1]?0:1;await safePut(KEYS.adm,D.adm);render()},
  async udocdel(b){const u=D.adm.find(x=>x.id===V.d.id);A.usaveSilent();u.docs.splice(+b.dataset.i,1);await safePut(KEYS.adm,D.adm);render()},
  async udel(){if(!await ask(tr('Remove this university?','Удалить этот вуз?')))return;D.adm=D.adm.filter(x=>x.id!==V.d.id);V.d=null;await safePut(KEYS.adm,D.adm);render()},
- cmppick(b){const id=b.dataset.id,cur=V.cmp.length?V.cmp:D.adm.slice(0,3).map(u=>u.id);V.cmp=cur.includes(id)?cur.filter(x=>x!==id):[...cur,id].slice(-3);render()},
- range(b){V.range=+b.dataset.v;render()}
+ range(b){V.range=+b.dataset.v;render()},
+ tab(b){V.tab=b.dataset.v;V.d=null;V.sub='';V.mat=null;V.task=null;V.pe=null;V.fp=null;V.ai.st=null;render();scrollTo(0,0)},
+ exam(b){V.d={k:'exam',id:b.dataset.id};V.sub='about';V.task=null;V.fp=null;V.ai.st=V.ai.pr=V.ai.err=V.ai.plan=null;render();scrollTo(0,0)},
+ async saveex(b){const id=b.dataset.id;D.prof.dates[id]=val('syExD');if(await safePut(KEYS.prof,D.prof)){ok(tr('Saved','Сохранено'));render()}},
+ // a subject from the official list (ЕГЭ/ОГЭ, SAT/IELTS sections) or a free name; official ones also become "my subjects" of the exam
+ async addsubj(){const exId=val('sySubE'),x=exam(exId);let n,ref='';
+  if($('sySubP')){ref=val('sySubP');if(!ref)return $('sySubP').focus();n=offName(offSubj(x,ref))}else{n=val('sySubN');if(!n)return $('sySubN').focus()}
+  const s={id:uid(),n,ex:exId};if(ref)s.ref=ref;D.subj.push(s);if(!await safePut(KEYS.subj,D.subj)){D.subj.pop();return}
+  const S=x?.fipi&&offSubj(x,ref),tp=S?codifierTopics(S):[];D.topics[s.id]=tp;D.mats[s.id]=[];D.cards[s.id]=[];if(tp.length)await safePut('sy_t_'+s.id,tp);
+  if(ref){D.prof.subj={...D.prof.subj,[exId]:[...new Set([...mySubs(x),ref])]};if(!D.prof.exams.includes(exId))D.prof.exams.push(exId);await safePut(KEYS.prof,D.prof)}
+  V.f.newEx='';ok(tp.length?tr('Topics added from the FIPI codifier: ','Темы из кодификатора ФИПИ: ')+tp.length:undefined);render()},
+ async esubpick(b){const x=exam(V.d.id),id=b.dataset.v,L=mySubs(x);D.prof.subj={...D.prof.subj,[x.id]:L.includes(id)?L.filter(s=>s!==id):[...L,id]};await safePut(KEYS.prof,D.prof);render()},
+ fchip(b){V.f[b.dataset.k]=b.dataset.v;V.task=null;V.fp=null;V.ai.st=null;render()},
+ task(b){const n=+b.dataset.v;V.task=V.task===n?null:n;V.fp=null;V.ai.st=null;render()},
+ async tmark(b){const c=V.ctx,n=+b.dataset.n||V.task||+V.f.pn;if(!c||!n)return;await bump(tkey(c.ex,c.sid),n,b.dataset.v==='1');ok(tr('Saved to your progress','Учтено в прогрессе'));render()},
+ gotask(b){V.tab='exams';V.d={k:'exam',id:b.dataset.ex};V.sub='prep';V.f.esub=b.dataset.sid;V.task=+b.dataset.v;V.fp=null;V.ai.st=null;render();scrollTo(0,0)},
+ // FIPI open bank: real prototypes by codifier topic; the panel redraws in place so typed answers stay
+ async fipi(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid);if(!S)return;if(!S.proj)return note(tr('This subject has no FIPI bank.','У этого предмета нет банка ФИПИ.'));
+  const code=b.dataset.c||($('syTheme')?val('syTheme'):'');V.fp={ex:c.ex,sid:S.id,proj:S.proj,theme:code,name:code?themeName(S,code):tr('all tasks','все задания'),page:0,items:[],busy:true,err:'',more:false,bank:bankOf(x,S),task:V.task||(V.tab==='tutor'?+V.f.pn||null:null)};
+  drawFipi(true);await loadFp()},
+ async fmore(){const P=V.fp;if(!P||P.busy)return;keepFa();P.page++;P.busy=true;drawFipi();await loadFp()},
+ async fcheck(b){const P=V.fp,i=+b.dataset.i,q=P?.items[i];if(!q)return;keepFa();if(!q.ans)return $('syFa'+i)?.focus();b.disabled=true;
+  try{const j=await api('/fipi',{action:'check',exam:P.ex,proj:P.proj,guid:q.guid,answer:q.ans});q.res=j.result||'unknown'}catch(e){q.res='unknown';note(friendlyError(e))}
+  if(q.res==='correct'||q.res==='wrong'){const S=offSubj(exam(P.ex),P.sid),codes=q.kes.map(k=>(String(k).match(/^\d+(?:\.\d+)*/)||[''])[0]).filter(c=>S.themes.some(t=>t[0]===c)),tk=P.task&&S.tasks?.find(t=>t[0]===P.task),cand=(S.tasks||[]).filter(t=>codes.some(c=>t[5].includes(c)));
+   // count the answer for a task number only when the prototype's topics belong to it
+   const n=tk&&codes.some(c=>tk[5].includes(c))?tk[0]:cand.length===1?cand[0][0]:null;await bump(tkey(P.ex,P.sid),n,q.res==='correct',codes)}
+  render()},
+ fsolve(b){const P=V.fp,q=P?.items[+b.dataset.i];if(!q)return;V.tab='tutor';V.d=null;V.tutor={...V.tutor,mode:'solve',exam:P.ex,sid:P.sid,q:(tr('FIPI bank task No. ','Задание банка ФИПИ № ')+q.id+'\n'+mmlText(q.html)).slice(0,3000),res:null,err:''};render();scrollTo(0,0);$('syTQ')?.focus()},
+ learnsub(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid);if(!S)return;const code=b.dataset.c||($('syTheme')?val('syTheme'):''),tn=+V.task||(V.tab==='tutor'?+V.f.pn:0),t=tn&&S.tasks?.find(r=>r[0]===tn);
+  const topic=code?code+' '+themeName(S,code):offName(S);
+  aiInto('st','syStudyAi',async()=>renderAI('explain',await ai('explain',{exam:exName(x),subject:offName(S),question:tr('Explain the FIPI codifier topic ','Объясни тему кодификатора ФИПИ ')+'«'+topic+'»'+(t?tr(' as needed for task ',' в объёме, нужном для задания ')+t[0]+' ('+t[3]+')':'')+tr('. Finish with how this topic appears in exam tasks.','. В конце — как эта тема встречается в заданиях экзамена.')}),{code}))},
+ totutor(b){const c=V.ctx;if(!c)return;V.tab='tutor';V.d=null;V.tutor.mode='proto';V.tutor.res=null;Object.assign(V.f,{pex:c.ex,psid:c.sid,pn:String(b.dataset.v),pfound:0});V.fp=null;V.ai.st=null;render();scrollTo(0,0)},
+ toproto(b){A.totutor(b)},
+ pfind(){const q=val('syPq');V.f.pq=q;if(!FIPI||!q)return $('syPq')?.focus();const p=parseTask(q);V.f.pex=p.ex;if(p.sid)V.f.psid=p.sid;
+  const S=offSubj(exam(p.ex),V.f.psid);V.f.pn=p.n&&S?.tasks?.some(t=>t[0]===p.n)?String(p.n):'';V.f.pfound=1;V.fp=null;V.ai.st=null;render()},
+ fipiretry(){V.fipiErr='';render()},
+ async addres(b){const id=b.dataset.id,c=V.rctx||{},s=num(val('syRS')),m=c.max||num(val('syRM'));if(s==null)return $('syRS').focus();
+  if(s<0||(m&&s>m))return note(tr('The score must be between 0 and ','Балл должен быть от 0 до ')+m);
+  const r={d:val('syRD')||today(),k:val('syRK'),s,m:m||null,n:val('syRN')};if(c.sub)r.sub=c.sub;if(c.sc&&c.sc!=='p')r.sc=c.sc;D.res[id].push(r);D.res[id].sort((a,b)=>a.d.localeCompare(b.d));
+  if(!await safePut('sy_r_'+id,D.res[id])){D.res[id]=D.res[id].filter(x=>x!==r);return}
+  const gid=D.prof.goalOf?.[id],g=gid&&goals.find(x=>x.id===gid);if(g&&g.to!=null&&(!g.sub||g.sub===(r.sub||''))){g.log.push([Date.now(),s,tr('Study: ','Учёба: ')+exName(exam(id))]);await saveGoal(g);toast(tr('Also logged in Goals','Записано и в «Цели»'))}else ok();render()},
+ async rassign(b){const id=b.dataset.id,sub=V.rctx?.sub;if(!sub)return;D.res[id].forEach(r=>{if(!r.sub)r.sub=sub});if(await safePut('sy_r_'+id,D.res[id]))render()},
+ async savetgt(b){const v=val('syRT');if(v&&num(v)==null)return $('syRT').focus();D.prof.target={...D.prof.target,[b.dataset.k]:v};if(await safePut(KEYS.prof,D.prof)){ok(tr('Target saved','Цель сохранена'));render()}},
+ async adderr(b){const id=b.dataset.id,t=val('syEt'),w=val('syEw'),n=+val('syEn')||0;if(!t&&!n)return $('syEt').focus();const e={d:today(),t,w};if(n)e.n=n;if(V.ectx)e.sub=V.ectx;D.err[id].push(e);
+  if(!await safePut('sy_e_'+id,D.err[id])){D.err[id].pop();return}if(n&&V.ectx)await bump(tkey(id,V.ectx),n,false);ok();render()},
+ tmode(b){keepTutor();V.tutor.mode=b.dataset.v;V.tutor.res=null;V.tutor.err='';render()},
+ async ask(){keepTutor();const T=V.tutor,q=T.q;if(!q&&!T.img)return $('syTQ').focus();if(T.mode==='check'&&!T.a)return $('syTA').focus();
+  T.busy=true;T.err='';T.res=null;render();const exId=T.exam||'',x=exam(exId),S=x?.fipi&&offSubj(x,T.sid),body={exam:x?.fipi||exName(x),subject:S?offName(S):T.subject,count:T.count||5};
+  if(T.mode==='explain')body.question=q;else if(T.mode==='solve')body.task=q;else if(T.mode==='check'){body.task=q;body.user_answer=T.a;body.user_solution=T.w}else if(['summary','cards','quiz'].includes(T.mode)&&q.length>120)body.text=q;else body.topic=q;
+  // the official task map lets the tutor name the task number and the codifier topics it needs
+  if(S&&['solve','check','explain'].includes(T.mode)){if(S.tasks)body.task_map=S.tasks.map(t=>t[0]+': '+t[3]+' — '+cut(t[4],90)).join('\n');body.themes=S.themes.map(t=>t[0]+' '+cut(t[1],60)).join('\n')}
+  if(T.img&&['solve','summary'].includes(T.mode))body.image=T.img;
+  try{const o=await ai(T.mode,body),ctx={exam:exId};if(S){ctx.ex=exId;ctx.sid=S.id}T.res={mode:T.mode,out:o,ctx};D.tutor.unshift({m:T.mode,q:(q||tr('Photo','Фото')).slice(0,80),d:today(),o,ex:exId,c:ctx});D.tutor=D.tutor.slice(0,8);
+   while(JSON.stringify(D.tutor).length>3800&&D.tutor.length>1)D.tutor.pop();await st.set(KEYS.tutor,JSON.stringify(D.tutor));T.img=null}catch(e){T.err=friendlyError(e)}T.busy=false;render()},
+ thist(b){const x=D.tutor[+b.dataset.i];V.tutor={...V.tutor,mode:x.m,res:{mode:x.m,out:x.o,ctx:x.c||{exam:x.ex}}};render()},
+ async grade(b){const r=V.review,c=r.q.shift(),g=+b.dataset.v;grade(c,g);r.show=false;r.done++;if(g===0)r.q.push(c);const k='rev:'+r.sid,s=D.quiz[k]||[0,0];s[g?0:1]++;D.quiz[k]=s;await saveCards(r.sid);await st.set(KEYS.quiz,JSON.stringify(D.quiz));render()},
+ async usearch(){const U=V.unis;U.q=val('syUN');U.c=val('syUC');if(U.q.length<2)return $('syUN').focus();U.busy=true;U.err='';render();
+  try{const j=await api('/unis',{name:U.q,country:U.c,lang:ru()?'ru':'en'});U.items=Array.isArray(j.items)?j.items:[]}catch(e){U.err=friendlyError(e);U.items=null}U.busy=false;render()},
+ async uadd(b){const u=V.unis.items[+b.dataset.i];if(!u||D.adm.some(x=>(u.wd&&x.wd===u.wd)||x.n===u.name))return toast(tr('Already in your list','Уже в списке'));
+  const x={id:uid(),n:String(u.name).slice(0,120),c:u.country||'',web:u.web||'',st:'research',src:[u.web,u.wd&&WD(u.wd)].filter(Boolean),docs:[]};if(u.wd)x.wd=u.wd;if(u.founded)x.fd=u.founded;if(u.students)x.stu=u.students;
+  D.adm.push(x);if(await safePut(KEYS.adm,D.adm)){ok(tr('Added to My list','Добавлено в «Мои вузы»'));render()}else D.adm.pop()},
+ cmppick(b){const id=b.dataset.id,cur=V.cmp.length?V.cmp:D.adm.slice(0,3).map(u=>u.id);V.cmp=cur.includes(id)?cur.filter(x=>x!==id):[...cur,id].slice(-4);V.ai.cmp=null;render()},
+ async compare(){const spec=val('sySpec');if(!spec)return $('sySpec').focus();const pick=V.cmp.length?V.cmp:D.adm.slice(0,3).map(u=>u.id),us=pick.map(id=>D.adm.find(u=>u.id===id)).filter(Boolean);if(us.length<2)return;
+  if(D.prof.spec!==spec){D.prof.spec=spec;safePut(KEYS.prof,D.prof)}V.ai.cmp={busy:true};render();
+  const results=D.prof.exams.flatMap(id=>(D.res[id]||[]).filter(r=>r.k!=='practice').slice(-3).map(r=>exName(exam(id))+(r.sub?' '+offName(offSubj(exam(id),r.sub)):'')+': '+r.s+(r.m?'/'+r.m:'')));
+  try{const o=await ai('compare',{specialty:spec,unis:us.map(u=>({name:u.n,country:u.c,website:u.web,founded:u.fd,students:u.stu,programme:u.prog,requirements:u.req,exams:u.exams,language:u.lang,tuition:u.cost,scholarships:u.sch,notes:u.note,status:u.st})),context:{my_results:results,goals:D.prof.goals}});
+   if(!Array.isArray(o.items))throw new Error(t('e4'));V.ai.cmp={out:o}}catch(e){V.ai.cmp={err:friendlyError(e)}}render()}
 };
-function keepTutor(){const T=V.tutor;if(!$('syTQ'))return;T.q=val('syTQ');T.exam=val('syTE');T.subject=val('syTS');T.a=val('syTA');T.w=val('syTW');T.count=+val('syTC')||5}
+function keepTutor(){const T=V.tutor;if(!$('syTQ'))return;T.q=val('syTQ');T.exam=val('syTE');if($('syTS')?.tagName==='SELECT')T.sid=val('syTS');else T.subject=val('syTS');T.a=val('syTA');T.w=val('syTW');T.count=+val('syTC')||5}
+// Enter in a one-line field runs its button
+document.addEventListener('keydown',ev=>{if(ev.key!=='Enter'||ev.isComposing)return;const el=ev.target,id=el.id||'',fa=id.startsWith('syFa'),f=fa?'fcheck':{syPq:'pfind',syUN:'usearch',sySpec:'compare'}[id];if(!f||!el.closest('#study'))return;ev.preventDefault();Promise.resolve(A[f](fa?el.nextElementSibling:el)).catch(e=>{console.error(e);note(friendlyError(e))})});
 document.addEventListener('click',ev=>{const b=ev.target.closest('#study [data-sy]');if(!b||b.disabled)return;const f=A[b.dataset.sy];if(f){ev.preventDefault();Promise.resolve(f(b)).catch(e=>{console.error(e);note(friendlyError(e))})}});
 document.addEventListener('change',async ev=>{const e=ev.target;if(!e.closest('#study'))return;
- if(e.dataset.syF){V.f[e.dataset.syF]=e.value;render();return}
+ if(e.dataset.syF){const k=e.dataset.syF;if(k==='tex'){keepTutor();V.tutor.sid='';V.tutor.subject=''}V.f[k]=e.value;
+  if(k==='pex'){V.f.psid='';V.f.pn=''}if(k==='psid')V.f.pn='';if(['pex','psid','pn'].includes(k)){V.f.pfound=0;V.fp=null;V.ai.st=null}render();return}
  const kind=e.dataset.syFile;if(!kind||!e.files?.[0])return;const f=e.files[0];
  try{if(kind==='photo'){V.tutor.img=await photo(f);keepTutor();render();return}
   const s=$('syMatS');if(s)s.innerHTML=busyBox(tr('Reading the file…','Читаю файл…'));let text=await fileText(f);
