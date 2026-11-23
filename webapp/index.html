@@ -1682,6 +1682,71 @@ html[data-theme=dark] #hl{--hl-bad:#ff8a78}
 #study .sy-self select{width:64px;min-width:0}
 @media (max-width:370px){#study .sy-mode2{grid-template-columns:1fr}#study .sy-mode{min-height:0}}
 </style>
+<style id="nuvio-study-v6">
+/* Study v6: FIPI print tables restacked for phones, figures readable, formatted AI solutions, photo check of part 2 */
+#study #syRun,#study #syFipi,#study .sy-fp,#study .sy-isol{scroll-margin-top:96px}
+#study .sy-fqt,#study .sy-isol,#study .sy-grade2,#study .sy-ftext{-webkit-user-select:text;user-select:text}
+#study .sy-fqt{overflow-wrap:break-word;word-break:normal}
+#study .sy-fqt p{margin:0 0 8px}
+#study .sy-fqt img{max-width:100%;height:auto;vertical-align:middle}
+/* plain data tables: own scroll, even cells, no word breaks inside cells */
+#study .sy-tw{max-width:100%;margin:10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+#study .sy-fqt table{width:auto;min-width:0;border-collapse:collapse;font-size:15px;line-height:1.4}
+#study .sy-fqt td,#study .sy-fqt th{padding:7px 10px;border:1px solid var(--nv-line);vertical-align:top;text-align:left;word-break:normal;overflow-wrap:normal;hyphens:manual}
+#study .sy-fqt td p{margin:0}
+/* matching tasks: each column becomes a block (header, then its list) */
+#study .sy-mt{display:grid;gap:12px;margin:12px 0}
+#study .sy-mtc{padding:12px 14px;border:1px solid var(--nv-line);border-radius:16px;background:var(--nv-panel-2)}
+#study .sy-mth{margin-bottom:8px;font-size:13.5px;font-weight:720;letter-spacing:.02em;color:var(--sy-a)}
+#study .sy-mth u{text-decoration:none}
+#study .sy-mtc .sy-tw{margin:0}
+#study .sy-mtc table{width:100%}
+#study .sy-mtc td{padding:6px 4px;border:0;border-top:1px solid var(--nv-line)}
+#study .sy-mtc tr:first-child td{border-top:0}
+#study .sy-mtc td:first-child{width:1%;white-space:nowrap;padding-right:10px;font-weight:720;color:var(--sy-a)}
+#study .sy-tu{margin:6px 0}
+#study .sy-ltw{padding:4px 12px;border:1px solid var(--nv-line);border-radius:16px;background:var(--nv-panel-2)}
+#study .sy-mtc .sy-ltw{padding:0;border:0;background:none}
+#study .sy-fqt table.sy-lt{width:100%}
+#study .sy-fqt .sy-lt td{padding:8px 4px;border:0;border-top:1px solid var(--nv-line)}
+#study .sy-fqt .sy-lt tr:first-child td{border-top:0}
+#study .sy-fqt .sy-lt td:first-child{width:1%;white-space:nowrap;padding-right:12px;font-weight:720;color:var(--sy-a)}
+#study .sy-fqt .sy-lt .sy-lth td{width:auto;white-space:normal;padding:8px 4px;font-size:13.5px;font-weight:720;letter-spacing:.02em;color:var(--sy-a)}
+#study .sy-fqt .sy-lt .sy-lth u,#study .sy-fqt .sy-lt .sy-lth b{text-decoration:none;font-weight:inherit}
+/* figure that stood next to the text: below it, large, on white so black line drawings stay visible in the dark theme */
+#study .sy-stack{display:grid;gap:12px;margin:8px 0}
+#study .sy-fig{justify-self:center;box-sizing:border-box;width:min(300px,100%);padding:10px;border-radius:14px;background:#fff;line-height:0}
+#study .sy-fig img{display:block;width:100%;height:auto;max-height:360px;object-fit:contain}
+/* answer options read as normal text */
+#study .sy-opts span{font-weight:450}
+#study .sy-opts span b{font-weight:700;color:var(--sy-a)}
+/* AI solution */
+#study .sy-ish{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+#study .sy-ish h4{margin:0}
+#study .sy-ish span{font-size:13px;color:var(--nv-secondary);text-align:right}
+#study .sy-find{margin:8px 0;font-size:15px;line-height:1.55}
+#study .sy-steps3{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+#study .sy-steps3 li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:12px;border-radius:16px;background:var(--nv-panel-2);border:1px solid var(--nv-line)}
+#study .sy-sn{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:color-mix(in srgb,var(--sy-a) 16%,transparent);color:var(--sy-a);font-size:14px;font-weight:760}
+#study .sy-steps3 b{display:block;margin-bottom:4px;font-size:15px;font-weight:720}
+#study .sy-steps3 p{margin:0;font-size:15px;line-height:1.6}
+#study .sy-fx{padding:1px 6px;border-radius:7px;background:color-mix(in srgb,var(--sy-a) 13%,transparent);color:var(--nv-text);font-weight:600;white-space:pre-wrap;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#study .sy-num{color:var(--sy-a);font-weight:650;font-variant-numeric:tabular-nums}
+#study .sy-kw{display:inline;margin:0;font-size:inherit;font-weight:720;color:var(--nv-text)}
+#study .sy-hl{padding:1px 5px;border-radius:6px;background:color-mix(in srgb,var(--sy-ok) 20%,transparent);color:var(--nv-text);font-weight:650}
+/* part 2: photo of the solution */
+#study .sy-photo{margin-top:12px}
+#study .sy-pimg{display:block;max-width:100%;max-height:320px;margin:0 0 10px;border-radius:14px;border:1px solid var(--nv-line);object-fit:contain}
+
+#study .sy-gbad{margin-top:12px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--sy-bad) 12%,transparent);color:var(--nv-text)}
+#study .sy-gbad b{color:var(--sy-bad)}
+#study .sy-gbad p{margin:4px 0 0;font-size:14.5px;line-height:1.45}
+#study .sy-grade2{margin-top:12px}
+#study .sy-crit,#study .sy-errs{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+#study .sy-crit li,#study .sy-errs li{padding:8px 12px;border-radius:12px;background:var(--nv-panel-2);font-size:14.5px;line-height:1.45}
+#study .sy-crit li.ok b{color:var(--sy-ok)}
+#study .sy-crit li.bad b{color:var(--sy-bad)}
+</style>
 </head><body>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
 <header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button><button data-t="study" data-i="tsy"></button></nav>
@@ -3741,18 +3806,52 @@ function codifierTopics(S){const mk=(c,n,p)=>({id:uid(),n:cut(c+' '+n,60),p,m:0}
  return all}
 // FIPI panel: redraw in place (keeps the page and typed answers), load the next page of the bank
 const keepAns=()=>V.fp?.items.forEach((q,i)=>readAns(q,'p'+i));
-function drawFipi(scroll){const el=$('syFipi');if(!el)return render();keepAns();el.innerHTML=fipiPanel();if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'})}
+// AI text: `formula`, **key word**, ==step result== and plain numbers get their own colours; everything else is escaped
+const richPlain=t=>E(t).replace(/(^|[\s(\[=+\-−×·:;,/≈≤≥])(-?\d+(?:[.,]\d+)?)(?=$|[\s)\].,;:%°²³=+\-−×·/≈≤≥])/g,'$1<span class="sy-num">$2</span>').replace(/\n/g,'<br>');
+function rich(s){s=String(s??'');const re=/`([^`\n]{1,300})`|\*\*([^*\n]{1,200})\*\*|==([^\n]{1,200}?)==/g;let out='',i=0,m;
+ while((m=re.exec(s))){out+=richPlain(s.slice(i,m.index))+(m[1]!=null?'<span class="sy-fx">'+E(m[1])+'</span>':m[2]!=null?'<b class="sy-kw">'+richPlain(m[2])+'</b>':'<mark class="sy-hl">'+richPlain(m[3])+'</mark>');i=re.lastIndex}
+ return out+richPlain(s.slice(i))}
+// FIPI tasks keep their print layout: matching columns side by side, a figure in a cell next to the text. On a phone they are restacked
+const blank=c=>!c.textContent.replace(/[\s\u00a0]/g,'');
+const figCell=c=>c.querySelector('img')&&c.textContent.replace(/[\s\u00a0]/g,'').length<25&&!c.querySelector('table,.sy-mt');
+function tidy(root){if(!root)return;
+ [...root.querySelectorAll('.sy-fqt table,.sy-opts table')].reverse().forEach(t=>{if(!t.isConnected)return;const rows=[...t.rows];if(!rows.length)return;
+  const live=r=>[...r.cells].filter(c=>!blank(c)||c.querySelector('img,table,.sy-mt,math'));
+  const nested=rows.some(r=>[...r.cells].some(c=>c.querySelector('table,.sy-mt')));
+  const box=(cls,nodes)=>{const d=document.createElement('div');d.className=cls;d.append(...nodes);return d};
+  if(rows.length===1){const cs=live(rows[0]);
+   if(cs.length===1&&!figCell(cs[0])){t.replaceWith(box('sy-tu',[...cs[0].childNodes]));return}
+   if(cs.length&&(nested||cs.some(figCell))){t.replaceWith(box('sy-stack',cs.map(c=>box(figCell(c)?'sy-fig':'sy-cell',[...c.childNodes]))));return}}
+  if(nested){const n=Math.max(...rows.map(r=>r.cells.length)),d=document.createElement('div');d.className='sy-mt';
+   for(let i=0;i<n;i++){const parts=rows.map(r=>r.cells[i]).filter(c=>c&&(!blank(c)||c.querySelector('img,table,.sy-mt')));if(!parts.length)continue;
+    d.append(box('sy-mtc',parts.map((c,j)=>box(j===0&&parts.length>1?'sy-mth':'sy-mtb',[...c.childNodes]))))}
+   t.replaceWith(d);return}
+  // label/text tables ("А) …", "1) …") read as lists; real data tables keep their grid
+  const lab=c=>/^[А-ЯЁA-Z0-9]{1,2}[).]?$/.test(c.textContent.replace(/[\s\u00a0]/g,''));
+  const lt=rows.filter(r=>r.cells.length>=2&&lab(r.cells[0])).length>=Math.max(2,rows.length-1);
+  if(lt){t.classList.add('sy-lt');rows.forEach(r=>{if(r.cells.length===1)r.classList.add('sy-lth')})}
+  if(!t.parentElement.classList.contains('sy-tw')){const w=document.createElement('div');w.className='sy-tw'+(lt?' sy-ltw':'');t.replaceWith(w);w.append(t)}})}
+// answers to bank tasks are remembered per subject (answer + the bank's verdict, ≤3800 characters in Telegram cloud)
+const AMEM={},akey=(ex,sid)=>'sy_a_'+ex+'_'+sid;
+async function amem(ex,sid){const k=akey(ex,sid);if(!AMEM[k])AMEM[k]=(await jget(k,{}))||{};return AMEM[k]}
+async function remember(ex,sid,q){if(!q||q.ai||!q.id||!q.ans)return;const m=await amem(ex,sid);delete m[q.id];m[q.id]=[String(q.ans).slice(0,60),q.res==='correct'?1:q.res==='wrong'?0:-1];
+ const ks=Object.keys(m);while(JSON.stringify(m).length>3800&&ks.length)delete m[ks.shift()];try{await st.set(akey(ex,sid),JSON.stringify(m))}catch{}}
+// AI solutions stay on this device (they are long): the last 40
+const solGet=id=>{try{return JSON.parse(localStorage.getItem('sy_sol')||'{}')[id]||null}catch{return null}};
+function solPut(id,o){if(!id||String(id).startsWith('ai'))return;try{const m=JSON.parse(localStorage.getItem('sy_sol')||'{}');delete m[id];m[id]=o;const ks=Object.keys(m);while(ks.length>40)delete m[ks.shift()];localStorage.setItem('sy_sol',JSON.stringify(m))}catch{}}
+async function recall(ex,sid,list){const m=await amem(ex,sid);list.forEach(q=>{if(!q||q.ai)return;const r=m[q.id];if(r&&!q.ans){q.ans=r[0];q.res=r[1]===1?'correct':r[1]===0?'wrong':undefined}if(!q.sol&&!q.solc)q.solc=solGet(q.id)})}
+function drawFipi(scroll){const el=$('syFipi');if(!el)return render();keepAns();el.innerHTML=fipiPanel();tidy(el);if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'})}
 // AI sorts bank prototypes into task numbers against the whole exam plan (the bank has no task numbers); no AI = keep all
-async function aiAssign(x,S,pairs){const cands=pairs.flatMap(([t,c])=>c.map(q=>({id:q.id,kind:q.kind,for:t[0],text:cut((q.text?'['+tr('text','текст')+'] ':'')+mmlText(q.html).replace(/\s+/g,' '),260)})));if(!cands.length)return{};
- try{const j=await ai('assign',{exam:exName(x),subject:offName(S),plan:S.tasks.map(t=>({n:t[0],title:t[3],lvl:t[1],max:t[2]})),cands}),all=Object.fromEntries(pairs.flatMap(([,c])=>c.map(q=>[q.id,q]))),out={};
+async function aiAssign(x,S,pairs){const cands=pairs.flatMap(([t,c])=>c.map(q=>({id:q.id,kind:q.kind,for:t[0],codes:qCodes(q),text:cut((q.text?'['+tr('text','текст')+'] ':'')+mmlText(q.html).replace(/\s+/g,' '),260)})));if(!cands.length)return{};
+ try{const j=await ai('assign',{exam:exName(x),subject:offName(S),plan:S.tasks.map(t=>({n:t[0],title:t[3],skill:cut(t[4],200),has:(t[6]?.s||[]).map(x=>x[0]).slice(0,10),codes:t[5],lvl:t[1],max:t[2]})),cands}),all=Object.fromEntries(pairs.flatMap(([,c])=>c.map(q=>[q.id,q]))),out={};
   Object.entries(j.pick||{}).forEach(([n,ids])=>{out[n]=(ids||[]).map(id=>all[id]).filter(Boolean)});return out}catch(e){console.warn(e);return{}}}
 async function loadFp(){const P=V.fp;try{
  if(P.pick){const x=exam(P.ex),S=offSubj(x,P.sid),t=S.tasks.find(r=>r[0]===P.task);
   // prototypes of one task number: the server picks them from the bank, AI drops those of other numbers
   for(let round=0;round<3&&V.fp===P;round++){const j=await api('/fipi',{action:'pick',exam:x.fipi,sub:S.id,n:P.task,k:5,exclude:Object.keys(P.seen)});if(V.fp!==P)return;
    const got=(j.items||[]).filter(q=>!P.seen[q.id]);got.forEach(q=>P.seen[q.id]=1);P.more=got.length>0;if(!got.length)break;
-   const keep=(await aiAssign(x,S,[[t,got]]))[t[0]]??got;P.items.push(...keep);if(keep.length)break}}
- else{const j=await api('/fipi',{exam:P.ex,proj:P.proj,theme:P.theme,page:P.page});if(V.fp!==P)return;const got=j.items||[];P.items.push(...got);P.more=!!j.more&&got.length>0;if(j.source)P.bank=j.source}
+   const keep=(await aiAssign(x,S,[[t,got]]))[t[0]]??got;await recall(P.ex,P.sid,keep);P.items.push(...keep);if(keep.length)break}}
+ else{const j=await api('/fipi',{exam:P.ex,proj:P.proj,theme:P.theme,page:P.page});if(V.fp!==P)return;const got=j.items||[];await recall(P.ex,P.sid,got);P.items.push(...got);P.more=!!j.more&&got.length>0;if(j.source)P.bank=j.source}
  }catch(e){P.err=friendlyError(e)}P.busy=false;if(V.fp===P)drawFipi()}
 const qCodes=q=>(q.kes||[]).map(k=>(String(k).match(/^\d+(?:\.\d+)*/)||[''])[0]).filter(Boolean);
 const EXAMS=[
@@ -3854,11 +3953,12 @@ const dueCards=sid=>(D.cards[sid]||[]).filter(c=>(c.d??0)<=nowN()).length;
 const OFFICIAL=(u,l)=>'<button class="sy-obtn" data-sy="open" data-u="'+E(u)+'"><span>'+E(l||u.replace(/^https?:\/\/(www\.)?/,'').split('/')[0])+'</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6"/></svg></button>';
 
 /* ---------- render ---------- */
-async function renderStudy(){await load();render()}
-function render(){const root=$('study');if(!root)return;
+async function renderStudy(){await load();if(!V.run)V.run=loadRun();render()}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&V.run&&$('syRun')){keepRun();saveRun()}});
+function render(){const root=$('study');if(!root)return;if(V.run&&$('syRun')){keepRun();saveRun()}if(V.fp&&$('syFipi'))keepAns();
  const nav='<nav class="sy-nav lg" aria-label="'+tr('Study sections','Разделы учёбы')+'">'+TABS.map(([k,r,e])=>'<button data-sy="tab" data-v="'+k+'"'+(V.tab===k?' class="on" aria-current="page"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</nav>';
  let body='';try{body=(VIEWS[V.tab]||VIEWS.home)()}catch(e){console.error(e);body=empty(tr('Something went wrong','Что-то пошло не так'),E(e.message))}
- root.innerHTML=nav+'<div class="sy-body">'+body+'</div>';
+ root.innerHTML=nav+'<div class="sy-body">'+body+'</div>';tidy(root);
  const on=root.querySelector('.sy-nav .on');if(on){const n=on.parentElement;n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2}}
 const VIEWS={};
 
@@ -3957,6 +4057,7 @@ function quizBox(sid){const q=V.quiz;let h='';
 VIEWS.exams=()=>{if(V.d?.k==='exam')return VIEWS.exam();if(V.d?.k==='subj')return VIEWS.subject();const f=V.f,list=EXAMS.filter(x=>(f.c==='*'||(f.c?x.c===f.c:(ru()?x.c==='RU':x.c!=='RU')))&&(!f.s||x.sys===f.s)&&(!f.t||x.type===f.t)),mine=D.prof.exams.map(exam).filter(Boolean);
  let h='<header class="sy-head"><h2>'+tr('Exams','Экзамены')+'</h2><p>'+tr('Practice, topics and results for your exams.','Подготовка, темы и результаты по вашим экзаменам.')+'</p></header>';
  if(mine.length)h+='<section class="sy-card"><h3>'+tr('My exams','Мои экзамены')+'</h3><ul class="sy-list">'+mine.map(x=>examRow(x,true)).join('')+'</ul></section>';
+ const R=V.run;if(R?.ready&&!R.done&&exam(R.ex)){const S=offSubj(exam(R.ex),R.sid);h+='<section class="sy-card sy-nb"><button class="sy-row" data-sy="runopen"><span><b>'+tr('Continue: ','Продолжить: ')+(R.mode==='exam'?tr('exam','экзамен'):tr('practice','тренировка'))+'</b><small>'+E(exName(exam(R.ex)))+' · '+E(S?offName(S):R.sname||'')+' · '+R.items.filter(it=>it.q?.ans).length+' / '+R.items.length+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></section>'}
  h+=subjSection()+'<h3 class="sy-cat">'+tr('Exam catalog','Каталог экзаменов')+'</h3>';
  const cs=[...new Set(EXAMS.map(x=>x.c))],ss=[...new Set(EXAMS.map(x=>x.sys).filter(Boolean))];
  h+='<div class="sy-filters">'+sel('syFC',[['',ru()?region('RU')+' · язык приложения':'English-language and international'],['*',tr('All countries','Все страны')],...cs.filter(Boolean).map(c=>[c,region(c)])],f.c||'',tr('Country','Страна'),'data-sy-f="c"')+sel('syFS',[['',tr('All systems','Все системы')],...ss.map(s=>[s,(y=>ru()?y.ru:y.en)(SYSTEMS.find(z=>z.id===s)||{ru:s,en:s})])],f.s,tr('System','Система'),'data-sy-f="s"')+sel('syFT',[['',tr('All types','Все типы')],...Object.entries(TYPES).map(([k,v])=>[k,ru()?v[0]:v[1]])],f.t,tr('Type','Тип'),'data-sy-f="t"')+'</div>';
@@ -4032,7 +4133,7 @@ const canVar=q=>!q.ext&&!/<img/i.test((q.srcq||q).html||'');
 const LETTERS='АБВГДЕЖЗИ';
 // the answer field as on the answer form: text, options to tick (the bank wants a mask like 10100), or one digit per letter
 function ansUI(q,k,lock){const dis=lock?' disabled':'';
- if(q.ext)return '<p class="sy-muted">'+tr('Extended answer: solve it on paper, then compare with the AI solution.','Развёрнутый ответ: решите на листе, потом сравните с решением ИИ.')+'</p>';
+ if(q.ext)return '<p class="sy-muted">'+tr('Extended answer: solve it on paper and send a photo for an AI check, or compare with the AI solution.','Развёрнутый ответ: решите на листе и пришлите фото на проверку ИИ или сравните с решением ИИ.')+'</p>';
  if(q.opts?.length)return '<fieldset class="sy-opts"'+dis+'><legend>'+tr('Tick all correct options','Отметьте все верные варианты')+'</legend>'+q.opts.map((o,i)=>'<label><input type="checkbox" name="syO_'+k+'" value="'+(i+1)+'"'+(String(q.ans||'').includes(String(i+1))?' checked':'')+'><span><b>'+(i+1)+')</b> '+o+'</span></label>').join('')+'</fieldset>';
  const ph=q.match?tr('Digits for ','Цифры для ')+LETTERS.slice(0,q.match).split('').join(', '):tr('Answer','Ответ');
  return '<input class="sy-ain" id="syA_'+k+'" value="'+E(q.ans||'')+'" autocomplete="off" inputmode="'+(q.match?'numeric':'text')+'" maxlength="'+(q.match||60)+'" placeholder="'+E(ph)+'" aria-label="'+tr('Answer','Ответ')+'"'+dis+'>'}
@@ -4048,13 +4149,27 @@ function qCard(q,k,o){o=o||{};const exam=!!o.exam,lock=o.locked||q.res==='correc
  if(q.text)h+=q.text!==o.prevText?'<details class="sy-ftext" open><summary>'+tr('Text for the task','Текст к заданию')+'</summary><div class="sy-fqt">'+q.text+'</div></details>':'<p class="sy-muted">'+tr('Uses the text above.','Текст — тот же, что выше.')+'</p>';
  h+='<div class="sy-fqt">'+q.html+'</div>';
  const btn=!exam&&!q.ext&&!lock?'<button class="sy-btn2" data-sy="qcheck" data-k="'+k+'">'+tr('Check','Проверить')+'</button>':'';
- h+=q.opts?.length?ansUI(q,k,lock)+(btn?'<div class="sy-acts">'+btn+'</div>':''):q.ext?ansUI(q,k):'<div class="sy-acts sy-ansrow">'+ansUI(q,k,lock)+btn+'</div>';
+ h+=q.opts?.length?ansUI(q,k,lock)+(btn?'<div class="sy-acts">'+btn+'</div>':''):q.ext?ansUI(q,k)+photoBox(q,k,exam):'<div class="sy-acts sy-ansrow">'+ansUI(q,k,lock)+btn+'</div>';
  const v=!exam&&VERDICT[q.res];if(v)h+='<p class="sy-verdict '+v[0]+'" role="status">'+(ru()?v[1]:v[2])+'</p>';
  if(!exam)h+=q.sol?solBox(q.sol):'<button class="sy-link" data-sy="qsol" data-k="'+k+'">'+tr('Solution by AI','Решение ИИ')+'</button>';
  return h+'</article>'}
-function solBox(s){if(s.busy)return busyBox(tr('AI is solving…','ИИ решает…'));if(s.err)return '<p class="sy-err" role="alert">'+E(s.err)+'</p>';const o=s.o||{},S=t=>E(t||'').replace(/\n/g,'<br>');
+function solBox(s){if(s.busy)return busyBox(tr('AI is solving…','ИИ решает…'));if(s.err)return '<p class="sy-err" role="alert">'+E(s.err)+'</p>';const o=s.o||{};
  const bank=o.bank==='correct'?'<p class="sy-verdict ok">'+tr('The FIPI bank accepted this answer','Банк ФИПИ подтвердил этот ответ')+'</p>':o.bank==='wrong'?'<p class="sy-verdict bad">'+tr('The FIPI bank did not accept this answer: the solution may be wrong','Банк ФИПИ не принял этот ответ: в решении может быть ошибка')+'</p>':'';
- return '<div class="sy-isol"><h4>'+tr('Solution','Решение')+'</h4><ol class="sy-steps2">'+(o.steps||[]).map(x=>'<li><b>'+E(x.title)+'</b><p>'+S(x.body)+'</p></li>').join('')+'</ol>'+(o.answer?'<div class="sy-answer"><span>'+tr('Answer','Ответ')+'</span><b>'+E(o.answer)+'</b></div>':'')+bank+'<p class="sy-ailabel">'+tr('Written by AI. Check the reasoning yourself.','Решение написал ИИ, проверьте ход рассуждений.')+'</p></div>'}
+ return '<div class="sy-isol"><div class="sy-ish"><h4>'+tr('Solution','Решение')+'</h4>'+(o.task_type?'<span>'+E(cut(o.task_type,70))+'</span>':'')+'</div>'+(o.find?'<p class="sy-find"><b>'+tr('Find: ','Найти: ')+'</b>'+rich(o.find)+'</p>':'')+
+  '<ol class="sy-steps3">'+(o.steps||[]).map((x,i)=>'<li><span class="sy-sn" aria-hidden="true">'+(i+1)+'</span><div><b>'+rich(x.title)+'</b><p>'+rich(x.body)+'</p></div></li>').join('')+'</ol>'+
+  (o.answer?'<div class="sy-answer"><span>'+tr('Answer','Ответ')+'</span><b>'+E(o.answer)+'</b></div>':'')+(o.check?'<p class="sy-find"><b>'+tr('Check: ','Проверка: ')+'</b>'+rich(o.check)+'</p>':'')+bank+
+  '<p class="sy-ailabel">'+tr('Written by AI. Check the reasoning yourself.','Решение написал ИИ, проверьте ход рассуждений.')+'</p></div>'}
+// part 2: a photo of the written solution, checked by AI against the FIPI criteria (or a request to rewrite it legibly)
+function photoBox(q,k,live){let h='<div class="sy-photo">'+(q.img?'<img class="sy-pimg" src="'+q.img+'" alt="'+tr('Photo of your solution','Фото вашего решения')+'">':'');
+ h+='<div class="sy-acts sy-wrap"><label class="sy-btn2 sy-file">'+(q.img?tr('Retake the photo','Переснять'):tr('Attach a photo of the solution','Прикрепить фото решения'))+'<input type="file" accept="image/*" data-sy-file="qimg" data-k="'+k+'"></label>'+(q.img&&!live?'<button class="p" data-sy="qgrade" data-k="'+k+'"'+(q.grade?.busy?' disabled':'')+'>'+tr('Check with AI','Проверить ИИ')+'</button>':'')+'</div>';
+ if(live&&q.img)h+='<p class="sy-muted">'+tr('AI will check the photo after you finish the exam.','ИИ проверит фото после завершения экзамена.')+'</p>';
+ return h+gradeBox(q.grade)+'</div>'}
+function gradeBox(g){if(!g)return'';if(g.busy)return busyBox(tr('AI is checking the photo…','ИИ проверяет фото…'));if(g.err)return '<p class="sy-err" role="alert">'+E(g.err)+'</p>';const o=g.o||{};
+ if(!o.legible)return '<div class="sy-gbad" role="alert"><b>'+tr('The solution could not be read','Решение не удалось разобрать')+'</b><p>'+E(o.ask||tr('Write it more clearly and send the photo again.','Перепишите разборчивее и пришлите фото снова.'))+'</p></div>';
+ return '<div class="sy-grade2"><div class="sy-answer"><span>'+tr('AI score','Оценка ИИ')+'</span><b>'+(o.score|0)+(o.max!=null?' / '+o.max:'')+'</b></div>'+
+  (o.criteria?.length?'<ul class="sy-crit">'+o.criteria.map(c=>'<li class="'+(c.ok?'ok':'bad')+'"><b>'+E(c.name)+'</b>'+(c.note?' — '+rich(c.note):'')+'</li>').join('')+'</ul>':'')+
+  (o.errors?.length?'<h4>'+tr('Mistakes','Ошибки')+'</h4><ul class="sy-errs">'+o.errors.map(e=>'<li>'+rich(e)+'</li>').join('')+'</ul>':'')+(o.comment?'<p>'+rich(o.comment)+'</p>':'')+
+  (o.answer?'<p class="sy-muted">'+tr('Correct answer: ','Верный ответ: ')+E(o.answer)+'</p>':'')+'<p class="sy-ailabel">'+tr('AI estimate by the FIPI criteria, not an official score.','Оценка ИИ по критериям ФИПИ, не официальный балл.')+'</p></div>'}
 function resultsView(x){const rs=D.res[x.id];if(x.fipi&&waitFipi())return fipiWait();
  const [chips,S]=x.fipi?subjChips(x,'rsub'):['',null],sc=x.id==='ege'?(V.f.rsc||'p'):'p',max=x.fipi&&S?(sc==='t'?100:S.maxPrimary):null,tk=x.id+':'+(S?S.id:'_')+':'+sc,mine=rs.filter(r=>(r.sub||'')===(S?S.id:'')&&(r.sc||'p')===sc),orphan=x.fipi&&S?rs.filter(r=>!r.sub).length:0;V.rctx={sub:S?S.id:'',sc,max};
  let h=chips+'<section class="sy-card"><h3>'+tr('Add a result','Добавить результат')+'</h3><p class="sy-muted">'+tr('Your own mock tests, practice and official results.','Ваши пробники, тренировки и официальные результаты.')+'</p>'+
@@ -4133,7 +4248,7 @@ VIEWS.tutor=()=>{const T=V.tutor;if(!T.mode)T.mode=D.prof.exams.some(id=>exam(id
  if(T.res?.ctx?.ex)h+='<div id="syFipi">'+fipiPanel()+'</div>';
  if(!T.res&&D.tutor.length)h+='<section class="sy-card"><h3>'+tr('Recent','Недавние')+'</h3><ul class="sy-list">'+D.tutor.slice(0,6).map((y,i)=>'<li><button class="sy-row" data-sy="thist" data-i="'+i+'"><span><b>'+E(y.q||'—')+'</b><small>'+E((MODES.find(z=>z[0]===y.m)||[,'',''])[ru()?1:2])+' · '+fd(y.d)+'</small></span><i class="sy-chev" aria-hidden="true"></i></button></li>').join('')+'</ul></section>';
  return h};
-function renderAI(mode,o,ctx){ctx=ctx||{};const S=s=>E(s||'').replace(/\n/g,'<br>');
+function renderAI(mode,o,ctx){ctx=ctx||{};const S=s=>rich(s||'');
  if(mode==='explain')return '<section class="sy-card sy-ai"><h3>'+E(o.title)+'</h3>'+(o.sections||[]).map(s=>'<h4>'+E(s.h)+'</h4><p>'+S(s.body)+'</p>').join('')+(o.key_points?.length?'<div class="sy-key"><b>'+tr('Key points','Главное')+'</b><ul>'+o.key_points.map(k=>'<li>'+E(k)+'</li>').join('')+'</ul></div>':'')+(o.check?.length?'<h4>'+tr('Check yourself','Проверь себя')+'</h4>'+o.check.map(c=>'<details class="sy-det"><summary>'+E(c.q)+'</summary><p>'+S(c.a)+'</p></details>').join(''):'')+(ctx.n?'<div class="sy-acts"><button class="p" data-sy="ftask" data-n="'+ctx.n+'">'+tr('FIPI tasks for task ','Задания ФИПИ к заданию ')+ctx.n+'</button></div>':ctx.code?'<div class="sy-acts"><button class="p" data-sy="fipi" data-c="'+E(ctx.code)+'">'+tr('Practise on FIPI tasks','Практика на заданиях ФИПИ')+'</button></div>':'')+'</section>';
  if(mode==='solve'){const Sb=ctx.ex&&offSubj(exam(ctx.ex),ctx.sid),tn=Sb?.tasks?.find(r=>r[0]===+o.task_no),kes=(Array.isArray(o.kes)?o.kes:[]).map(String).filter(c=>Sb?.themes?.some(t=>t[0]===c)).slice(0,4),
   // the tutor's task number must agree with the subtopics it named; otherwise say so instead of trusting it
@@ -4256,7 +4371,8 @@ async function fileText(f){if(/\.pdf$/i.test(f.name)||f.type==='application/pdf'
  if(f.type.startsWith('text/')||/\.(md|txt)$/i.test(f.name))return(await f.text()).trim();return null}
 let pdfLib=null;function pdfjs(){if(pdfLib)return pdfLib;pdfLib=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=()=>{const L=window.pdfjsLib;L.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';res(L)};s.onerror=()=>{pdfLib=null;rej(new Error(tr('Could not load the PDF reader. Check your connection.','Не удалось загрузить чтение PDF. Проверьте соединение.')))};document.head.appendChild(s)});return pdfLib}
 // photos go to the AI as a JPEG no larger than 1600 px (keeps the request small)
-function photo(f){return new Promise((res,rej)=>{const img=new Image(),u=URL.createObjectURL(f);img.onload=()=>{const k=Math.min(1,1600/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.82))};img.onerror=()=>{URL.revokeObjectURL(u);rej(new Error(tr('Could not read the image.','Не удалось прочитать изображение.')))};img.src=u})}
+// read through FileReader (a data: URL), not blob: — some Telegram webviews do not load blob images
+function photo(f){return new Promise((res,rej)=>{const img=new Image(),rd=new FileReader();img.onload=()=>{const k=Math.min(1,1600/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.82))};const bad=()=>rej(new Error(tr('Could not read the image.','Не удалось прочитать изображение.')));img.onerror=bad;rd.onerror=bad;rd.onload=()=>{img.src=rd.result};rd.readAsDataURL(f)})}
 const tick=setInterval(()=>{const b=document.querySelector('#study [data-sy-tick]');if(b&&D.timer)b.textContent=hm((Date.now()-D.timer.at)/60000)},30000);
 
 /* Exam and practice: tasks 1..N of the FIPI 2027 plan, one FIPI bank prototype each (the server picks candidates, AI matches) */
@@ -4267,13 +4383,22 @@ async function buildRun(R,x,S){
  await pool(R.items,3,async it=>{if(it.t[5].length)try{const j=await api('/fipi',{action:'pick',exam:x.fipi,sub:S.id,n:it.n,k:S.tasks.length>30?3:5,exclude:[...SEEN].slice(-300)});it.c=j.items||[]}catch(e){R.neterr=friendlyError(e)}R.got++;if(V.run===R)drawRun()});
  if(V.run!==R)return;R.stage=tr('AI is matching prototypes to task numbers…','ИИ сверяет прототипы с номерами заданий…');drawRun();
  const keep=await aiAssign(x,S,R.items.map(it=>[it.t,it.c]));if(V.run!==R)return;
- R.items.forEach(it=>{it.q=(keep[it.n]??it.c)[0]||null;if(it.q)SEEN.add(it.q.id)});
+ const used=new Set(),put=(it,l)=>{it.q=(l||[]).find(q=>!used.has(q.id))||null;if(it.q){used.add(it.q.id);SEEN.add(it.q.id)}};
+ R.noai=!Object.keys(keep).length&&R.items.some(it=>it.c.length);
+ // without AI only prototypes picked by the number's own topics; numbers without topics in the plan stay empty
+ R.items.forEach(it=>put(it,keep[it.n]??(it.t[5].length?it.c:[])));
+ const gap=R.items.filter(it=>!it.q);
+ if(!R.noai&&gap.length){R.stage=tr('Looking for more prototypes…','Ищу ещё прототипы…');drawRun();const ex2=[...SEEN,...R.items.flatMap(it=>it.c.map(q=>q.id))].slice(-350);
+  await pool(gap,3,async it=>{try{const j=await api('/fipi',{action:'pick',exam:x.fipi,sub:S.id,n:it.n,k:5,exclude:ex2});it.c2=j.items||[]}catch{it.c2=[]}});if(V.run!==R)return;
+  const k2=await aiAssign(x,S,gap.map(it=>[it.t,it.c2]));gap.forEach(it=>put(it,k2[it.n]))}
+ if(R.mode==='train')await recall(R.ex,R.sid,R.items.map(it=>it.q).filter(Boolean));
  if(!R.items.some(it=>it.q)){R.fail=R.neterr||tr('No prototypes found. Try again later.','Прототипы не нашлись. Попробуйте позже.')}
  R.ready=true;R.at=Date.now();if(R.mode==='exam'&&S.minutes)R.end=R.at+S.minutes*6e4;drawRun()}
 const runScore=R=>R.items.reduce((a,it)=>a+(!it.q?0:it.q.ext?(it.self||0):it.q.res==='correct'?(it.t[2]||0):0),0);
 function runView(){const R=V.run,x=exam(R.ex),S=offSubj(x,R.sid),live=R.mode==='exam'&&!R.done,answered=R.items.filter(it=>it.q?.res).length;
  let h='<section class="sy-card sy-run"><div class="sy-ch"><h3>'+(R.mode==='exam'?tr('Exam','Экзамен'):tr('Practice','Тренировка'))+' · '+E(offName(S))+'</h3>'+(R.end&&live&&R.ready?'<span class="sy-clock" role="timer" data-sy-cd>'+cdown(R.end)+'</span>':R.ready?'<span>'+answered+' / '+R.items.length+'</span>':'')+'</div>';
  if(!R.ready)return h+busyBox(R.stage||tr('Picking FIPI prototypes: ','Подбираю прототипы ФИПИ: ')+R.got+' / '+R.items.length)+'<div class="sy-acts"><button class="sy-btn2" data-sy="runexit">'+tr('Cancel','Отмена')+'</button></div></section>';
+ if(R.noai)h+='<p class="sy-err" role="status">'+tr('AI is not available right now, so numbers were matched by topics only and may be off.','ИИ сейчас недоступен: прототипы подобраны только по темам и могут не совпасть с номером.')+'</p>';
  if(R.fail)return h+'<p class="sy-err" role="alert">'+E(R.fail)+'</p><div class="sy-acts"><button class="sy-btn2" data-sy="runexit">'+tr('Back','Назад')+'</button></div></section>';
  h+='<div class="sy-tasks sy-strip" role="tablist" aria-label="'+tr('Tasks','Задания')+'">'+R.items.map((it,i)=>{const q=it.q,c=!q?'none':live?(q.ans?'ans':''):q.res==='correct'?'ok':q.res==='wrong'||q.res==='skip'?'bad':q.ans?'ans':'';
   return '<button class="sy-tn '+c+(i===R.i?' sel':'')+'" data-sy="rgo" data-v="'+i+'" role="tab" aria-selected="'+(i===R.i)+'" aria-label="'+tr('Task ','Задание ')+it.n+'">'+it.n+'</button>'}).join('')+'</div>';
@@ -4299,17 +4424,22 @@ function resultBox(R,S){const short=R.items.filter(it=>it.q&&!it.q.ext),right=sh
  return h+'</div>'}
 // answers are read into the task whose fields are on screen (R.shown), not the one we are moving to
 function keepRun(){const R=V.run,it=R?.items[R.shown];if(!it||!R.ready)return;readAns(it.q,'r');(it.more||[]).forEach((q,j)=>readAns(q,'r'+j))}
-function drawRun(scroll){const el=$('syRun');if(!el)return render();keepRun();el.innerHTML=runView();if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'})}
+function drawRun(scroll){const el=$('syRun');if(!el)return render();keepRun();el.innerHTML=runView();tidy(el);saveRun();if(scroll)el.scrollIntoView({behavior:'smooth',block:'start'})}
 // a key names an answer card: p<i> — the task panel, r — the current run task, r<j> — an AI task under it
 function qByKey(k){if(k[0]==='p')return V.fp?.items[+k.slice(1)];const it=curIt();return !it?null:k==='r'?it.q:it.more?.[+k.slice(1)]}
 function qCtx(k){const run=k[0]==='r',c=run?V.run:V.fp,x=exam(c.ex),S=offSubj(x,c.sid);return{x,S,n:run?curIt().n:c.task||null,box:run?curIt():c}}
 const redraw=k=>k[0]==='p'?drawFipi():drawRun();
+// the current run survives closing the app (this device only; photos are not kept)
+function saveRun(){try{const R=V.run;if(!R||!R.ready){localStorage.removeItem('sy_run');return}
+ localStorage.setItem('sy_run',JSON.stringify(R,(k,v)=>['img','srcq','c','c2','checking','vbusy','stage'].includes(k)?undefined:(k==='sol'||k==='grade')&&v?.busy?undefined:v))}catch{}}
+function loadRun(){try{const R=JSON.parse(localStorage.getItem('sy_run')||'null');if(R&&R.ready&&R.items&&Date.now()-R.at<7*864e5&&exam(R.ex)){R.items.forEach(it=>{it.c=[]});return R}}catch{}return null}
 async function logGoal(id,r){const gid=D.prof.goalOf?.[id],g=gid&&goals.find(x=>x.id===gid);if(g&&g.to!=null&&(!g.sub||g.sub===(r.sub||''))){g.log.push([Date.now(),r.s,tr('Study: ','Учёба: ')+exName(exam(id))]);await saveGoal(g);toast(tr('Also logged in Goals','Записано и в «Цели»'))}else ok()}
 setInterval(()=>{const R=V.run;if(!R?.end||R.done||!R.ready)return;const el=document.querySelector('#study [data-sy-cd]');if(el)el.textContent=cdown(R.end);if(Date.now()>=R.end&&!R.checking){R.timeup=true;A.runfin().catch(e=>note(friendlyError(e)))}},1000);
 const A={
- run(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid);if(!S?.tasks)return;keepRun();const R=V.run={mode:b.dataset.v==='exam'?'exam':'train',ex:x.id,sid:S.id,items:S.tasks.map(t=>({n:t[0],t,c:[],q:null})),i:0,got:0,ready:false,done:false};V.fp=null;render();scrollTo(0,0);buildRun(R,x,S)},
+ run(b){const c=V.ctx,x=c&&exam(c.ex),S=x&&offSubj(x,c.sid);if(!S?.tasks)return;keepRun();const R=V.run={mode:b.dataset.v==='exam'?'exam':'train',ex:x.id,sid:S.id,items:S.tasks.map(t=>({n:t[0],t,c:[],q:null})),i:0,got:0,ready:false,done:false,sname:offName(S)};V.fp=null;render();scrollTo(0,0);buildRun(R,x,S)},
  runnew(b){A.run(b)},
- async runexit(){const R=V.run;if(R&&R.mode==='exam'&&R.ready&&!R.done&&!await ask(tr('Leave the exam? Your answers will be lost.','Выйти из экзамена? Ответы не сохранятся.')))return;V.run=null;render();scrollTo(0,0)},
+ async runexit(){const R=V.run;if(R&&R.mode==='exam'&&R.ready&&!R.done&&!await ask(tr('Leave the exam? Your answers will be lost.','Выйти из экзамена? Ответы не сохранятся.')))return;V.run=null;saveRun();render();scrollTo(0,0)},
+ runopen(){const R=V.run;if(!R)return;V.tab='exams';V.d={k:'exam',id:R.ex};V.sub='prep';V.f.esub=R.sid;render();scrollTo(0,0)},
  rgo(b){const R=V.run;if(!R)return;const i=+b.dataset.v;if(!(i>=0&&i<R.items.length))return;keepRun();R.i=i;drawRun(true)},
  async runfin(){const R=V.run;if(!R||R.done||R.checking)return;keepRun();const un=R.items.filter(it=>it.q&&!it.q.ext&&!it.q.ans).length;
   if(!R.timeup&&un&&!await ask(tr('Without an answer: ','Без ответа: ')+un+tr('. Finish the exam?','. Завершить экзамен?')))return;
@@ -4317,7 +4447,7 @@ const A={
   try{const j=list.length?await api('/fipi',{action:'check',exam:x.fipi,proj:S.proj,items:list.map(it=>({guid:it.q.guid,answer:bankAns(it.q)}))}):{results:[]};list.forEach((it,i)=>it.q.res=j.results?.[i]||'unknown')}
   catch(e){R.checking=false;note(friendlyError(e));return drawRun()}
   R.items.forEach(it=>{if(it.q&&!it.q.ext&&!it.q.ans)it.q.res='skip'});
-  for(const it of R.items){const q=it.q;if(q&&(q.res==='correct'||q.res==='wrong'))await bump(tkey(R.ex,R.sid),it.n,q.res==='correct',qCodes(q).filter(c=>S.themes.some(t=>t[0]===c)))}
+  for(const it of R.items){const q=it.q;if(q?.ans)await remember(R.ex,R.sid,q);if(q&&(q.res==='correct'||q.res==='wrong'))await bump(tkey(R.ex,R.sid),it.n,q.res==='correct',qCodes(q).filter(c=>S.themes.some(t=>t[0]===c)))}
   R.done=true;R.checking=false;R.i=0;ok();drawRun(true)},
  async runsave(){const R=V.run;if(!R?.done||R.saved)return;const x=exam(R.ex),S=offSubj(x,R.sid),r={d:today(),k:'mock',s:runScore(R),m:S.maxPrimary||null,n:tr('FIPI prototypes variant','Вариант из прототипов ФИПИ'),sub:S.id};
   D.res[x.id].push(r);D.res[x.id].sort((a,b)=>a.d.localeCompare(b.d));if(!await safePut('sy_r_'+x.id,D.res[x.id])){D.res[x.id]=D.res[x.id].filter(z=>z!==r);return}R.saved=true;await logGoal(x.id,r);drawRun()},
@@ -4327,13 +4457,18 @@ const A={
   else{try{const j=await api('/fipi',{action:'check',exam:c.x.fipi,proj:c.S.proj,guid:q.guid,answer:bankAns(q)});q.res=j.result||'unknown'}catch(e){q.res='unknown';note(friendlyError(e))}}
   if(q.res==='correct'||q.res==='wrong'){const codes=qCodes(q).filter(x=>c.S.themes.some(t=>t[0]===x)),tk=c.n&&c.S.tasks?.find(t=>t[0]===c.n),cand=(c.S.tasks||[]).filter(t=>codes.some(x=>t[5].includes(x)));
    // a number of the plan counts the answer only when the prototype belongs to it (picked for it, or its topics do)
-   const n=tk&&(V.fp?.pick||k[0]==='r'||codes.some(x=>tk[5].includes(x)))?tk[0]:cand.length===1?cand[0][0]:null;await bump(tkey(c.x.id,c.S.id),n,q.res==='correct',codes)}
+   const n=tk&&(V.fp?.pick||k[0]==='r'||codes.some(x=>tk[5].includes(x)))?tk[0]:cand.length===1?cand[0][0]:null;await bump(tkey(c.x.id,c.S.id),n,q.res==='correct',codes);await remember(c.x.id,c.S.id,q)}
   redraw(k)},
  async qsol(b){const k=b.dataset.k,q=qByKey(k);if(!q||q.sol?.busy)return;readAns(q,k);
   if(q.ai){q.sol={o:{steps:q.steps,answer:q.answer}};return redraw(k)}
+  if(q.solc){q.sol={o:q.solc};return redraw(k)}
   const c=qCtx(k),t=c.n&&c.S.tasks?.find(r=>r[0]===c.n);q.sol={busy:true};redraw(k);
-  try{q.sol={o:await ai('solve',{exam:exName(c.x),subject:offName(c.S),structure:'FIPI '+FIPI.year,task:qText(q),task_info:t?{n:t[0],title:t[3],level:t[1],max:t[2],skill:cut(t[4],300)}:undefined,fipi:q.ext?undefined:{exam:c.x.fipi,proj:c.S.proj,guid:q.guid,choice:q.opts?.length||0}})}}
+  try{q.sol={o:await ai('solve',{exam:exName(c.x),subject:offName(c.S),structure:'FIPI '+FIPI.year,task:qText(q),task_info:t?{n:t[0],title:t[3],level:t[1],max:t[2],skill:cut(t[4],300)}:undefined,fipi:q.ext?undefined:{exam:c.x.fipi,proj:c.S.proj,guid:q.guid,choice:q.opts?.length||0}})};solPut(q.id,q.sol.o)}
   catch(e){q.sol={err:friendlyError(e)}}redraw(k)},
+ async qgrade(b){const k=b.dataset.k,q=qByKey(k);if(!q?.img||q.grade?.busy)return;const c=qCtx(k),t=c.n&&c.S.tasks?.find(r=>r[0]===c.n);q.grade={busy:true};redraw(k);
+  try{const o=await ai('grade',{exam:exName(c.x),subject:offName(c.S),structure:'FIPI '+FIPI.year,task:qText(q),task_info:t?{n:t[0],title:t[3],max:t[2]}:undefined,image:q.img});q.grade={o};
+   if(o.legible){const it=k==='r'&&curIt();if(it&&it.q===q&&V.run.done)it.self=Math.min(o.score|0,it.t[2]||0);if(t&&o.max)await bump(tkey(c.x.id,c.S.id),t[0],(o.score|0)>=o.max,qCodes(q).filter(x=>c.S.themes.some(y=>y[0]===x)))}}
+  catch(e){q.grade={err:friendlyError(e)}}redraw(k)},
  async qvar(b){const k=b.dataset.k,q=qByKey(k);if(!q)return;const c=qCtx(k),box=c.box,src=q.srcq||q,t=c.n&&c.S.tasks?.find(r=>r[0]===c.n);if(box.vbusy)return;
   if(k[0]==='p')keepAns();else keepRun();box.vbusy=true;box.verr='';redraw(k);
   try{const o=await ai('variant',{exam:exName(c.x),subject:offName(c.S),sub:c.S.id,structure:'FIPI '+FIPI.year,task:qText(src),task_info:t?{n:t[0],title:t[3],level:t[1],max:t[2],skill:cut(t[4],300)}:undefined});
@@ -4494,6 +4629,7 @@ document.addEventListener('change',async ev=>{const e=ev.target;if(!e.closest('#
   if(k==='pex'){V.f.psid='';V.f.pn=''}if(k==='psid')V.f.pn='';if(['pex','psid','pn'].includes(k)){V.f.pfound=0;V.fp=null;V.ai.st=null}render();return}
  const kind=e.dataset.syFile;if(!kind||!e.files?.[0])return;const f=e.files[0];
  try{if(kind==='photo'){V.tutor.img=await photo(f);keepTutor();render();return}
+  if(kind==='qimg'){const k=e.dataset.k,q=qByKey(k);if(q){if(k[0]==='r')keepRun();else keepAns();q.img=await photo(f);q.grade=null;redraw(k)}return}
   const s=$('syMatS');if(s)s.innerHTML=busyBox(tr('Reading the file…','Читаю файл…'));let text=await fileText(f);
   if(text==null&&f.type.startsWith('image/')){if(s)s.innerHTML=busyBox(tr('AI is reading the photo…','ИИ читает фото…'));const o=await ai('summary',{subject:subjName(V.d.id),image:await photo(f)});text=[o.title,o.summary,...(o.key_points||[]).map(k=>'• '+k)].filter(Boolean).join('\n')}
   if(text==null)throw new Error(tr('This file type is not supported. Use PDF, an image or a text file.','Этот тип файла не поддерживается. Загрузите PDF, изображение или текстовый файл.'));
