@@ -1748,9 +1748,9 @@ html[data-theme=dark] #hl{--hl-bad:#ff8a78}
 #study .sy-crit li.bad b{color:var(--sy-bad)}
 </style>
 <style id="nuvio-tabs-even">
-/* нижняя панель: 7 равных колонок, подпись по ширине колонки */
+/* нижняя панель: 7 равных колонок; размер подписи (--tab-fs) подбирает скрипт NUVIO_TABS_FIT по реальному шрифту устройства */
 html:not(#_) .tabs{gap:0!important;padding:5px!important}
-html:not(#_) .tabs button{flex:1 1 0!important;min-width:0!important;padding:4px 1px!important;font-size:max(8.5px,min(11px,calc((100vw - 26px) / 33)))!important;letter-spacing:-.015em!important;line-height:1.15!important;white-space:nowrap!important;overflow:visible!important;text-align:center!important}
+html:not(#_) .tabs button{flex:1 1 0!important;min-width:0!important;padding:4px 1px!important;font-size:var(--tab-fs,max(8.5px,min(11px,calc((100vw - 26px) / 33))))!important;letter-spacing:-.015em!important;line-height:1.15!important;white-space:nowrap!important;overflow:visible!important;text-align:center!important}
 </style>
 </head><body>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
@@ -4757,6 +4757,19 @@ const base=renderProfile;renderProfile=function(){base.apply(this,arguments);get
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')quiet()});
 setTimeout(quiet,8000);  // после загрузки целей, гардероба и плана
 })();
+</script>
+<script>/* NUVIO_TABS_FIT: one label size for all 7 tabs, so the longest label (Здоровье / Nutrition) fits its column with
+   the device's real font: SF on iPhone is wider than the fonts the CSS fallback was tuned on. 2px free space on each side. */
+(function(){const nav=document.querySelector('.tabs');if(!nav)return;let raf=0;
+function fit(){raf=0;const bs=[...nav.querySelectorAll('button[data-t]')];if(!bs.length||!bs[0].clientWidth)return;
+  nav.style.setProperty('--tab-fs','11px');let k=1;
+  for(const b of bs){const tn=[...b.childNodes].find(n=>n.nodeType===3&&n.textContent.trim());if(!tn)continue;
+    const r=document.createRange();r.selectNodeContents(tn);const w=r.getBoundingClientRect().width,room=b.clientWidth-4;if(w>room)k=Math.min(k,room/w)}
+  nav.style.setProperty('--tab-fs',Math.max(8,Math.floor(11*k*10)/10)+'px')}
+const later=()=>{if(!raf)raf=requestAnimationFrame(fit)};
+if(window.ResizeObserver)new ResizeObserver(later).observe(nav);
+new MutationObserver(later).observe(nav,{subtree:true,childList:true,characterData:true});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(later);later()})();
 </script>
 </body></html>
 
