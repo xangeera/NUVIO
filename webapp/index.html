@@ -1747,9 +1747,14 @@ html[data-theme=dark] #hl{--hl-bad:#ff8a78}
 #study .sy-crit li.ok b{color:var(--sy-ok)}
 #study .sy-crit li.bad b{color:var(--sy-bad)}
 </style>
+<style id="nuvio-tabs-even">
+/* нижняя панель: 7 равных колонок, подпись по ширине колонки */
+html:not(#_) .tabs{gap:0!important;padding:5px!important}
+html:not(#_) .tabs button{flex:1 1 0!important;min-width:0!important;padding:4px 1px!important;font-size:max(8.5px,min(11px,calc((100vw - 26px) / 33)))!important;letter-spacing:-.015em!important;line-height:1.15!important;white-space:nowrap!important;overflow:visible!important;text-align:center!important}
+</style>
 </head><body>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
-<header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" >План</button><button data-t="study" data-i="tsy"></button></nav>
+<header class="nv-appbar"><span class="nv-wordmark" id="nvTitle">nuvio</span><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="w" data-i="tw"></button><button data-t="g" data-i="tg"></button><button data-t="ft" data-i="ft"></button><button data-t="nx" data-i="tn"></button><button data-t="hl" data-i="thl"></button><button data-t="pl" data-i="tpl">План</button><button data-t="study" data-i="tsy"></button></nav>
 <section id="w">
   <div id="dayGreeting" class="day-greeting" aria-live="polite"><div class="day-greeting-title"></div><div class="day-greeting-date"></div></div>
     <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS">📍</button></form>
@@ -1775,7 +1780,20 @@ const st={
  del:k=>new Promise(r=>{if(cs)cs.removeItem(k,()=>r());else{try{localStorage.removeItem(k)}catch{}r()}})
 };
 const jget=async(k,d)=>{try{return JSON.parse(await st.get(k))??d}catch{return d}};
-// shortcut: one CloudStorage value holds 4096 chars, so old notes go first, then the oldest items; move to per-month keys if users need longer history.
+// one CloudStorage value holds 4096 chars: inside one value old notes go first, then the oldest items.
+// monthStore: long history = one key per month <pre>YYYY-MM + list of months <pre>idx. The old single key is moved once
+// and removed only after the months were written (st.set swallows write errors, so this uses its own checked write).
+const monthStore=(pre,old,when)=>{const idx=pre+'idx',saved=new Map(),known=new Set(),okM=m=>/^\d{4}-\d{2}$/.test(m),mon=x=>String(when(x)||'').slice(0,7),
+ put=(k,v)=>new Promise(r=>{if(cs)cs.setItem(k,v,e=>r(!e));else{try{localStorage.setItem(k,v);r(true)}catch{r(false)}}}),
+ save=async arr=>{const g=new Map();for(const x of arr){const m=mon(x);if(!okM(m))continue;if(!g.has(m))g.set(m,[]);g.get(m).push(x)}let good=true;
+  for(const[m,list]of g){const v=JSON.stringify(fitCloud(list,when));if(saved.get(m)===v)continue;if(await put(pre+m,v)){saved.set(m,v);known.add(m)}else good=false}
+  for(const m of[...saved.keys()])if(!g.has(m)){await st.del(pre+m);saved.delete(m);known.delete(m)}
+  if(!await put(idx,JSON.stringify([...known].sort())))good=false;return good},
+ load=async()=>{const ms=await jget(idx,null);
+  if(Array.isArray(ms)){const parts=await Promise.all(ms.filter(okM).map(async m=>{known.add(m);let raw=await st.get(pre+m);if(raw==null)raw=await st.get(pre+m);
+    if(raw==null)return[];saved.set(m,raw);try{const a=JSON.parse(raw);return Array.isArray(a)?a:[]}catch{return[]}}));return parts.flat()}
+  const o=await jget(old,[]),arr=Array.isArray(o)?o:[];if(!arr.length)return arr;if(await save(arr))await st.del(old);return arr};
+ return{load,save}};
 const fitCloud=(arr,when)=>{const big=()=>JSON.stringify(arr).length>3800,old=arr.slice().sort((a,b)=>String(when(a)).localeCompare(String(when(b))));for(const x of old){if(!big())break;if(x.note)x.note=''}for(const x of old){if(!big()||arr.length<2)break;arr.splice(arr.indexOf(x),1)}return arr};
 
 /* ---- языки ---- */
@@ -2273,12 +2291,12 @@ $('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e
 
 
 /* ================= ПИТАНИЕ ================= */
-const NL={ru:{tn:'Питание',thl:'Здоровье',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
+const NL={ru:{tn:'Питание',thl:'Здоровье',tpl:'План',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
  nc_dishes:'Блюда под цель',nc_dishes_s:'Подобраны под вашу цель',nc_menu:'Меню на день',nc_menu_s:'Составит ИИ',nc_rec:'Рецепты',nc_rec_s:'Классические блюда',
  m_b:'Завтрак',m_l:'Обед',m_d:'Ужин',m_s:'Перекус',nall:'Все',nkcal_u:'{0} ккал',nmac:'Б {0} · Ж {1} · У {2}',nest:'Калории и БЖУ ориентировочные, указаны на одну порцию.',nper:'на порцию',
  nrecai:'Рецепт от ИИ',nrecbusy:'ИИ пишет рецепт…',nmenugen:'Составить меню',nmenuregen:'Составить заново',nmenubusy:'ИИ составляет меню…',navoid:'Не ем',navoidph:'Например: свинина, грибы',npantry:'Что есть дома',npantryph:'Например: курица, рис, яйца, помидоры',nopt:'необязательно',ntotal:'Итого за день',ntarget:'Ваша норма',
  rc_all:'Все',rc_breakfast:'Завтраки',rc_soups:'Супы',rc_mains:'Основные блюда',rc_salads:'Салаты',rc_desserts:'Выпечка и десерты',nsearch:'Название блюда или продукты, которые есть',nfind:'Найти рецепт (ИИ)',ningr:'Ингредиенты',nsteps:'Приготовление',nmin:'{0} мин',nserv:'{0} порц.',ntip:'Совет'},
-en:{tn:'Nutrition',thl:'Health',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
+en:{tn:'Nutrition',thl:'Health',tpl:'Planner',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
  nc_dishes:'Dishes for your goal',nc_dishes_s:'Picked for your goal',nc_menu:'Menu for the day',nc_menu_s:'Made by AI',nc_rec:'Recipes',nc_rec_s:'Classic dishes',
  m_b:'Breakfast',m_l:'Lunch',m_d:'Dinner',m_s:'Snack',nall:'All',nkcal_u:'{0} kcal',nmac:'P {0} · F {1} · C {2}',nest:'Calories and macros are approximate, per serving.',nper:'per serving',
  nrecai:'AI recipe',nrecbusy:'AI is writing the recipe…',nmenugen:'Create menu',nmenuregen:'Create again',nmenubusy:'AI is creating your menu…',navoid:'I don’t eat',navoidph:'E.g.: pork, mushrooms',npantry:'What I have at home',npantryph:'E.g.: chicken, rice, eggs, tomatoes',nopt:'optional',ntotal:'Daily total',ntarget:'Your target',
@@ -2982,9 +3000,20 @@ async function search(q){
     load(g.results[0].latitude,g.results[0].longitude,g.results[0].name)}
   catch{$('app').innerHTML=`<p class="msg">${t('errs')}</p>`}
 }
-const locate=()=>navigator.geolocation?.getCurrentPosition(p=>load(p.coords.latitude,p.coords.longitude,null),()=>search("Amsterdam"),{timeout:8000});
+// Location through Telegram (Bot API 8.0+): Telegram asks in its own dialog on behalf of the bot, so the page address
+// (github.io) is not shown. Older Telegram or a plain browser: the browser API. Declined: a default city for the language.
+// tgLocation: {lat,lon} | null (declined) | false (sent to Telegram settings) | undefined (not available here).
+const tgLocation=ask=>new Promise(res=>{const lm=tg?.LocationManager;if(!lm||!tg.isVersionAtLeast?.('8.0'))return res(undefined);
+  const go=()=>{if(!lm.isLocationAvailable)return res(undefined);
+    if(ask&&lm.isAccessRequested&&!lm.isAccessGranted){try{lm.openSettings()}catch{}return res(false)}
+    try{lm.getLocation(d=>res(d&&isFinite(d.latitude)&&isFinite(d.longitude)?{lat:d.latitude,lon:d.longitude}:null))}catch{res(undefined)}};
+  try{lm.isInited?go():lm.init(go)}catch{res(undefined)}});
+const homeCity=()=>lang==='ru'?'Москва':'Amsterdam';
+const locate=async ask=>{const t=await tgLocation(ask===true);if(t)return load(t.lat,t.lon,null);if(t===false)return;if(t===null)return search(homeCity());
+  if(!navigator.geolocation)return search(homeCity());
+  navigator.geolocation.getCurrentPosition(p=>load(p.coords.latitude,p.coords.longitude,null),()=>search(homeCity()),{timeout:8000})};
 $('f').onsubmit=e=>{e.preventDefault();const q=$('q').value.trim();if(q)search(q)};
-$('geo').onclick=locate;
+$('geo').onclick=()=>locate(true);
 
 /* ================= ЦЕЛИ (v2) ================= */
 Object.assign(L.ru,{
@@ -3565,8 +3594,10 @@ function holidays(y){const id=y+lang+country;if(holCache[id])return holCache[id]
  const ms=new Date(oe);ms.setDate(ms.getDate()-49);add(ms,tr('Maslenitsa, Forgiveness Sunday','Масленица, Прощёное воскресенье'),'day');
  return holCache[id]=out}
 const holOf=k=>holidays(+k.slice(0,4))[k]||null;
-async function load(){if(loaded)return;try{const x=await jget(key,[]);events=Array.isArray(x)?x:[]}catch{events=[]}const c=await jget('pl_country',null);country=ccOk(c)?c:defCountry();loaded=true}
-async function persist(){await st.set(key,JSON.stringify(fitCloud(events,e=>e.date+' '+(e.time||''))))}
+const store=monthStore('plev_',key,e=>e.date+' '+(e.time||''));
+async function load(){if(loaded)return;try{events=(await store.load()).filter(e=>e&&e.date&&e.title)}catch{events=[]}const c=await jget('pl_country',null);country=ccOk(c)?c:defCountry();loaded=true}
+async function persist(){await store.save(events)}
+window.nuvioPlanEvents=async()=>{await load();return events.slice()};
 function render(){
  const el=root();if(!el)return;
  const y=month.getFullYear(),m=month.getMonth(),first=new Date(y,m,1),start=(first.getDay()+6)%7,count=new Date(y,m+1,0).getDate(),today=dayKey(new Date()),cur=today.slice(0,7)===dayKey(first).slice(0,7);
@@ -3635,8 +3666,10 @@ function safe(s){return esc(String(s??''))}
 // One drawn face per mood: the mouth bends from a frown (1) to a wide smile (5).
 function face(v){const c=[0,-5,-2.4,0,3,5.5][v]||0,mouth=v===5?'M10.5 19.5Q16 27 21.5 19.5Z':'M10.5 21Q16 '+(21+c)+' 21.5 21';
  return '<svg class="mo-face" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13.5"/><circle class="e" cx="11.6" cy="13.2" r="1.7"/><circle class="e" cx="20.4" cy="13.2" r="1.7"/><path class="m'+(v===5?' f':'')+'" d="'+mouth+'"/></svg>'}
-async function load(){if(ready)return;const x=await jget(key,[]);entries=Array.isArray(x)?x.filter(e=>e&&e.date&&e.value>=1&&e.value<=5):[];ready=true}
-async function persist(){await st.set(key,JSON.stringify(fitCloud(entries,e=>e.date)))}
+const store=monthStore('mood_',key,e=>e.date);
+async function load(){if(ready)return;const x=await store.load();entries=x.filter(e=>e&&e.date&&e.value>=1&&e.value<=5);ready=true}
+async function persist(){await store.save(entries)}
+window.nuvioMoodEntries=async()=>{await load();return entries.slice()};
 function render(){const root=$('mo');if(!root)return;
  const today=dayKey(new Date()),e=entries.find(x=>x.date===selected),d=fromKey(selected),isToday=selected===today;
  const week=[];for(let i=6;i>=0;i--){const x=new Date();x.setDate(x.getDate()-i);week.push(dayKey(x))}
@@ -3924,7 +3957,7 @@ const genNote=()=>'<p class="sy-ailabel">'+tr('Generated by AI for practice. Not
 
 /* ---------- wellbeing (Health) and goals (Goals) ---------- */
 async function wellbeing(){const out={};try{const s=(HL?.d?.sleep||[]).slice().sort((a,b)=>String(b[0]).localeCompare(String(a[0])))[0];if(s&&diff(s[0])>=-1)out.sleep=s[1]}catch{}
- try{const m=(await jget('nuvio_mood_entries',[])).find(e=>e.date===today());if(m)out.mood=m.value}catch{}return out}
+ try{const m=(await (window.nuvioMoodEntries?window.nuvioMoodEntries():[])).find(e=>e.date===today());if(m)out.mood=m.value}catch{}return out}
 async function linkGoal(x){const d=D.prof.dates[x.id];if(!d){note(tr('Set the exam date first.','Сначала укажите дату экзамена.'));return}
  if(D.prof.goalOf?.[x.id]&&goals.some(g=>g.id===D.prof.goalOf[x.id])){showTab('g');return}
  // targets are kept per subject and scale ("ege:math_prof:p"); the first one with a number gives the goal its start and finish
@@ -4643,6 +4676,86 @@ let tip=null;const showTip=e=>{const t=e.target.closest?.('#study [data-tip]');i
 
 Object.assign(L.ru,{tsy:'Учёба'});Object.assign(L.en,{tsy:'Study'});{const tb=document.querySelector('.tabs button[data-t="study"]');if(tb)tb.textContent=t('tsy')}
 window.renderStudy=renderStudy;
+})();
+</script>
+<style id="nuvio-digest">
+#p .dg-card .dg-sub{margin:-4px 0 14px;color:var(--nv-secondary)!important;font-size:14px;line-height:1.45}
+#p .dg-card .dg-row{display:flex!important;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0}
+#p .dg-card .dg-row label{margin:0!important;font-weight:600;color:var(--nv-text,inherit)}
+#p .dg-card .dg-row input[type=time]{width:auto!important;min-width:112px!important;margin:0!important;text-align:center}
+#p .dg-card .dg-test{width:100%!important;margin:14px 0 0!important}
+#p .dg-card .dg-note{margin:12px 0 0;font-size:12.5px;line-height:1.45;color:var(--nv-secondary)!important}
+#p .dg-card .dg-msg{margin:10px 0 0;font-size:13.5px;font-weight:600;color:var(--nv-blue)!important}
+#p .dg-card .dg-msg.dg-bad{color:var(--nv-red,#d93a3a)!important}
+#p .dg-card .dg-msg:empty{display:none}
+</style>
+<script>/* NUVIO_DIGEST: утренняя сводка в чате с ботом. Бот не видит CloudStorage, поэтому приложение отправляет ему снимок:
+   город, гардероб, активные цели, события «Плана» на 8 дней, лекарства, даты экзаменов. Отправляет, только когда снимок изменился
+   (или раз в 12 часов), при открытии и при сворачивании приложения. Настройка — dg_cfg {on, at}; выключение стирает снимок на сервере. */
+(function(){
+const tx=(en,ru)=>lang==='en'?en:ru,K='dg_cfg',HHMM=/^([01]\d|2[0-3]):[0-5]\d$/;
+let cfg=null,busy=false,msg='',bad=false;
+const tz=()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'}catch{return'UTC'}};
+const dk=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))>>>0;return s.length+':'+h};
+const inTg=()=>!!(tg&&tg.initData);
+async function getCfg(){if(!cfg){const c=await jget(K,null);cfg={on:!c||c.on!==false,at:c&&HHMM.test(c.at)?c.at:'07:00'}}return cfg}
+const saveCfg=()=>st.set(K,JSON.stringify(cfg));
+
+async function snapshot(){
+  const d={},today=new Date(),days=[...Array(8)].map((_,i)=>dk(new Date(today.getFullYear(),today.getMonth(),today.getDate()+i)));
+  try{const p=await jget('place',null);if(p&&isFinite(p.lat)&&isFinite(p.lon))d.place={lat:+p.lat,lon:+p.lon,name:p.name||''}}catch{}
+  try{const w=(wardrobe&&wardrobe.length?wardrobe:((await jget('wardrobe',[]))||[]).map(wdNorm).filter(Boolean));d.wardrobe=w.slice(0,60).map(wdBrief)}catch{d.wardrobe=[]}
+  try{d.goals=goals.filter(g=>!g.closed&&!reached(g)).slice(0,6).map(g=>{const st8=g.steps||[],last=st8.length?st8[st8.length-1].d:'';
+    return{title:g.title,pct:pct(g),deadline:g.deadline||null,done:st8.filter(s=>s.done).slice(-3).map(s=>s.text),todo:st8.filter(s=>!s.done&&s.d===last).slice(0,2).map(s=>s.text)}})}catch{d.goals=[]}
+  try{const ev=window.nuvioPlanEvents?await window.nuvioPlanEvents():[];
+    d.events=ev.filter(e=>days.includes(e.date)).sort((a,b)=>(a.date+(a.time||'')).localeCompare(b.date+(b.time||''))).slice(0,40).map(e=>({date:e.date,time:e.time||'',title:e.title}));
+    d.holidays=window.nuvioHoliday?days.map(k=>{const h=window.nuvioHoliday(k);return h&&h.kind!=='note'?{date:k,name:h.name}:null}).filter(Boolean):[]}catch{d.events=[];d.holidays=[]}
+  try{d.meds=((await jget('h_med',{list:[]}))?.list||[]).slice(0,12).map(m=>({name:m.n,dose:m.dose||'',per:m.per||1}))}catch{d.meds=[]}
+  try{const p=await jget('sy_prof',{}),ex=window.NUVIO_STUDY_EXAMS||[],dates=(p&&p.dates)||{};
+    d.exams=Object.entries(dates).filter(([id,v])=>/^\d{4}-\d{2}-\d{2}$/.test(v)&&v>=days[0]&&(p.exams||[]).includes(id)).map(([id,v])=>{const x=ex.find(e=>e.id===id);return x?{name:lang==='en'&&x.en?x.en:x.name,date:v}:null}).filter(Boolean)}catch{d.exams=[]}
+  return d}
+
+async function sync(extra){
+  const c=await getCfg();if((!c.on&&!extra)||!inTg()||!API_URL)return null;
+  const body={action:'sync',at:c.at,timezone:tz(),data:await snapshot(),...(extra||{})},h=hash(JSON.stringify(body));
+  if(!extra&&localStorage.getItem('dg_sent')===h&&Date.now()-(+localStorage.getItem('dg_at')||0)<12*36e5)return null;
+  const j=await api('/digest',body);
+  if(j&&j.on===false&&cfg.on){cfg.on=false;await saveCfg();draw()}
+  try{localStorage.setItem('dg_sent',h);localStorage.setItem('dg_at',String(Date.now()))}catch{}
+  return j}
+const quiet=()=>sync().catch(()=>{});
+
+function card(){const c=cfg||{on:true,at:'07:00'};
+  return '<div class="sec dg-card" id="dgCard"><h2>'+tx('Morning summary','Утренняя сводка')+'</h2>'
+   +'<p class="dg-sub">'+tx('Every morning the bot sends the weather, what to wear, your goals, plans and reminders for the day to the chat.','Каждое утро бот пришлёт в чат погоду, что надеть, цели, планы и напоминания на день.')+'</p>'
+   +'<div class="seg"><button data-dg="on" class="'+(c.on?'on':'')+'">'+tx('On','Включена')+'</button><button data-dg="off" class="'+(c.on?'':'on')+'">'+tx('Off','Выключена')+'</button></div>'
+   +(c.on?'<div class="dg-row"><label for="dgAt">'+tx('Send at','Время')+'</label><input type="time" id="dgAt" step="300" value="'+c.at+'"></div>'
+     +'<button class="dg-test" data-dg="test"'+(busy?' disabled':'')+'>'+(busy?tx('Sending…','Отправляю…'):tx('Send now','Прислать сейчас'))+'</button>':'')
+   +'<p class="dg-msg'+(bad?' dg-bad':'')+'" role="status">'+esc(msg)+'</p>'
+   +'<p class="dg-note">'+tx('For the summary the bot keeps your city (to about 1 km), wardrobe, goals, plans for the week, medicines and exam dates. Turn it off and this data is deleted from the server.','Для сводки бот хранит у себя город (с точностью около 1 км), гардероб, цели, планы на неделю, лекарства и даты экзаменов. Выключите сводку, и эти данные удалятся с сервера.')+'</p></div>'}
+function draw(){const p=document.getElementById('p');if(!p)return;const old=document.getElementById('dgCard');
+  if(old){old.outerHTML=card();return}const ch=document.getElementById('chan');if(ch)ch.insertAdjacentHTML('beforebegin',card())}
+const say=(t,b)=>{msg=t;bad=!!b;draw()};
+
+async function act(a){
+  if(!inTg())return say(tx('Open the app in Telegram to set this up.','Откройте приложение в Телеграме, чтобы настроить сводку.'),true);
+  const c=await getCfg();
+  if(a==='on'||a==='off'){if((a==='on')===c.on)return;c.on=a==='on';await saveCfg();msg='';draw();
+    try{if(c.on){await sync({enable:true});say(tx('Done. The next summary comes at ','Готово. Следующая сводка придёт в ')+c.at+'.')}
+      else{await api('/digest',{action:'off'});localStorage.removeItem('dg_sent');say(tx('Turned off. The data was deleted from the server.','Выключено. Данные удалены с сервера.'))}}
+    catch(e){say(e.message||tx('Could not save. Try again.','Не удалось сохранить. Попробуйте ещё раз.'),true)}return}
+  if(a==='test'){if(busy)return;busy=true;msg='';draw();
+    try{await sync({action:'test',enable:true});busy=false;say(tx('Sent. Check the chat with the bot.','Отправил. Загляните в чат с ботом.'))}
+    catch(e){busy=false;say(e.message||tx('Could not send. Try again later.','Не удалось отправить. Попробуйте позже.'),true)}}}
+
+document.addEventListener('click',e=>{const b=e.target.closest('#dgCard [data-dg]');if(b){e.preventDefault();act(b.dataset.dg)}});
+document.addEventListener('change',async e=>{if(e.target.id!=='dgAt')return;const v=e.target.value;if(!HHMM.test(v))return;const c=await getCfg();if(v===c.at)return;c.at=v;await saveCfg();
+  try{await sync({});say(tx('The summary will come at ','Сводка будет приходить в ')+v+'.')}catch(er){say(er.message,true)}});
+
+const base=renderProfile;renderProfile=function(){base.apply(this,arguments);getCfg().then(draw)};
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')quiet()});
+setTimeout(quiet,8000);  // после загрузки целей, гардероба и плана
 })();
 </script>
 </body></html>
