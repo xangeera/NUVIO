@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://telegram.org https://cdnjs.cloudflare.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://ege.fipi.ru https://oge.fipi.ru https://t.me https://*.t.me https://telegram.org https://*.telegram.org https://upload.wikimedia.org; connect-src 'self' https://gondola-hyperlink-showcase.ngrok-free.dev https://api.open-meteo.com https://geocoding-api.open-meteo.com https://date.nager.at https://en.wikipedia.org https://cdnjs.cloudflare.com; media-src 'self' blob: data:; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="preload" as="image" href="img/bg/flow.c6405b69.webp" type="image/webp" fetchpriority="high">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>nuvio</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -1874,16 +1875,100 @@ html:not(#_) #g .gx-hero>form.gx-log:first-child,html:not(#_) #g .gx-hero>form.g
 #g .gx-foot .lu{width:16px;height:16px;margin-top:1px}
 @media(max-width:360px){#g .gx-big b{font-size:38px}#g .gx-stat b{font-size:18px}#g .gx-tile{width:40px;height:40px}html:not(#_) #g .gx-top .gx-title{font-size:24px!important}}
 </style>
-</head><body>
+<style id="nuvio-home">
+/* ===== фон: картинка 1200×2600 (WebP q.95, PSNR 48.6 дБ — без видимых потерь) + тонировка палитры (mix-blend-mode:color:
+   яркость и детали картинки остаются, меняется только оттенок). Светлая тема — та же картинка, инвертированная по яркости. ===== */
+#nvBg{position:fixed;inset:0;z-index:-1;pointer-events:none;isolation:isolate;background:var(--nv-base)}
+#nvBg:before{content:"";position:absolute;inset:0;background:url("img/bg/flow.c6405b69.webp") 50% 35%/cover no-repeat;transition:filter .5s ease,opacity .5s ease}
+#nvBg i{position:absolute;inset:0;mix-blend-mode:color;background:var(--nv-tone,transparent);opacity:var(--nv-tone-op,0);transition:opacity .5s ease}
+html:not([data-theme=dark]) #nvBg:before{filter:invert(1) hue-rotate(180deg) saturate(1.15) contrast(.82) brightness(1.04)}
+html:not([data-theme=dark]) #nvBg:after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.18)}
+html[data-palette=sunset]{--nv-tone:linear-gradient(165deg,#ffb36b,#ff6f61 60%,#7b5cff);--nv-tone-op:.5}
+html[data-palette=aurora]{--nv-tone:linear-gradient(165deg,#a587ff,#5b6bff 50%,#2fd6c0);--nv-tone-op:.85}
+html[data-palette=ocean]{--nv-tone:linear-gradient(165deg,#5fb4ff,#2a7dff 50%,#22d3ee);--nv-tone-op:.85}
+html[data-palette=forest]{--nv-tone:linear-gradient(165deg,#9be29a,#2fb37f 50%,#1f8f9a);--nv-tone-op:.8}
+html[data-palette=mono]{--nv-tone:#808080;--nv-tone-op:1}
+html:not(#_) body:before{display:none!important}
+html[data-theme=dark]:not(#_){--nv-base:#14131a;--nv-panel:rgba(24,23,32,.44);--panel:rgba(24,23,32,.44)}
+@media(prefers-reduced-transparency:reduce){#nvBg:before,#nvBg i{display:none}}
+
+/* ===== шапка: дата слева, погода и профиль справа ===== */
+html:not(#_) .nv-appbar{gap:10px}
+.nv-date{flex:1;min-width:0;margin:0;display:flex;flex-direction:column;gap:1px;color:var(--nv-text);white-space:nowrap}
+.nv-date small{font-size:13.5px;line-height:1.2;font-weight:600;color:var(--nv-secondary);overflow:hidden;text-overflow:ellipsis}
+.nv-date span{font-size:clamp(20px,5.8vw,24px);line-height:1.1;font-weight:760;letter-spacing:-.03em;overflow:hidden;text-overflow:ellipsis}
+html:not(#_) #nvWx{flex:none;max-width:52vw;padding:0 14px 0 11px!important}
+#nvWx span:before{content:"•";margin-right:6px;opacity:.6}
+@media(max-width:389px){#nvWx span{display:none}}
+html:not(#_) .tabs button[data-t=home]{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8'/%3E%3Cpath d='M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3C/svg%3E")}
+
+/* ===== Учёба: 5 равных вкладок, иконка над подписью ===== */
+html:not(#_) #study .sy-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;overflow:visible!important;margin:6px 0 6px!important}
+html:not(#_) #study .sy-nav button{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:52px!important;padding:5px 2px!important;
+  font-size:clamp(9.5px,2.75vw,12px)!important;letter-spacing:-.015em;line-height:1.1;white-space:nowrap;overflow:visible!important}
+html:not(#_) #study .sy-nav button .lu{width:21px;height:21px;margin:0!important}
+html:not(#_) #study .sy-nav button span{max-width:100%}
+
+/* ===== главный экран ===== */
+#home{--hm-ok:#5ee08f;--hm-warn:#ffbe55;padding-top:4px}
+#home .hm-card{position:relative;padding:16px;border-radius:24px;background:var(--nv-panel);-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);
+  border:1px solid var(--nv-rim);box-shadow:inset 0 1px 0 var(--nv-hi),var(--nv-shadow);color:var(--nv-text);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#home .hm-card:active{transform:scale(.985)}
+#home .hm-cap{margin:0 0 10px;color:var(--nv-secondary);font-size:14px;font-weight:560}
+#home .hm-fr{display:flex;align-items:center;gap:14px}
+#home .hm-ring{position:relative;flex:none;width:58px;height:58px}
+#home .hm-ring svg{width:58px;height:58px;transform:rotate(-90deg)}
+#home .hm-ring circle{fill:none;stroke-width:5;stroke-linecap:round}
+#home .hm-ring .tr{stroke:var(--nv-panel-2)}#home .hm-ring .ar{stroke:var(--hm-ok)}
+#home .hm-ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+#home .hm-fr h2{flex:1;min-width:0;margin:0!important;font-size:22px!important;line-height:1.15!important;font-weight:740!important;letter-spacing:-.03em;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html:not(#_) #home .hm-btn{flex:none;min-height:44px;padding:0 18px!important;border:0!important;border-radius:22px!important;background:var(--nv-text)!important;color:var(--nv-base)!important;font-size:15px!important;font-weight:680!important;box-shadow:0 4px 14px rgba(0,0,0,.18)!important}
+#home .hm-bar{height:8px;margin:14px 0 10px;border-radius:4px;background:var(--nv-panel-2);overflow:hidden}
+#home .hm-bar i{display:block;height:100%;min-width:8px;border-radius:4px;background:linear-gradient(90deg,#3fcf79,var(--hm-ok))}
+#home .hm-bar.sm{height:6px;margin:12px 0 0}#home .hm-bar.sm i{background:linear-gradient(90deg,#ffb36b,#ff8a5c)}
+#home .hm-st{margin:0;font-size:14px;font-weight:560;color:var(--nv-secondary)}
+#home .hm-st.ok{color:var(--hm-ok)}#home .hm-st.warn{color:var(--hm-warn)}
+html:not([data-theme=dark]) #home{--hm-ok:#178a4a;--hm-warn:#a35f00}
+#home .hm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+#home .hm-tile{display:flex;flex-direction:column;min-height:150px}
+#home .hm-th{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#home .hm-th b{font-size:17px;font-weight:720;letter-spacing:-.02em}
+html:not(#_) #home .hm-ic{display:grid;place-items:center;flex:none;width:36px;height:36px;min-height:36px;padding:0!important;border:0!important;border-radius:18px!important;background:var(--nv-panel-2)!important;color:var(--nv-text)!important;box-shadow:none!important}
+#home .hm-ic .lu{width:18px;height:18px;margin:0}
+#home .hm-ic:after{content:"";position:absolute;inset:-6px}
+#home .hm-kc{margin-top:auto;font-size:15px;color:var(--nv-secondary);font-variant-numeric:tabular-nums}
+#home .hm-kc b{font-size:28px;font-weight:760;letter-spacing:-.03em;color:var(--nv-text)}
+#home .hm-sub{margin:auto 0 0;font-size:15px;font-weight:600;color:var(--nv-text)}
+#home .hm-sub2{margin:4px 0 0;font-size:13px;color:var(--nv-secondary)}
+#home .hm-mood{cursor:default}#home .hm-mood:active{transform:none}
+#home .hm-faces{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}
+html:not(#_) #home .hm-face{display:flex;flex-direction:column;align-items:center;gap:5px;min-height:62px;padding:8px 2px!important;border:1px solid transparent!important;border-radius:16px!important;background:transparent!important;box-shadow:none!important;color:var(--nv-secondary)!important;font-size:11.5px!important;font-weight:560!important}
+#home .hm-face .lu{width:28px;height:28px;margin:0;color:var(--mc)}
+html:not(#_):not(#__) #home .hm-face.on{background:color-mix(in srgb,var(--mc) 18%,transparent)!important;border-color:color-mix(in srgb,var(--mc) 55%,transparent)!important;color:var(--nv-text)!important}
+#home .hm-face[data-v="1"]{--mc:#a07bff}#home .hm-face[data-v="2"]{--mc:#5b8cff}#home .hm-face[data-v="3"]{--mc:#9aa0b4}#home .hm-face[data-v="4"]{--mc:#3fcf8e}#home .hm-face[data-v="5"]{--mc:#ffb340}
+#home .hm-h{margin:22px 4px 10px!important;font-size:15px!important;font-weight:620!important;color:var(--nv-secondary)!important}
+#home .hm-list{display:grid;gap:10px}
+html:not(#_) #home .hm-row{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:12px 14px!important;border-radius:20px!important;border:1px solid var(--nv-rim)!important;
+  background:var(--nv-panel)!important;-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);box-shadow:inset 0 1px 0 var(--nv-hi),var(--nv-shadow)!important;color:var(--nv-text)!important;text-align:left}
+#home .hm-ri{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:13px;background:var(--nv-panel-2)}
+#home .hm-ri .lu{width:22px;height:22px;margin:0}
+#home .hm-rt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#home .hm-rt b{font-size:16.5px;font-weight:680;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#home .hm-rt small{font-size:13.5px;color:var(--nv-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#home .hm-row>.lu{width:18px;height:18px;margin:0;color:var(--nv-secondary)}
+@media(max-width:360px){#home .hm-fr h2{font-size:19px!important}#home .hm-kc b{font-size:24px}html:not(#_) #home .hm-btn{padding:0 14px!important}}
+@media(prefers-reduced-motion:reduce){#home .hm-card:active{transform:none}}
+</style>
+</head><body><div id="nvBg" aria-hidden="true"><i></i></div>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
-<header class="nv-appbar"><button type="button" id="nvWx" class="nv-wx lg" aria-label="Погода"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg><b>—</b></button><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="g" data-i="tg"></button><button data-t="body" data-i="tbody"></button><button data-t="pl" data-i="tpl">План</button><button data-t="study" data-i="tsy"></button></nav>
-<section id="w" hidden>
+<header class="nv-appbar"><h1 class="nv-date" id="nvDate"></h1><button type="button" id="nvWx" class="nv-wx lg" aria-label="Погода"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg><b>—</b></button><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="home" data-i="thome"></button><button data-t="body" data-i="tbody"></button><button data-t="g" data-i="tg"></button><button data-t="pl" data-i="tpl">План</button><button data-t="study" data-i="tsy"></button></nav>
+<section id="home" aria-live="polite"></section><section id="w" hidden>
   <div id="dayGreeting" class="day-greeting" aria-live="polite"><div class="day-greeting-title"></div><div class="day-greeting-date"></div></div>
     <form class="row" id="f"><input id="q" data-p="city" autocomplete="off"><button data-i="find"></button><button type="button" id="geo" aria-label="GPS"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" x2="5" y1="12" y2="12"/><line x1="19" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="5"/><line x1="12" x2="12" y1="19" y2="22"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/></svg></button></form>
   <div id="app"><p class="msg" data-i="loadw"></p></div>
   <div id="wardrobe"></div><div id="wdPage" hidden></div>
 </section>
-<section id="g"></section>
+<section id="g" hidden></section>
 <div id="bodySeg" class="nv-bseg lg" role="tablist" hidden><button type="button" role="tab" data-b="ft" data-i="ft"></button><button type="button" role="tab" data-b="nx" data-i="tn"></button><button type="button" role="tab" data-b="hl" data-i="thl"></button></div><section id="ft" hidden></section>
 <section id="nx" hidden></section>
 <section id="hl" hidden></section><section id="pl" hidden></section><section id="study" hidden></section>
@@ -1918,6 +2003,7 @@ const monthStore=(pre,old,when)=>{const idx=pre+'idx',saved=new Map(),known=new 
  return{load,save}};
 // Lucide icons (ISC license, lucide.dev), one family and one stroke width for the whole app; emoji are not used as icons.
 const LUC={"sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2\"/><path d=\"M12 20v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"m17.66 17.66 1.41 1.41\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"m6.34 17.66-1.41 1.41\"/><path d=\"m19.07 4.93-1.41 1.41\"/>","cloud-sun":"<path d=\"M12 2v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"M20 12h2\"/><path d=\"m19.07 4.93-1.41 1.41\"/><path d=\"M15.947 12.65a4 4 0 0 0-5.925-4.128\"/><path d=\"M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z\"/>","cloud":"<path d=\"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z\"/>","cloud-fog":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M16 17H7\"/><path d=\"M17 21H9\"/>","cloud-drizzle":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M8 19v1\"/><path d=\"M8 14v1\"/><path d=\"M16 19v1\"/><path d=\"M16 14v1\"/><path d=\"M12 21v1\"/><path d=\"M12 16v1\"/>","cloud-rain":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M16 14v6\"/><path d=\"M8 14v6\"/><path d=\"M12 16v6\"/>","cloud-snow":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M8 15h.01\"/><path d=\"M8 19h.01\"/><path d=\"M12 17h.01\"/><path d=\"M12 21h.01\"/><path d=\"M16 15h.01\"/><path d=\"M16 19h.01\"/>","snowflake":"<path d=\"m10 20-1.25-2.5L6 18\"/><path d=\"M10 4 8.75 6.5 6 6\"/><path d=\"m14 20 1.25-2.5L18 18\"/><path d=\"m14 4 1.25 2.5L18 6\"/><path d=\"m17 21-3-6h-4\"/><path d=\"m17 3-3 6 1.5 3\"/><path d=\"M2 12h6.5L10 9\"/><path d=\"m20 10-1.5 2 1.5 2\"/><path d=\"M22 12h-6.5L14 15\"/><path d=\"m4 10 1.5 2L4 14\"/><path d=\"m7 21 3-6-1.5-3\"/><path d=\"m7 3 3 6h4\"/>","cloud-lightning":"<path d=\"M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973\"/><path d=\"m13 12-3 5h4l-3 5\"/>","moon":"<path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"/>","cloud-moon":"<path d=\"M13 16a3 3 0 0 1 0 6H7a5 5 0 1 1 4.9-6z\"/><path d=\"M18.376 14.512a6 6 0 0 0 3.461-4.127c.148-.625-.659-.97-1.248-.714a4 4 0 0 1-5.259-5.26c.255-.589-.09-1.395-.716-1.248a6 6 0 0 0-4.594 5.36\"/>","thermometer":"<path d=\"M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z\"/>","locate-fixed":"<line x1=\"2\" x2=\"5\" y1=\"12\" y2=\"12\"/><line x1=\"19\" x2=\"22\" y1=\"12\" y2=\"12\"/><line x1=\"12\" x2=\"12\" y1=\"2\" y2=\"5\"/><line x1=\"12\" x2=\"12\" y1=\"19\" y2=\"22\"/><circle cx=\"12\" cy=\"12\" r=\"7\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","camera":"<path d=\"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/>","play":"<path d=\"M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z\"/>","sparkles":"<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"/><path d=\"M20 2v4\"/><path d=\"M22 4h-4\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/>","chart-line":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/><path d=\"m19 9-5 5-4-4-3 3\"/>","sliders-horizontal":"<path d=\"M10 5H3\"/><path d=\"M12 19H3\"/><path d=\"M14 3v4\"/><path d=\"M16 17v4\"/><path d=\"M21 12h-9\"/><path d=\"M21 19h-5\"/><path d=\"M21 5h-7\"/><path d=\"M8 10v4\"/><path d=\"M8 12H3\"/>","book-open":"<path d=\"M12 5v16\"/><path d=\"M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z\"/>","timer":"<line x1=\"10\" x2=\"14\" y1=\"2\" y2=\"2\"/><line x1=\"12\" x2=\"15\" y1=\"14\" y2=\"11\"/><circle cx=\"12\" cy=\"14\" r=\"8\"/>","trophy":"<path d=\"M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2\"/><path d=\"M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2\"/><path d=\"M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3\"/><path d=\"M4 22h16\"/><path d=\"M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z\"/><path d=\"M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3\"/>","dumbbell":"<path d=\"M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z\"/><path d=\"m2.5 21.5 1.4-1.4\"/><path d=\"m20.1 3.9 1.4-1.4\"/><path d=\"M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z\"/><path d=\"m9.6 14.4 4.8-4.8\"/>","biceps-flexed":"<path d=\"M12.409 13.017A5 5 0 0 1 22 15c0 3.866-4 7-9 7-4.077 0-8.153-.82-10.371-2.462-.426-.316-.631-.832-.62-1.362C2.118 12.723 2.627 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.105 0-1.64-.444-2-1\"/><path d=\"M15 14a5 5 0 0 0-7.584 2\"/><path d=\"M9.964 6.825C8.019 7.977 9.5 13 8 15\"/>","settings":"<path d=\"M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","cable":"<path d=\"M17 19a1 1 0 0 1-1-1v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1z\"/><path d=\"M17 21v-2\"/><path d=\"M19 14V6.5a1 1 0 0 0-7 0v11a1 1 0 0 1-7 0V10\"/><path d=\"M21 21v-2\"/><path d=\"M3 5V3\"/><path d=\"M4 10a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2z\"/><path d=\"M7 5V3\"/>","person-standing":"<circle cx=\"12\" cy=\"5\" r=\"1\"/><path d=\"m9 20 3-6 3 6\"/><path d=\"m6 8 6 2 6-2\"/><path d=\"M12 10v4\"/>","bell":"<path d=\"M10.268 21a2 2 0 0 0 3.464 0\"/><path d=\"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326\"/>","plus":"<path d=\"M5 12h14\"/><path d=\"M12 5v14\"/>","salad":"<path d=\"M19.496 12a2.5 2.5 0 00.399-2.214A2 2 0 0020.32 6.5 2 2 0 0019 3a2 2 0 00-1.5.68 2 2 0 00-3.287.424 2.5 2.5 0 00-3.189 2.06A3 3 0 0012 12l4-4\"/><path d=\"M4 12a1 1 0 00-.99 1.133A9 9 0 0012 21a9 9 0 008.99-7.867A1 1 0 0020 12z\"/><path d=\"M7 21h10\"/><path d=\"M9.85 6.907A3.5 3.5 0 005.05 12\"/>","notebook-pen":"<path d=\"M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4\"/><path d=\"M2 6h4\"/><path d=\"M2 10h4\"/><path d=\"M2 14h4\"/><path d=\"M2 18h4\"/><path d=\"M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/>","flame":"<path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\"/>","flower-2":"<path d=\"M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1\"/><circle cx=\"12\" cy=\"8\" r=\"2\"/><path d=\"M12 10v12\"/><path d=\"M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z\"/><path d=\"M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z\"/>","wind":"<path d=\"M12.8 19.6A2 2 0 1 0 14 16H2\"/><path d=\"M17.5 8a2.5 2.5 0 1 1 2 4H2\"/><path d=\"M9.8 4.4A2 2 0 1 1 11 8H2\"/>","ruler":"<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\"/><path d=\"m14.5 12.5 2-2\"/><path d=\"m11.5 9.5 2-2\"/><path d=\"m8.5 6.5 2-2\"/><path d=\"m17.5 15.5 2-2\"/>","pill":"<path d=\"m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z\"/><path d=\"m8.5 8.5 7 7\"/>","brain":"<path d=\"M12 18V5\"/><path d=\"M15 13a4.17 4.17 0 01-3-4 4.17 4.17 0 01-3 4\"/><path d=\"M17.707 6.294A3 3 0 1012 5a3 3 0 10-5.707 1.294\"/><path d=\"M17.996 5.125a4 4 0 012.526 5.77\"/><path d=\"M18 18a4 4 0 002-7.465\"/><path d=\"M19.967 17.482a4 4 0 11-7.967.517 4 4 0 11-7.967-.517\"/><path d=\"M6 18a4 4 0 01-2-7.465\"/><path d=\"M6.004 5.125a4 4 0 00-2.526 5.77\"/>","activity":"<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\"/>","rotate-cw":"<path d=\"M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8\"/><path d=\"M21 3v5h-5\"/>","heart":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\"/>","stethoscope":"<path d=\"M11 2v2\"/><path d=\"M5 2v2\"/><path d=\"M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1\"/><path d=\"M8 15a6 6 0 0 0 12 0v-3\"/><circle cx=\"20\" cy=\"10\" r=\"2\"/>","ear":"<path d=\"M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0\"/><path d=\"M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4\"/>","bed":"<path d=\"M2 4v16\"/><path d=\"M2 8h18a2 2 0 0 1 2 2v10\"/><path d=\"M2 17h20\"/><path d=\"M6 8v9\"/>","frown":"<path d=\"M15 10V9\"/><path d=\"M9 10V9\"/><path d=\"M9 16a5 5 0 016 0\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","annoyed":"<path d=\"M14 10h2\"/><path d=\"M8 10h2\"/><path d=\"M8 16h8\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","meh":"<path d=\"M15 10V9\"/><path d=\"M8 16h8\"/><path d=\"M9 10V9\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","smile":"<path d=\"M15 10V9\"/><path d=\"M16.472 15a6 6 0 01-8.943 0\"/><path d=\"M9 10V9\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","laugh":"<path d=\"M15 10V9\"/><path d=\"M7.084 14.302a5.12 5.12 0 009.833 0 .24.24 0 00-.235-.302H7.32a.24.24 0 00-.235.302\"/><path d=\"M9 10V9\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","lock":"<rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>","shield":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/>","megaphone":"<path d=\"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z\"/><path d=\"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14\"/><path d=\"M8 6v8\"/>","smartphone":"<rect width=\"14\" height=\"20\" x=\"5\" y=\"2\" rx=\"2\" ry=\"2\"/><path d=\"M12 18h.01\"/>","alarm-clock":"<circle cx=\"12\" cy=\"13\" r=\"8\"/><path d=\"M12 9v4l2 2\"/><path d=\"M5 3 2 6\"/><path d=\"m22 6-3-3\"/><path d=\"M6.38 18.7 4 21\"/><path d=\"M17.64 18.67 20 21\"/>","target":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/>","info":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/>","weight":"<circle cx=\"12\" cy=\"5\" r=\"3\"/><path d=\"M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z\"/>","upload":"<path d=\"M12 3v12\"/><path d=\"m17 8-5-5-5 5\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>","heart-pulse":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\"/><path d=\"M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27\"/>"};
+Object.assign(LUC,{"house":"<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"/><path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>","utensils":"<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\"/>","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\"/><path d=\"M22 10v6\"/><path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\"/>","square":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/>","square-check":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"m16 9-5.5 5.5L8 12\"/>","chevron-right":"<path d=\"m9 18 6-6-6-6\"/>","layout-dashboard":"<rect width=\"7\" height=\"9\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"9\" x=\"14\" y=\"12\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/>","clipboard-list":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/><path d=\"M12 11h4\"/><path d=\"M12 16h4\"/><path d=\"M8 11h.01\"/><path d=\"M8 16h.01\"/>","bot-message-square":"<path d=\"M12 6V2H8\"/><path d=\"M15 11v2\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z\"/><path d=\"M9 11v2\"/>","school":"<path d=\"M14 21v-3a2 2 0 0 0-4 0v3\"/><path d=\"M18 4.933V21\"/><path d=\"m4 6 7.106-3.79a2 2 0 0 1 1.788 0L20 6\"/><path d=\"m6 11-3.52 2.147a1 1 0 0 0-.48.854V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a1 1 0 0 0-.48-.853L18 11\"/><path d=\"M6 4.933V21\"/><circle cx=\"12\" cy=\"9\" r=\"2\"/>","chart-column":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/><path d=\"M18 17V9\"/><path d=\"M13 17V5\"/><path d=\"M8 17v-3\"/>","calendar-range":"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v3\"/><path d=\"M3 9h18\"/><path d=\"M8 2v3\"/><path d=\"M17 13h-6\"/><path d=\"M13 17H7\"/><path d=\"M7 13h.01\"/><path d=\"M17 17h.01\"/>"});
 const ico=(n,c)=>'<svg class="lu'+(c?' '+c:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(LUC[n]||'')+'</svg>';
 const fitCloud=(arr,when)=>{const big=()=>JSON.stringify(arr).length>3800,old=arr.slice().sort((a,b)=>String(when(a)).localeCompare(String(when(b))));for(const x of old){if(!big())break;if(x.note)x.note=''}for(const x of old){if(!big()||arr.length<2)break;arr.splice(arr.indexOf(x),1)}return arr};
 
@@ -1978,7 +2064,7 @@ function applyStatic(){if(typeof nvWxChip==="function")setTimeout(nvWxChip);docu
   document.querySelectorAll('[data-i]').forEach(e=>e.textContent=t(e.dataset.i));
   document.querySelectorAll('[data-p]').forEach(e=>{e.placeholder=t(e.dataset.p);e.setAttribute('aria-label',t(e.dataset.p))})}
 
-let activeTab='g',profileReturn='g',wxReturn='g';
+let activeTab='home',profileReturn='home',wxReturn='home';
 const BODY_TABS=['ft','nx','hl'],bodyLast=()=>{try{const v=localStorage.getItem('body_sub');return BODY_TABS.includes(v)?v:'ft'}catch{return'ft'}};
 function showTab(key){
   if(key==='body')key=bodyLast();
@@ -1995,7 +2081,8 @@ function showTab(key){
   if(key==='hl')renderHl();
   if(key==='pl')renderPlanner();if(key==='study')renderStudy();
   if(key==='p'){renderProfile();if(isAdmin())adminLoad(AD.show)}
-  ['w','g','ft','nx','hl','pl','study','p'].forEach(k=>$(k).hidden=key!==k);
+  ['home','w','g','ft','nx','hl','pl','study','p'].forEach(k=>$(k).hidden=key!==k);
+  if(key==='home'&&window.renderHome)window.renderHome();
   {const bs=$('bodySeg'),inBody=BODY_TABS.includes(key);if(bs){bs.hidden=!inBody;bs.querySelectorAll('[data-b]').forEach(b=>{const on=b.dataset.b===key;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)})}
    if(inBody)try{localStorage.setItem('body_sub',key)}catch{}
    const wx=$('nvWx');if(wx){wx.classList.toggle('on',key==='w');wx.setAttribute('aria-pressed',key==='w')}}
@@ -2018,7 +2105,7 @@ function nvWxChip(){const b=$('nvWx');if(!b)return;b.setAttribute('aria-label',t
   if(!lw){b.innerHTML=ico('cloud-sun')+'<b>'+esc(t('tw'))+'</b>';return}
   const c=lw.d.current,dl=lw.d.daily,tm=Date.parse(c.time+'Z'),rise=dl.sunrise&&dl.sunrise[0],set=dl.sunset&&dl.sunset[0],
     night=(rise&&set)?(tm<Date.parse(rise+'Z')||tm>Date.parse(set+'Z')):isNight(+c.time.slice(11,13));
-  b.innerHTML=w(c.weather_code,night)[0]+'<b>'+String(Math.round(c.temperature_2m)).replace('-','−')+'°</b>'+(lw.name?'<span>'+esc(lw.name)+'</span>':'');
+  b.innerHTML=w(c.weather_code,night)[0]+'<b>'+String(Math.round(c.temperature_2m)).replace('-','−')+'°</b><span>'+esc(w(c.weather_code,night)[1])+'</span>';
   b.setAttribute('aria-label',t('tw')+': '+Math.round(c.temperature_2m)+'°'+(lw.name?', '+lw.name:''))}
 
 /* ================= ИИ ================= */
@@ -2432,12 +2519,12 @@ $('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e
 
 
 /* ================= ПИТАНИЕ ================= */
-const NL={ru:{tn:'Питание',thl:'Здоровье',tpl:'План',tbody:'Тело',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
+const NL={ru:{tn:'Питание',thl:'Здоровье',tpl:'План',tbody:'Тело',thome:'Главная',ngoal:'Ваша цель',ngoalnone:'Цель пока не выбрана. Укажите её в разделе «Фитнес», и блюда подберутся под вас.',nopenft:'Открыть «Фитнес»',ncab:'Открыть личный кабинет',ncalcneed:'Нормы на день появятся после расчёта в личном кабинете фитнеса.',
  nc_dishes:'Блюда под цель',nc_dishes_s:'Подобраны под вашу цель',nc_menu:'Меню на день',nc_menu_s:'Составит ИИ',nc_rec:'Рецепты',nc_rec_s:'Классические блюда',
  m_b:'Завтрак',m_l:'Обед',m_d:'Ужин',m_s:'Перекус',nall:'Все',nkcal_u:'{0} ккал',nmac:'Б {0} · Ж {1} · У {2}',nest:'Калории и БЖУ ориентировочные, указаны на одну порцию.',nper:'на порцию',
  nrecai:'Рецепт от ИИ',nrecbusy:'ИИ пишет рецепт…',nmenugen:'Составить меню',nmenuregen:'Составить заново',nmenubusy:'ИИ составляет меню…',navoid:'Не ем',navoidph:'Например: свинина, грибы',npantry:'Что есть дома',npantryph:'Например: курица, рис, яйца, помидоры',nopt:'необязательно',ntotal:'Итого за день',ntarget:'Ваша норма',
  rc_all:'Все',rc_breakfast:'Завтраки',rc_soups:'Супы',rc_mains:'Основные блюда',rc_salads:'Салаты',rc_desserts:'Выпечка и десерты',nsearch:'Название блюда или продукты, которые есть',nfind:'Найти рецепт (ИИ)',ningr:'Ингредиенты',nsteps:'Приготовление',nmin:'{0} мин',nserv:'{0} порц.',ntip:'Совет'},
-en:{tn:'Nutrition',thl:'Health',tpl:'Planner',tbody:'Body',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
+en:{tn:'Nutrition',thl:'Health',tpl:'Planner',tbody:'Body',thome:'Home',ngoal:'Your goal',ngoalnone:'No goal yet. Set it in the “Fitness” section and dishes will be tailored to you.',nopenft:'Open “Fitness”',ncab:'Open my cabinet',ncalcneed:'Daily targets will appear once calculated in your fitness cabinet.',
  nc_dishes:'Dishes for your goal',nc_dishes_s:'Picked for your goal',nc_menu:'Menu for the day',nc_menu_s:'Made by AI',nc_rec:'Recipes',nc_rec_s:'Classic dishes',
  m_b:'Breakfast',m_l:'Lunch',m_d:'Dinner',m_s:'Snack',nall:'All',nkcal_u:'{0} kcal',nmac:'P {0} · F {1} · C {2}',nest:'Calories and macros are approximate, per serving.',nper:'per serving',
  nrecai:'AI recipe',nrecbusy:'AI is writing the recipe…',nmenugen:'Create menu',nmenuregen:'Create again',nmenubusy:'AI is creating your menu…',navoid:'I don’t eat',navoidph:'E.g.: pork, mushrooms',npantry:'What I have at home',npantryph:'E.g.: chicken, rice, eggs, tomatoes',nopt:'optional',ntotal:'Daily total',ntarget:'Your target',
@@ -3859,6 +3946,8 @@ const store=monthStore('mood_',key,e=>e.date);
 async function load(){if(ready)return;const x=await store.load();entries=x.filter(e=>e&&e.date&&e.value>=1&&e.value<=5);ready=true}
 async function persist(){await store.save(entries)}
 window.nuvioMoodEntries=async()=>{await load();return entries.slice()};
+window.nuvioMoodSet=async v=>{await load();const keep=selected;selected=dayKey(new Date());await upsert(v);selected=keep;render()};
+window.nuvioMoodNames=()=>M.map(m=>({v:m.v,name:ru()?m.ru:m.en}));
 function render(){const root=$('mo');if(!root)return;
  const today=dayKey(new Date()),e=entries.find(x=>x.date===selected),d=fromKey(selected),isToday=selected===today;
  const week=[];for(let i=6;i>=0;i--){const x=new Date();x.setDate(x.getDate()-i);week.push(dayKey(x))}
@@ -4178,7 +4267,7 @@ const OFFICIAL=(u,l)=>'<button class="sy-obtn" data-sy="open" data-u="'+E(u)+'">
 async function renderStudy(){await load();if(!V.run)V.run=loadRun();render()}
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&V.run&&$('syRun')){keepRun();saveRun()}});
 function render(){const root=$('study');if(!root)return;if(V.run&&$('syRun')){keepRun();saveRun()}if(V.fp&&$('syFipi'))keepAns();
- const nav='<nav class="sy-nav lg" aria-label="'+tr('Study sections','Разделы учёбы')+'">'+TABS.map(([k,r,e])=>'<button data-sy="tab" data-v="'+k+'"'+(V.tab===k?' class="on" aria-current="page"':'')+'>'+(ru()?r:e)+'</button>').join('')+'</nav>';
+ const nav='<nav class="sy-nav lg" aria-label="'+tr('Study sections','Разделы учёбы')+'">'+TABS.map(([k,r,e])=>'<button data-sy="tab" data-v="'+k+'"'+(V.tab===k?' class="on" aria-current="page"':'')+'>'+ico({home:'layout-dashboard',exams:'clipboard-list',tutor:'bot-message-square',adm:'school',stats:'chart-column'}[k]||'book-open')+'<span>'+(ru()?r:e)+'</span></button>').join('')+'</nav>';
  let body='';try{body=(VIEWS[V.tab]||VIEWS.home)()}catch(e){console.error(e);body=empty(tr('Something went wrong','Что-то пошло не так'),E(e.message))}
  root.innerHTML=nav+'<div class="sy-body">'+body+'</div>';tidy(root);
  const on=root.querySelector('.sy-nav .on');if(on){const n=on.parentElement;n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2}}
@@ -4991,10 +5080,69 @@ function svg(key){const[c0,c1,bl,sc,k]=P[key]||P['dark:default'],dark=key.starts
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 860" preserveAspectRatio="xMidYMid slice"><defs>'+d+'</defs>'+body+'</svg>'}
 let last='';
 function paint(){const h=document.documentElement,key=(h.dataset.theme==='dark'?'dark':'light')+':'+(P[(h.dataset.theme==='dark'?'dark':'light')+':'+h.dataset.palette]?h.dataset.palette:'default');
-  if(key===last)return;last=key;h.style.setProperty('--nv-bgimg','url("data:image/svg+xml,'+encodeURIComponent(svg(key))+'")');
-  const m=document.querySelector('meta[name=theme-color]');const c=P[key][0];if(m)m.setAttribute('content',c);
+  if(key===last)return;last=key;
+  const m=document.querySelector('meta[name=theme-color]');const c=(getComputedStyle(h).getPropertyValue('--nv-base').trim()||P[key][0]);if(m)m.setAttribute('content',c);
   try{const tg=window.Telegram&&Telegram.WebApp;if(tg&&tg.setHeaderColor&&tg.isVersionAtLeast&&tg.isVersionAtLeast('6.1')){tg.setHeaderColor(c);tg.setBackgroundColor&&tg.setBackgroundColor(c)}}catch(e){}}
 new MutationObserver(paint).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','data-palette']});paint();
+})();
+</script>
+<script>/* NUVIO_HOME: главный экран — сводка дня из всех разделов. Сам ничего не хранит: читает цели (goals), питание (fds, tgt()),
+   фитнес (F.prof, CX.wo), учёбу (sy_s), план (nuvioPlanEvents), настроение (nuvioMoodEntries / nuvioMoodSet). Действия — data-h. */
+(function(){
+const tx=(en,ru)=>lang==='en'?en:ru,H=()=>document.getElementById('home');let seq=0;
+const nfmt=v=>Math.round(v).toLocaleString(loc());
+const todayN=()=>{const d=new Date();return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5)};
+const dateTitle=()=>{const s=new Date().toLocaleDateString(loc(),{weekday:'long',day:'numeric',month:'long'});return s.charAt(0).toUpperCase()+s.slice(1)};
+function setDate(){const el=document.getElementById('nvDate');if(!el)return;const d=new Date(),wd=d.toLocaleDateString(loc(),{weekday:'long'}),dm_=d.toLocaleDateString(loc(),{day:'numeric',month:'long'});el.innerHTML='<small>'+esc(wd.charAt(0).toUpperCase()+wd.slice(1))+'</small><span>'+esc(dm_)+'</span>';el.setAttribute('aria-label',dateTitle())}
+function focusGoal(){const act=(typeof goals!=='undefined'?goals:[]).filter(g=>!g.closed&&!finished(g));return act.sort((a,b)=>endOf(a)-endOf(b))[0]||null}
+function ring(p){const r=24,c=2*Math.PI*r;return'<span class="hm-ring" aria-hidden="true"><svg viewBox="0 0 58 58"><circle class="tr" cx="29" cy="29" r="'+r+'"/>'+(p>0?'<circle class="ar" cx="29" cy="29" r="'+r+'" stroke-dasharray="'+(c*p/100).toFixed(1)+' '+c.toFixed(1)+'"/>':'')+'</svg><b>'+p+'%</b></span>'}
+function goalCard(){const g=focusGoal();
+  if(!g)return'<section class="hm-card hm-focus" data-h="newgoal"><p class="hm-cap">'+tx('Main focus','Главный фокус')+'</p><div class="hm-fr">'+ring(0)+'<h2>'+tx('Set your first goal','Поставьте первую цель')+'</h2><button type="button" class="hm-btn" data-h="newgoal">'+tx('Create','Создать')+'</button></div><p class="hm-st" style="margin-top:12px">'+tx('Progress and today\'s step will appear here.','Здесь появится прогресс и шаг на сегодня.')+'</p></section>';
+  const p=pct(g),num_=isNum(g);let st='',cls='';
+  if(num_){const dv=devOf(g);st=dv?devText(g,dv):t('gx_dev_none');cls=dv?(dv.st==='behind'?'warn':'ok'):''}
+  else{const R=regular(g);st=t('gx_reg_v',R.ok,plu(R.n,'gx_dayf'));cls=R.p>=70?'ok':''}
+  return'<section class="hm-card hm-focus" data-h="goal" data-id="'+esc(String(g.id))+'"><p class="hm-cap">'+tx('Main focus','Главный фокус')+'</p><div class="hm-fr">'+ring(p)+'<h2>'+esc(g.title)+'</h2><button type="button" class="hm-btn" data-h="log" data-id="'+esc(String(g.id))+'">'+(num_?tx('Log','Записать'):tx('Check in','Отметить'))+'</button></div>'+
+    '<div class="hm-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+p+'"><i style="width:'+p+'%"></i></div><p class="hm-st '+cls+'">'+st+'</p></section>'}
+async function foodTile(){let eaten=0;try{const f=await jget('fds',{});eaten=((f||{})[iso(Date.now())]||[])[0]||0}catch{}
+  const tg_=typeof tgt==='function'?tgt():null,goal=tg_&&tg_.kcal?tg_.kcal:0,p=goal?Math.min(100,Math.round(eaten/goal*100)):0;
+  return'<section class="hm-card hm-tile" data-h="food"><div class="hm-th"><b>'+tx('Nutrition','Питание')+'</b><button type="button" class="hm-ic" data-h="foodadd" aria-label="'+tx('Add food','Добавить еду')+'">'+ico('plus')+'</button></div>'+
+    '<div class="hm-kc"><b>'+nfmt(eaten)+'</b>'+(goal?' / '+nfmt(goal):'')+' '+tx('kcal','ккал')+'</div>'+(goal?'<div class="hm-bar sm"><i style="width:'+p+'%"></i></div>':'<p class="hm-sub2">'+tx('Daily target not set','Норма не рассчитана')+'</p>')+'</section>'}
+function fitTile(){const pr=typeof F!=='undefined'?F.prof:null,wk=(typeof CX!=='undefined'&&CX.wo?CX.wo:[]).filter(w=>w.ts>=Date.now()-7*864e5).length;
+  const goal=pr&&pr.goal?t('p_'+pr.goal):tx('Fill in your profile','Заполните анкету');
+  return'<section class="hm-card hm-tile" data-h="fit"><div class="hm-th"><b>'+tx('Fitness','Фитнес')+'</b><button type="button" class="hm-ic" data-h="fitgo" aria-label="'+tx('Start workout','Начать тренировку')+'">'+ico('play')+'</button></div>'+
+    '<p class="hm-sub">'+esc(goal)+'</p><p class="hm-sub2">'+tx(wk+' workouts this week',wk+' '+(wk%10===1&&wk%100!==11?'тренировка':wk%10>=2&&wk%10<=4&&(wk%100<12||wk%100>14)?'тренировки':'тренировок')+' за неделю')+'</p></section>'}
+async function moodCard(){let cur=0;try{const k=iso(Date.now()),e=(await (window.nuvioMoodEntries?window.nuvioMoodEntries():[])).find(x=>x.date===k);cur=e?+e.value:0}catch{}
+  const names=window.nuvioMoodNames?window.nuvioMoodNames():[1,2,3,4,5].map(v=>({v,name:''})),icons={1:'frown',2:'annoyed',3:'meh',4:'smile',5:'laugh'};
+  return'<section class="hm-card hm-mood"><div class="hm-th"><b>'+tx('How are you today?','Как вы сегодня?')+'</b></div><div class="hm-faces" role="group">'+names.map(m=>'<button type="button" class="hm-face'+(cur===m.v?' on':'')+'" data-h="mood" data-v="'+m.v+'" aria-pressed="'+(cur===m.v)+'">'+ico(icons[m.v])+'<span>'+esc(m.name)+'</span></button>').join('')+'</div></section>'}
+async function listRows(){const rows=[];let min=0;
+  try{const n=todayN();min=((await jget('sy_s',[]))||[]).filter(x=>Array.isArray(x)&&x[0]===n).reduce((a,x)=>a+(+x[1]||0),0)}catch{}
+  rows.push('<button type="button" class="hm-row" data-h="study"><span class="hm-ri">'+ico('graduation-cap')+'</span><span class="hm-rt"><b>'+tx('Study','Учёба')+'</b><small>'+tx('Today '+min+' min','Сегодня '+min+' мин')+'</small></span>'+ico('chevron-right')+'</button>');
+  let ev=[];try{const k=iso(Date.now());ev=(window.nuvioPlanEvents?await window.nuvioPlanEvents():[]).filter(e=>e.date===k).sort((a,b)=>(a.time||'').localeCompare(b.time||''))}catch{}
+  ev.slice(0,4).forEach(e=>rows.push('<button type="button" class="hm-row" data-h="plan"><span class="hm-ri">'+ico('square')+'</span><span class="hm-rt"><b>'+esc(e.title)+'</b><small>'+esc(e.time||tx('All day','Весь день'))+' · '+tx('Plan','План')+'</small></span>'+ico('chevron-right')+'</button>'));
+  if(!ev.length)rows.push('<button type="button" class="hm-row" data-h="plan"><span class="hm-ri">'+ico('calendar-range')+'</span><span class="hm-rt"><b>'+tx('Nothing planned today','На сегодня планов нет')+'</b><small>'+tx('Add an event to the planner','Добавьте событие в план')+'</small></span>'+ico('chevron-right')+'</button>');
+  return rows.join('')}
+async function renderHome(){const el=H();setDate();if(!el||el.hidden)return;const my=++seq;
+  const html=goalCard()+'<div class="hm-grid">'+(await foodTile())+fitTile()+'</div>'+(await moodCard())+'<h3 class="hm-h">'+tx('Plan & study','План и учёба')+'</h3><div class="hm-list">'+(await listRows())+'</div>';
+  if(my===seq)el.innerHTML=html}
+window.renderHome=renderHome;
+function openGoal(id,focusLog){showTab('g');requestAnimationFrame(()=>{const b=[...document.querySelectorAll('#g [data-a="open"]')].find(x=>x.dataset.id===id);if(b)b.click();
+  if(focusLog)setTimeout(()=>{const f=document.getElementById('gxval')||document.getElementById('gxnote');if(f){f.scrollIntoView({block:'center'});f.focus()}},80)})}
+document.addEventListener('click',async e=>{const b=e.target.closest('#home [data-h]');if(!b)return;e.stopPropagation();const a=b.dataset.h;
+  try{tg?.HapticFeedback?.selectionChanged?.()}catch{}
+  if(a==='goal')return openGoal(b.dataset.id,false);
+  if(a==='log')return openGoal(b.dataset.id,true);
+  if(a==='newgoal'){showTab('g');requestAnimationFrame(()=>document.querySelector('#g [data-a="add"]')?.click());return}
+  if(a==='food'){showTab('nx');return}
+  if(a==='foodadd'){showTab('nx');try{na.go({v:'diary'})}catch{}return}
+  if(a==='fit'){showTab('ft');return}
+  if(a==='fitgo'){showTab('ft');try{if(F.act){fa.resume()}else{fa.menu();requestAnimationFrame(()=>document.querySelector('#ft [data-a="start"]')?.click())}}catch{}return}
+  if(a==='study')return showTab('study');
+  if(a==='plan')return showTab('pl');
+  if(a==='mood'&&window.nuvioMoodSet){await window.nuvioMoodSet(+b.dataset.v);renderHome()}});
+setDate();setInterval(setDate,60000);
+// данные разделов догружаются асинхронно — перерисовать, когда появятся
+[300,1500,4000].forEach(ms=>setTimeout(renderHome,ms));
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')renderHome()});
 })();
 </script>
 </body></html>
