@@ -1959,6 +1959,65 @@ html:not(#_) #home .hm-row{display:flex;align-items:center;gap:14px;width:100%;m
 @media(max-width:360px){#home .hm-fr h2{font-size:19px!important}#home .hm-kc b{font-size:24px}html:not(#_) #home .hm-btn{padding:0 14px!important}}
 @media(prefers-reduced-motion:reduce){#home .hm-card:active{transform:none}}
 </style>
+<style id="nuvio-features">
+/* тост, полноэкранный режим, карточка Telegram, фото еды, серия/значки, кнопка «Поделиться» */
+.nv-toast{position:fixed;left:50%;bottom:calc(104px + env(safe-area-inset-bottom));z-index:60;max-width:calc(100% - 40px);padding:12px 18px;border-radius:18px;
+  background:var(--nv-panel);-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);border:1px solid var(--nv-rim);color:var(--nv-text);
+  font-size:14.5px;font-weight:600;text-align:center;box-shadow:var(--nv-shadow);opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .25s,transform .25s}
+.nv-toast.on{opacity:1;transform:translate(-50%,0)}
+html.nv-fs:not(#_) body{padding-top:calc(var(--tg-safe-area-inset-top,0px) + var(--tg-content-safe-area-inset-top,0px) + 8px)!important}
+#p .tgx-card .tgx-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+#p .tgx-card .tgx-row>span{display:flex;flex-direction:column;gap:2px;min-width:0}
+#p .tgx-card .tgx-row b{font-size:15.5px;font-weight:650}
+#p .tgx-card .tgx-row small{font-size:13px;color:var(--nv-secondary)}
+#p .tgx-card .seg{flex:none;width:150px}
+html:not(#_) #p .tgx-card [data-tgx=home]{display:inline-flex!important;flex-direction:row!important;align-items:center;gap:6px;flex:none;width:auto!important;min-height:44px;padding:0 16px!important;margin:0!important;white-space:nowrap}
+#p .tgx-card [data-tgx=home] .lu{width:18px;height:18px;margin:0}
+#p .tgx-card .tgx-note{margin:10px 0 0;font-size:13px;color:var(--nv-secondary)}
+#p .dg-card .dg-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+html:not(#_) #p .dg-card .dg-btns .dg-test{margin:0!important}
+html:not(#_) #nx .nx-phbtn{display:flex!important;align-items:center;justify-content:center;gap:8px;margin-top:10px!important}
+#nx .nx-phi{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-top:1px solid var(--nv-line);margin:0;cursor:pointer}
+#nx .nx-phi:first-of-type{border-top:0}
+html:not(#_) #nx .nx-phi input{width:22px!important;height:22px!important;min-height:0!important;margin:2px 0 0!important;flex:none;accent-color:var(--nv-blue)}
+#nx .nx-phi span{display:flex;flex-direction:column;gap:3px;min-width:0}
+#nx .nx-phi b{font-size:15.5px;color:var(--nv-text)}#nx .nx-phi small{font-size:13px;color:var(--nv-secondary);font-weight:500}
+#nx .nx-pha{gap:10px;margin:12px 0 8px}
+#home .hm-streak{cursor:default}#home .hm-streak:active{transform:none}
+#home .hm-streak .hm-th b{display:flex;align-items:center;gap:7px}
+#home .hm-fl{width:20px;height:20px;color:#ff8a3d}
+#home .hm-sn{font-size:14px;font-weight:650;color:var(--nv-text)}
+#home .hm-week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0 12px}
+#home .hm-week span{display:flex;flex-direction:column;align-items:center;gap:6px}
+#home .hm-week i{width:30px;height:30px;border-radius:50%;background:var(--nv-panel-2);box-shadow:inset 0 0 0 1px var(--nv-line)}
+#home .hm-week .on i{background:linear-gradient(145deg,#ffb36b,#ff6a3d);box-shadow:0 3px 10px rgba(255,106,61,.35)}
+#home .hm-week .td i{outline:2px solid color-mix(in srgb,var(--nv-text) 45%,transparent);outline-offset:2px}
+#home .hm-week small{font-size:11.5px;color:var(--nv-secondary)}
+#home .hm-badges{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+#home .hm-badges span{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border-radius:14px;background:var(--nv-panel-2);color:var(--nv-secondary);opacity:.55}
+#home .hm-badges .lu{width:22px;height:22px;margin:0}
+#home .hm-badges b{font-size:12px;font-variant-numeric:tabular-nums}
+#home .hm-badges .got{opacity:1;color:#f5b142;background:color-mix(in srgb,#f5b142 16%,transparent)}
+html:not([data-theme=dark]) #home .hm-badges .got{color:#a86500}
+#home .hm-streak .hm-sub2{margin-top:10px}
+html:not(#_) #g .gx-share{display:flex!important;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;margin:14px 0 10px!important;border-radius:18px!important;
+  background:var(--nv-panel)!important;border:1px solid var(--nv-rim)!important;color:var(--nv-text)!important;font-weight:650!important;-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur)}
+#g .gx-share .lu{width:20px;height:20px;margin:0}
+@media(prefers-reduced-motion:reduce){.nv-toast{transition:none}}
+</style>
+<style id="nuvio-settings-2">
+html:not(#_) #g{--gx-card:var(--nv-panel)!important;--gx-line:var(--nv-rim)!important}
+html:not(#_) #g .gx-gc{-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);box-shadow:inset 0 1px 0 var(--nv-hi),var(--nv-shadow)!important}
+#pl .pl-cc .pl-ccl{flex:none;font-size:15px;font-weight:600;color:var(--nv-text);cursor:default;user-select:none}
+#p .dg-card .dg-ph{margin:16px 0 8px;font-size:14px;font-weight:650;color:var(--nv-text)}
+#p .dg-card .dg-parts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#p .dg-card .dg-pt{position:relative;display:flex;align-items:center;gap:8px;min-height:46px;margin:0;padding:8px 10px;border-radius:14px;border:1px solid var(--nv-line);background:var(--nv-panel-2);
+  color:var(--nv-secondary);font-size:13.5px;font-weight:600;line-height:1.2;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+#p .dg-card .dg-pt .lu{width:18px;height:18px;flex:none}
+html:not(#_) #p .dg-card .dg-pt input{position:absolute;opacity:0;width:1px!important;height:1px!important;min-height:0!important;margin:0!important;pointer-events:none}
+#p .dg-card .dg-pt:has(input:checked){border-color:color-mix(in srgb,var(--nv-blue) 60%,transparent);background:color-mix(in srgb,var(--nv-blue) 16%,transparent);color:var(--nv-text)}
+#p .dg-card .dg-pt:has(input:focus-visible){outline:2px solid var(--nv-blue);outline-offset:2px}
+</style>
 </head><body><div id="nvBg" aria-hidden="true"><i></i></div>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
 <header class="nv-appbar"><h1 class="nv-date" id="nvDate"></h1><button type="button" id="nvWx" class="nv-wx lg" aria-label="Погода"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg><b>—</b></button><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="home" data-i="thome"></button><button data-t="body" data-i="tbody"></button><button data-t="g" data-i="tg"></button><button data-t="pl" data-i="tpl">План</button><button data-t="study" data-i="tsy"></button></nav>
@@ -2004,6 +2063,11 @@ const monthStore=(pre,old,when)=>{const idx=pre+'idx',saved=new Map(),known=new 
 // Lucide icons (ISC license, lucide.dev), one family and one stroke width for the whole app; emoji are not used as icons.
 const LUC={"sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2\"/><path d=\"M12 20v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"m17.66 17.66 1.41 1.41\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"m6.34 17.66-1.41 1.41\"/><path d=\"m19.07 4.93-1.41 1.41\"/>","cloud-sun":"<path d=\"M12 2v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"M20 12h2\"/><path d=\"m19.07 4.93-1.41 1.41\"/><path d=\"M15.947 12.65a4 4 0 0 0-5.925-4.128\"/><path d=\"M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z\"/>","cloud":"<path d=\"M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z\"/>","cloud-fog":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M16 17H7\"/><path d=\"M17 21H9\"/>","cloud-drizzle":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M8 19v1\"/><path d=\"M8 14v1\"/><path d=\"M16 19v1\"/><path d=\"M16 14v1\"/><path d=\"M12 21v1\"/><path d=\"M12 16v1\"/>","cloud-rain":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M16 14v6\"/><path d=\"M8 14v6\"/><path d=\"M12 16v6\"/>","cloud-snow":"<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\"/><path d=\"M8 15h.01\"/><path d=\"M8 19h.01\"/><path d=\"M12 17h.01\"/><path d=\"M12 21h.01\"/><path d=\"M16 15h.01\"/><path d=\"M16 19h.01\"/>","snowflake":"<path d=\"m10 20-1.25-2.5L6 18\"/><path d=\"M10 4 8.75 6.5 6 6\"/><path d=\"m14 20 1.25-2.5L18 18\"/><path d=\"m14 4 1.25 2.5L18 6\"/><path d=\"m17 21-3-6h-4\"/><path d=\"m17 3-3 6 1.5 3\"/><path d=\"M2 12h6.5L10 9\"/><path d=\"m20 10-1.5 2 1.5 2\"/><path d=\"M22 12h-6.5L14 15\"/><path d=\"m4 10 1.5 2L4 14\"/><path d=\"m7 21 3-6-1.5-3\"/><path d=\"m7 3 3 6h4\"/>","cloud-lightning":"<path d=\"M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973\"/><path d=\"m13 12-3 5h4l-3 5\"/>","moon":"<path d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401\"/>","cloud-moon":"<path d=\"M13 16a3 3 0 0 1 0 6H7a5 5 0 1 1 4.9-6z\"/><path d=\"M18.376 14.512a6 6 0 0 0 3.461-4.127c.148-.625-.659-.97-1.248-.714a4 4 0 0 1-5.259-5.26c.255-.589-.09-1.395-.716-1.248a6 6 0 0 0-4.594 5.36\"/>","thermometer":"<path d=\"M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z\"/>","locate-fixed":"<line x1=\"2\" x2=\"5\" y1=\"12\" y2=\"12\"/><line x1=\"19\" x2=\"22\" y1=\"12\" y2=\"12\"/><line x1=\"12\" x2=\"12\" y1=\"2\" y2=\"5\"/><line x1=\"12\" x2=\"12\" y1=\"19\" y2=\"22\"/><circle cx=\"12\" cy=\"12\" r=\"7\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","camera":"<path d=\"M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/>","play":"<path d=\"M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z\"/>","sparkles":"<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"/><path d=\"M20 2v4\"/><path d=\"M22 4h-4\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/>","chart-line":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/><path d=\"m19 9-5 5-4-4-3 3\"/>","sliders-horizontal":"<path d=\"M10 5H3\"/><path d=\"M12 19H3\"/><path d=\"M14 3v4\"/><path d=\"M16 17v4\"/><path d=\"M21 12h-9\"/><path d=\"M21 19h-5\"/><path d=\"M21 5h-7\"/><path d=\"M8 10v4\"/><path d=\"M8 12H3\"/>","book-open":"<path d=\"M12 5v16\"/><path d=\"M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z\"/>","timer":"<line x1=\"10\" x2=\"14\" y1=\"2\" y2=\"2\"/><line x1=\"12\" x2=\"15\" y1=\"14\" y2=\"11\"/><circle cx=\"12\" cy=\"14\" r=\"8\"/>","trophy":"<path d=\"M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2\"/><path d=\"M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2\"/><path d=\"M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3\"/><path d=\"M4 22h16\"/><path d=\"M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z\"/><path d=\"M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3\"/>","dumbbell":"<path d=\"M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z\"/><path d=\"m2.5 21.5 1.4-1.4\"/><path d=\"m20.1 3.9 1.4-1.4\"/><path d=\"M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z\"/><path d=\"m9.6 14.4 4.8-4.8\"/>","biceps-flexed":"<path d=\"M12.409 13.017A5 5 0 0 1 22 15c0 3.866-4 7-9 7-4.077 0-8.153-.82-10.371-2.462-.426-.316-.631-.832-.62-1.362C2.118 12.723 2.627 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.105 0-1.64-.444-2-1\"/><path d=\"M15 14a5 5 0 0 0-7.584 2\"/><path d=\"M9.964 6.825C8.019 7.977 9.5 13 8 15\"/>","settings":"<path d=\"M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>","cable":"<path d=\"M17 19a1 1 0 0 1-1-1v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1z\"/><path d=\"M17 21v-2\"/><path d=\"M19 14V6.5a1 1 0 0 0-7 0v11a1 1 0 0 1-7 0V10\"/><path d=\"M21 21v-2\"/><path d=\"M3 5V3\"/><path d=\"M4 10a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2z\"/><path d=\"M7 5V3\"/>","person-standing":"<circle cx=\"12\" cy=\"5\" r=\"1\"/><path d=\"m9 20 3-6 3 6\"/><path d=\"m6 8 6 2 6-2\"/><path d=\"M12 10v4\"/>","bell":"<path d=\"M10.268 21a2 2 0 0 0 3.464 0\"/><path d=\"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326\"/>","plus":"<path d=\"M5 12h14\"/><path d=\"M12 5v14\"/>","salad":"<path d=\"M19.496 12a2.5 2.5 0 00.399-2.214A2 2 0 0020.32 6.5 2 2 0 0019 3a2 2 0 00-1.5.68 2 2 0 00-3.287.424 2.5 2.5 0 00-3.189 2.06A3 3 0 0012 12l4-4\"/><path d=\"M4 12a1 1 0 00-.99 1.133A9 9 0 0012 21a9 9 0 008.99-7.867A1 1 0 0020 12z\"/><path d=\"M7 21h10\"/><path d=\"M9.85 6.907A3.5 3.5 0 005.05 12\"/>","notebook-pen":"<path d=\"M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4\"/><path d=\"M2 6h4\"/><path d=\"M2 10h4\"/><path d=\"M2 14h4\"/><path d=\"M2 18h4\"/><path d=\"M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"/>","flame":"<path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\"/>","flower-2":"<path d=\"M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1\"/><circle cx=\"12\" cy=\"8\" r=\"2\"/><path d=\"M12 10v12\"/><path d=\"M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z\"/><path d=\"M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z\"/>","wind":"<path d=\"M12.8 19.6A2 2 0 1 0 14 16H2\"/><path d=\"M17.5 8a2.5 2.5 0 1 1 2 4H2\"/><path d=\"M9.8 4.4A2 2 0 1 1 11 8H2\"/>","ruler":"<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\"/><path d=\"m14.5 12.5 2-2\"/><path d=\"m11.5 9.5 2-2\"/><path d=\"m8.5 6.5 2-2\"/><path d=\"m17.5 15.5 2-2\"/>","pill":"<path d=\"m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z\"/><path d=\"m8.5 8.5 7 7\"/>","brain":"<path d=\"M12 18V5\"/><path d=\"M15 13a4.17 4.17 0 01-3-4 4.17 4.17 0 01-3 4\"/><path d=\"M17.707 6.294A3 3 0 1012 5a3 3 0 10-5.707 1.294\"/><path d=\"M17.996 5.125a4 4 0 012.526 5.77\"/><path d=\"M18 18a4 4 0 002-7.465\"/><path d=\"M19.967 17.482a4 4 0 11-7.967.517 4 4 0 11-7.967-.517\"/><path d=\"M6 18a4 4 0 01-2-7.465\"/><path d=\"M6.004 5.125a4 4 0 00-2.526 5.77\"/>","activity":"<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\"/>","rotate-cw":"<path d=\"M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8\"/><path d=\"M21 3v5h-5\"/>","heart":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\"/>","stethoscope":"<path d=\"M11 2v2\"/><path d=\"M5 2v2\"/><path d=\"M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1\"/><path d=\"M8 15a6 6 0 0 0 12 0v-3\"/><circle cx=\"20\" cy=\"10\" r=\"2\"/>","ear":"<path d=\"M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0\"/><path d=\"M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4\"/>","bed":"<path d=\"M2 4v16\"/><path d=\"M2 8h18a2 2 0 0 1 2 2v10\"/><path d=\"M2 17h20\"/><path d=\"M6 8v9\"/>","frown":"<path d=\"M15 10V9\"/><path d=\"M9 10V9\"/><path d=\"M9 16a5 5 0 016 0\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","annoyed":"<path d=\"M14 10h2\"/><path d=\"M8 10h2\"/><path d=\"M8 16h8\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","meh":"<path d=\"M15 10V9\"/><path d=\"M8 16h8\"/><path d=\"M9 10V9\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","smile":"<path d=\"M15 10V9\"/><path d=\"M16.472 15a6 6 0 01-8.943 0\"/><path d=\"M9 10V9\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","laugh":"<path d=\"M15 10V9\"/><path d=\"M7.084 14.302a5.12 5.12 0 009.833 0 .24.24 0 00-.235-.302H7.32a.24.24 0 00-.235.302\"/><path d=\"M9 10V9\"/><circle cx=\"12\" cy=\"12\" r=\"10\"/>","lock":"<rect width=\"18\" height=\"11\" x=\"3\" y=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>","shield":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/>","megaphone":"<path d=\"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z\"/><path d=\"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14\"/><path d=\"M8 6v8\"/>","smartphone":"<rect width=\"14\" height=\"20\" x=\"5\" y=\"2\" rx=\"2\" ry=\"2\"/><path d=\"M12 18h.01\"/>","alarm-clock":"<circle cx=\"12\" cy=\"13\" r=\"8\"/><path d=\"M12 9v4l2 2\"/><path d=\"M5 3 2 6\"/><path d=\"m22 6-3-3\"/><path d=\"M6.38 18.7 4 21\"/><path d=\"M17.64 18.67 20 21\"/>","target":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/>","info":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/>","weight":"<circle cx=\"12\" cy=\"5\" r=\"3\"/><path d=\"M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z\"/>","upload":"<path d=\"M12 3v12\"/><path d=\"m17 8-5-5-5 5\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/>","heart-pulse":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\"/><path d=\"M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27\"/>"};
 Object.assign(LUC,{"house":"<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"/><path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>","utensils":"<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\"/>","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\"/><path d=\"M22 10v6\"/><path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\"/>","square":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/>","square-check":"<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"m16 9-5.5 5.5L8 12\"/>","chevron-right":"<path d=\"m9 18 6-6-6-6\"/>","layout-dashboard":"<rect width=\"7\" height=\"9\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"9\" x=\"14\" y=\"12\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/>","clipboard-list":"<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/><path d=\"M12 11h4\"/><path d=\"M12 16h4\"/><path d=\"M8 11h.01\"/><path d=\"M8 16h.01\"/>","bot-message-square":"<path d=\"M12 6V2H8\"/><path d=\"M15 11v2\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z\"/><path d=\"M9 11v2\"/>","school":"<path d=\"M14 21v-3a2 2 0 0 0-4 0v3\"/><path d=\"M18 4.933V21\"/><path d=\"m4 6 7.106-3.79a2 2 0 0 1 1.788 0L20 6\"/><path d=\"m6 11-3.52 2.147a1 1 0 0 0-.48.854V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a1 1 0 0 0-.48-.853L18 11\"/><path d=\"M6 4.933V21\"/><circle cx=\"12\" cy=\"9\" r=\"2\"/>","chart-column":"<path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/><path d=\"M18 17V9\"/><path d=\"M13 17V5\"/><path d=\"M8 17v-3\"/>","calendar-range":"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v3\"/><path d=\"M3 9h18\"/><path d=\"M8 2v3\"/><path d=\"M17 13h-6\"/><path d=\"M13 17H7\"/><path d=\"M7 13h.01\"/><path d=\"M17 17h.01\"/>"});
+Object.assign(LUC,{"share-2":"<circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6\" cy=\"12\" r=\"3\"/><circle cx=\"18\" cy=\"19\" r=\"3\"/><line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\"/><line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\"/>","maximize":"<path d=\"M8 3H5a2 2 0 0 0-2 2v3\"/><path d=\"M21 8V5a2 2 0 0 0-2-2h-3\"/><path d=\"M3 16v3a2 2 0 0 0 2 2h3\"/><path d=\"M16 21h3a2 2 0 0 0 2-2v-3\"/>","award":"<path d=\"m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526\"/><circle cx=\"12\" cy=\"8\" r=\"6\"/>"});
+/* short status message at the bottom (one element for the whole app) */
+function nvToast(m){let el=document.getElementById('nvToast');if(!el){el=document.createElement('div');el.id='nvToast';el.className='nv-toast lg';el.setAttribute('role','status');document.body.appendChild(el)}
+  el.textContent=m;el.classList.add('on');clearTimeout(nvToast.t);nvToast.t=setTimeout(()=>el.classList.remove('on'),3200)}
+Object.assign(LUC,{"shirt":"<path d=\"M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z\"/>"});
 const ico=(n,c)=>'<svg class="lu'+(c?' '+c:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(LUC[n]||'')+'</svg>';
 const fitCloud=(arr,when)=>{const big=()=>JSON.stringify(arr).length>3800,old=arr.slice().sort((a,b)=>String(when(a)).localeCompare(String(when(b))));for(const x of old){if(!big())break;if(x.note)x.note=''}for(const x of old){if(!big()||arr.length<2)break;arr.splice(arr.indexOf(x),1)}return arr};
 
@@ -2682,7 +2746,8 @@ function weekBars(){const c=tgt(),days=[...Array(7)].map((_,i)=>{const d=new Dat
   return `<div class="wbars">${days.map((k,i)=>`<div class="wb"><span>${vals[i]?fmtn(vals[i]):''}</span><div class="col"><i style="height:${vals[i]/mx*100}%"></i></div><small>${new Date(k+'T12:00:00').toLocaleDateString(loc(),{weekday:'narrow'})}</small></div>`).join('')}</div>`}
 function vDiary(){
   return back('menu')+title(t('nc_diary'))+dietHtml(true)
-  +`<div class="sec mb"><textarea data-f="dtext" maxlength="300" placeholder="${t('dtextph')}">${esc(N.dtext)}</textarea><button class="p wide" data-a="dadd" style="margin-top:10px" ${D.busy?'disabled':''}>${D.busy?t('dbusy'):t('dadd')}</button>${D.err?`<p class="meta" style="margin-top:8px">${esc(D.err)}</p>`:''}</div>`
+  +`<div class="sec mb"><textarea data-f="dtext" maxlength="300" placeholder="${t('dtextph')}">${esc(N.dtext)}</textarea><button class="p wide" data-a="dadd" style="margin-top:10px" ${D.busy?'disabled':''}>${D.busy?t('dbusy'):t('dadd')}</button>${D.err?`<p class="meta" style="margin-top:8px">${esc(D.err)}</p>`:''}<button class="wide nx-phbtn" data-a="dphoto" ${D.busy||N.phb?'disabled':''}>${ico('camera')}${N.phb?t('nph_busy'):t('nph')}</button><input type="file" id="nxPhoto" accept="image/*" hidden></div>`
+  +(N.ph?`<div class="sec mb nx-phr"><h2>${t('nph_found')}</h2>${N.ph.items.map((x,i)=>`<label class="nx-phi"><input type="checkbox" data-a="dpick" data-i="${i}"${x.on?' checked':''}><span><b>${esc(x.name)}</b><small>${x.grams?x.grams+(lang==='en'?' g · ':' г · '):''}${t('nkcal_u',x.kcal)} · ${t('nmac',x.protein,x.fat,x.carbs)}</small></span></label>`).join('')}${N.ph.unclear?`<p class="meta">${t('nph_unclear',N.ph.unclear)}</p>`:''}<div class="row nx-pha"><button class="p" data-a="dpadd">${t('nph_add')}</button><button data-a="dpcancel">${t('nph_cancel')}</button></div><p class="meta">${t('nph_note')}</p></div>`:'')
   +(D.items.length?D.items.map((x,i)=>`<div class="libi" style="cursor:default"><div class="lh"><b>${esc(x.n)}</b><small>${t('nkcal_u',x.kcal)}<button class="x2" data-a="ddel" data-i="${i}" aria-label="${t('fdel')}">✕</button></small></div><div class="meta" style="font-size:13px;margin-top:2px">${t('nmac',x.protein,x.fat,x.carbs)}</div></div>`).join(''):`<p class="msg">${t('dnone')}</p>`)
   +`<div class="sec" style="margin-top:12px"><h2>${t('dweek')}</h2>${weekBars()}</div><p class="meta" style="margin-top:10px">${t('dnote')}</p>`}
 
@@ -2744,7 +2809,23 @@ const na={
     try{const j=await api('/food',{mode:'log',text});if(!j.items.length)throw new Error(t('dbad'));
       j.items.forEach(x=>{if(D.items.length<30)D.items.push({n:x.name,kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs})});N.dtext='';await saveDiary()}catch(e){D.err=friendlyError(e)}
     D.busy=false;renderNx()},
-  async ddel(d){D.items.splice(+d.i,1);await saveDiary();renderNx()}};
+  async ddel(d){D.items.splice(+d.i,1);await saveDiary();renderNx()},
+  dphoto(){document.getElementById('nxPhoto')?.click()},
+  dpick(d,b){if(N.ph&&N.ph.items[+d.i])N.ph.items[+d.i].on=b.checked},
+  dpcancel(){N.ph=null;renderNx()},
+  async dpadd(){if(!N.ph)return;await loadDiary();N.ph.items.filter(x=>x.on).forEach(x=>{if(D.items.length<30)D.items.push({n:x.name+(x.grams?' ('+x.grams+(lang==='en'?' g)':' г)'):''),kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs})});
+    N.ph=null;await saveDiary();renderNx()},
+  /* photo → JPEG up to 1280 px (keeps the request well under the server's 3 MB) → /food mode=photo → list to confirm */
+  async dphotoFile(f){if(!f)return;D.err='';N.ph=null;N.phb=true;renderNx();
+    try{const url=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(f)}),img=new Image();
+      await new Promise((res,rej)=>{img.onload=res;img.onerror=rej;img.src=url});
+      const k=Math.min(1,1280/Math.max(img.naturalWidth,img.naturalHeight)),c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*k);c.height=Math.round(img.naturalHeight*k);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);const image=c.toDataURL('image/jpeg',.85);
+      const j=await api('/food',{mode:'photo',image,hint:(N.dtext||'').trim().slice(0,120)});
+      if(j.items&&j.items.length)N.ph={items:j.items.map(x=>({...x,on:true})),unclear:j.unclear||0};else D.err=j.notfood?t('nph_notfood'):t('nph_none')}
+    catch(e){D.err=e&&e.message?friendlyError(e):t('nph_big')}
+    N.phb=false;renderNx()}};
+$('nx').addEventListener('change',e=>{if(e.target.id==='nxPhoto'){const f=e.target.files&&e.target.files[0];e.target.value='';na.dphotoFile(f)}});
 const ni={avoid(v){N.avoid=v},allergy(v){N.allergy=v},pantry(v){N.pantry=v},rq(v){N.q=v},dtext(v){N.dtext=v}};
 $('nx').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)na[b.dataset.a]?.(b.dataset,b)});
 $('nx').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)ni[d.f]?.(e.target.value)});
@@ -3088,7 +3169,7 @@ function renderProfile(){
   <div class="sub"><div class="subh"><span>${t('psub')}</span><em class="badge"><i></i>${t('pdev')}</em></div>
     <div class="subm"><small>${t('pexp')}</small><div><b>—</b> <span>${t('pdays')}</span></div></div><button id="renew">${t('prenew')}</button></div>
   <div class="sec"><h2>${t('plang')}</h2><div class="seg"><button data-l="ru" class="${lang==='ru'?'on':''}">${FLAG.ru}Русский</button><button data-l="en" class="${lang==='en'?'on':''}">${FLAG.en}English</button></div>
-    <h2 style="margin-top:18px">${t('ptheme')}</h2><div class="seg"><button data-th="light" class="${th==='light'?'on':''}">${SUNI}${t('plight')}</button><button data-th="dark" class="${th==='dark'?'on':''}">${MOONI}${t('pdark')}</button></div><h2 style="margin-top:18px">${lang==='ru'?'Цветовая тема':'Color palette'}</h2><div class="palette-grid"><button class="palette-choice ${!document.documentElement.dataset.palette?'on':''}" data-palette="default"><i class="palette-dot"></i>${lang==='ru'?'Стандартная':'Default'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='mono'?'on':''}" data-palette="mono"><i class="palette-dot" style="background:linear-gradient(135deg,#fff 0 50%,#222 50%)"></i>${lang==='ru'?'Монохром':'Monochrome'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='ocean'?'on':''}" data-palette="ocean"><i class="palette-dot" style="background:linear-gradient(135deg,#8bd6ee,#145b83)"></i>${lang==='ru'?'Океан':'Ocean'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='aurora'?'on':''}" data-palette="aurora"><i class="palette-dot" style="background:linear-gradient(135deg,#a9e8d4,#9878df)"></i>${lang==='ru'?'Северное сияние':'Aurora'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='sunset'?'on':''}" data-palette="sunset"><i class="palette-dot" style="background:linear-gradient(135deg,#ffc18f,#d66b70)"></i>${lang==='ru'?'Закат':'Sunset'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='forest'?'on':''}" data-palette="forest"><i class="palette-dot" style="background:linear-gradient(135deg,#b8dfc3,#438b70,#174d43)"></i>${lang==='ru'?'Лес':'Forest'}</button></div><h2 style="margin-top:18px">${t('plglass')}</h2><div class="seg"><button data-lg="on" class="${document.documentElement.dataset.liquidGlass!=='off'?'on':''}">${t('lgon')}</button><button data-lg="off" class="${document.documentElement.dataset.liquidGlass==='off'?'on':''}">${t('lgoff')}</button></div></div>
+    <h2 style="margin-top:18px">${t('ptheme')}</h2><div class="seg"><button data-th="light" class="${th==='light'?'on':''}">${SUNI}${t('plight')}</button><button data-th="dark" class="${th==='dark'?'on':''}">${MOONI}${t('pdark')}</button></div><h2 style="margin-top:18px">${lang==='ru'?'Цветовая тема':'Color palette'}</h2><div class="palette-grid"><button class="palette-choice ${!document.documentElement.dataset.palette?'on':''}" data-palette="default"><i class="palette-dot"></i>${lang==='ru'?'Стандартная':'Default'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='mono'?'on':''}" data-palette="mono"><i class="palette-dot" style="background:linear-gradient(135deg,#fff 0 50%,#222 50%)"></i>${lang==='ru'?'Монохром':'Monochrome'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='ocean'?'on':''}" data-palette="ocean"><i class="palette-dot" style="background:linear-gradient(135deg,#8bd6ee,#145b83)"></i>${lang==='ru'?'Океан':'Ocean'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='aurora'?'on':''}" data-palette="aurora"><i class="palette-dot" style="background:linear-gradient(135deg,#a9e8d4,#9878df)"></i>${lang==='ru'?'Северное сияние':'Aurora'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='sunset'?'on':''}" data-palette="sunset"><i class="palette-dot" style="background:linear-gradient(135deg,#ffc18f,#d66b70)"></i>${lang==='ru'?'Закат':'Sunset'}</button><button class="palette-choice ${document.documentElement.dataset.palette==='forest'?'on':''}" data-palette="forest"><i class="palette-dot" style="background:linear-gradient(135deg,#b8dfc3,#438b70,#174d43)"></i>${lang==='ru'?'Лес':'Forest'}</button></div></div>
   <button class="chan" id="chan">${ico('megaphone')}${t('pchan')}</button>${isAdmin()?'<div id="adm" style="margin-top:12px"></div>':''}`;
   $('idp').onclick=async()=>{const id=String(u.id||'');if(!id)return;
     try{await navigator.clipboard.writeText(id)}catch{const a=document.createElement('textarea');a.value=id;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch{}a.remove()}
@@ -3490,6 +3571,10 @@ function vNew(){const f=gform||{},fw=F?.prof?.w;
   <button class="p gx-cta" type="submit" id="gxcreate">${t('gcreate')}</button></form>`}
 /* --- экран цели: статус, прогресс, «Сейчас / Цель», динамика (факт сплошной, план пунктиром), окно 30/90/все --- */
 let gxRange=null;
+Object.assign(L.ru,{nph:'Сфотографировать еду',nph_busy:'ИИ смотрит на фото…',nph_found:'Нашёл на фото',nph_add:'Добавить выбранное',nph_cancel:'Отмена',
+  nph_unclear:'Ещё {0} не разобрал уверенно — их лучше дописать текстом.',nph_note:'Оценка по фото приблизительная: вес порции и масло на глаз.',nph_notfood:'На фото не видно еды.',nph_none:'Не получилось уверенно распознать блюда. Попробуйте снять ближе и сверху.',nph_big:'Не удалось прочитать фото.',gx_share:'Поделиться прогрессом',gx_shared:'Карточка в чате с ботом — перешлите её друзьям.',gx_sharing:'Готовлю карточку…'});
+Object.assign(L.en,{nph:'Snap your food',nph_busy:'AI is looking at the photo…',nph_found:'Found in the photo',nph_add:'Add selected',nph_cancel:'Cancel',
+  nph_unclear:'{0} more not recognised confidently — better add them as text.',nph_note:'A photo estimate is approximate: portion weight and oil are by eye.',nph_notfood:'No food in the photo.',nph_none:'Could not recognise the dishes confidently. Try closer and from above.',nph_big:'Could not read the photo.',gx_share:'Share progress',gx_shared:'The card is in the chat with the bot — forward it to friends.',gx_sharing:'Making the card…'});
 Object.assign(L.ru,{gx_st_on:'По плану',gx_st_ahead:'Опережаете',gx_st_behind:'Отстаёте',gx_st_new:'Начало',gx_st_gaps:'Есть пропуски',gx_st_done:'Достигнута',gx_st_end:'Завершена',
   gx_cur_prog:'Текущий прогресс',gx_reached_of:'цели достигнуто',gx_now:'Сейчас',gx_goal:'Цель',gx_dyn_w:'Динамика веса',gx_dyn:'Динамика',gx_leg_fw:'Фактический вес',gx_leg_f:'Факт',gx_leg_p:'План',
   gx_r30:'30 дней',gx_r90:'90 дней',gx_rall:'Все',gx_dyn_note0:'Пунктир показывает план. Линия факта появится после записей.'});
@@ -3537,6 +3622,44 @@ function gxDynCard(g){if(!isNum(g))return'';const rng=gxRng(g),real=g.log.filter
   return`<section class="gx-card gx-dyn"><div class="gx-dynh"><h3>${ico('chart-line')}${t(gxIsW(g)?'gx_dyn_w':'gx_dyn')}</h3><div class="gx-seg" role="group">${[['30','gx_r30'],['90','gx_r90'],['all','gx_rall']].map(([v,k])=>`<button type="button" data-a="rng" data-v="${v}" class="${rng===v?'on':''}" aria-pressed="${rng===v}">${t(k)}</button>`).join('')}</div></div>
   <div class="gx-leg"><span><i class="a"></i>${t(gxIsW(g)?'gx_leg_fw':'gx_leg_f')}</span><span><i class="p"></i>${t('gx_leg_p')}</span></div>${gxDyn(g)}
   <p class="gx-foot">${ico('info')}<span>${real<2||!dv?t('gx_dyn_note0'):devText(g,dv)}</span></p></section>`}
+/* --- карточка прогресса 1080×1350: фон приложения, кольцо, «Сейчас → Цель», мини-график; в Telegram — окно «Поделиться» (shareMessage) --- */
+async function goalCardImage(g){const W=1080,H=1350,num_=isNum(g),p=pct(g);let c,x;
+  const font=(w,sz)=>w+' '+sz+'px -apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,system-ui,sans-serif';
+  const bg=async withImg=>{c=document.createElement('canvas');c.width=W;c.height=H;x=c.getContext('2d');x.fillStyle='#14131a';x.fillRect(0,0,W,H);
+    if(withImg){const im=new Image();im.src=document.querySelector('link[rel=preload][as=image]')?.getAttribute('href')||'';await im.decode().catch(()=>{});
+      if(im.naturalWidth){const k=Math.max(W/im.naturalWidth,H/im.naturalHeight);x.drawImage(im,(W-im.naturalWidth*k)/2,(H-im.naturalHeight*k)*.35,im.naturalWidth*k,im.naturalHeight*k)}}
+    const gr=x.createLinearGradient(0,0,0,H);gr.addColorStop(0,'rgba(10,10,16,.35)');gr.addColorStop(.55,'rgba(10,10,16,.55)');gr.addColorStop(1,'rgba(10,10,16,.85)');x.fillStyle=gr;x.fillRect(0,0,W,H)};
+  await bg(true);try{c.toDataURL('image/jpeg',.1)}catch{await bg(false)}  // фон с другого источника (file://) «пачкает» canvas навсегда — тогда новый canvas без картинки
+  const rr=(X,Y,w,h,r)=>{x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()};
+  const glass=(X,Y,w,h)=>{rr(X,Y,w,h,44);x.fillStyle='rgba(255,255,255,.08)';x.fill();x.strokeStyle='rgba(255,255,255,.16)';x.lineWidth=2;x.stroke()};
+  const wrap=(t,maxW,maxL)=>{const words=String(t).split(/\s+/),out=[];let line='';for(const w of words){const tt=line?line+' '+w:w;if(x.measureText(tt).width>maxW&&line){out.push(line);line=w}else line=tt}if(line)out.push(line);
+    if(out.length>maxL){out.length=maxL;out[maxL-1]=out[maxL-1].replace(/\s*\S*$/,'')+'…'}return out};
+  x.fillStyle='rgba(255,255,255,.72)';x.font=font(600,34);x.fillText('NUVIO',80,110);
+  x.fillStyle='#fff';x.font=font(800,78);const tl=wrap(g.title,W-160,2);tl.forEach((l,i)=>x.fillText(l,80,230+i*92));
+  let y=230+tl.length*92;x.fillStyle='rgba(255,255,255,.7)';x.font=font(500,36);x.fillText(dLong(g0(g))+' — '+dLong(endOf(g)),80,y+10);y+=70;
+  glass(60,y,W-120,330);const cx=240,cy=y+165,R=110;x.lineWidth=26;x.lineCap='round';x.strokeStyle='rgba(255,255,255,.14)';x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.stroke();
+  const rg=x.createLinearGradient(cx-R,cy,cx+R,cy);rg.addColorStop(0,'#3fcf79');rg.addColorStop(1,'#7ef0b0');x.strokeStyle=rg;x.beginPath();x.arc(cx,cy,R,-Math.PI/2,-Math.PI/2+Math.PI*2*Math.max(.01,p/100));x.stroke();
+  x.fillStyle='#fff';x.font=font(800,64);x.textAlign='center';x.fillText(p+'%',cx,cy+22);x.textAlign='left';
+  const [,sl]=gxStatus(g);x.font=font(700,46);x.fillText(sl,410,y+140);x.fillStyle='rgba(255,255,255,.72)';x.font=font(500,34);
+  wrap(num_?fuPlain(curVal(g),g.unit)+' → '+fuPlain(g.to,g.unit):t('gx_reached_of'),W-500,2).forEach((l,i)=>x.fillText(l,410,y+200+i*44));y+=370;
+  if(num_){glass(60,y,W-120,430);const s0=g0(g),e=Math.max(endOf(g),s0+864e5),P=[[s0,g.from],...g.log.filter(z=>z[1]!=null&&z[0]>=s0).map(z=>[z[0],z[1]])].sort((a,b)=>a[0]-b[0]),
+      vs=[g.to,...P.map(z=>z[1])],mn=Math.min(...vs),mx=Math.max(...vs),pad=(mx-mn)*.15||1,lo=mn-pad,hi=mx+pad,X=ts=>120+(ts-s0)/(e-s0)*(W-240),Y=v=>y+60+(hi-v)/(hi-lo)*310;
+    const last=P[P.length-1];x.setLineDash([2,16]);x.lineWidth=6;x.strokeStyle='rgba(255,255,255,.55)';x.beginPath();x.moveTo(X(last[0]),Y(last[1]));x.lineTo(X(e),Y(g.to));x.stroke();x.setLineDash([]);
+    x.strokeStyle='#8fa2ff';x.lineWidth=8;x.lineJoin='round';x.beginPath();P.forEach(([ts,v],i)=>i?x.lineTo(X(ts),Y(v)):x.moveTo(X(ts),Y(v)));x.stroke();
+    x.fillStyle='#14131a';x.strokeStyle='#8fa2ff';x.lineWidth=8;x.beginPath();x.arc(X(last[0]),Y(last[1]),16,0,Math.PI*2);x.fill();x.stroke();
+    x.fillStyle='#5ee08f';x.beginPath();x.arc(X(e),Y(g.to),16,0,Math.PI*2);x.fill();
+    x.fillStyle='rgba(255,255,255,.7)';x.font=font(500,30);x.fillText(dm(s0),120,y+405);x.textAlign='right';x.fillText(dm(e),W-120,y+405);x.textAlign='left'}
+  x.fillStyle='rgba(255,255,255,.6)';x.font=font(500,30);x.fillText(lang==='en'?'Goals, fitness, study — in Telegram':'Цели, спорт, учёба — в Телеграме',80,H-70);
+  return c.toDataURL('image/jpeg',.9)}
+async function shareGoal(g){if(!g)return;nvToast(t('gx_sharing'));let image;
+  try{image=await goalCardImage(g)}catch(e){return nvToast(friendlyError(e))}
+  const caption=g.title+' — '+pct(g)+'% · NUVIO',ver=v=>!!(tg&&tg.isVersionAtLeast&&tg.isVersionAtLeast(v));
+  if(tg&&tg.initData){try{const j=await api('/share',{image,caption});
+      if(j.id&&ver('8.0')&&tg.shareMessage){tg.shareMessage(j.id,()=>{});return}
+      return nvToast(t('gx_shared'))}catch(e){return nvToast(friendlyError(e))}}
+  try{const blob=await (await fetch(image)).blob(),file=new File([blob],'nuvio-goal.jpg',{type:'image/jpeg'});
+    if(navigator.canShare&&navigator.canShare({files:[file]}))return await navigator.share({files:[file],title:caption})}catch{}
+  const a=document.createElement('a');a.href=image;a.download='nuvio-goal.jpg';document.body.appendChild(a);a.click();a.remove()}
 function vDetail(g){const num_=isNum(g),p=pct(g),R=regular(g),dv=devOf(g),fin=finished(g),fc=fin?null:forecast(g),left=Math.round((endOf(g)-todayTs())/DAY);
   const devH=num_?(dv?`<p class="gx-dev ${dv.st}"><i></i>${devText(g,dv)}</p>`:`<p class="gx-dev"><i></i>${t('gx_dev_none')}</p>`):`<p class="gx-dev"><i></i>${t('gx_reg_v',R.ok,plu(R.n,'gx_dayf'))}</p>`;
   const tl=[left<0?t('gx_over'):left===0?t('gx_lastday'):t('gx_left',plu(left,'gx_dayf')),fc?(fc.stall?t('gx_stall'):t(fc.late?'gx_eta_late':'gx_eta',dm(fc.eta))):''].filter(Boolean).join(' · ');
@@ -3551,6 +3674,7 @@ function vDetail(g){const num_=isNum(g),p=pct(g),R=regular(g),dv=devOf(g),fin=fi
   <h3>${t('gx_feed')}</h3>${feedHtml(g)}</section>
   ${fin?'':todayHtml(g)}
   <section class="gx-card"><h3 class="gx-h3">${t('days')}</h3><div id="gxdblk">${daysHtml(g)}</div></section>
+  <button type="button" class="gx-share" data-a="share">${ico('share-2')}${t('gx_share')}</button>
   <button type="button" class="danger gx-del" data-a="del">${t('delg')}</button>`}
 function vSum(g){const R=regular(g),num_=isNum(g),ok=reached(g),p=pct(g),s=g0(g),e=endOf(g),rel=relevant(g),cv=curVal(g);
   const spent=Math.max(1,dIdx(g,ok&&lastVal(g)?lastVal(g)[0]:Math.min(Date.now(),e))+1);
@@ -3616,6 +3740,7 @@ function redrawDays(g,scroll){const b=$('gxdblk');if(!b)return;b.innerHTML=daysH
 const GEL=$('g');
 GEL.addEventListener('click',async e=>{const b=e.target.closest('[data-a]');if(!b||!GEL.contains(b))return;const a=b.dataset.a,g=goals.find(x=>x.id===cur);
   switch(a){
+  case'share':return shareGoal(g);
   case'rng':gxRange=b.dataset.v;renderGoals();return;
   case'open':cur=b.dataset.id;aiErr='';extOpen=false;{const x=goals.find(y=>y.id===cur);selDay=cellOf(x,Date.now());gview=finished(x)&&!x.closed&&!x.sumSeen?'sum':'detail';if(gview==='sum'){x.sumSeen=1;saveGoal(x)}}renderGoals();scrollTo(0,0);return;
   case'add':adding=true;gform=null;renderGoals();scrollTo(0,0);return;
@@ -3656,7 +3781,7 @@ function setLang(l){lang=l;st.set('lang',l);renderDayGreeting();applyStatic();co
 (async()=>{
   $('mark').innerHTML=[...'nuvio'].map((c,i)=>`<span style="animation-delay:${(.42+i*.055).toFixed(3)}s">${c}</span>`).join('');
   const q0=new URLSearchParams(location.search).get('lang'),qp=(q0==='ru'||q0==='en')?q0:null,sv=await st.get('lang'),seen=await st.get('blang'),th=await st.get('theme'),pal=await st.get('palette'),lg=await st.get('liquid_glass');
-  if(th)applyTheme(th);applyPalette(pal,false);applyLiquidGlass(lg!=='off',false);if(qp)st.set('blang',qp);const l=qp&&qp!==seen?qp:((sv==='ru'||sv==='en')?sv:qp);
+  if(th)applyTheme(th);applyPalette(pal,false);applyLiquidGlass(true,false);if(qp)st.set('blang',qp);const l=qp&&qp!==seen?qp:((sv==='ru'||sv==='en')?sv:qp);
   if(l==='ru'||l==='en'){lang=l;st.set('lang',l);applyStatic();moveGlass(document.querySelector('.tabs .on'),true);init();await new Promise(r=>setTimeout(r,1500))}
   else{$('splash').classList.add('ask');$('langs').innerHTML=`<button data-l="ru" aria-label="Русский">${FLAG.ru}</button><button data-l="en" aria-label="English">${FLAG.en}</button>`;
     lang=await new Promise(r=>$('langs').querySelectorAll('button').forEach(b=>b.onclick=()=>r(b.dataset.l)));
@@ -3862,7 +3987,16 @@ function netHol(y){const id=country+y;if(holNet[id])return holNet[id];
     o[x.date]=p?(p.n.includes(x.name)?p:{n:p.n+' · '+x.name,kind:p.kind==='off'?'off':kind,r:p.r&&x.global===false}):{n:String(x.name||x.localName||''),kind,r:x.global===false}});
    holNet[id]=o;try{localStorage.setItem('pl_hol_'+id,JSON.stringify(o))}catch{}}).catch(()=>{holNet[id]={_err:1};delete holWait[id]}).finally(()=>{Object.keys(holCache).forEach(k=>delete holCache[k]);render()});
  return null}
-const holName=n=>ru()?n.split(' · ').map(x=>HOL_RU[x]||x).join(' · '):n;
+/* Nager.Date names are English. Russian: built-in HOL_RU, then translations from the bot (/holidays: AI translates each name once
+   for everyone, server cache) kept in localStorage pl_tr_ru; until they arrive the English name is shown, then the calendar redraws. */
+const TRK='pl_tr_ru';let TRC={};try{TRC=JSON.parse(localStorage.getItem(TRK)||'{}')||{}}catch{TRC={}}
+const trMiss=new Set();let trT=0,trBusy=false,trFail=0;
+function trAsk(x){if(!x||HOL_RU[x]||TRC[x]||trFail>2)return;trMiss.add(x);clearTimeout(trT);trT=setTimeout(trRun,250)}
+async function trRun(){if(trBusy||!trMiss.size||typeof window.api!=='function')return;trBusy=true;const names=[...trMiss].slice(0,60);names.forEach(n=>trMiss.delete(n));let got=false;
+  try{const j=await window.api('/holidays',{names,lang:'ru'}),m=(j&&j.map)||{};Object.keys(m).forEach(k=>{if(typeof m[k]==='string'&&m[k])TRC[k]=m[k].slice(0,80)});got=Object.keys(m).length>0;
+    try{localStorage.setItem(TRK,JSON.stringify(TRC))}catch{}}catch{trFail++}
+  trBusy=false;if(got){Object.keys(holCache).forEach(k=>delete holCache[k]);render()}if(trMiss.size)trRun()}
+const holName=n=>ru()?n.split(' · ').map(x=>{const r=HOL_RU[x]||TRC[x];if(!r)trAsk(x);return r||x}).join(' · '):n;
 function holidays(y){const id=y+lang+country;if(holCache[id])return holCache[id];const out={},add=(d,name,kind)=>{if(name)out[dayKey(d)]={name,kind}};
  if(country&&country!=='RU'){const n=netHol(y);if(!n||n._err)return out;Object.entries(n).forEach(([k,v])=>{out[k]={name:holName(v.n)+(v.r?tr(' (some regions)',' (в части регионов)'):''),kind:v.kind}});return holCache[id]=out}
  FIXED.forEach(([md,r,e,kind])=>{const[m,d]=md.split('-').map(Number);add(new Date(y,m-1,d),ru()?r:e,kind)});
@@ -3887,7 +4021,7 @@ function render(){
  h+='</div></div>';
  const hm=Object.entries(H).filter(([k])=>k.slice(0,7)===dayKey(first).slice(0,7)).sort(([a],[b])=>a.localeCompare(b));
  const nh=country!=='RU'?holNet[country+y]:null,cl=new Intl.Collator(loc());
- h+='<div class="pl-cc"><label for="plCC">'+tr('Holidays','Праздники')+'</label><select id="plCC">'+PL_CC.map(c=>[c,ccName(c)]).sort((a,b)=>cl.compare(a[1],b[1])).map(([c,n])=>'<option value="'+c+'"'+(c===country?' selected':'')+'>'+safe(n)+'</option>').join('')+'</select></div>';
+ h+='<div class="pl-cc"><span class="pl-ccl" id="plCCl">'+tr('Country','Страна')+'</span><select id="plCC" aria-labelledby="plCCl">'+PL_CC.map(c=>[c,ccName(c)]).sort((a,b)=>cl.compare(a[1],b[1])).map(([c,n])=>'<option value="'+c+'"'+(c===country?' selected':'')+'>'+safe(n)+'</option>').join('')+'</select></div>';
  if(country!=='RU'&&!nh)h+='<p class="pl-holnote">'+tr('Loading holidays…','Загружаем праздники…')+'</p>';
  else if(nh&&nh._err)h+='<p class="pl-holnote">'+tr('Could not load holidays. Check the connection.','Не удалось загрузить праздники. Проверьте интернет.')+' <button class="pl-retry" data-pl="holretry">'+tr('Retry','Повторить')+'</button></p>';
  else if(country!=='RU'&&!hm.length)h+='<p class="pl-holnote">'+tr('No public holidays this month.','В этом месяце нет государственных праздников.')+'</p>';
@@ -4977,7 +5111,11 @@ const tz=()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'
 const dk=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))>>>0;return s.length+':'+h};
 const inTg=()=>!!(tg&&tg.initData);
-async function getCfg(){if(!cfg){const c=await jget(K,null);cfg={on:!c||c.on!==false,at:c&&HHMM.test(c.at)?c.at:'07:00'}}return cfg}
+/* sections of the morning summary the user wants (all by default); the bot sends only these */
+const PARTS=[['weather','cloud-sun','Weather','Погода'],['wear','shirt','What to wear','Что надеть'],['goals','target','Goals','Цели'],['plan','calendar-range','Plans for today','Планы на день'],
+  ['rem','alarm-clock','Reminders','Напоминания'],['meds','pill','Medicines','Лекарства'],['extra','graduation-cap','Tomorrow & exams','Завтра и экзамены'],['line','sparkles','Phrase of the day','Фраза дня']];
+async function getCfg(){if(!cfg){const c=await jget(K,null),ok=PARTS.map(p=>p[0]),ps=c&&Array.isArray(c.parts)?c.parts.filter(p=>ok.includes(p)):ok;
+  cfg={on:!c||c.on!==false,at:c&&HHMM.test(c.at)?c.at:'07:00',parts:ps.length?ps:ok}}return cfg}
 const saveCfg=()=>st.set(K,JSON.stringify(cfg));
 
 async function snapshot(){
@@ -4992,11 +5130,23 @@ async function snapshot(){
   try{d.meds=((await jget('h_med',{list:[]}))?.list||[]).slice(0,12).map(m=>({name:m.n,dose:m.dose||'',per:m.per||1}))}catch{d.meds=[]}
   try{const p=await jget('sy_prof',{}),ex=window.NUVIO_STUDY_EXAMS||[],dates=(p&&p.dates)||{};
     d.exams=Object.entries(dates).filter(([id,v])=>/^\d{4}-\d{2}-\d{2}$/.test(v)&&v>=days[0]&&(p.exams||[]).includes(id)).map(([id,v])=>{const x=ex.find(e=>e.id===id);return x?{name:lang==='en'&&x.en?x.en:x.name,date:v}:null}).filter(Boolean)}catch{d.exams=[]}
+  try{d.week=await weekStats()}catch{d.week={}}
   return d}
+/* week numbers for the Sunday summary: last 7 days, only what was recorded */
+async function weekStats(){const w={},now=Date.now(),from=now-7*864e5,keys=[...Array(7)].map((_,i)=>dk(new Date(now-i*864e5)));
+  try{w.wo=(typeof CX!=='undefined'&&CX.wo?CX.wo:[]).filter(x=>x.ts>=from).length}catch{}
+  try{const sl=((typeof HL!=='undefined'&&HL.loaded?HL.d.sleep:await jget('h_sleep',[]))||[]).filter(e=>Array.isArray(e)&&e[0]*1000>=from&&+e[1]>0);
+    if(sl.length){w.sleep=sl.reduce((a,e)=>a+e[1]/60,0)/sl.length;w.sleep_n=Math.min(7,sl.length)}}catch{}
+  try{const m=(await (window.nuvioMoodEntries?window.nuvioMoodEntries():[])).filter(e=>keys.includes(e.date));if(m.length){w.mood=m.reduce((a,e)=>a+ +e.value,0)/m.length;w.mood_n=m.length}}catch{}
+  try{const n=Math.floor(Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate())/864e5);w.study=((await jget('sy_s',[]))||[]).filter(x=>Array.isArray(x)&&x[0]>n-7&&x[0]<=n).reduce((a,x)=>a+(+x[1]||0),0)}catch{}
+  try{const f=(await jget('fds',{}))||{},k=keys.map(x=>f[x]).filter(v=>Array.isArray(v)&&v[0]>0);if(k.length){w.kcal=k.reduce((a,v)=>a+v[0],0)/k.length;w.kcal_n=k.length}
+    const tg_=typeof tgt==='function'?tgt():null;if(tg_&&tg_.kcal)w.kcal_t=tg_.kcal}catch{}
+  try{if(window.nuvioStreak)w.streak=(await window.nuvioStreak()).cur}catch{}
+  return w}
 
 async function sync(extra){
   const c=await getCfg();if((!c.on&&!extra)||!inTg()||!API_URL)return null;
-  const body={action:'sync',at:c.at,timezone:tz(),data:await snapshot(),...(extra||{})},h=hash(JSON.stringify(body));
+  const body={action:'sync',at:c.at,timezone:tz(),data:{...(await snapshot()),parts:c.parts},...(extra||{})},h=hash(JSON.stringify(body));
   if(!extra&&localStorage.getItem('dg_sent')===h&&Date.now()-(+localStorage.getItem('dg_at')||0)<12*36e5)return null;
   const j=await api('/digest',body);
   if(j&&j.on===false&&cfg.on){cfg.on=false;await saveCfg();draw()}
@@ -5006,10 +5156,11 @@ const quiet=()=>sync().catch(()=>{});
 
 function card(){const c=cfg||{on:true,at:'07:00'};
   return '<div class="sec dg-card" id="dgCard"><h2>'+tx('Morning summary','Утренняя сводка')+'</h2>'
-   +'<p class="dg-sub">'+tx('Every morning the bot sends the weather, what to wear, your goals, plans and reminders for the day to the chat.','Каждое утро бот пришлёт в чат погоду, что надеть, цели, планы и напоминания на день.')+'</p>'
+   +'<p class="dg-sub">'+tx('Every morning the bot sends the weather, what to wear, your goals, plans and reminders for the day to the chat. On Sundays at 19:00 — your week in numbers.','Каждое утро бот пришлёт в чат погоду, что надеть, цели, планы и напоминания на день, а по воскресеньям в 19:00 — итоги недели.')+'</p>'
    +'<div class="seg"><button data-dg="on" class="'+(c.on?'on':'')+'">'+tx('On','Включена')+'</button><button data-dg="off" class="'+(c.on?'':'on')+'">'+tx('Off','Выключена')+'</button></div>'
    +(c.on?'<div class="dg-row"><label for="dgAt">'+tx('Send at','Время')+'</label><input type="time" id="dgAt" step="300" value="'+c.at+'"></div>'
-     +'<button class="dg-test" data-dg="test"'+(busy?' disabled':'')+'>'+(busy?tx('Sending…','Отправляю…'):tx('Send now','Прислать сейчас'))+'</button>':'')
+     +'<p class="dg-ph">'+tx('What to send','Что присылать')+'</p><div class="dg-parts" role="group">'+PARTS.map(([k,ic,en,ru])=>'<label class="dg-pt"><input type="checkbox" data-dgp="'+k+'"'+(c.parts.includes(k)?' checked':'')+'>'+ico(ic)+'<span>'+tx(en,ru)+'</span></label>').join('')+'</div>'
+     +'<div class="dg-btns"><button class="dg-test" data-dg="test"'+(busy?' disabled':'')+'>'+(busy?tx('Sending…','Отправляю…'):tx('Send now','Прислать сейчас'))+'</button><button class="dg-test" data-dg="week"'+(busy?' disabled':'')+'>'+tx('Week summary','Итоги недели')+'</button></div>':'')
    +'<p class="dg-msg'+(bad?' dg-bad':'')+'" role="status">'+esc(msg)+'</p>'
    +'<p class="dg-note">'+tx('For the summary the bot keeps your city (to about 1 km), wardrobe, goals, plans for the week, medicines and exam dates. Turn it off and this data is deleted from the server.','Для сводки бот хранит у себя город (с точностью около 1 км), гардероб, цели, планы на неделю, лекарства и даты экзаменов. Выключите сводку, и эти данные удалятся с сервера.')+'</p></div>'}
 function draw(){const p=document.getElementById('p');if(!p)return;const old=document.getElementById('dgCard');
@@ -5023,11 +5174,19 @@ async function act(a){
     try{if(c.on){await sync({enable:true});say(tx('Done. The next summary comes at ','Готово. Следующая сводка придёт в ')+c.at+'.')}
       else{await api('/digest',{action:'off'});localStorage.removeItem('dg_sent');say(tx('Turned off. The data was deleted from the server.','Выключено. Данные удалены с сервера.'))}}
     catch(e){say(e.message||tx('Could not save. Try again.','Не удалось сохранить. Попробуйте ещё раз.'),true)}return}
+  if(a==='week'){if(busy)return;busy=true;msg='';draw();
+    try{await sync({action:'test',kind:'week',enable:true});busy=false;say(tx('Sent. Check the chat with the bot.','Отправил. Загляните в чат с ботом.'))}
+    catch(e){busy=false;say(tx('Nothing to sum up yet — add a few entries this week.','Пока нечего подводить — сделайте пару записей за неделю.'),true)}return}
   if(a==='test'){if(busy)return;busy=true;msg='';draw();
     try{await sync({action:'test',enable:true});busy=false;say(tx('Sent. Check the chat with the bot.','Отправил. Загляните в чат с ботом.'))}
     catch(e){busy=false;say(e.message||tx('Could not send. Try again later.','Не удалось отправить. Попробуйте позже.'),true)}}}
 
 document.addEventListener('click',e=>{const b=e.target.closest('#dgCard [data-dg]');if(b){e.preventDefault();act(b.dataset.dg)}});
+document.addEventListener('change',async e=>{const p=e.target.dataset&&e.target.dataset.dgp;if(!p)return;const c=await getCfg();
+  const set=new Set(c.parts);e.target.checked?set.add(p):set.delete(p);
+  if(!set.size){e.target.checked=true;return say(tx('Keep at least one section.','Оставьте хотя бы один раздел.'),true)}
+  c.parts=PARTS.map(x=>x[0]).filter(k=>set.has(k));await saveCfg();msg='';bad=false;
+  try{await sync({});say(tx('Saved. The bot will send only the chosen sections.','Сохранено. Бот пришлёт только выбранное.'))}catch(er){say(er.message,true)}});
 document.addEventListener('change',async e=>{if(e.target.id!=='dgAt')return;const v=e.target.value;if(!HHMM.test(v))return;const c=await getCfg();if(v===c.at)return;c.at=v;await saveCfg();
   try{await sync({});say(tx('The summary will come at ','Сводка будет приходить в ')+v+'.')}catch(er){say(er.message,true)}});
 
@@ -5121,8 +5280,38 @@ async function listRows(){const rows=[];let min=0;
   ev.slice(0,4).forEach(e=>rows.push('<button type="button" class="hm-row" data-h="plan"><span class="hm-ri">'+ico('square')+'</span><span class="hm-rt"><b>'+esc(e.title)+'</b><small>'+esc(e.time||tx('All day','Весь день'))+' · '+tx('Plan','План')+'</small></span>'+ico('chevron-right')+'</button>'));
   if(!ev.length)rows.push('<button type="button" class="hm-row" data-h="plan"><span class="hm-ri">'+ico('calendar-range')+'</span><span class="hm-rt"><b>'+tx('Nothing planned today','На сегодня планов нет')+'</b><small>'+tx('Add an event to the planner','Добавьте событие в план')+'</small></span>'+ico('chevron-right')+'</button>');
   return rows.join('')}
+/* серия: дни подряд, когда было хоть что-то из записей (настроение, цель, тренировка, еда, учёба); значки за 3/7/14/30/60/100/365 дней.
+   Сегодня ещё пусто — серия не сгорает до конца дня (считаем со вчера). Полученные значки — ключ aw {best, got}. */
+const BADGES=[3,7,14,30,60,100,365];
+async function activeDays(){const S=new Set(),add=ts=>{if(ts)S.add(iso(ts))};
+  try{(await (window.nuvioMoodEntries?window.nuvioMoodEntries():[])).forEach(e=>S.add(e.date))}catch{}
+  try{goals.forEach(g=>{(g.log||[]).forEach(z=>add(z[0]));(g.steps||[]).forEach(z=>{if(z.done&&z.at)add(z.at)})})}catch{}
+  try{(CX.wo||[]).forEach(w=>add(w.ts))}catch{}
+  try{Object.entries((await jget('fds',{}))||{}).forEach(([k,v])=>{if(Array.isArray(v)&&v[0]>0)S.add(k)})}catch{}
+  try{((await jget('sy_s',[]))||[]).forEach(z=>{if(Array.isArray(z)&&+z[1]>0){const d=new Date(z[0]*864e5);S.add(d.getUTCFullYear()+'-'+p2(d.getUTCMonth()+1)+'-'+p2(d.getUTCDate()))}})}catch{}
+  return S}
+async function streak(){const S=await activeDays(),d=new Date();d.setHours(12,0,0,0);const today=S.has(iso(d));if(!today)d.setDate(d.getDate()-1);
+  let cur=0;while(S.has(iso(d))){cur++;d.setDate(d.getDate()-1)}
+  const week=[...Array(7)].map((_,i)=>{const z=new Date();z.setHours(12,0,0,0);z.setDate(z.getDate()-6+i);return{k:iso(z),on:S.has(iso(z)),d:z}});
+  const aw=(await jget('aw',null))||{best:0,got:[]};if(!Array.isArray(aw.got))aw.got=[];
+  const fresh=BADGES.filter(b=>cur>=b&&!aw.got.includes(b)),best=Math.max(+aw.best||0,cur);
+  if(fresh.length||best!==aw.best){aw.best=best;aw.got=[...new Set([...aw.got,...fresh])].sort((a,b)=>a-b);await st.set('aw',JSON.stringify(aw))}
+  if(fresh.length){const b=fresh[fresh.length-1];try{tg?.HapticFeedback?.notificationOccurred?.('success')}catch{}
+    nvToast(tx('New badge: '+b+' days in a row!','Новый значок: '+b+' '+dW(b)+' подряд!'))}
+  return{cur,today,week,best:aw.best,got:aw.got}}
+window.nuvioStreak=streak;
+const dW=n=>n%10===1&&n%100!==11?'день':n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?'дня':'дней';
+async function streakCard(){const s=await streak(),next=BADGES.find(b=>b>s.cur);
+  const title=s.cur?tx(s.cur+(s.cur===1?' day':' days')+' in a row',s.cur+' '+dW(s.cur)+' подряд'):tx('No streak yet','Серии пока нет');
+  const hint=!s.cur?tx('Log your mood or progress today to start one.','Отметьте настроение или прогресс — серия начнётся сегодня.')
+    :!s.today?tx('Add any entry today to keep the streak.','Сделайте любую запись сегодня, чтобы серия не сгорела.')
+    :next?tx((next-s.cur)+' more to the '+next+'-day badge',('До значка «'+next+' '+dW(next)+'» — ещё '+(next-s.cur)+' '+dW(next-s.cur))):tx('All badges collected!','Все значки собраны!');
+  return'<section class="hm-card hm-streak" data-h="streak"><div class="hm-th"><b>'+ico('flame','hm-fl')+tx('Streak','Серия')+'</b><span class="hm-sn">'+esc(title)+'</span></div>'+
+    '<div class="hm-week">'+s.week.map(w=>'<span class="'+(w.on?'on':'')+(w.k===iso(Date.now())?' td':'')+'"><i></i><small>'+esc(w.d.toLocaleDateString(loc(),{weekday:'narrow'}))+'</small></span>').join('')+'</div>'+
+    '<div class="hm-badges">'+BADGES.slice(0,6).map(b=>'<span class="'+(s.got.includes(b)?'got':'')+'" title="'+b+'">'+ico('award')+'<b>'+b+'</b></span>').join('')+'</div>'+
+    '<p class="hm-sub2">'+esc(hint)+'</p></section>'}
 async function renderHome(){const el=H();setDate();if(!el||el.hidden)return;const my=++seq;
-  const html=goalCard()+'<div class="hm-grid">'+(await foodTile())+fitTile()+'</div>'+(await moodCard())+'<h3 class="hm-h">'+tx('Plan & study','План и учёба')+'</h3><div class="hm-list">'+(await listRows())+'</div>';
+  const html=goalCard()+'<div class="hm-grid">'+(await foodTile())+fitTile()+'</div>'+(await streakCard())+(await moodCard())+'<h3 class="hm-h">'+tx('Plan & study','План и учёба')+'</h3><div class="hm-list">'+(await listRows())+'</div>';
   if(my===seq)el.innerHTML=html}
 window.renderHome=renderHome;
 function openGoal(id,focusLog){showTab('g');requestAnimationFrame(()=>{const b=[...document.querySelectorAll('#g [data-a="open"]')].find(x=>x.dataset.id===id);if(b)b.click();
@@ -5138,11 +5327,40 @@ document.addEventListener('click',async e=>{const b=e.target.closest('#home [dat
   if(a==='fitgo'){showTab('ft');try{if(F.act){fa.resume()}else{fa.menu();requestAnimationFrame(()=>document.querySelector('#ft [data-a="start"]')?.click())}}catch{}return}
   if(a==='study')return showTab('study');
   if(a==='plan')return showTab('pl');
-  if(a==='mood'&&window.nuvioMoodSet){await window.nuvioMoodSet(+b.dataset.v);renderHome()}});
+  if(a==='mood'&&window.nuvioMoodSet){await window.nuvioMoodSet(+b.dataset.v);renderHome()}
+  if(a==='streak')return;});
 setDate();setInterval(setDate,60000);
 // данные разделов догружаются асинхронно — перерисовать, когда появятся
 [300,1500,4000].forEach(ms=>setTimeout(renderHome,ms));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')renderHome()});
+})();
+</script>
+<script>/* NUVIO_TG: возможности Telegram 7.0–8.0. Кнопка «Настройки» в меню бота → Профиль; полноэкранный режим (настройка fs_on,
+   только телефоны; отступ сверху — --tg-safe-area-inset-top + --tg-content-safe-area-inset-top); «На главный экран» (addToHomeScreen).
+   Карточка — в Профиле перед «Утренней сводкой». На старых версиях Telegram карточка не показывается. */
+(function(){
+const tg=window.Telegram&&Telegram.WebApp,tx=(en,ru)=>lang==='en'?en:ru,ver=v=>!!(tg&&tg.isVersionAtLeast&&tg.isVersionAtLeast(v));
+const mobile=()=>!!tg&&/^(ios|android|android_x)$/.test(tg.platform||''),FS='fs_on';let hs=ver('8.0')?'unknown':'unsupported',fsOn=false;
+if(ver('7.0')&&tg.SettingsButton){try{tg.SettingsButton.show();tg.SettingsButton.onClick(()=>showTab('p'))}catch{}}
+const fsClass=()=>document.documentElement.classList.toggle('nv-fs',!!(tg&&tg.isFullscreen));
+function fsSet(on){if(!ver('8.0')||!mobile())return;try{on?tg.requestFullscreen():tg.exitFullscreen()}catch{}}
+if(tg&&tg.onEvent){tg.onEvent('fullscreenChanged',()=>{fsClass();setTimeout(()=>moveGlass(document.querySelector('.tabs .on'),true),60);draw()});
+  tg.onEvent('fullscreenFailed',()=>{fsOn=false;st.set(FS,'0');draw()});tg.onEvent('homeScreenAdded',()=>{hs='added';draw()});
+  tg.onEvent('homeScreenChecked',e=>{if(e&&e.status){hs=e.status;draw()}})}
+(async()=>{fsOn=(await st.get(FS))==='1';if(fsOn)fsSet(true);fsClass();
+  if(ver('8.0')&&tg.checkHomeScreenStatus){try{tg.checkHomeScreenStatus(s=>{if(s){hs=s;draw()}})}catch{hs='unsupported'}}})();
+function card(){if(!ver('8.0'))return'';const canFs=mobile(),canHs=hs!=='unsupported';if(!canFs&&!canHs)return'';
+  return'<div class="sec tgx-card" id="tgxCard"><h2>Telegram</h2>'+
+   (canFs?'<div class="tgx-row"><span><b>'+tx('Full screen','Полный экран')+'</b><small>'+tx('Without the Telegram header','Без шапки Telegram')+'</small></span><div class="seg"><button data-tgx="fs1" class="'+(fsOn?'on':'')+'">'+tx('On','Вкл')+'</button><button data-tgx="fs0" class="'+(fsOn?'':'on')+'">'+tx('Off','Выкл')+'</button></div></div>':'')+
+   (canHs?'<div class="tgx-row"><span><b>'+tx('Home screen icon','Значок на экране телефона')+'</b><small>'+(hs==='added'?tx('Already added','Уже добавлен'):tx('Open NUVIO like an app','Открывать NUVIO как приложение'))+'</small></span>'+
+     (hs==='added'?'':'<button class="p" data-tgx="home">'+ico('smartphone')+tx('Add','Добавить')+'</button>')+'</div>':'')+
+   '<p class="tgx-note">'+tx('Settings are also in the bot menu (⋯ → Settings).','Настройки есть и в меню бота: ⋯ → «Настройки».')+'</p></div>'}
+function draw(){const p=document.getElementById('p');if(!p)return;const old=document.getElementById('tgxCard'),h=card();
+  if(old){old.outerHTML=h;return}if(!h)return;const at=document.getElementById('dgCard')||document.getElementById('chan');if(at)at.insertAdjacentHTML('beforebegin',h)}
+const base=renderProfile;renderProfile=function(){base.apply(this,arguments);draw()};
+document.addEventListener('click',async e=>{const b=e.target.closest('#tgxCard [data-tgx]');if(!b)return;const a=b.dataset.tgx;
+  if(a==='fs1'||a==='fs0'){fsOn=a==='fs1';await st.set(FS,fsOn?'1':'0');fsSet(fsOn);draw()}
+  if(a==='home'){try{tg.addToHomeScreen()}catch{}}});
 })();
 </script>
 </body></html>
