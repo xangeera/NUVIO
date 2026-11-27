@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://telegram.org https://cdnjs.cloudflare.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://ege.fipi.ru https://oge.fipi.ru https://t.me https://*.t.me https://telegram.org https://*.telegram.org https://upload.wikimedia.org; connect-src 'self' https://gondola-hyperlink-showcase.ngrok-free.dev https://api.open-meteo.com https://geocoding-api.open-meteo.com https://date.nager.at https://en.wikipedia.org https://cdnjs.cloudflare.com; media-src 'self' blob: data:; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="ru"><head><meta charset="UTF-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://telegram.org https://cdnjs.cloudflare.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://ege.fipi.ru https://oge.fipi.ru https://t.me https://*.t.me https://telegram.org https://*.telegram.org https://upload.wikimedia.org https://thumb.wikimedia.org; connect-src 'self' https://gondola-hyperlink-showcase.ngrok-free.dev https://api.open-meteo.com https://geocoding-api.open-meteo.com https://date.nager.at https://en.wikipedia.org https://cdnjs.cloudflare.com; media-src 'self' blob: data:; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="preload" as="image" href="img/bg/flow.c6405b69.webp" type="image/webp" fetchpriority="high">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>nuvio</title>
@@ -2018,6 +2018,282 @@ html:not(#_) #p .dg-card .dg-pt input{position:absolute;opacity:0;width:1px!impo
 #p .dg-card .dg-pt:has(input:checked){border-color:color-mix(in srgb,var(--nv-blue) 60%,transparent);background:color-mix(in srgb,var(--nv-blue) 16%,transparent);color:var(--nv-text)}
 #p .dg-card .dg-pt:has(input:focus-visible){outline:2px solid var(--nv-blue);outline-offset:2px}
 </style>
+<style id="nuvio-fitness-menu">
+/* Фитнес — главный экран (vMenu): классы fx-…, цвет карточки --fx-a, текст на главной кнопке --fx-on */
+#ft{--fx-hist:#3ccf86;--fx-cust:#a98bff;--fx-lib:#ff9d4d;--fx-on:#0b0e15;--fx-sep:color-mix(in srgb,var(--nv-text) 12%,transparent)}
+html:not([data-theme=dark]) #ft{--fx-hist:#16975a;--fx-cust:#7457ee;--fx-lib:#dd6c0b;--fx-on:#fff}
+html[data-palette=mono] #ft{--fx-hist:var(--nv-text);--fx-cust:var(--nv-text);--fx-lib:var(--nv-text)}
+#ft .fx-hero,#ft .fx-big,#ft .fx-sm{position:relative;border-radius:24px;background:var(--nv-panel);-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);
+  border:1px solid var(--nv-rim);box-shadow:inset 0 1px 0 var(--nv-hi),var(--nv-shadow);color:var(--nv-text);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:transform .2s cubic-bezier(.16,1,.3,1)}
+#ft :is(.fx-hero,.fx-big,.fx-sm):active{transform:scale(.985)}
+#ft :is(.fx-hero,.fx-big,.fx-sm):focus-visible{outline:2px solid var(--nv-blue);outline-offset:3px}
+#ft .fx-chev{flex:none;width:20px;height:20px;color:var(--nv-secondary)}
+
+/* большая карточка цели */
+#ft .fx-hero{margin:4px 0 14px;padding:18px 18px 0;overflow:hidden}
+#ft .fx-hh{display:flex;align-items:center;gap:6px}
+#ft .fx-hm{flex:1;min-width:0}
+html:not(#_) #ft .fx-hm h2{margin:0 0 6px!important;padding:0!important;font-size:27px!important;line-height:1.08!important;font-weight:760!important;letter-spacing:-.03em;color:var(--nv-text)!important;overflow-wrap:anywhere;text-wrap:balance}
+#ft .fx-hm p{margin:0;color:var(--nv-secondary);font-size:14.5px;line-height:1.35}
+#ft .fx-hero .fx-ill{flex:none;width:96px;height:96px;margin:-10px -8px -6px 0;color:var(--nv-blue);filter:drop-shadow(0 8px 12px color-mix(in srgb,var(--nv-blue) 32%,transparent))}
+#ft .fx-dart{fill:none;stroke:var(--nv-text);stroke-width:3.5;stroke-linecap:round}
+#ft .fx-wk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:14px 0 4px}
+#ft .fx-d{display:flex;flex-direction:column;align-items:center;gap:6px}
+#ft .fx-d small{font-size:12px;color:var(--nv-secondary);font-weight:560}
+#ft .fx-d i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:color-mix(in srgb,var(--nv-text) 8%,transparent);color:var(--fx-on)}
+#ft .fx-d.on i{background:var(--nv-blue)}
+#ft .fx-d .lu{width:16px;height:16px;stroke-width:3}
+#ft .fx-d.td small{color:var(--nv-text);font-weight:750}
+#ft .fx-d.td i{outline:2px solid var(--nv-blue);outline-offset:2px}
+#ft .fx-st{display:grid;grid-template-columns:1fr 1fr;margin:12px -18px 0;padding:0 18px;border-top:1px solid var(--fx-sep)}
+#ft .fx-st>div{display:flex;align-items:center;gap:8px;min-width:0;padding:12px 0}
+#ft .fx-st>div+div{padding-left:14px;border-left:1px solid var(--fx-sep)}
+#ft .fx-st b{font-size:24px;font-weight:760;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+#ft .fx-st small{min-width:0;color:var(--nv-secondary);font-size:13px;line-height:1.2}
+#ft .fx-cab{display:flex;align-items:center;gap:10px;margin:0 -18px;padding:13px 18px 14px;border-top:1px solid var(--fx-sep);font-size:15px;font-weight:650}
+#ft .fx-cab span{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+#ft .fx-cab small{color:var(--nv-secondary);font-size:13px;font-weight:500}
+
+/* главное действие — начать тренировку */
+html:not(#_) #ft .fx-go{position:relative;overflow:hidden;display:flex!important;align-items:center;gap:14px;width:100%!important;min-height:76px!important;margin:0 0 14px!important;padding:10px 18px 10px 11px!important;
+  border:0!important;border-radius:28px!important;color:var(--fx-on)!important;text-align:left;font:inherit!important;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--nv-blue) 84%,#fff),color-mix(in srgb,var(--nv-blue) 90%,#000))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 14px 28px -12px color-mix(in srgb,var(--nv-blue) 80%,transparent),0 2px 6px rgba(0,0,0,.18)!important;
+  transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s!important}
+html:not(#_):not([data-theme=dark]) #ft .fx-go{background:linear-gradient(135deg,color-mix(in srgb,var(--nv-blue) 80%,#000),color-mix(in srgb,var(--nv-blue) 62%,#000))!important}
+html:not(#_) #ft .fx-go:active{transform:scale(.98)}
+html:not(#_) #ft .fx-go:focus-visible{outline:2px solid var(--nv-text)!important;outline-offset:3px}
+#ft .fx-gi{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:50%;background:color-mix(in srgb,var(--fx-on) 16%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fx-on) 14%,transparent)}
+#ft .fx-gi .lu{width:24px;height:24px;margin-left:3px;fill:currentColor}
+#ft .fx-gt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+#ft .fx-gt b{font-size:19px;font-weight:780;letter-spacing:-.02em;line-height:1.15;color:inherit}
+#ft .fx-gt small{font-size:13.5px;font-weight:600;line-height:1.2;color:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ft .fx-go>.lu{flex:none;width:22px;height:22px}
+#ft .fx-go:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.3) 50%,transparent 70%);transform:translateX(-110%);animation:fxShine 1.5s .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes fxShine{to{transform:translateX(110%)}}
+html:not(#_) #ft .fx-alt{display:block;width:auto!important;min-height:40px!important;margin:-6px auto 10px!important;padding:0 16px!important;border:0!important;background:none!important;box-shadow:none!important;
+  color:var(--nv-blue)!important;font-size:14.5px!important;font-weight:650!important}
+
+/* «История» — широкая, с графиком по неделям */
+#ft .fx-big{--fx-a:var(--fx-hist);margin-bottom:10px;padding:14px 16px 14px}
+#ft .fx-bh{display:flex;align-items:center;gap:12px}
+#ft .fx-tile{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:14px;color:var(--fx-a);background:color-mix(in srgb,var(--fx-a) 17%,transparent)}
+#ft .fx-tile .lu{width:22px;height:22px}
+#ft .fx-bt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+#ft .fx-bt b{font-size:17px;font-weight:720;letter-spacing:-.01em}
+#ft .fx-bt small{color:var(--nv-secondary);font-size:13.5px}
+#ft .fx-bars{display:flex;align-items:flex-end;gap:7px;height:70px;margin:16px 2px 6px}
+#ft .fx-bars i{position:relative;flex:1;min-height:6px;border-radius:7px 7px 3px 3px;background:color-mix(in srgb,var(--fx-a) 34%,transparent)}
+#ft .fx-bars i.cur{background:var(--fx-a)}
+#ft .fx-bars em{position:absolute;left:0;right:0;bottom:100%;margin-bottom:3px;text-align:center;font-style:normal;font-size:11.5px;font-weight:650;color:var(--nv-secondary);font-variant-numeric:tabular-nums}
+#ft .fx-bars i.cur em{color:var(--nv-text)}
+#ft .fx-bl{display:flex;justify-content:space-between;margin:0 2px;font-size:12px;color:var(--nv-secondary)}
+#ft .fx-empty{margin:12px 0 0;color:var(--nv-secondary);font-size:14px;line-height:1.4}
+#ft .fx-pr{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--fx-sep);font-size:14px}
+#ft .fx-pr .lu{flex:none;width:18px;height:18px;color:#f0a92e}
+#ft .fx-pr span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ft .fx-pr b{font-variant-numeric:tabular-nums}
+
+/* компактные карточки */
+#ft .fx-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px}
+#ft .fx-sm{display:flex;flex-direction:column;align-items:flex-start;padding:14px 14px 15px}
+#ft .fx-sm.c1{--fx-a:var(--fx-cust)}#ft .fx-sm.c2{--fx-a:var(--fx-lib)}
+#ft .fx-sm .fx-ill{width:46px;height:46px;margin:0 0 12px;color:var(--fx-a);filter:drop-shadow(0 6px 8px color-mix(in srgb,var(--fx-a) 30%,transparent))}
+#ft .fx-sm .fx-chev{position:absolute;top:14px;right:12px}
+#ft .fx-sm b{max-width:100%;font-size:clamp(14px,3.9vw,16px);font-weight:720;letter-spacing:-.015em;line-height:1.2}
+#ft .fx-sm small{margin-top:2px;color:var(--nv-secondary);font-size:13px;line-height:1.25}
+@media(prefers-reduced-motion:reduce){#ft .fx-go:after{display:none}#ft :is(.fx-hero,.fx-big,.fx-sm,.fx-go):active{transform:none!important}}
+@media(prefers-reduced-transparency:reduce){html:not(#_) #ft :is(.fx-hero,.fx-big,.fx-sm){-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--nv-base)!important}}
+</style>
+<style id="nuvio-nutrition-v2">
+/* Питание v2: главный экран, дневник по приёмам пищи, добавление, вода, рецепты. Цвета БЖУ — --nx-p/f/c, вода --nx-w */
+#nx{--nx-p:#5aa8ff;--nx-f:#b394ff;--nx-c:#45d08f;--nx-w:#45b4ff;--nx-won:#03121f;--nx-warn:#ffb14a;--nx-b:#ffb547;--nx-s:#ff8a9a;--nx-sep:color-mix(in srgb,var(--nv-text) 12%,transparent)}
+html:not([data-theme=dark]) #nx{--nx-p:#1f6fe0;--nx-f:#7356e8;--nx-c:#13874f;--nx-w:#0a6fc8;--nx-won:#fff;--nx-warn:#b45f00;--nx-b:#b86a00;--nx-s:#c8344f}
+html[data-palette=mono] #nx{--nx-p:var(--nv-text);--nx-f:var(--nv-secondary);--nx-c:var(--nv-secondary);--nx-b:var(--nv-text);--nx-s:var(--nv-text)}
+#nx :is(.nx-day,.nx-meals:not(.full) .nx-meal,.nx-mg,.nx-wat,.nx-rc,.nx-ai,.nx-fdw,.nx-wbig,.nx-kb){position:relative;border-radius:22px;background:var(--nv-panel);-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);
+  border:1px solid var(--nv-rim);box-shadow:inset 0 1px 0 var(--nv-hi),var(--nv-shadow);color:var(--nv-text)}
+#nx [role=button]{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .2s cubic-bezier(.16,1,.3,1)}
+#nx [role=button]:active{transform:scale(.985)}
+#nx [role=button]:focus-visible{outline:2px solid var(--nv-blue);outline-offset:3px}
+#nx .nx-chev{flex:none;width:20px;height:20px;color:var(--nv-secondary)}
+html:not(#_) #nx .nx-link{display:inline-flex!important;align-items:center;gap:2px;width:auto!important;min-height:36px!important;margin:0!important;padding:0 2px!important;border:0!important;background:none!important;box-shadow:none!important;
+  color:var(--nv-blue)!important;font-size:14.5px!important;font-weight:650!important}
+html:not(#_) #nx .nx-link .lu{width:18px;height:18px;margin:0!important}
+#nx .nx-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 2px 10px}
+html:not(#_) #nx .nx-hd h2{margin:0!important;font-size:20px!important;font-weight:750!important;letter-spacing:-.02em;color:var(--nv-text)!important}
+#nx .nx-h3{margin:14px 4px 8px;font-size:13.5px;font-weight:650;color:var(--nv-secondary)}
+#nx .nx-err{color:var(--nx-warn)!important;font-weight:600}
+
+/* карточка дня */
+#nx .nx-day{padding:16px 16px 14px;margin:4px 0 4px}
+#nx .nx-dt{display:flex;align-items:center;gap:16px}
+#nx .nx-ring{position:relative;flex:none;width:118px;height:118px}
+#nx .nx-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+#nx .nx-ring circle{fill:none;stroke-width:11;stroke-linecap:round}
+#nx .nx-ring .tr{stroke:color-mix(in srgb,var(--nv-text) 10%,transparent)}
+#nx .nx-ring .ar{stroke:url(#nxRg)}
+#nx .nx-ring.over .ar{stroke:var(--nx-warn)}
+#nx .nx-ring span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#nx .nx-ring b{font-size:25px;font-weight:780;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+#nx .nx-ring small{margin-top:4px;font-size:12.5px;color:var(--nv-secondary)}
+#nx .nx-dl{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+#nx .nx-dl small{font-size:13.5px;color:var(--nv-secondary)}
+#nx .nx-dl small.warn{color:var(--nx-warn);font-weight:650}
+#nx .nx-dl>b{font-size:29px;font-weight:780;letter-spacing:-.03em;line-height:1.08;font-variant-numeric:tabular-nums;white-space:nowrap}
+#nx .nx-dl>b i{font-style:normal;font-size:16px;font-weight:600}
+#nx .nx-mac{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--nx-sep)}
+#nx .nx-m small{display:block;font-size:12.5px;color:var(--nv-secondary)}
+#nx .nx-m b{display:block;margin:3px 0 8px;font-size:16px;font-weight:740;font-variant-numeric:tabular-nums;white-space:nowrap}
+#nx .nx-m b i{font-style:normal;font-weight:500;font-size:12.5px;color:var(--nv-secondary)}
+#nx .nx-bar{display:block;height:6px;border-radius:3px;background:color-mix(in srgb,var(--nv-text) 10%,transparent);overflow:hidden}
+#nx .nx-bar i{display:block;height:100%;border-radius:3px;background:var(--nx-c);transition:width .5s cubic-bezier(.16,1,.3,1)}
+#nx .nx-m.mp .nx-bar i{background:var(--nx-p)}#nx .nx-m.mf .nx-bar i{background:var(--nx-f)}
+#nx .nx-bar i.over{background:var(--nx-warn)!important}
+
+/* приёмы пищи */
+#nx .nx-meal{display:flex;align-items:center;gap:12px;min-height:74px;padding:9px 10px 9px 9px}
+#nx .nx-meals:not(.full) .nx-meal{margin-bottom:8px}
+#nx .dimg.nx-th{flex:none;width:56px;height:56px;border-radius:16px}
+#nx .dimg.nx-th svg{width:133.4%;height:100%;margin-left:-16.7%}
+#nx .nx-mi{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:16px;color:var(--nx-mc);background:color-mix(in srgb,var(--nx-mc) 15%,transparent)}
+#nx .nx-mi.b{--nx-mc:var(--nx-b)}#nx .nx-mi.l{--nx-mc:var(--nx-c)}#nx .nx-mi.d{--nx-mc:var(--nx-f)}#nx .nx-mi.s{--nx-mc:var(--nx-s)}
+#nx .nx-mi .lu{width:26px;height:26px}
+#nx .nx-mt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#nx .nx-mt b{font-size:16.5px;font-weight:720;letter-spacing:-.01em}
+#nx .nx-mt small{font-size:13.5px;color:var(--nv-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#nx .nx-mk{flex:none;font-size:15px;font-weight:740;font-variant-numeric:tabular-nums;white-space:nowrap}
+#nx .nx-mk i{font-style:normal;font-weight:500;font-size:12.5px;color:var(--nv-secondary)}
+html:not(#_) #nx .nx-plus{flex:none;display:grid!important;place-items:center;width:42px!important;height:42px!important;min-height:42px!important;margin:0!important;padding:0!important;border:0!important;border-radius:50%!important;
+  background:color-mix(in srgb,var(--nv-blue) 18%,transparent)!important;color:var(--nv-blue)!important;box-shadow:none!important}
+html:not(#_) #nx .nx-plus .lu{width:21px;height:21px;margin:0!important;stroke-width:2.2}
+#nx .nx-mg{margin-bottom:10px;padding-bottom:4px}
+#nx .nx-it{display:flex;align-items:center;gap:8px;padding:8px 6px 8px 16px;border-top:1px solid var(--nx-sep)}
+#nx .nx-it>span:first-child{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+#nx .nx-it b{font-size:15px;font-weight:600;overflow-wrap:anywhere}
+#nx .nx-it small{font-size:12.5px;color:var(--nv-secondary)}
+#nx .nx-ik{font-weight:720;font-variant-numeric:tabular-nums}
+html:not(#_) #nx .nx-del{flex:none;display:grid!important;place-items:center;width:40px!important;height:40px!important;min-height:40px!important;margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;color:var(--nv-secondary)!important}
+html:not(#_) #nx .nx-del .lu{width:18px;height:18px;margin:0!important}
+
+/* быстрые действия */
+#nx .nx-qa{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0 14px}
+html:not(#_) #nx .nx-qa button{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:86px!important;margin:0!important;padding:10px 2px!important;border-radius:20px!important;
+  border:1px solid var(--nv-rim)!important;background:var(--nv-panel)!important;-webkit-backdrop-filter:var(--nv-glass-blur);backdrop-filter:var(--nv-glass-blur);box-shadow:inset 0 1px 0 var(--nv-hi),var(--nv-shadow)!important;
+  color:var(--nv-text)!important;font-size:clamp(11.5px,3.2vw,13px)!important;font-weight:650!important;line-height:1.15;text-align:center;white-space:normal}
+#nx .nx-qa span{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;color:var(--nx-q);background:color-mix(in srgb,var(--nx-q) 16%,transparent)}
+#nx .nx-qa button:nth-child(1){--nx-q:var(--nv-blue)}#nx .nx-qa button:nth-child(2){--nx-q:var(--nx-c)}#nx .nx-qa button:nth-child(3){--nx-q:var(--nx-f)}#nx .nx-qa button:nth-child(4){--nx-q:var(--nx-b)}
+html:not(#_) #nx .nx-qa .lu{width:21px;height:21px;margin:0!important}
+
+/* вода */
+#nx .nx-wat{padding:14px;margin-bottom:4px}
+#nx .nx-wh{display:flex;align-items:center;gap:14px}
+#nx .nx-glass{flex:none;width:54px;height:74px;color:var(--nv-text)}
+#nx .nx-wt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+#nx .nx-wt>b{font-size:17px;font-weight:720}
+#nx .nx-wv{font-size:14px;color:var(--nv-secondary)}
+#nx .nx-wv em{font-style:normal;font-size:25px;font-weight:780;letter-spacing:-.02em;color:var(--nv-text);font-variant-numeric:tabular-nums}
+#nx .nx-wt small{display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--nv-secondary)}
+#nx .nx-wt small .lu{width:14px;height:14px;flex:none}
+#nx .nx-wb{display:flex;gap:8px;margin-top:12px}
+#nx .nx-wb.big{margin:12px 0 14px}
+html:not(#_) #nx .nx-wb button{display:flex!important;align-items:center;justify-content:center;gap:6px;min-height:48px!important;margin:0!important;border:0!important;border-radius:16px!important;box-shadow:none!important;font-size:15.5px!important;font-weight:720!important}
+html:not(#_) #nx .nx-wm{flex:none;width:54px!important;padding:0!important;background:color-mix(in srgb,var(--nv-text) 9%,transparent)!important;color:var(--nv-text)!important}
+html:not(#_) #nx .nx-wp{flex:1;padding:0 14px!important;background:linear-gradient(135deg,color-mix(in srgb,var(--nx-w) 92%,#fff),var(--nx-w))!important;color:var(--nx-won)!important;box-shadow:0 10px 22px -12px var(--nx-w)!important}
+html:not(#_) #nx .nx-wb button:disabled{opacity:.4}
+html:not(#_) #nx .nx-wb .lu{width:20px;height:20px;margin:0!important}
+#nx .nx-wbig{display:flex;align-items:center;gap:20px;padding:18px 20px;margin-bottom:6px}
+#nx .nx-wbig .nx-glass{width:84px;height:114px}
+#nx .nx-wbig b{display:block;font-size:36px;font-weight:780;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+#nx .nx-wbig b i{font-style:normal;font-size:18px;font-weight:600}
+#nx .nx-wbig small{font-size:14px;color:var(--nv-secondary)}
+#nx .nx-cups{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+html:not(#_) #nx .nx-cups button{min-height:42px!important;margin:0!important;padding:0!important;border-radius:13px!important;font-size:14.5px!important;font-weight:650!important}
+#nx .nx-wg{display:flex;align-items:center;gap:10px}
+html:not(#_) #nx .nx-wg input{width:130px!important;margin:0!important}
+#nx .nx-sw{display:flex;align-items:center;gap:10px;margin:4px 0 12px;font-size:15px;font-weight:600;color:var(--nv-text);cursor:pointer}
+html:not(#_) #nx .nx-sw input{width:22px!important;height:22px!important;min-height:0!important;margin:0!important;accent-color:var(--nv-blue)}
+#nx .nx-wr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+#nx .nx-wr label{display:flex;flex-direction:column;gap:5px;margin:0!important;font-size:13px;color:var(--nv-secondary);min-width:0}
+html:not(#_) #nx .nx-wr :is(input,select){width:100%!important;min-width:0!important;margin:0!important}
+#nx .nx-wweek .col i{background:var(--nx-w)!important}
+
+/* рецепты */
+#nx .nx-rrow{display:flex;gap:10px;overflow-x:auto;margin:0 -18px 4px;padding:2px 18px 10px;scroll-snap-type:x mandatory;scroll-padding:0 18px;scrollbar-width:none;overscroll-behavior-x:contain}
+#nx .nx-rrow::-webkit-scrollbar{display:none}
+#nx .nx-rc{display:flex;flex-direction:column;overflow:hidden;border-radius:20px;text-align:left}
+#nx .nx-rrow .nx-rc{flex:none;width:158px;scroll-snap-align:start}
+#nx .dimg.nx-rimg{width:100%;aspect-ratio:4/3;border-radius:0;background:var(--nv-panel-2)}
+#nx .nx-rt{display:flex;flex-direction:column;gap:5px;padding:10px 12px 12px}
+#nx .nx-rt b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em;font-size:14.5px;font-weight:700;line-height:1.2}
+#nx .nx-rt small{display:flex;align-items:center;gap:4px;font-size:12.5px;color:var(--nv-secondary);white-space:nowrap}
+#nx .nx-rt small .lu{width:13px;height:13px;flex:none}
+#nx .nx-rgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+#nx .dimg.nx-hero{border-radius:24px;aspect-ratio:4/3;margin-top:10px;box-shadow:var(--nv-shadow)}
+#nx .nx-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+#nx .nx-chips span{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:17px;background:color-mix(in srgb,var(--nv-text) 8%,transparent);font-size:13.5px;font-weight:600}
+#nx .nx-chips .lu{width:16px;height:16px}
+#nx .nx-kb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:12px 6px;margin-bottom:8px;text-align:center}
+#nx .nx-kb b{display:block;font-size:19px;font-weight:760;font-variant-numeric:tabular-nums}
+#nx .nx-kb small{display:block;font-size:11.5px;color:var(--nv-secondary);line-height:1.2}
+#nx .nx-kb .mp b{color:var(--nx-p)}#nx .nx-kb .mf b{color:var(--nx-f)}#nx .nx-kb .mc b{color:var(--nx-c)}
+#nx .nx-ing{list-style:none;margin:0;padding:0}
+#nx .nx-ing li+li{border-top:1px solid var(--nx-sep)}
+#nx .nx-ing label{display:flex;align-items:flex-start;gap:12px;margin:0!important;padding:10px 0;font-size:15px;color:var(--nv-text);cursor:pointer}
+html:not(#_) #nx .nx-ing input{flex:none;width:20px!important;height:20px!important;min-height:0!important;margin:1px 0 0!important;accent-color:var(--nx-c)}
+#nx .nx-ing input:checked+span{color:var(--nv-secondary);text-decoration:line-through}
+#nx .nx-steps{list-style:none;margin:0;padding:0}
+#nx .nx-steps li{display:flex;gap:12px;padding:10px 0}
+#nx .nx-steps li+li{border-top:1px solid var(--nx-sep)}
+#nx .nx-steps span{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:color-mix(in srgb,var(--nv-blue) 20%,transparent);color:var(--nv-text);font-size:14px;font-weight:750}
+#nx .nx-steps p{margin:3px 0 0;font-size:15px;line-height:1.45}
+
+/* ИИ */
+#nx .nx-ai{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px;margin:14px 0 6px;background:linear-gradient(135deg,color-mix(in srgb,var(--nx-f) 20%,var(--nv-panel)),var(--nv-panel) 70%)!important}
+#nx .nx-aii{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:15px;color:var(--nx-f);background:color-mix(in srgb,var(--nx-f) 20%,transparent)}
+#nx .nx-aii .lu{width:24px;height:24px}
+#nx .nx-ait{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#nx .nx-ait b{font-size:16.5px;font-weight:720}
+#nx .nx-ait small{font-size:13px;color:var(--nv-secondary);line-height:1.3}
+#nx .nx-aib{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+html:not(#_) #nx .nx-aib button{display:flex!important;align-items:center;justify-content:center;gap:6px;min-height:46px!important;margin:0!important;padding:0 8px!important;border-radius:15px!important;font-size:14px!important;font-weight:650!important;line-height:1.15}
+html:not(#_) #nx .nx-aib .lu{width:18px;height:18px;margin:0!important;flex:none}
+
+/* добавление */
+#nx .nx-ms{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:8px}
+html:not(#_) #nx .nx-ms button{min-height:40px!important;margin:0!important;padding:0 2px!important;border-radius:13px!important;font-size:clamp(12px,3.4vw,14px)!important;font-weight:650!important}
+#nx .nx-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:14px}
+html:not(#_) #nx .nx-tabs button{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:60px!important;margin:0!important;padding:6px 2px!important;border-radius:16px!important;font-size:12.5px!important;font-weight:650!important}
+html:not(#_) #nx .nx-tabs .lu{width:20px;height:20px;margin:0!important}
+#nx .nx-sbox{position:relative}
+#nx .nx-sbox>.lu{position:absolute;left:14px;top:50%;width:20px;height:20px;transform:translateY(-50%);color:var(--nv-secondary);pointer-events:none;z-index:1}
+html:not(#_) #nx .nx-sbox input{width:100%!important;min-height:50px!important;margin:0!important;padding-left:44px!important;border-radius:16px!important}
+#nx .nx-fdw{margin-bottom:8px;overflow:hidden;border-radius:18px}
+html:not(#_) #nx .nx-fd{display:flex!important;align-items:center;gap:10px;width:100%!important;min-height:62px!important;margin:0!important;padding:10px 14px!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;
+  color:var(--nv-text)!important;text-align:left;font-size:15px!important;font-weight:400!important}
+#nx .nx-fd>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#nx .nx-fd b{font-size:15px;font-weight:650;overflow-wrap:anywhere}
+#nx .nx-fd small{font-size:12.5px;color:var(--nv-secondary)}
+html:not(#_) #nx .nx-fd .nx-pl{flex:none;width:22px;height:22px;margin:0!important;color:var(--nv-blue);transition:transform .2s}
+#nx .nx-fdw.op .nx-pl{transform:rotate(90deg)}
+#nx .nx-por{padding:2px 14px 14px;border-top:1px solid var(--nx-sep)}
+#nx .nx-pc{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 10px}
+html:not(#_) #nx .nx-pc button{min-height:36px!important;margin:0!important;padding:0 12px!important;border-radius:18px!important;font-size:13.5px!important;font-weight:650!important}
+#nx .nx-pc i{font-style:normal;font-weight:500;color:var(--nv-secondary)}
+#nx .nx-pg{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+html:not(#_) #nx .nx-pg input{width:96px!important;margin:0!important}
+#nx .nx-pg span{color:var(--nv-secondary)}
+#nx .nx-pg output{flex:1;min-width:0;text-align:right;font-size:13.5px;font-weight:650;font-variant-numeric:tabular-nums}
+html:not(#_) #nx .nx-aiq{display:flex!important;align-items:center;justify-content:center;gap:6px;margin-top:6px!important}
+#nx .nx-man label{display:block;margin:10px 0 0!important;font-size:13px;color:var(--nv-secondary)}
+html:not(#_) #nx .nx-man input{margin-top:5px!important;width:100%!important}
+#nx .nx-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:end}
+#nx .nx-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+html:not(#_) #nx .nx-phbtn{display:flex!important;align-items:center;justify-content:center;gap:8px;margin-top:10px!important}
+#nx .p .lu,#nx .wide .lu{margin-right:2px}
+@media(prefers-reduced-motion:reduce){#nx [role=button]:active{transform:none}#nx .nx-bar i{transition:none}}
+@media(prefers-reduced-transparency:reduce){html:not(#_) #nx :is(.nx-day,.nx-meals:not(.full) .nx-meal,.nx-mg,.nx-wat,.nx-rc,.nx-ai,.nx-fdw,.nx-wbig,.nx-kb,.nx-qa button){-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--nv-base)!important}}
+</style>
 </head><body><div id="nvBg" aria-hidden="true"><i></i></div>
 <div id="splash"><div class="splash-core"><div class="splash-emblem"><svg class="splash-orbits" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><defs><linearGradient id="soG1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--so-b);stop-opacity:.95"/><stop offset=".55" style="stop-color:var(--so-a);stop-opacity:.5"/><stop offset="1" style="stop-color:var(--so-b);stop-opacity:.12"/></linearGradient><linearGradient id="soG2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" style="stop-color:var(--so-a);stop-opacity:.9"/><stop offset=".5" style="stop-color:var(--so-b);stop-opacity:.45"/><stop offset="1" style="stop-color:var(--so-a);stop-opacity:.1"/></linearGradient></defs><g class="so-spin"><g class="so-g1" transform="rotate(-24 200 200)"><path id="soP1" class="so-p" pathLength="1" stroke="url(#soG1)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.6"/><animateMotion dur="9s" repeatCount="indefinite"><mpath xlink:href="#soP1"/></animateMotion></g></g><g class="so-g2" transform="rotate(24 200 200)"><path id="soP2" class="so-p" pathLength="1" stroke="url(#soG2)" d="M20 200a180 66 0 1 0 360 0a180 66 0 1 0-360 0"/><g><circle class="so-halo" r="7"/><circle class="so-dot" r="2.4"/><animateMotion dur="12s" repeatCount="indefinite" keyPoints="0.5;1;0;0.5" keyTimes="0;0.5;0.5;1" calcMode="linear"><mpath xlink:href="#soP2"/></animateMotion></g></g><g class="so-g3" transform="rotate(-3 200 200)"><path id="soP3" class="so-p" pathLength="1" stroke="url(#soG1)" d="M40 200a160 36 0 1 0 320 0a160 36 0 1 0-320 0"/><g><circle class="so-halo" r="6"/><circle class="so-dot" r="2.2"/><animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0.25;1;0;0.25" keyTimes="0;0.75;0.75;1" calcMode="linear"><mpath xlink:href="#soP3"/></animateMotion></g></g></g></svg><div class="splash-symbol" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="mark" id="mark" aria-label="nuvio"></div><div class="splash-caption">YOUR DAY, IN SYNC</div></div><div class="splash-bottom"><div class="splash-progress" role="progressbar" aria-label="Загрузка"><i></i></div><div id="langs"></div></div></div>
 <header class="nv-appbar"><h1 class="nv-date" id="nvDate"></h1><button type="button" id="nvWx" class="nv-wx lg" aria-label="Погода"><svg class="lu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg><b>—</b></button><button id="profileOpen" class="nv-profile-open" type="button" aria-label="Профиль"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.8 20c.7-3.5 3.1-5.3 7.2-5.3s6.5 1.8 7.2 5.3"/></svg></button></header><nav class="tabs"><i class="glass" id="glass"><b></b></i><button class="on" data-t="home" data-i="thome"></button><button data-t="body" data-i="tbody"></button><button data-t="g" data-i="tg"></button><button data-t="pl" data-i="tpl">План</button><button data-t="study" data-i="tsy"></button></nav>
@@ -2067,6 +2343,7 @@ Object.assign(LUC,{"share-2":"<circle cx=\"18\" cy=\"5\" r=\"3\"/><circle cx=\"6
 /* short status message at the bottom (one element for the whole app) */
 function nvToast(m){let el=document.getElementById('nvToast');if(!el){el=document.createElement('div');el.id='nvToast';el.className='nv-toast lg';el.setAttribute('role','status');document.body.appendChild(el)}
   el.textContent=m;el.classList.add('on');clearTimeout(nvToast.t);nvToast.t=setTimeout(()=>el.classList.remove('on'),3200)}
+Object.assign(LUC,{"check":"<path d=\"M20 6 9 17l-5-5\"/>"});
 Object.assign(LUC,{"shirt":"<path d=\"M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z\"/>"});
 const ico=(n,c)=>'<svg class="lu'+(c?' '+c:'')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(LUC[n]||'')+'</svg>';
 const fitCloud=(arr,when)=>{const big=()=>JSON.stringify(arr).length>3800,old=arr.slice().sort((a,b)=>String(when(a)).localeCompare(String(when(b))));for(const x of old){if(!big())break;if(x.note)x.note=''}for(const x of old){if(!big()||arr.length<2)break;arr.splice(arr.indexOf(x),1)}return arr};
@@ -2437,10 +2714,47 @@ function vOnb(){
     <label>${t('fbody')}</label>${['ecto','meso','endo'].map(k=>opt('body',k,F.tmp.body===k)).join('')}<button class="p wide" data-a="next1" style="margin-top:14px">${t('fnext')}</button>`;
   return `<div class="gt">${t('fgoalq')}</div>${['fatloss','toned','athletic','muscle','strong'].map(k=>opt('goal',k,F.tmp.goal===k)).join('')}
     <div class="row" style="margin-top:14px"><button data-a="prev">${t('back')}</button><button class="p" style="flex:1" data-a="fin">${t('ok')}</button></div>`}
-function vMenu(){const p=F.prof;
-  return `<div class="ghero cabbtn" data-a="cab"><small class="meta">${t('ft')}</small><div class="gt" style="margin:2px 0 6px">${t('fcab')}</div><p class="meta">${p.h} ${t('fcm')} · ${p.w} ${t('fkgu')} · ${t('b_'+p.body)} → ${t('p_'+p.goal)}</p><span class="chev">›</span></div>
-  ${F.act?`<button class="p wide" data-a="resume" style="margin-bottom:10px">${ico('play')}${t('fcont')} · ${esc(F.act.name)}</button>`:''}
-  <div class="fgrid">${[['hist',ico('chart-line'),'fhist',t('fhist_s')],['cust',ico('sliders-horizontal'),'fcust',t('fcust_s')],['lib',ico('book-open'),'flib',t('flib_s',Object.keys(EX).length)],['start',ico('timer'),'fstart',t('fstart_s')]].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${s}</small></div>`).join('')}</div>`}
+/* Фитнес — главный экран: большая карточка цели (неделя по дням, итоги, вход в кабинет), главная кнопка «Начать тренировку»
+   (идёт тренировка — «Продолжить»), широкая «История» с графиком тренировок по неделям и лучшим рекордом, компактные «Персонализация»
+   и «Упражнения». Иллюстрации — свои SVG, цвет через currentColor (--fx-a у карточки). Неделя — с понедельника, id тренировки = время в base36. */
+const FX_ILL={
+target:'<svg class="fx-ill" viewBox="0 0 96 96" aria-hidden="true"><defs><radialGradient id="fxgT" cx=".36" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity=".45"/></radialGradient></defs>'
+ +'<circle cx="42" cy="56" r="36" fill="currentColor" opacity=".16"/><circle cx="42" cy="56" r="36" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-width="1.5"/>'
+ +'<circle cx="42" cy="56" r="25" fill="url(#fxgT)" opacity=".6"/><circle cx="42" cy="56" r="14.5" fill="url(#fxgT)"/><circle cx="42" cy="56" r="5" fill="#fff"/>'
+ +'<path class="fx-dart" d="M43 55 77 21"/><path d="M77 21l1-13 6 7zM77 21l13-1-7-6z" fill="currentColor"/><path d="M80 18l4-4" stroke="#fff" stroke-opacity=".7" stroke-width="1.4" stroke-linecap="round"/>'
+ +'<ellipse cx="30" cy="40" rx="11" ry="4.5" fill="#fff" opacity=".22" transform="rotate(-35 30 40)"/></svg>',
+dumbbell:'<svg class="fx-ill" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fxgD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity=".6"/></linearGradient></defs>'
+ +'<rect x="13" y="21.5" width="22" height="5" rx="2.5" fill="currentColor" opacity=".5"/><rect x="7.5" y="10" width="7" height="28" rx="3" fill="url(#fxgD)"/><rect x="33.5" y="10" width="7" height="28" rx="3" fill="url(#fxgD)"/>'
+ +'<rect x="2.5" y="15.5" width="5.5" height="17" rx="2.4" fill="url(#fxgD)" opacity=".8"/><rect x="40" y="15.5" width="5.5" height="17" rx="2.4" fill="url(#fxgD)" opacity=".8"/>'
+ +'<path d="M10 13.5v8M36 13.5v8" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/></svg>',
+sliders:'<svg class="fx-ill" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="fxgS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity=".65"/></linearGradient></defs>'
+ +'<path d="M7 13h34M7 24h34M7 35h34" stroke="currentColor" stroke-opacity=".25" stroke-width="4" stroke-linecap="round"/><path d="M7 13h22M7 24h9M7 35h27" stroke="currentColor" stroke-opacity=".85" stroke-width="4" stroke-linecap="round"/>'
+ +'<g stroke="#fff" stroke-width="2"><circle cx="29" cy="13" r="5.5" fill="url(#fxgS)"/><circle cx="16" cy="24" r="5.5" fill="url(#fxgS)"/><circle cx="34" cy="35" r="5.5" fill="url(#fxgS)"/></g></svg>'};
+const fxPl=(n,a,b,c)=>{const m=n%10,h=n%100;return m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c};
+function fxWeeks(n){const d0=new Date();d0.setHours(0,0,0,0);d0.setDate(d0.getDate()-(d0.getDay()+6)%7);
+  return [...Array(n)].map((_,i)=>{const d=new Date(d0);d.setDate(d.getDate()-7*(n-1-i));return d.getTime()})}
+function vMenu(){const p=F.prof,en=lang==='en',ts=F.hid.map(i=>parseInt(i,36)).filter(n=>n>0),W=fxWeeks(8),now=new Date(),
+  cnt=W.map((w,i)=>ts.filter(x=>x>=w&&(i===7||x<W[i+1])).length),wk=cnt[7],tot=Math.max(+F.tot||0,ts.length),mx=Math.max(1,...cnt),
+  days=[...Array(7)].map((_,i)=>{const d=new Date(W[7]);d.setDate(d.getDate()+i);const e=new Date(d);e.setDate(e.getDate()+1);
+    const w=d.toLocaleDateString(loc(),{weekday:'short'}).replace('.','');return{w:w.charAt(0).toUpperCase()+w.slice(1),on:ts.some(x=>x>=+d&&x<+e),td:d.toDateString()===now.toDateString()}}),
+  top=Object.entries(F.pr||{}).filter(([,v])=>v>0).sort((x,y)=>y[1]-x[1])[0],chev=ico('chevron-right','fx-chev'),
+  wkL=en?(wk===1?'workout this week':'workouts this week'):fxPl(wk,'тренировка','тренировки','тренировок')+' за неделю';
+  const hero=`<div class="fx-hero" role="button" tabindex="0" data-a="cab" aria-label="${esc(t('fcab'))}">
+  <div class="fx-hh"><div class="fx-hm"><h2>${esc(t('p_'+p.goal))}</h2><p>${p.h} ${t('fcm')} · ${p.w} ${t('fkgu')} · ${esc(t('b_'+p.body))}</p></div>${FX_ILL.target}</div>
+  <div class="fx-wk" role="img" aria-label="${esc(en?wk+' '+wkL:'На этой неделе: '+wk+' '+wkL.replace(' за неделю',''))}">${days.map(x=>`<span class="fx-d${x.on?' on':''}${x.td?' td':''}" aria-hidden="true"><small>${esc(x.w)}</small><i>${x.on?ico('check'):''}</i></span>`).join('')}</div>
+  <div class="fx-st"><div><b>${wk}</b><small>${wkL}</small></div><div><b>${tot}</b><small>${en?'in total':fxPl(tot,'тренировка','тренировки','тренировок')+' всего'}</small></div></div>
+  <div class="fx-cab"><span>${t('fcab')}<small>${en?'Profile, calories and macros':'Анкета, КБЖУ и вес'}</small></span>${chev}</div></div>`;
+  const min=F.act?Math.max(1,Math.round((Date.now()-F.act.start)/6e4)):0;
+  const go=F.act?`<button type="button" class="fx-go" data-a="resume"><span class="fx-gi">${ico('play')}</span><span class="fx-gt"><b>${t('fcont')}</b><small>${esc(F.act.name)} · ${min} ${en?'min':'мин'}</small></span>${ico('chevron-right')}</button>
+  <button type="button" class="fx-alt" data-a="go" data-v="start">${en?'Start a different workout':'Начать другую тренировку'}</button>`
+   :`<button type="button" class="fx-go" data-a="go" data-v="start"><span class="fx-gi">${ico('play')}</span><span class="fx-gt"><b>${t('fstart')}</b><small>${t('fstart_s')}</small></span>${ico('chevron-right')}</button>`;
+  const hist=`<div class="fx-big" role="button" tabindex="0" data-a="go" data-v="hist"><div class="fx-bh"><span class="fx-tile">${ico('chart-line')}</span><span class="fx-bt"><b>${t('fhist')}</b><small>${t('fhist_s')}</small></span>${chev}</div>
+  ${ts.length?`<div class="fx-bars" role="img" aria-label="${esc((en?'Workouts per week, last 8 weeks: ':'Тренировки по неделям, 8 недель: ')+cnt.join(', '))}">${cnt.map((c,i)=>`<i class="${i===7?'cur':''}" style="height:${Math.round(8+c/mx*70)}%" aria-hidden="true"><em>${c||''}</em></i>`).join('')}</div>
+  <div class="fx-bl" aria-hidden="true"><span>${en?'8 weeks ago':'8 недель назад'}</span><span>${en?'this week':'эта неделя'}</span></div>`
+   :`<p class="fx-empty">${en?'Reports and records appear after your first workout.':'После первой тренировки здесь появятся отчёты и рекорды.'}</p>`}
+  ${top?`<div class="fx-pr">${ico('trophy')}<span>${esc(exn(top[0]))}</span><b>${top[1]} ${t('fkgu')}</b></div>`:''}</div>`;
+  const sm=(c,a,ill,k,sub)=>`<div class="fx-sm ${c}" role="button" tabindex="0" data-a="go" data-v="${a}">${ill}${chev}<b>${t(k)}</b><small>${sub}</small></div>`;
+  return hero+go+hist+`<div class="fx-row">${sm('c1','cust',FX_ILL.sliders,'fcust',t('fcust_s'))+sm('c2','lib',FX_ILL.dumbbell,'flib',t('flib_s',Object.keys(EX).length))}</div>`}
 function vHist(){const prs=Object.entries(F.pr).sort((a,b)=>b[1]-a[1]).slice(0,6);
   return back('menu')+title(t('fhist'))+(prs.length?`<div class="sec mb"><h2>${t('fpr_h')}</h2>${prs.map(([id,v])=>`<div class="kv"><span>${esc(exn(id))}</span><b>${v} ${t('fkgu')}</b></div>`).join('')}</div>`:'')
     +(F.hs.length?F.hs.map(s=>{const m=sumry(s);return `<div class="gcard" data-a="hopen" data-id="${esc(String(s.id))}"><div class="gm"><b>${esc(s.name)}</b><small>${dm(s.start)} · ${hm(s.start)} · ${fdur(m.dur)}</small></div><b class="gv">${!m.vol&&m.ex.some(x=>x.c)?m.ex.reduce((a,x)=>a+x.min,0)+' '+t('fminu'):fmtn(m.vol)+' '+t('fkgu')}</b></div>`}).join(''):`<p class="msg">${t('fnone')}</p>`)}
@@ -2579,6 +2893,7 @@ const fi={cw(v){F.cabf.w=v},ctw(v){F.cabf.tw=v},cage(v){F.cabf.age=v},h(v){F.tmp
   q(v){F.q=v;$('liblist').innerHTML=libList(F.v==='edit'?'add':'lib')},
   set(v,d){F.act.ex[d.e].sets[d.s][d.k]=num(v)||0;clearTimeout(F.pt);F.pt=setTimeout(saveAct,500)}};
 $('ft').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)fa[b.dataset.a]?.(b.dataset,b)});
+$('ft').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button][data-a]')){e.preventDefault();e.target.click()}});
 $('ft').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)fi[d.f]?.(e.target.value,d)});
 
 
@@ -2725,6 +3040,150 @@ const dimg=(key,ru,en,cls='')=>`<div class="dimg${cls}"${key?` data-k="${key}"`:
 
 let N={v:'menu',meal:'all',open:null,cat:'all',rec:null,from:'menu',menu:null,busy:false,err:'',avoid:'',allergy:'',pantry:'',q:'',lv:null,ai:[],aib:false,aierr:'',dtext:''};
 let D={key:'',items:[],sum:{},loaded:false,busy:false,err:''};
+/* ===== Питание v2: приёмы пищи в дневнике (поле m: b/l/d/s, у старых записей нет — считаются перекусом), добавление поиском по
+   справочнику FOODS (на 100 г, средние значения из таблиц состава), по фото, словами (ИИ /food log) и вручную; рецепты с КБЖУ на
+   порцию (RECN: [порций, ккал, Б, Ж, У], посчитано по ингредиентам рецепта); вода — ключи wtr {день: мл} (60 дней) и wtr_cfg
+   {goal, cup, rem:{on, from, to, every, ids}}, напоминания — ежедневные /reminders бота. ===== */
+const NXT=(en,ru)=>lang==='en'?en:ru,MEALS=['b','l','d','s'];
+const nxMealNow=()=>{const h=new Date().getHours();return h<11?'b':h<16?'l':h<21?'d':'s'};
+const mealOf=x=>MEALS.includes(x.m)?x.m:'s',mealName=m=>m==='s'?NXT('Snacks','Перекусы'):t('m_'+m),mealTo=m=>NXT('Add to ','Добавить: ')+(m==='s'?NXT('snacks','перекус'):t('m_'+m).toLowerCase());
+const MEAL_IC={b:'sunrise',l:'sun',d:'moon',s:'apple'},nxn=v=>fmtn(Math.round(+v||0)),r1=v=>Math.round(v*10)/10;
+Object.assign(LUC,{"search":"<circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.34-4.34\"/>","minus":"<path d=\"M5 12h14\"/>","x":"<path d=\"M18 6 6 18\"/><path d=\"m6 6 12 12\"/>",
+ "pencil":"<path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"/><path d=\"m15 5 4 4\"/>",
+ "clock":"<circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 6v6l4 2\"/>","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/>",
+ "sunrise":"<path d=\"M12 2v8\"/><path d=\"m4.93 10.93 1.41 1.41\"/><path d=\"M2 18h2\"/><path d=\"M20 18h2\"/><path d=\"m19.07 10.93-1.41 1.41\"/><path d=\"M22 22H2\"/><path d=\"m8 6 4-4 4 4\"/><path d=\"M16 18a4 4 0 0 0-8 0\"/>",
+ "apple":"<path d=\"M12 6.528V3a1 1 0 0 1 1-1h0\"/><path d=\"M18.237 21A15 15 0 0 0 22 11a6 6 0 0 0-10-4.472A6 6 0 0 0 2 11a15.1 15.1 0 0 0 3.763 10 3 3 0 0 0 3.648.648 5.5 5.5 0 0 1 5.178 0A3 3 0 0 0 18.237 21\"/>",
+ "glass-water":"<path d=\"M5.116 4.104A1 1 0 0 1 6.11 3h11.78a1 1 0 0 1 .994 1.105L17.19 20.21A2 2 0 0 1 15.2 22H8.8a2 2 0 0 1-2-1.79z\"/><path d=\"M6 12a5 5 0 0 1 6 0 5 5 0 0 0 6 0\"/>",
+ "droplet":"<path d=\"M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z\"/>"});
+/* справочник: название|name|ккал|Б|Ж|У на 100 г (мл)|обычная порция, г|единица (pc шт, sl ломтик, pi кусок, ml мл) */
+const FOODS=`Гречка варёная|Buckwheat, cooked|110|4.2|1.1|21|150|
+Рис белый варёный|White rice, cooked|130|2.7|0.3|28|150|
+Овсянка на воде|Oatmeal with water|70|2.5|1.5|12|250|
+Овсянка на молоке|Oatmeal with milk|102|4.2|3|13.4|250|
+Овсяные хлопья (сухие)|Rolled oats, dry|370|12.5|6.5|62|40|
+Макароны варёные|Pasta, cooked|158|5.8|0.9|31|180|
+Булгур варёный|Bulgur, cooked|83|3.1|0.2|19|150|
+Киноа варёная|Quinoa, cooked|120|4.4|1.9|21|150|
+Картофель варёный|Boiled potatoes|86|1.7|0.1|20|200|
+Картофельное пюре|Mashed potatoes|110|2|4|17|200|
+Картофель фри|French fries|312|3.4|15|41|120|
+Хлеб белый|White bread|265|9|3.2|49|30|sl
+Хлеб ржаной|Rye bread|259|8.5|3.3|48|30|sl
+Хлеб цельнозерновой|Whole wheat bread|250|12.5|3.5|43|30|sl
+Куриная грудка отварная|Chicken breast, cooked|165|31|3.6|0|150|
+Куриное бедро без кожи|Chicken thigh, skinless, cooked|209|26|11|0|120|
+Индейка, филе|Turkey breast, cooked|147|30|2|0|150|
+Говядина отварная|Beef, cooked|250|26|16|0|120|
+Свинина запечённая|Pork, roasted|242|27|14|0|120|
+Котлета куриная|Chicken patty|175|15|10.5|4.5|70|pc
+Сосиска|Frankfurter|266|11|24|0.4|50|pc
+Колбаса варёная|Bologna sausage|257|12.8|22.2|1.5|30|
+Ветчина|Ham|163|17|9|4|30|
+Лосось запечённый|Salmon, baked|206|22|12|0|150|
+Треска, минтай отварные|Cod or pollock, cooked|105|23|0.9|0|150|
+Тунец консервированный в собственном соку|Canned tuna in water|116|26|0.8|0|100|
+Креветки варёные|Shrimp, cooked|99|24|0.3|0.2|100|
+Сельдь солёная|Salted herring|217|19.8|15.4|0|60|
+Яйцо куриное|Egg|143|12.6|9.5|0.7|50|pc
+Яичница|Fried eggs|196|13.6|15|0.8|100|
+Омлет|Omelet|154|10.6|11.7|0.6|150|
+Молоко 2,5%|Milk 2.5%|52|2.8|2.5|4.7|200|ml
+Молоко 3,2%|Milk 3.2%|59|2.9|3.2|4.7|200|ml
+Кефир 2,5%|Kefir 2.5%|53|2.9|2.5|4|200|ml
+Йогурт греческий 2%|Greek yogurt 2%|73|10|1.9|3.9|150|
+Йогурт фруктовый|Fruit yogurt|85|3|2.5|12.5|125|
+Творог обезжиренный|Fat-free cottage cheese|85|18|0.6|1.5|150|
+Творог 5%|Cottage cheese 5%|121|17.2|5|1.8|150|
+Творог 9%|Cottage cheese 9%|159|16.7|9|2|150|
+Сметана 15%|Sour cream 15%|160|2.6|15|3|20|
+Сыр твёрдый|Hard cheese|360|23|29|0.3|30|
+Моцарелла|Mozzarella|300|22|22|2.2|30|
+Фета (брынза)|Feta|264|14|21|4|30|
+Масло сливочное 82%|Butter 82%|748|0.5|82.5|0.8|10|
+Масло растительное|Vegetable oil|899|0|99.9|0|10|
+Огурец|Cucumber|15|0.7|0.1|3|120|pc
+Помидор|Tomato|18|0.9|0.2|3.9|120|pc
+Капуста белокочанная|White cabbage|25|1.3|0.1|5.8|100|
+Брокколи|Broccoli|34|2.8|0.4|6.6|150|
+Морковь|Carrot|41|0.9|0.2|9.6|80|pc
+Перец болгарский|Bell pepper|26|1|0.3|6|150|pc
+Салат листовой|Lettuce|15|1.4|0.2|2.9|50|
+Кабачок|Zucchini|17|1.2|0.3|3.1|200|
+Свёкла варёная|Beets, cooked|44|1.7|0.2|10|100|
+Шампиньоны|Mushrooms|22|3.1|0.3|3.3|100|
+Авокадо|Avocado|160|2|14.7|8.5|100|
+Яблоко|Apple|52|0.3|0.2|14|180|pc
+Банан|Banana|89|1.1|0.3|23|120|pc
+Апельсин|Orange|47|0.9|0.1|12|150|pc
+Мандарин|Mandarin|53|0.8|0.3|13|80|pc
+Груша|Pear|57|0.4|0.1|15|170|pc
+Киви|Kiwi|61|1.1|0.5|15|75|pc
+Виноград|Grapes|69|0.7|0.2|18|150|
+Клубника|Strawberries|32|0.7|0.3|7.7|150|
+Черника|Blueberries|57|0.7|0.3|14.5|100|
+Грецкий орех|Walnuts|654|15|65|14|30|
+Миндаль|Almonds|579|21|50|22|30|
+Арахисовая паста|Peanut butter|588|25|50|20|20|
+Хумус|Hummus|166|7.9|9.6|14.3|60|
+Мёд|Honey|304|0.3|0|82|10|
+Сахар|Sugar|399|0|0|99.8|5|
+Шоколад горький 70%|Dark chocolate 70%|598|7.8|43|46|20|
+Шоколад молочный|Milk chocolate|535|7.7|30|59|20|
+Печенье овсяное|Oatmeal cookie|437|6.5|14|71|20|pc
+Сырники|Syrniki|180|15|8.5|11|150|
+Блины|Crepes (blini)|190|5.5|7.5|25|50|pc
+Пельмени варёные|Pelmeni, boiled|250|11|11|26|200|
+Борщ|Borscht|48|3.3|2.1|4|300|
+Суп куриный с лапшой|Chicken noodle soup|45|3|1.5|5|300|
+Плов|Pilaf|190|6.5|9.5|19|250|
+Пицца|Pizza|266|11|10|33|110|pi
+Бургер|Burger|254|13|12|24|200|pc
+Шаурма|Shawarma|220|10|10|22|300|pc
+Салат Цезарь с курицей|Caesar salad with chicken|155|13|9|7|200|
+Салат Оливье|Olivier salad|160|5.5|13|6|200|
+Капучино|Cappuccino|40|2.2|2|3.4|250|ml
+Чай без сахара|Tea, no sugar|1|0|0|0.2|250|ml
+Сок апельсиновый|Orange juice|45|0.7|0.2|10.4|250|ml
+Кола|Cola|42|0|0|10.6|330|ml
+Пиво 4,5%|Beer 4.5%|43|0.5|0|3.6|500|ml
+Протеин сывороточный (порошок)|Whey protein powder|380|75|5|8|30|`.split(/\r?\n/).map((l,i)=>{const[ru,en,k,p,f,c,g,u]=l.split('|');return{id:i,ru,en,k:+k,p:+p,f:+f,c:+c,g:+g,u:u||''}});
+const FPOP=['Гречка варёная','Куриная грудка отварная','Яйцо куриное','Творог 5%','Овсянка на воде','Банан','Яблоко','Рис белый варёный'];
+const UNIT={pc:['pc','шт'],sl:['slice','ломтик'],pi:['piece','кусок']};
+const RECN={borscht:[6,240,16,10,20],omelet:[1,320,21,24,3],syrniki:[4,275,24,13,16],blini:[4,365,12,14,48],chickensoup:[6,245,18,11,19],carbonara:[3,700,29,31,72],
+ pilaf:[6,615,21,31,62],greek:[3,320,9,26,15],caesar:[3,380,33,22,16],goulash:[4,410,31,24,17],charlotte:[8,215,5,2,45],mashed:[4,310,6,12,46],oatapple:[1,540,18,12,93],
+ shakshuka:[2,310,16,20,18],kefirfritters:[4,325,8,11,47],frenchtoast:[3,300,11,12,36],shchi:[6,195,15,8,16],peasoup:[6,360,19,16,34],pumpkinsoup:[4,155,3,9,17],
+ chickencutlets:[4,350,30,21,9],bakedpotato:[4,250,4,10,36],chickenpotato:[6,385,20,24,24],salmonlemon:[2,440,31,34,3],buckmush:[3,345,12,12,54],olivier:[6,315,14,22,18],
+ vinaigrette:[6,165,3,10,18],cabbagesalad:[4,110,2,7,10],cottagecake:[6,200,18,7,18],oatcookie:[10,220,4,10,29],bananabread:[10,220,3,7,35]};
+const fnorm=s=>String(s).toLowerCase().replace(/ё/g,'е');
+function nxFoods(q){const w=fnorm(q).split(/[\s,.]+/).filter(Boolean);if(!w.length)return[];
+  return FOODS.map(f=>{const a=fnorm(f.ru),b=fnorm(f.en);return w.every(x=>a.includes(x)||b.includes(x))?[f,a.startsWith(w[0])||b.startsWith(w[0])?0:1]:null}).filter(Boolean).sort((x,y)=>x[1]-y[1]).map(x=>x[0]).slice(0,20)}
+const per=(f,g)=>({kcal:Math.round(f.k*g/100),protein:Math.round(f.p*g/100),fat:Math.round(f.f*g/100),carbs:Math.round(f.c*g/100)});
+const nxu=f=>f.u==='ml'?NXT('ml','мл'):NXT('g','г');
+Object.assign(N,{m:'b',am:'search',back:'menu',fq:'',fsel:null,fg:100,man:{},recent:[]});
+async function nxPush(items,m){await loadDiary();let n=0;
+  for(const x of items){if(D.items.length>=30)break;D.items.push({n:String(x.n).slice(0,70),kcal:Math.round(+x.kcal||0),protein:Math.round(+x.protein||0),fat:Math.round(+x.fat||0),carbs:Math.round(+x.carbs||0),m});n++}
+  if(n){await saveDiary();items.slice(0,n).forEach(x=>{N.recent=N.recent.filter(r=>r.n!==x.n);N.recent.unshift({n:String(x.n).slice(0,70),kcal:+x.kcal||0,protein:+x.protein||0,fat:+x.fat||0,carbs:+x.carbs||0})});
+    N.recent=N.recent.slice(0,12);st.set('nx_recent',JSON.stringify(N.recent))}
+  if(n<items.length)D.err=t('dfull');return n}
+const nxDone=n=>{if(!n)return renderNx();nvToast(NXT('Added to ','Добавлено: ')+mealName(N.m).toLowerCase());N.fsel=null;N.fq='';N.v=N.back==='diary'?'diary':'menu';renderNx()};
+
+/* --- вода --- */
+let NW={d:{},cfg:{goal:0,cup:250,rem:{on:false,from:'09:00',to:'21:00',every:2,ids:[]}},loaded:false,busy:false,msg:'',bad:false};
+const wDefGoal=()=>{const w=F.prof&&+F.prof.w;return w?Math.min(3500,Math.max(1500,Math.round(w*30/250)*250)):2000};
+async function loadWater(){if(NW.loaded)return;NW.d=(await jget('wtr',{}))||{};const c=(await jget('wtr_cfg',null))||{};
+  NW.cfg={goal:+c.goal||0,cup:[150,200,250,300,500].includes(+c.cup)?+c.cup:250,rem:Object.assign({on:false,from:'09:00',to:'21:00',every:2,ids:[]},c.rem||{})};NW.loaded=true}
+const wGoal=()=>NW.cfg.goal||wDefGoal(),wToday=()=>+(NW.d[dkey()]||0);
+async function wSave(){const ks=Object.keys(NW.d).sort();while(ks.length>60)delete NW.d[ks.shift()];await st.set('wtr',JSON.stringify(NW.d))}
+const wCfgSave=()=>st.set('wtr_cfg',JSON.stringify(NW.cfg));
+function wTimes(r){const tm=s=>{const[h,m]=String(s).split(':').map(Number);return h*60+(m||0)},a=tm(r.from),b=tm(r.to),step=Math.round((+r.every||2)*60),out=[];
+  if(!(b>a)||!(step>0))return out;for(let x=a;x<=b&&out.length<12;x+=step)out.push(p2(Math.floor(x/60))+':'+p2(x%60));return out}
+const hrs=v=>String(v).replace('.',lang==='en'?'.':',');
+const remTxt=()=>{const r=NW.cfg.rem,fr=esc(String(r.from)),to=esc(String(r.to)),ev=hrs(+r.every||2);return r.on&&r.ids&&r.ids.length?NXT(`Reminders every ${ev} h, ${fr}⁠–⁠${to}`,`Напоминания каждые ${ev} ч, ${fr}⁠–⁠${to}`):NXT('Reminders are off','Напоминания выключены')};
+function glassSvg(p){const h=Math.round(84*Math.max(0,Math.min(1,p))),y=100-h;
+  return `<svg class="nx-glass" viewBox="0 0 80 110" aria-hidden="true"><defs><clipPath id="nxGc"><path d="M12 8h56l-7 92a6 6 0 0 1-6 5.5H25a6 6 0 0 1-6-5.5z"/></clipPath><linearGradient id="nxGw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fdcff"/><stop offset="1" stop-color="#2a86ff"/></linearGradient></defs>`
+  +`<g clip-path="url(#nxGc)"><rect width="80" height="110" fill="currentColor" opacity=".07"/>${h?`<path d="M0 ${y+4}Q20 ${y-3} 40 ${y+4}T80 ${y+4}V110H0z" fill="url(#nxGw)"/><path d="M0 ${y+4}Q20 ${y-3} 40 ${y+4}T80 ${y+4}" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2"/><circle cx="34" cy="${Math.min(96,y+30)}" r="2.6" fill="#fff" opacity=".5"/><circle cx="48" cy="${Math.min(98,y+44)}" r="1.8" fill="#fff" opacity=".45"/>`:''}</g>`
+  +`<path d="M12 8h56l-7 92a6 6 0 0 1-6 5.5H25a6 6 0 0 1-6-5.5z" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="2.5" stroke-linejoin="round"/><path d="M21 17l5 74" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/></svg>`}
+
 const goalNow=()=>F.prof?.goal||null,tgt=()=>{const c=F.cab&&F.cab.res;return c?{kcal:c.kcal,protein:c.protein,fat:c.fat,carbs:c.carbs}:null},prefs=()=>({avoid:N.avoid,allergies:N.allergy});
 const macroTiles=c=>`<div class="stats">${[['fkcal',c.kcal,''],['fprot',c.protein,' '+t('fgr')],['ffat',c.fat,' '+t('fgr')],['fcarb',c.carbs,' '+t('fgr')]].map(([k,v,u])=>`<div><small>${t(k)}</small><b>${fmtn(v)}${u}</b></div>`).join('')}</div>`;
 
@@ -2744,21 +3203,11 @@ function dietHtml(full){
 function dietCab(){return dietHtml(false).replace('<div class="sec mb"><h2>'+t('deaten')+'</h2>','<div class="sec mb"><h2>'+t('dcabh')+' · '+t('deaten')+'</h2>').replace(/<\/div>$/,`<button class="wide" data-a="opendiary" style="margin-top:12px">${t('dopen')}</button></div>`)}
 function weekBars(){const c=tgt(),days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return dkey(d)}),vals=days.map(k=>(D.sum[k]||[0])[0]),mx=Math.max(c?c.kcal:0,...vals,1);
   return `<div class="wbars">${days.map((k,i)=>`<div class="wb"><span>${vals[i]?fmtn(vals[i]):''}</span><div class="col"><i style="height:${vals[i]/mx*100}%"></i></div><small>${new Date(k+'T12:00:00').toLocaleDateString(loc(),{weekday:'narrow'})}</small></div>`).join('')}</div>`}
-function vDiary(){
-  return back('menu')+title(t('nc_diary'))+dietHtml(true)
-  +`<div class="sec mb"><textarea data-f="dtext" maxlength="300" placeholder="${t('dtextph')}">${esc(N.dtext)}</textarea><button class="p wide" data-a="dadd" style="margin-top:10px" ${D.busy?'disabled':''}>${D.busy?t('dbusy'):t('dadd')}</button>${D.err?`<p class="meta" style="margin-top:8px">${esc(D.err)}</p>`:''}<button class="wide nx-phbtn" data-a="dphoto" ${D.busy||N.phb?'disabled':''}>${ico('camera')}${N.phb?t('nph_busy'):t('nph')}</button><input type="file" id="nxPhoto" accept="image/*" hidden></div>`
-  +(N.ph?`<div class="sec mb nx-phr"><h2>${t('nph_found')}</h2>${N.ph.items.map((x,i)=>`<label class="nx-phi"><input type="checkbox" data-a="dpick" data-i="${i}"${x.on?' checked':''}><span><b>${esc(x.name)}</b><small>${x.grams?x.grams+(lang==='en'?' g · ':' г · '):''}${t('nkcal_u',x.kcal)} · ${t('nmac',x.protein,x.fat,x.carbs)}</small></span></label>`).join('')}${N.ph.unclear?`<p class="meta">${t('nph_unclear',N.ph.unclear)}</p>`:''}<div class="row nx-pha"><button class="p" data-a="dpadd">${t('nph_add')}</button><button data-a="dpcancel">${t('nph_cancel')}</button></div><p class="meta">${t('nph_note')}</p></div>`:'')
-  +(D.items.length?D.items.map((x,i)=>`<div class="libi" style="cursor:default"><div class="lh"><b>${esc(x.n)}</b><small>${t('nkcal_u',x.kcal)}<button class="x2" data-a="ddel" data-i="${i}" aria-label="${t('fdel')}">✕</button></small></div><div class="meta" style="font-size:13px;margin-top:2px">${t('nmac',x.protein,x.fat,x.carbs)}</div></div>`).join(''):`<p class="msg">${t('dnone')}</p>`)
-  +`<div class="sec" style="margin-top:12px"><h2>${t('dweek')}</h2>${weekBars()}</div><p class="meta" style="margin-top:10px">${t('dnote')}</p>`}
-
 /* --- карточки блюд --- */
 function dishRow(d,attrs,o={}){return `<div class="libi${o.op?' op':''}" ${attrs}><div class="dc">${dimg(d.key,d.name,d.en)}<div class="dt"><div class="lh"><b>${esc(d.name)}</b></div><div class="meta" style="font-size:13px">${d.meal?t('m_'+d.meal)+' · ':''}${t('nkcal_u',d.kcal)} · ${t('nmac',d.protein,d.fat,d.carbs)}</div></div></div>${o.html||''}</div>`}
 const dn=d=>({key:d.id,name:d[lang],en:d.en,meal:d.m,kcal:d.k,protein:d.p,fat:d.f,carbs:d.c});
 const dishCard=d=>{const o=N.open===d.id;return dishRow(dn(d),`data-a="dopen" data-v="${d.id}"`,{op:o,html:o?`<div class="ld"><button class="p" data-a="drecipe" data-v="${d.id}">${ico('book-open')}${t('nrecai')}</button></div>`:''})};
 const aiRow=(m,act,i)=>dishRow({name:m.name,en:m.en,meal:MK[m.meal]||'s',kcal:m.kcal,protein:m.protein,fat:m.fat,carbs:m.carbs},'style="cursor:default"',{html:`<div class="ld">${m.how?`<p class="meta" style="margin-bottom:8px">${esc(m.how)}</p>`:''}<button data-a="${act}" data-i="${i}">${ico('book-open')}${t('nrecai')}</button></div>`});
-function vNMenu(){const g=goalNow(),c=tgt(),T=dsum();
-  return `<div class="ghero"><div class="gt" style="margin-bottom:6px">${t('tn')}</div>${g?`<p class="meta">${t('ngoal')}: <b>${t('p_'+g)}</b></p>${c?`<div style="margin-top:10px">${macroTiles(c)}</div>${D.loaded?`<p class="meta" style="margin-top:10px">${t('dtoday')}: <b>${fmtn(T.k)}</b> / ${fmtn(c.kcal)} ${t('fkcal')}</p>`:''}`:`<p class="meta" style="margin-top:6px">${t('ncalcneed')}</p>`}`:`<p class="meta">${t('ngoalnone')}</p>`}<button data-a="toft" style="margin-top:10px">${t(g?'ncab':'nopenft')}</button></div>
-  <div class="fgrid">${[['dishes',ico('salad'),'nc_dishes','nc_dishes_s'],['dmenu',ico('sparkles'),'nc_menu','nc_menu_s'],['diary',ico('notebook-pen'),'nc_diary','nc_diary_s'],['recs',ico('book-open'),'nc_rec','nc_rec_s']].map(([a,i,k,s])=>`<div class="fcard" data-a="go" data-v="${a}"><span class="ic2">${i}</span><b>${t(k)}</b><small>${t(s)}</small></div>`).join('')}</div>`}
 function vDishes(){const g=goalNow(),cats=g?GCAT[g]:['m'],list=DISH.filter(d=>d.g.some(x=>cats.includes(x))&&(N.meal==='all'||d.m===N.meal)),ai=N.ai.map((m,i)=>[m,i]).filter(([m])=>N.meal==='all'||MK[m.meal]===N.meal);
   return back('menu')+title(t('nc_dishes'))+`<p class="meta" style="margin-bottom:10px">${g?`${t('ngoal')}: <b>${t('p_'+g)}</b>`:t('ngoalnone')}</p>
   <div class="chips2">${['all','b','l','d','s'].map(m=>`<button class="${N.meal===m?'on':''}" data-a="meal" data-v="${m}">${m==='all'?t('nall'):t('m_'+m)}</button>`).join('')}</div>
@@ -2774,18 +3223,99 @@ function vDMenu(){const m=N.menu;
   <label>${t('navoid')} <span class="nx-opt">· ${t('nopt')}</span></label><input data-f="avoid" maxlength="120" placeholder="${t('navoidph')}" value="${esc(N.avoid)}">
   <label>${t('nallergy')} <span class="nx-opt">· ${t('nopt')}</span></label><input data-f="allergy" maxlength="120" placeholder="${t('nallergyph')}" value="${esc(N.allergy)}">
   <button class="p wide" data-a="genmenu" style="margin:12px 0" ${N.busy?'disabled':''}>${ico('sparkles')}${N.busy?t('nmenubusy'):(m?t('nmenuregen'):t('nmenugen'))}</button>${N.err?`<p class="meta" style="margin-bottom:10px">${esc(N.err)}</p>`:''}${m?menuHtml(m):''}`}
+/* --- Питание v2: экраны --- */
+function nxRing(k,goal){const r=50,C=2*Math.PI*r,p=goal?Math.min(1,k/goal):0,over=goal&&k>goal;
+  return `<div class="nx-ring${over?' over':''}" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><linearGradient id="nxRg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--nv-blue)"/><stop offset="1" style="stop-color:var(--nx-f)"/></linearGradient></defs><circle class="tr" cx="60" cy="60" r="${r}"/>${p>0?`<circle class="ar" cx="60" cy="60" r="${r}" stroke-dasharray="${(C*p).toFixed(1)} ${C.toFixed(1)}"/>`:''}</svg><span><b>${nxn(k)}</b><small>${NXT('kcal','ккал')}</small></span></div>`}
+function nxDay(link){const T=dsum(),c=tgt(),k=Math.round(T.k),kc=NXT('kcal','ккал');
+  const right=c?(k<=c.kcal?`<small>${NXT('Left','Осталось')}</small><b>${nxn(c.kcal-k)} <i>${kc}</i></b><small>${NXT('of '+nxn(c.kcal)+' kcal','из '+nxn(c.kcal)+' ккал')}</small>`
+      :`<small class="warn">${NXT('Over your target','Сверх нормы')}</small><b>+${nxn(k-c.kcal)} <i>${kc}</i></b><small>${NXT('target '+nxn(c.kcal)+' kcal','норма '+nxn(c.kcal)+' ккал')}</small>`)
+    :`<small>${NXT('Eaten today','Съедено сегодня')}</small><b>${nxn(k)} <i>${kc}</i></b><button type="button" class="nx-link" data-a="toft">${NXT('Calculate my target','Рассчитать норму')}${ico('chevron-right')}</button>`;
+  const M=[['p','protein',NXT('Protein','Белки')],['f','fat',NXT('Fat','Жиры')],['c','carbs',NXT('Carbs','Углеводы')]],g=NXT(' g',' г');
+  return `<div class="nx-day"${link?` role="button" tabindex="0" data-a="go" data-v="diary" aria-label="${NXT('Open today’s diary','Открыть дневник за сегодня')}"`:''}><div class="nx-dt">${nxRing(k,c&&c.kcal)}<div class="nx-dl">${right}</div>${link?ico('chevron-right','nx-chev'):''}</div>
+  <div class="nx-mac">${M.map(([s,ck,l])=>{const v=Math.round(T[s]),tg=c&&c[ck];return `<div class="nx-m m${s}"><small>${l}</small><b>${nxn(v)}${tg?`<i> / ${nxn(tg)}${g}</i>`:`<i>${g}</i>`}</b>${tg?`<span class="nx-bar"><i class="${v>tg*1.1?'over':''}" style="width:${Math.min(100,v/tg*100).toFixed(1)}%"></i></span>`:''}</div>`}).join('')}</div></div>`}
+function nxMeals(full){const by={};MEALS.forEach(m=>by[m]=[]);D.items.forEach((x,i)=>by[mealOf(x)].push([x,i]));
+  return MEALS.map(m=>{const L=by[m],k=L.reduce((a,[x])=>a+(+x.kcal||0),0),names=L.map(([x])=>x.n);
+    const thumb=L.length?dimg(null,names.join(' '),'',' nx-th'):`<span class="nx-mi ${m}">${ico(MEAL_IC[m])}</span>`;
+    const head=`<div class="nx-meal"${full?'':` role="button" tabindex="0" data-a="go" data-v="diary"`}>${thumb}<span class="nx-mt"><b>${mealName(m)}</b><small>${L.length?(full?t('nmac',...['protein','fat','carbs'].map(q=>Math.round(L.reduce((a,[x])=>a+(+x[q]||0),0)))):esc(names.join(', '))):NXT('Nothing yet','Пока не добавлено')}</small></span>${L.length?`<span class="nx-mk">${nxn(k)} <i>${NXT('kcal','ккал')}</i></span>`:''}<button type="button" class="nx-plus" data-a="add" data-m="${m}" aria-label="${NXT('Add to ','Добавить: ')+mealName(m).toLowerCase()}">${ico('plus')}</button></div>`;
+    if(!full)return head;
+    return `<div class="nx-mg">${head}${L.map(([x,i])=>`<div class="nx-it"><span><b>${esc(x.n)}</b><small>${t('nmac',Math.round(+x.protein||0),Math.round(+x.fat||0),Math.round(+x.carbs||0))}</small></span><span class="nx-ik">${nxn(x.kcal)}</span><button type="button" class="nx-del" data-a="ddel" data-i="${i}" aria-label="${t('fdel')}: ${esc(x.n)}">${ico('x')}</button></div>`).join('')}</div>`}).join('')}
+function nxQuick(){return `<div class="nx-qa">${[['photo','camera',NXT('Food photo','Фото еды')],['search','search',NXT('Find food','Поиск')],['text','sparkles',NXT('In words','Словами')],['manual','pencil',NXT('Manually','Вручную')]]
+  .map(([a,i,l])=>`<button type="button" data-a="add" data-am="${a}"><span>${ico(i)}</span>${l}</button>`).join('')}</div>`}
+function nxWaterBtns(big){const ml=wToday(),c=NW.cfg.cup,u=NXT('ml','мл');
+  return `<div class="nx-wb${big?' big':''}"><button type="button" class="nx-wm" data-a="wadd" data-v="-${c}" aria-label="${NXT('Remove','Убрать')} ${c} ${u}"${ml?'':' disabled'}>${ico('minus')}</button><button type="button" class="nx-wp" data-a="wadd" data-v="${c}">${ico('glass-water')}+ ${c} ${u}</button></div>`}
+function nxWater(){const ml=wToday(),g=wGoal(),u=NXT('ml','мл');
+  return `<div class="nx-wat"><div class="nx-wh" role="button" tabindex="0" data-a="go" data-v="water" aria-label="${NXT('Water: settings and reminders','Вода: норма и напоминания')}">${glassSvg(ml/g)}<span class="nx-wt"><b>${NXT('Water','Вода')}</b><span class="nx-wv"><em>${nxn(ml)}</em> / ${nxn(g)} ${u}</span><small>${ico('bell')}${remTxt()}</small></span>${ico('chevron-right','nx-chev')}</div>${nxWaterBtns(false)}</div>`}
+const recCard=r=>{const n=RECN[r.id];return `<div class="nx-rc" role="button" tabindex="0" data-a="ropen" data-v="${r.id}">${dimg(r.id,r.ru.t,r.en.t,' nx-rimg')}<span class="nx-rt"><b>${esc(r[lang].t)}</b><small>${ico('clock')}${t('nmin',r.min)}${n?` · ${n[1]} ${NXT('kcal','ккал')}`:''}</small></span></div>`};
+function vNMenu(){const pref=nxMealNow()==='b'?'breakfast':'mains',recs=REC.filter(r=>r.c===pref).concat(REC.filter(r=>r.c!==pref)).slice(0,8);
+  return nxDay(true)
+  +`<div class="nx-hd"><h2>${NXT('Food diary','Дневник питания')}</h2><button type="button" class="nx-link" data-a="go" data-v="diary">${NXT('Whole day','Весь день')}${ico('chevron-right')}</button></div><div class="nx-meals">${nxMeals(false)}</div>`
+  +nxQuick()+nxWater()
+  +`<div class="nx-hd"><h2>${t('nc_rec')}</h2><button type="button" class="nx-link" data-a="go" data-v="recs">${NXT('All','Все')}${ico('chevron-right')}</button></div><div class="nx-rrow">${recs.map(recCard).join('')}</div>`
+  +`<div class="nx-ai"><span class="nx-aii">${ico('sparkles')}</span><span class="nx-ait"><b>${NXT('AI nutrition','ИИ-питание')}</b><small>${NXT('A menu for the day and dishes for your goal, with what you have at home','Меню на день и блюда под вашу цель — с учётом того, что есть дома')}</small></span><div class="nx-aib"><button type="button" data-a="go" data-v="dmenu">${ico('sparkles')}${t('nc_menu')}</button><button type="button" data-a="go" data-v="dishes">${ico('salad')}${t('nc_dishes')}</button></div></div>`}
+function vDiary(){return back('menu')+title(NXT('Today’s diary','Дневник за сегодня'))+nxDay(false)+`<div class="nx-meals full">${nxMeals(true)}</div>`
+  +`<div class="sec" style="margin-top:12px"><h2>${t('dweek')}</h2>${weekBars()}</div><p class="meta" style="margin-top:10px">${t('dnote')}</p>`}
+
+/* добавление еды: приём пищи + поиск / фото / словами / вручную */
+const calcTxt=(f,g)=>{const x=per(f,+g||0);return `${nxn(x.kcal)} ${NXT('kcal','ккал')} · ${t('nmac',x.protein,x.fat,x.carbs)}`};
+function nxPortion(f){const u=nxu(f),U=UNIT[f.u];
+  const ch=(U?[1,2,3].map(n=>[f.g*n,n+' '+U[lang==='en'?0:1],1]):[[f.g,NXT('portion','порция'),1]]).concat([[100,'100 '+u,0],[200,'200 '+u,0]]).filter((x,i,a)=>a.findIndex(y=>y[0]===x[0])===i);
+  return `<div class="nx-por"><div class="nx-pc">${ch.map(([v,l,sg])=>`<button type="button" class="${+N.fg===v?'on':''}" data-a="fg" data-v="${v}">${l}${sg?`<i> · ${v} ${u}</i>`:''}</button>`).join('')}</div>
+  <div class="nx-pg"><input type="number" inputmode="decimal" min="1" max="3000" data-f="fg" value="${esc(String(N.fg))}" aria-label="${NXT('Amount','Количество')}, ${u}"><span>${u}</span><output id="nxCalc">${calcTxt(f,N.fg)}</output></div>
+  <button type="button" class="p wide" data-a="fadd" data-v="${f.id}">${ico('plus')}${mealTo(N.m)}</button></div>`}
+const fdRow=f=>{const o=N.fsel===f.id;return `<div class="nx-fdw${o?' op':''}"><button type="button" class="nx-fd" data-a="fsel" data-v="${f.id}" aria-expanded="${o}"><span><b>${esc(f[lang])}</b><small>${nxn(f.k)} ${NXT('kcal','ккал')} / 100 ${nxu(f)} · ${t('nmac',r1(f.p),r1(f.f),r1(f.c))}</small></span>${ico(o?'chevron-right':'plus','nx-pl')}</button>${o?nxPortion(f):''}</div>`};
+function nxResults(){const q=N.fq.trim(),kc=NXT('kcal','ккал');
+  if(!q)return (N.recent.length?`<h3 class="nx-h3">${NXT('Recent','Недавние')}</h3>`+N.recent.map((r,i)=>`<div class="nx-fdw"><button type="button" class="nx-fd" data-a="radd2" data-i="${i}" aria-label="${NXT('Add','Добавить')}: ${esc(r.n)}"><span><b>${esc(r.n)}</b><small>${nxn(r.kcal)} ${kc} · ${t('nmac',r.protein,r.fat,r.carbs)}</small></span>${ico('plus','nx-pl')}</button></div>`).join(''):'')
+    +`<h3 class="nx-h3">${NXT('Popular','Популярное')}</h3>`+FOODS.filter(f=>FPOP.includes(f.ru)).map(fdRow).join('');
+  const L=nxFoods(q);
+  return (L.length?L.map(fdRow).join(''):`<p class="msg">${NXT('Nothing found in the food list.','В справочнике такого нет.')}</p>`)
+    +`<button type="button" class="wide nx-aiq" data-a="faiq">${ico('sparkles')}${NXT('Count with AI: ','Посчитать через ИИ: ')}«${esc(q.slice(0,40))}»</button>`}
+function vNAdd(){const am=N.am,err=D.err?`<p class="meta nx-err" role="alert">${esc(D.err)}</p>`:'';
+  const tabs=[['search','search',NXT('Search','Поиск')],['photo','camera',NXT('Photo','Фото')],['text','sparkles',NXT('In words','Словами')],['manual','pencil',NXT('Manual','Вручную')]];
+  let body='';
+  if(am==='search')body=`<div class="nx-sbox">${ico('search')}<input type="search" id="nxQ" data-f="fq" maxlength="60" autocomplete="off" placeholder="${NXT('Buckwheat, egg, apple…','Гречка, яйцо, яблоко…')}" value="${esc(N.fq)}" aria-label="${NXT('Search foods','Поиск продуктов')}" enterkeyhint="search"></div>${err}<div id="nxRes">${nxResults()}</div><p class="meta" style="margin-top:10px">${NXT('Values per 100 g are averages from food composition tables.','КБЖУ на 100 г — средние значения из таблиц состава продуктов.')}</p>`;
+  else if(am==='photo')body=`<div class="sec mb"><p class="meta" style="margin-bottom:10px">${NXT('Take a photo of your plate: AI will find the dishes and estimate portions. You confirm what to add.','Сфотографируйте тарелку: ИИ найдёт блюда и оценит порции, а вы отметите, что добавить.')}</p><textarea data-f="dtext" maxlength="120" rows="2" placeholder="${NXT('Hint, optional: e.g. “soup with sour cream”','Подсказка, необязательно: например, «суп со сметаной»')}">${esc(N.dtext)}</textarea><button type="button" class="p wide nx-phbtn" data-a="dphoto" ${D.busy||N.phb?'disabled':''}>${ico('camera')}${N.phb?t('nph_busy'):t('nph')}</button>${err}</div>`
+    +(N.ph?`<div class="sec mb nx-phr"><h2>${t('nph_found')}</h2>${N.ph.items.map((x,i)=>`<label class="nx-phi"><input type="checkbox" data-a="dpick" data-i="${i}"${x.on?' checked':''}><span><b>${esc(x.name)}</b><small>${x.grams?x.grams+(lang==='en'?' g · ':' г · '):''}${t('nkcal_u',x.kcal)} · ${t('nmac',x.protein,x.fat,x.carbs)}</small></span></label>`).join('')}${N.ph.unclear?`<p class="meta">${t('nph_unclear',N.ph.unclear)}</p>`:''}<div class="row nx-pha"><button class="p" data-a="dpadd">${t('nph_add')}</button><button data-a="dpcancel">${t('nph_cancel')}</button></div><p class="meta">${t('nph_note')}</p></div>`:'');
+  else if(am==='text')body=`<div class="sec mb"><textarea data-f="dtext" maxlength="300" rows="3" placeholder="${t('dtextph')}">${esc(N.dtext)}</textarea><button type="button" class="p wide" data-a="dadd" style="margin-top:10px" ${D.busy?'disabled':''}>${ico('sparkles')}${D.busy?t('dbusy'):NXT('Count and add','Посчитать и добавить')}</button>${err}<p class="meta" style="margin-top:8px">${t('dnote')}</p></div>`;
+  else{const M=N.man,fld=(k,l,a)=>`<label>${l}<input data-f="m${k}" value="${esc(M[k]||'')}" ${a}></label>`,num='type="number" inputmode="decimal" min="0"';
+    body=`<div class="sec mb nx-man">${fld('n',NXT('Name','Название'),'maxlength="60" placeholder="'+NXT('e.g. Homemade soup','Например, суп домашний')+'"')}<div class="nx-g2">${fld('g',NXT('Portion, g','Порция, г'),num+' max="3000" placeholder="'+NXT('optional','по желанию')+'"')}${fld('k',NXT('Calories, kcal','Калории, ккал'),num+' max="5000"')}</div>
+    <div class="nx-g3">${fld('p',NXT('Protein, g','Белки, г'),num+' max="500"')}${fld('f',NXT('Fat, g','Жиры, г'),num+' max="500"')}${fld('c',NXT('Carbs, g','Углеводы, г'),num+' max="500"')}</div>
+    <p class="meta" style="margin-top:8px">${NXT('Leave calories empty to count them from protein, fat and carbs.','Если калории не указать, посчитаем их по белкам, жирам и углеводам.')}</p><button type="button" class="p wide" data-a="madd" style="margin-top:10px">${ico('plus')}${mealTo(N.m)}</button>${err}</div>`}
+  return back(N.back)+title(NXT('Add food','Добавить еду'))
+  +`<div class="nx-ms" role="group" aria-label="${NXT('Meal','Приём пищи')}">${MEALS.map(m=>`<button type="button" class="${N.m===m?'on':''}" data-a="ameal" data-m="${m}" aria-pressed="${N.m===m}">${mealName(m)}</button>`).join('')}</div>`
+  +`<div class="nx-tabs" role="group" aria-label="${NXT('How to add','Как добавить')}">${tabs.map(([k,i,l])=>`<button type="button" class="${am===k?'on':''}" data-a="am" data-v="${k}" aria-pressed="${am===k}">${ico(i)}<span>${l}</span></button>`).join('')}</div>`
+  +body+`<input type="file" id="nxPhoto" accept="image/*" hidden>`}
+
+/* вода: норма, стакан, напоминания, неделя */
+function vNWater(){const ml=wToday(),g=wGoal(),C=NW.cfg,r=C.rem,u=NXT('ml','мл'),days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return d}),
+  mx=Math.max(g,...days.map(d=>+(NW.d[dkey(d)]||0)));
+  return back('menu')+title(NXT('Water','Вода'))
+  +`<div class="nx-wbig">${glassSvg(ml/g)}<div><b>${nxn(ml)} <i>${u}</i></b><small>${NXT('of '+nxn(g)+' ml today','из '+nxn(g)+' мл сегодня')} · ${Math.min(100,Math.round(ml/g*100))}%</small></div></div>`
+  +`<p class="nx-h3">${NXT('Glass size, ml','Объём стакана, мл')}</p><div class="nx-cups" role="group" aria-label="${NXT('Glass size','Объём стакана')}">${[150,200,250,300,500].map(v=>`<button type="button" class="${C.cup===v?'on':''}" data-a="wcup" data-v="${v}" aria-pressed="${C.cup===v}">${v}</button>`).join('')}</div>${nxWaterBtns(true)}`
+  +`<div class="sec mb"><h2>${NXT('Daily goal','Норма в день')}</h2><div class="nx-wg"><input type="number" inputmode="numeric" min="500" max="6000" step="50" data-f="wgoal" value="${g}" aria-label="${NXT('Daily goal, ml','Норма в день, мл')}"><span>${u}</span></div>
+   <p class="meta" style="margin-top:8px">${NXT('A common guide is about 30 ml per kg of body weight','Ориентир — около 30 мл на кг веса')}${F.prof&&F.prof.w?NXT(': '+nxn(wDefGoal())+' ml for you',': для вас '+nxn(wDefGoal())+' мл'):''}. ${NXT('Drink more in heat and on workout days; with heart or kidney conditions, ask your doctor.','В жару и в дни тренировок — больше; при болезнях сердца или почек норму лучше уточнить у врача.')}</p></div>`
+  +`<div class="sec mb nx-wset"><h2>${NXT('Reminders in Telegram','Напоминания в Телеграме')}</h2><label class="nx-sw"><input type="checkbox" data-f="wron"${r.on?' checked':''}><span>${NXT('Remind me to drink water','Напоминать пить воду')}</span></label>
+   <div class="nx-wr"><label>${NXT('From','С')}<input type="time" data-f="wrfrom" value="${esc(r.from)}" step="900"></label><label>${NXT('To','До')}<input type="time" data-f="wrto" value="${esc(r.to)}" step="900"></label><label>${NXT('Every','Каждые')}<select data-f="wrevery">${[1,1.5,2,3,4].map(v=>`<option value="${v}"${+r.every===v?' selected':''}>${hrs(v)} ${NXT('h','ч')}</option>`).join('')}</select></label></div>
+   <button type="button" class="p wide" data-a="wrsave"${NW.busy?' disabled':''}>${ico('bell')}${NW.busy?NXT('Saving…','Сохраняю…'):NXT('Save reminders','Сохранить напоминания')}</button>${NW.msg?`<p class="meta${NW.bad?' nx-err':''}" role="status" style="margin-top:8px">${esc(NW.msg)}</p>`:''}
+   <p class="meta" style="margin-top:8px">${NXT('The bot sends a message at these times every day.','Бот будет присылать сообщение в это время каждый день.')} ${remTxt()}.</p></div>`
+  +`<div class="sec"><h2>${NXT('Last 7 days, ml','Последние 7 дней, мл')}</h2><div class="wbars nx-wweek">${days.map(d=>{const v=+(NW.d[dkey(d)]||0);return `<div class="wb"><span>${v?nxn(v):''}</span><div class="col"><i style="height:${(v/mx*100).toFixed(1)}%"></i></div><small>${d.toLocaleDateString(loc(),{weekday:'narrow'})}</small></div>`}).join('')}</div></div>`}
+
+/* рецепты */
 function vRecs(){
   return back('menu')+title(t('nc_rec'))+`<div class="chips2">${['all','breakfast','soups','mains','salads','desserts'].map(c=>`<button class="${N.cat===c?'on':''}" data-a="rcat" data-v="${c}">${t('rc_'+c)}</button>`).join('')}</div>
-  <div style="margin-top:10px">${REC.filter(r=>N.cat==='all'||r.c===N.cat).map(r=>`<div class="libi" data-a="ropen" data-v="${r.id}"><div class="dc">${dimg(r.id,r.ru.t,r.en.t)}<div class="dt"><div class="lh"><b>${esc(r[lang].t)}</b></div><div class="meta" style="font-size:13px">${t('rc_'+r.c)} · ${t('nmin',r.min)}</div></div></div></div>`).join('')}</div>
-  <div class="sec" style="margin-top:14px"><h2>${t('nfind')}</h2><input data-f="rq" maxlength="100" placeholder="${t('nsearch')}" value="${esc(N.q)}"><button class="p wide" data-a="rfind" style="margin-top:10px">${t('nfind')}</button></div><p class="meta" style="margin-top:10px">${t('nphoto')}</p>`}
+  <div class="nx-rgrid">${REC.filter(r=>N.cat==='all'||r.c===N.cat).map(recCard).join('')}</div>
+  <div class="sec" style="margin-top:14px"><h2>${t('nfind')}</h2><input data-f="rq" maxlength="100" placeholder="${t('nsearch')}" value="${esc(N.q)}"><button class="p wide" data-a="rfind" style="margin-top:10px">${ico('sparkles')}${t('nfind')}</button></div><p class="meta" style="margin-top:10px">${t('nphoto')} ${NXT('Calories and macros are estimated from the ingredients.','КБЖУ посчитаны по ингредиентам, примерно.')}</p>`}
 function vRecipe(){const r=N.rec,bk=back(N.from);
   if(r.loading)return bk+title(esc(r.title))+`<p class="msg">${t('nrecbusy')}</p>`;
   if(r.err)return bk+title(esc(r.title))+`<p class="meta">${esc(r.err)}</p>`;
-  const b=r.ai?null:REC.find(z=>z.id===r.id),x=r.ai?r.j:{title:b[lang].t,minutes:b.min,servings:4,ingredients:b[lang].i,steps:b[lang].s,en:b.en.t};
-  const meta=[t('nmin',x.minutes),t('nserv',x.servings),x.kcal?`${t('nkcal_u',x.kcal)} ${t('nper')}`:'',x.kcal?t('nmac',x.protein,x.fat,x.carbs):''].filter(Boolean).join(' · ');
-  return bk+title(esc(x.title))+dimg(r.ai?null:r.id,x.title,x.en,' big')+`<p class="meta" style="margin:10px 0">${meta}</p><div class="sec mb"><h2>${t('ningr')}</h2><ul class="tips">${x.ingredients.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>
-  <div class="sec"><h2>${t('nsteps')}</h2>${x.steps.map((s,i)=>`<div class="st c" style="background:none;padding:6px 0;margin:0"><span class="dot">${i+1}</span><div>${esc(s)}</div></div>`).join('')}${x.tip?`<p class="meta" style="margin-top:10px">${t('ntip')}: ${esc(x.tip)}</p>`:''}</div>${r.ai?'':`<p class="meta" style="margin-top:10px">${t('nphoto')}</p>`}`}
-function renderNx(){const V={menu:vNMenu,dishes:vDishes,dmenu:vDMenu,recs:vRecs,recipe:vRecipe,diary:vDiary}[N.v];$('nx').innerHTML=V();if(N.lv!==N.v){N.lv=N.v;scrollTo(0,0)}fillImgs();loadPhotos().then(fillImgs)}
+  const b=r.ai?null:REC.find(z=>z.id===r.id),n=b?RECN[b.id]:null,
+    x=r.ai?r.j:{title:b[lang].t,minutes:b.min,servings:n?n[0]:4,ingredients:b[lang].i,steps:b[lang].s,en:b.en.t,kcal:n&&n[1],protein:n&&n[2],fat:n&&n[3],carbs:n&&n[4]};
+  return bk+dimg(r.ai?null:r.id,x.title,x.en,' big nx-hero')+title(esc(x.title))
+  +`<div class="nx-chips"><span>${ico('clock')}${t('nmin',x.minutes)}</span><span>${ico('users')}${t('nserv',x.servings)}</span></div>`
+  +(x.kcal?`<div class="nx-kb"><div><b>${nxn(x.kcal)}</b><small>${NXT('kcal','ккал')}</small></div><div class="mp"><b>${nxn(x.protein)}</b><small>${NXT('protein, g','белки, г')}</small></div><div class="mf"><b>${nxn(x.fat)}</b><small>${NXT('fat, g','жиры, г')}</small></div><div class="mc"><b>${nxn(x.carbs)}</b><small>${NXT('carbs, g','углеводы, г')}</small></div></div>
+    <p class="meta" style="margin:0 2px 10px">${NXT('Per serving, approximate.','На одну порцию, примерно.')}</p><button type="button" class="p wide" data-a="radd" style="margin-bottom:14px">${ico('plus')}${NXT('Add a serving to ','Добавить порцию: ')+(nxMealNow()==='s'?NXT('snacks','перекус'):t('m_'+nxMealNow()).toLowerCase())}</button>`:'')
+  +`<div class="sec mb"><h2>${t('ningr')}</h2><ul class="nx-ing">${x.ingredients.map(i=>`<li><label><input type="checkbox"><span>${esc(i)}</span></label></li>`).join('')}</ul></div>
+  <div class="sec"><h2>${t('nsteps')}</h2><ol class="nx-steps">${x.steps.map((s,i)=>`<li><span aria-hidden="true">${i+1}</span><p>${esc(s)}</p></li>`).join('')}</ol>${x.tip?`<p class="meta" style="margin-top:10px">${t('ntip')}: ${esc(x.tip)}</p>`:''}</div>${r.ai?'':`<p class="meta" style="margin-top:10px">${t('nphoto')}</p>`}`}
+function renderNx(){const V={menu:vNMenu,dishes:vDishes,dmenu:vDMenu,recs:vRecs,recipe:vRecipe,diary:vDiary,add:vNAdd,water:vNWater}[N.v]||vNMenu;$('nx').innerHTML=V();if(N.lv!==N.v){N.lv=N.v;scrollTo(0,0)}fillImgs();loadPhotos().then(fillImgs)}
 async function aiRecipe(q,from){N.from=from;N.rec={loading:true,title:q};N.v='recipe';renderNx();
   try{N.rec={ai:true,j:await api('/food',{mode:'recipe',query:q,goal:goalNow(),targets:tgt(),...prefs()})}}catch(e){N.rec={err:friendlyError(e),title:q}}
   if(N.v==='recipe')renderNx()}
@@ -2830,7 +3360,68 @@ const ni={avoid(v){N.avoid=v},allergy(v){N.allergy=v},pantry(v){N.pantry=v},rq(v
 $('nx').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)na[b.dataset.a]?.(b.dataset,b)});
 $('nx').addEventListener('input',e=>{const d=e.target.dataset;if(d.f)ni[d.f]?.(e.target.value)});
 $('nx').addEventListener('change',e=>{const f=e.target.dataset.f;if(f==='avoid')st.set('nx_avoid',N.avoid);if(f==='allergy')st.set('nx_allergy',N.allergy);if(f==='pantry')st.set('nx_pantry',N.pantry)});
-async function loadNx(){N.avoid=await jget('nx_avoid','');N.allergy=await jget('nx_allergy','');N.pantry=await jget('nx_pantry','');const m=await jget('nx_menu',null);if(m&&m.day===new Date().toDateString())N.menu=m.j;await loadDiary();renderNx()}
+/* --- Питание v2: действия --- */
+const nxRes=()=>{const el=document.getElementById('nxRes');if(el)el.innerHTML=nxResults()};
+Object.assign(na,{
+  async go(d){N.v=d.v;N.open=null;D.err='';renderNx();if(['diary','menu','water'].includes(d.v)){await Promise.all([loadDiary(),loadWater()]);if(N.v===d.v)renderNx()}},
+  add(d){if(N.v!=='add')N.back=N.v==='diary'?'diary':'menu';N.m=MEALS.includes(d.m)?d.m:(N.v==='add'?N.m:nxMealNow());if(d.am)N.am=d.am;N.fsel=null;N.ph=null;D.err='';N.v='add';renderNx();
+    if(d.am==='photo')document.getElementById('nxPhoto')?.click()},
+  am(d){N.am=d.v;D.err='';N.fsel=null;renderNx()},
+  ameal(d){N.m=d.m;renderNx()},
+  fsel(d){const id=+d.v;N.fsel=N.fsel===id?null:id;if(FOODS[id])N.fg=FOODS[id].g;D.err='';nxRes()},
+  fg(d){N.fg=+d.v;nxRes()},
+  async fadd(d){const f=FOODS[+d.v],g=+String(N.fg).replace(',','.');if(!f)return;
+    if(!(g>0&&g<=3000)){D.err=NXT('Enter an amount from 1 to 3000.','Укажите количество от 1 до 3000.');return renderNx()}
+    D.err='';const U=UNIT[f.u],lbl=U&&g%f.g===0&&g/f.g<=10?(g/f.g)+' '+U[lang==='en'?0:1]:Math.round(g)+' '+nxu(f);
+    nxDone(await nxPush([{n:f[lang]+', '+lbl,...per(f,g)}],N.m))},
+  async radd2(d){const r=N.recent[+d.i];if(r)nxDone(await nxPush([r],N.m))},
+  faiq(){N.dtext=N.fq.trim();N.am='text';renderNx();na.dadd()},
+  async madd(){const M=N.man,num=k=>{const v=String(M[k]??'').replace(',','.').trim();return v===''?null:+v},name=String(M.n||'').trim(),g=num('g');
+    let k=num('k');const p=num('p')||0,f=num('f')||0,c=num('c')||0;
+    const bad=!name?NXT('Enter a name.','Укажите название.')
+      :[g,k,num('p'),num('f'),num('c')].some(v=>v!=null&&!(v>=0))?NXT('Numbers only, without a minus.','Только числа, без минуса.')
+      :g!=null&&g>3000?NXT('A portion is at most 3000 g.','Порция — не больше 3000 г.')
+      :k!=null&&k>5000?NXT('Calories are at most 5000.','Калорий — не больше 5000.')
+      :Math.max(p,f,c)>500?NXT('Protein, fat and carbs are at most 500 g each.','Белки, жиры и углеводы — не больше 500 г каждое.')
+      :k==null&&!(p||f||c)?NXT('Enter calories or protein, fat and carbs.','Укажите калории или белки, жиры и углеводы.'):'';
+    if(bad){D.err=bad;return renderNx()}
+    if(k==null)k=Math.round(p*4+f*9+c*4);D.err='';
+    const n=await nxPush([{n:name+(g?', '+Math.round(g)+' '+NXT('g','г'):''),kcal:k,protein:p,fat:f,carbs:c}],N.m);if(n)N.man={};nxDone(n)},
+  async dadd(){const text=N.dtext.trim();if(!text||D.busy)return;await loadDiary();if(D.items.length>=30){D.err=t('dfull');return renderNx()}
+    D.busy=true;D.err='';renderNx();let k=0;
+    try{const j=await api('/food',{mode:'log',text});if(!j.items||!j.items.length)throw new Error(t('dbad'));
+      k=await nxPush(j.items.map(x=>({n:x.name,kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs})),N.m||nxMealNow());N.dtext=''}catch(e){D.err=friendlyError(e)}
+    D.busy=false;if(k&&N.v==='add')return nxDone(k);renderNx()},
+  async dpadd(){if(!N.ph)return;const sel=N.ph.items.filter(x=>x.on);N.ph=null;
+    const k=await nxPush(sel.map(x=>({n:x.name+(x.grams?' ('+x.grams+(lang==='en'?' g)':' г)'):''),kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs})),N.m||nxMealNow());N.dtext='';
+    if(k&&N.v==='add')return nxDone(k);renderNx()},
+  async radd(){const r=N.rec;if(!r)return;const b=r.ai?null:REC.find(z=>z.id===r.id),n=b?RECN[b.id]:null,x=r.ai?r.j:(n?{title:b[lang].t,kcal:n[1],protein:n[2],fat:n[3],carbs:n[4]}:null);if(!x||!x.kcal)return;
+    N.m=nxMealNow();const k=await nxPush([{n:x.title+NXT(', 1 serving',', 1 порция'),kcal:x.kcal,protein:x.protein,fat:x.fat,carbs:x.carbs}],N.m);
+    if(k)nvToast(NXT('Added to ','Добавлено: ')+mealName(N.m).toLowerCase());else{nvToast(D.err||t('dfull'));D.err=''}},
+  async wadd(d){await loadWater();const v=+d.v,was=wToday(),now_=Math.max(0,Math.min(10000,was+v)),g=wGoal();NW.d[dkey()]=now_;
+    if(v>0&&was<g&&now_>=g){nvToast(NXT('Daily water goal reached!','Норма воды на сегодня выполнена!'));try{tg?.HapticFeedback?.notificationOccurred?.('success')}catch{}}
+    renderNx();await wSave()},
+  wcup(d){NW.cfg.cup=+d.v;wCfgSave();renderNx()},
+  async wrsave(){if(NW.busy)return;const r=NW.cfg.rem,times=r.on?wTimes(r):[];
+    if(r.on&&!times.length){NW.msg=NXT('“To” must be later than “From”.','Время «До» должно быть позже, чем «С».');NW.bad=true;return renderNx()}
+    NW.busy=true;NW.msg='';NW.bad=false;renderNx();
+    try{for(const id of (r.ids||[]).slice()){try{await api('/reminders',{action:'delete',id})}catch{}r.ids=r.ids.filter(x=>x!==id)}
+      const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC',now=new Date();
+      for(const tm of times){const d=new Date(),[h,m]=tm.split(':').map(Number);d.setHours(h,m,0,0);if(d<=now)d.setDate(d.getDate()+1);
+        const j=await api('/reminders',{action:'create',title:'💧 '+NXT('Time to drink some water','Пора выпить воды'),note:NXT('Goal: '+wGoal()+' ml a day. Log a glass in the app.','Норма — '+wGoal()+' мл в день. Отметьте стакан в приложении.'),date:dkey(d),time:tm,timezone:tz,repeat:'daily'});
+        if(j&&j.id)r.ids.push(j.id)}
+      NW.msg=r.on?NXT('Saved: '+times.length+' reminders a day.','Сохранено: '+times.length+' '+fxPl(times.length,'напоминание','напоминания','напоминаний')+' в день.'):NXT('Reminders are off.','Напоминания выключены.')}
+    catch(e){NW.msg=friendlyError(e);NW.bad=true}
+    await wCfgSave();NW.busy=false;renderNx()}});
+Object.assign(ni,{fq(v){N.fq=v;N.fsel=null;nxRes()},fg(v){N.fg=v;const f=FOODS[N.fsel],o=document.getElementById('nxCalc');if(f&&o)o.textContent=calcTxt(f,String(v).replace(',','.'))},
+  mn(v){N.man.n=v},mg(v){N.man.g=v},mk(v){N.man.k=v},mp(v){N.man.p=v},mf(v){N.man.f=v},mc(v){N.man.c=v}});
+$('nx').addEventListener('change',e=>{const f=e.target.dataset.f,r=NW.cfg.rem;if(!f)return;
+  if(f==='wgoal'){const v=Math.round(+e.target.value);if(v>=500&&v<=6000){NW.cfg.goal=v;wCfgSave();renderNx()}else e.target.value=wGoal();return}
+  if(!['wron','wrfrom','wrto','wrevery'].includes(f))return;
+  if(f==='wron')r.on=e.target.checked;if(f==='wrfrom'&&e.target.value)r.from=e.target.value;if(f==='wrto'&&e.target.value)r.to=e.target.value;if(f==='wrevery')r.every=+e.target.value;
+  NW.msg=NXT('Press “Save reminders” to apply.','Нажмите «Сохранить напоминания», чтобы применить.');NW.bad=false;renderNx()});
+$('nx').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button][data-a]')){e.preventDefault();e.target.click()}});
+async function loadNx(){N.avoid=await jget('nx_avoid','');N.allergy=await jget('nx_allergy','');N.pantry=await jget('nx_pantry','');const m=await jget('nx_menu',null);if(m&&m.day===new Date().toDateString())N.menu=m.j;const rc=await jget('nx_recent',[]);N.recent=(Array.isArray(rc)?rc:[]).filter(r=>r&&typeof r.n==='string').slice(0,12).map(r=>({n:r.n.slice(0,70),kcal:Math.round(+r.kcal||0),protein:Math.round(+r.protein||0),fat:Math.round(+r.fat||0),carbs:Math.round(+r.carbs||0)}));await Promise.all([loadDiary(),loadWater()]);renderNx()}
 
 /* ================= ЗДОРОВЬЕ ================= */
 const bi=(r,e)=>lang==='en'?e:r;
@@ -5322,7 +5913,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('#home [dat
   if(a==='log')return openGoal(b.dataset.id,true);
   if(a==='newgoal'){showTab('g');requestAnimationFrame(()=>document.querySelector('#g [data-a="add"]')?.click());return}
   if(a==='food'){showTab('nx');return}
-  if(a==='foodadd'){showTab('nx');try{na.go({v:'diary'})}catch{}return}
+  if(a==='foodadd'){showTab('nx');try{na.add({})}catch{}return}
   if(a==='fit'){showTab('ft');return}
   if(a==='fitgo'){showTab('ft');try{if(F.act){fa.resume()}else{fa.menu();requestAnimationFrame(()=>document.querySelector('#ft [data-a="start"]')?.click())}}catch{}return}
   if(a==='study')return showTab('study');
